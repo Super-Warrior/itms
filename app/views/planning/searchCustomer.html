@@ -1,0 +1,199 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="100" alt="iTMS">
+    </h4>
+</div>
+<div class="modal-body no-padding">
+
+    <form action="" class="smart-form">
+
+        <fieldset>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="select">
+                        <select>
+                            <option value="0" selected="" disabled="">客户所属区域</option>
+                            <option value="1">华东</option>
+                            <option value="2">华北</option>
+                            <option value="3">华南</option>
+                            <option value="4">东北</option>
+                        </select> <i></i> </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-3">
+                    <label class="select">
+                        <select name="prov">
+                            <option value="0" selected="" disabled="">省</option>
+                            <option value="244">北京市</option>
+                            <option value="1">上海市</option>
+                            <option value="2">江苏省</option>
+                            <option value="3">浙江省</option>
+                            <option value="4">福建省</option>
+                            <option value="5">广东省</option>
+
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-3">
+                    <label class="select">
+                        <select name="city">
+                            <option value="0" selected="" disabled="">市</option>
+                            <option value="244">北京市</option>
+                            <option value="1">上海市</option>
+                            <option value="2">南京市</option>
+                            <option value="3">杭州市</option>
+                            <option value="4">福州市</option>
+                            <option value="5">深圳市</option>
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-3">
+                    <label class="select">
+                        <select name="disc">
+                            <option value="0" selected="" disabled="">区县</option>
+                            <option value="244">徐汇区</option>
+                            <option value="1">静安区</option>
+                            <option value="2">黄浦区</option>
+                            <option value="3">宝山区</option>
+                            <option value="4">浦东新区</option>
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-3">
+                    <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" placeholder="邮编">
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" placeholder="客户代码">
+                    </label>
+                </section>
+                <section class="col col-6">
+                    <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" placeholder="客户名称">
+                    </label>
+                </section>
+                <section class="col col-12">
+                    <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> 搜索客户</button>
+                </section>
+            </div>
+            <div class="row">
+                <article class="col col-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false">
+                        <!-- widget div-->
+                        <div>
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+                                <table class="table table-bordered table-striped table-condensed table-hover smart-form has-tickbox">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </th>
+                                        <th>客户代码<a href="javascript:void(0);"
+                                                   class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                        <th>名称 <a href="javascript:void(0);"
+                                                  class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                        <th>所属区域 <a href="javascript:void(0);"
+                                                    class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a>
+                                        </th>
+                                        <th>城市区 <a href="javascript:void(0);"
+                                                   class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                        <th>地址 <a href="javascript:void(0);"
+                                                  class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>AB00011</td>
+                                        <td>客户名称1</td>
+                                        <td>华东区</td>
+                                        <td>上海市-徐汇区</td>
+                                        <td>龙华西路222号</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>AB00012</td>
+                                        <td>客户名称2</td>
+                                        <td>华东区</td>
+                                        <td>上海市-徐汇区</td>
+                                        <td>龙华西路222号</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>AB00013</td>
+                                        <td>客户名称3</td>
+                                        <td>华东区</td>
+                                        <td>上海市-徐汇区</td>
+                                        <td>龙华西路222号</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+            </div>
+
+        </fieldset>
+
+        <footer>
+            <button type="submit" class="btn btn-success">
+                插入
+            </button>
+            <button type="button" class="btn btn-default" ng-click="cancel()">
+                返回
+            </button>
+
+        </footer>
+    </form>
+
+
+</div>

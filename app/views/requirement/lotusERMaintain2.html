@@ -1,0 +1,1012 @@
+﻿<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-search fa-fw "></i> 
+				需求管理 
+			<span>> 
+				按站点查询/维护需求
+			</span>
+		</h1>
+	</div>
+
+</div>
+
+	<div class="row">
+		<article class="col-sm-12">
+
+			<div class="collapse navbar-collapse navbar-inverse">
+				<ul class="nav navbar-nav">
+					<li class="dropdown dropdown-large">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">站点选择<b class="caret"></b></a>
+
+						<ul class="dropdown-menu dropdown-menu-large row">
+							<li class="col-sm-4">
+								<ul>
+									<li class="dropdown-header">
+										上海通用
+									</li>
+									<li>
+										<a href="javascript:void(0);">申江路</a>
+									</li>
+									<li class="disabled">
+										<a href="javascript:void(0);">停用: 嘉定</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);">康桥</a>
+									</li>
+									<li class="divider"></li>
+									<li class="dropdown-header">
+										上汽乘用车
+									</li>
+									<li>
+										<a href="javascript:void(0);">临港站点</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);">安亭站点</a>
+									</li>
+								</ul>
+							</li>
+							<li class="col-sm-3">
+								<ul>
+									<li class="dropdown-header">
+										欧莱雅
+									</li>
+									<li>
+										<a href="javascript:void(0);">站点1</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);">站点2</a>
+									</li>
+
+									<li class="divider"></li>
+									<li class="dropdown-header">
+										法拉利
+									</li>
+									<li>
+										<a href="javascript:void(0);">站点1</a>
+									</li>
+								</ul>
+							</li>
+							<li class="col-sm-3">
+								<ul>
+									<li class="dropdown-header">
+										华东
+									</li>
+									<li>
+										<a href="javascript:void(0);">南京站点1</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);">杭州站点2</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);">苏州站点3</a>
+									</li>
+									<li class="divider"></li>
+									<li class="dropdown-header">
+										华北
+									</li>
+									<li>
+										<a href="javascript:void(0);">北京站点1</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);">唐山站点2</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);">保定站点3</a>
+									</li>
+								</ul>
+							</li>
+							<li class="col-sm-4">
+								<ul>
+									<li class="dropdown-header"><i class="fa fa-reorder"></i>
+										全部站点
+									</li>
+									<li>
+										<a href="javascript:void(0);">全部国内站点</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);">全部国外站点</a>
+									</li>
+
+								</ul>
+							</li>
+						</ul>
+
+					</li>
+					<li>
+						<a href="javascript:void(0);">站点: <font color="white">上海通用>康桥</font></a>
+					</li>
+				</ul>
+
+				<form class="navbar-form navbar-left pull-right" role="search">
+					<div class="form-group">
+						<input class="form-control" placeholder="搜索站点" type="text">
+					</div>
+					<button class="btn btn-primary" type="submit">
+						提交
+					</button>
+				</form>
+
+			</div>
+
+		</article>
+
+	</div><br>
+
+	<!-- end row -->
+
+<!-- widget grid -->
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+
+		<!-- NEW WIDGET START -->
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget jarviswidget-color-orange" id="wid-id-2" data-widget-editbutton="false">
+				<!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+					<h2>需求清单</h2>
+
+				</header>
+
+				<!-- widget div-->
+				<div>
+
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+
+					</div>
+					<!-- end widget edit box -->
+
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+						<div class="widget-body-toolbar">
+
+						</div>
+						<table id="datatable_col_reorder" class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>客户订单</th>
+									<th>类型</th>
+									<th>运输方式</th>
+									<th>送达方</th>
+									<th>目的地省份</th>
+									<th>目的地市区</th>
+									<th>要求达到日期</th>
+									<th>总件数</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>U2100003101213000001</td>
+									<td>预付</td>
+									<td>公路</td>
+									<td>昆山华通汽车贸易服务有限公司</td>
+									<td>江苏省</td>
+									<td>苏州市</td>
+									<td>03/04/2014</td>
+									<td>1</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>U2100003101213000002</td>
+									<td>预付</td>
+									<td>航空</td>
+									<td>重庆龙华汽车贸易服务有限公司</td>
+									<td>重庆市</td>
+									<td>江北区</td>
+									<td>03/04/2014</td>
+									<td>14</td>
+								</tr>
+									<td>3</td>
+									<td>U2100003101213000003</td>
+									<td>预付</td>
+									<td>航空</td>
+									<td>安庆环通汽车销售服务有限公司</td>
+									<td>安徽省</td>
+									<td>安庆市</td>
+									<td>03/04/2014</td>
+									<td>9</td>
+							</tbody>
+						</table>
+
+					</div>
+					<!-- end widget content -->
+
+				</div>
+				<!-- end widget div -->
+
+			</div>
+			<!-- end widget -->
+
+
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget jarviswidget-color-orange" id="wid-id-1x" data-widget-editbutton="false" data-widget-collapsed="true">
+				<!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-1x" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+					<h2>需求明细</h2>
+<div class="widget-toolbar">
+						
+						<div class="btn-group">
+							<button class="btn dropdown-toggle btn-xs btn-info " data-toggle="dropdown">
+								操作 <i class="fa fa-caret-down"></i>
+							</button>
+							<ul class="dropdown-menu pull-right">
+							<li>
+									<a href="javascript:void(0);"> <i class="fa fa-refresh"></i> 刷新</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);"> <i class="fa fa-save"></i> 保存</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);"><i class="fa fa-camera"></i> 保存成模板</a>
+								</li>
+
+								<li>
+									<a href="javascript:void(0);"><i class="fa fa-times-circle "></i> 删除</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</header>
+
+				<!-- widget div-->
+				<div>
+
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+
+					</div>
+					<!-- end widget edit box -->
+
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+						<div class="widget-body-toolbar">
+<div class="alert alert-block alert-success">
+	<a class="close" data-dismiss="alert" href="#">×</a>
+	<h4 class="alert-heading"><i class="fa fa-search"></i> 需求编号: ER0001</h4>
+</div>
+
+						<div class="panel-group smart-accordion-default" id="accordion-2">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-1"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> 概要信息</a></h4>
+								</div>
+								<div id="collapseOne-1" class="panel-collapse collapse in">
+									<div class="panel-body">
+
+
+						<form action="" id="checkout-form" class="smart-form" novalidate="novalidate">
+
+							<fieldset>
+								<div class="row">
+									<section class="col col-2">
+										<label class="select">
+											<select name="prov">
+												<option value="0" selected="" disabled="">订单类型</option>
+												<option value="244">紧急</option>
+												<option value="1">预付</option>
+												<option value="2">监控</option>
+												<option value="3">索赔</option>
+												<option value="4">统配</option>
+											</select> <i class="fa fa-check-square"></i></label>
+									</section>
+									<section class="col col-2">
+										<label class="select">
+											<select name="prov">
+												<option value="0" selected="" disabled="">特种运输标识</option>
+												<option value="244">危险品</option>
+												<option value="1">冷链</option>
+												<option value="2">放射性</option>
+												<option value="3">剧毒</option>
+											</select> <i class="fa fa-check-square"></i></label>
+									</section>
+									<section class="col col-4">
+										<label class="input"> <i class="icon-prepend fa fa-phone"></i>
+											<input type="text" name="CRP2" placeholder="前序ER/EO订单号">
+										</label>
+									</section>
+								</div>
+
+								<div class="row">
+									<section class="col col-4">
+										<label class="input"> <i class="icon-prepend fa fa-tag"></i>
+											<input type="text" name="Cr" placeholder="客户订单号">
+										</label>
+									</section>
+									<section class="col col-4">
+										<label class="input"> <i class="icon-prepend fa fa-tag"></i>
+											<input type="text" name="CRP" placeholder="客户前序订单号">
+										</label>
+									</section>
+								</div>
+
+
+								<div class="row">
+									<section class="col col-2">
+										<label class="input"> <i class="icon-prepend fa fa-list-ol "></i>
+											<input type="text" name="Cr" placeholder="总件数">
+										</label>
+									</section>
+									<section class="col col-2">
+										<label class="input"> <i class="icon-prepend fa fa-outdent "></i>
+											<input type="text" name="Cr" placeholder="总重量">
+										</label>
+									</section>
+									<section class="col col-2">
+										<label class="input"> <i class="icon-prepend fa fa-th "></i>
+											<input type="text" name="Cr" placeholder="总体积">
+										</label>
+									</section>
+									<section class="col col-2">
+										<label class="input"> <i class="icon-prepend fa fa-list"></i>
+											<input type="text" name="Cr" placeholder="总体积/重">
+										</label>
+									</section>
+
+								</div>
+								<div class="row">
+								<section class="col col-8">
+									<label for="file" class="input input-file">
+										<div class="button"><input type="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">文件</div><input type="text" placeholder="插入附件" readonly="">
+									</label>
+								</section>
+								</div>
+
+								<div class="row">
+								<section class="col col-8">
+									<label class="textarea"> 										
+										<textarea rows="3" name="info" placeholder="附加信息"></textarea> 
+									</label>
+								</section>
+								</div>
+
+							</fieldset>
+
+							<fieldset>
+								<div class="row">
+									<section class="col col-4">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>要求到达日期</label>
+										<label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+											<input type="text" name="startdate" id="startdate" placeholder="要求达到日期">
+										</label>
+										         </div>
+									</section>
+									<section class="col col-2">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>要求到达时间(最早)</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker" type="text" value="" placeholder="要求到达时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+									<section class="col col-2">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>要求到达时间(最晚)</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker2" type="text" placeholder="要求到达时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+
+								</div>
+
+							</fieldset>
+							<fieldset>
+								<div class="row">
+									<section class="col col-4">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>需求ER接收日期</label>
+										<label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+											<input type="text" name="startdate2" id="startdate2" placeholder="需求接收日期">
+										</label>
+										         </div>
+									</section>
+									<section class="col col-4">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>需求ER接收时间</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker3" type="text" placeholder="需求接收时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+
+								</div>
+								<div class="row">
+									<section class="col col-4">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>ER货物交接日期</label>
+										<label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+											<input type="text" name="startdate2" id="startdate3" placeholder="需求接收日期">
+										</label>
+										         </div>
+									</section>
+									<section class="col col-2">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>交接时间(开始)</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker4" type="text" placeholder="接收时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+									<section class="col col-2">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>交接时间(结束)</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker5" type="text" placeholder="接收时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+									<section class="col col-2">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>装车时间(开始)</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker6" type="text" placeholder="装车时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+									<section class="col col-2">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>装车时间(结束)</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker7" type="text"  placeholder="装车时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+								</div>
+								<div class="row">
+									<section class="col col-4">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>ER货物理货日期</label>
+										<label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+											<input type="text" name="startdate2" id="startdate4" placeholder="需求接收日期">
+										</label>
+										         </div>
+									</section>
+									<section class="col col-2">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>卸载时间(开始)</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker8" type="text" placeholder="卸载时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+									<section class="col col-2">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>卸载时间(结束)</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker9" type="text" placeholder="卸载时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+									<section class="col col-2">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>理货时间(开始)</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker10" type="text" placeholder="理货时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+									<section class="col col-2">
+                                                                                                                                                                                                                                  <div class="form-group">
+													<label>理货时间(结束)</label>
+													<div class="input-group">
+														<input class="form-control" id="timepicker11" type="text" placeholder="理货时间">
+														<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													</div>
+										         </div>
+									</section>
+								</div>
+
+							</fieldset>
+
+</form>
+
+
+
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseTwo-1" class="collapsed"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> 发货方信息</a></h4>
+								</div>
+								<div id="collapseTwo-1" class="panel-collapse collapse">
+									<div class="panel-body">
+
+
+						<form action="" id="checkout-form" class="smart-form" novalidate="novalidate">
+
+							<fieldset>
+									<section>
+										<label class="select">
+											<select name="disc">
+												<option value="0" selected="" disabled="">需求接收区域</option>
+												<option value="244">上海大众: 上海嘉定</option>
+												<option value="1">上海大众: 仪征</option>
+											</select> <i></i> </label>
+									</section>
+								<div class="row">
+									<section class="col col-6">
+										<label class="select">
+											<select name="prov">
+												<option value="0" selected="" disabled="">发货客户</option>
+												<option value="244">上海通用</option>
+												<option value="1">上海大众</option>
+												<option value="2">上汽乘用车</option>
+
+											</select> <i></i> </label>
+									</section>
+									<section class="col col-6">
+										<label class="input"> <i class="icon-prepend fa fa-user"></i>
+											<input type="text" name="lname" placeholder="联系人">
+										</label>
+									</section>
+								</div>
+
+								<div class="row">
+									<section class="col col-6">
+										<label class="input"> <i class="icon-prepend fa fa-envelope-o"></i>
+											<input type="email" name="email" placeholder="电子邮件">
+										</label>
+									</section>
+									<section class="col col-6">
+										<label class="input"> <i class="icon-prepend fa fa-phone"></i>
+											<input type="tel" name="phone" placeholder="电话" data-mask="(999) 9999-9999">
+										</label>
+									</section>
+								</div>
+							</fieldset>
+
+							<fieldset>
+									<section>
+										<label class="select">
+											<select name="disc">
+												<option value="0" selected="" disabled="">位置点选择</option>
+												<option value="244">LOC012AS11-上海康桥</option>
+												<option value="1">LOC012AS12-上海申江路</option>
+												<option value="2">LOC012AB01-上海临港</option>
+											</select> <i></i> </label>
+									</section>
+								<div class="row">
+									<section class="col col-3">
+										<label class="select">
+											<select name="prov">
+												<option value="0" selected="" disabled="">省</option>
+												<option value="244">北京市</option>
+												<option value="1">上海市</option>
+												<option value="2">江苏省</option>
+												<option value="3">浙江省</option>
+												<option value="4">福建省</option>
+												<option value="5">广东省</option>
+
+											</select> <i></i> </label>
+									</section>
+
+									<section class="col col-3">
+										<label class="select">
+											<select name="city">
+												<option value="0" selected="" disabled="">市</option>
+												<option value="244">北京市</option>
+												<option value="1">上海市</option>
+												<option value="2">南京市</option>
+												<option value="3">杭州市</option>
+												<option value="4">福州市</option>
+												<option value="5">深圳市</option>
+											</select> <i></i> </label>
+									</section>
+
+									<section class="col col-3">
+										<label class="select">
+											<select name="disc">
+												<option value="0" selected="" disabled="">区县</option>
+												<option value="244">徐汇区</option>
+												<option value="1">静安区</option>
+												<option value="2">黄浦区</option>
+												<option value="3">宝山区</option>
+												<option value="4">浦东新区</option>
+											</select> <i></i> </label>
+									</section>
+
+
+									<section class="col col-3">
+										<label class="input">
+											<input type="text" name="code" placeholder="邮编">
+										</label>
+									</section>
+								</div>
+
+								<section>
+									<label for="address" class="input">
+										<input type="text" name="address" placeholder="地址">
+									</label>
+								</section>
+
+								<section>
+									<label class="textarea"> 										
+										<textarea rows="3" name="info" placeholder="附加信息"></textarea> 
+									</label>
+								</section>
+							</fieldset>
+						</form>
+
+
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseThree-1" class="collapsed"> <i class="fa fa-fw fa-plus-circle txt-color-green"></i> <i class="fa fa-fw fa-minus-circle txt-color-red"></i> 送达方信息</a></h4>
+								</div>
+								<div id="collapseThree-1" class="panel-collapse collapse">
+									<div class="panel-body">
+
+
+						<form action="" id="checkout-formD" class="smart-form" novalidate="novalidate">
+
+							<fieldset>
+			
+								<div class="row">
+
+									<section class="col col-6">
+										<label class="select">
+											<select name="prov">
+												<option value="0" selected="" disabled="">收货客户</option>
+												<option value="244">上海通用</option>
+												<option value="1">上海大众</option>
+												<option value="2">上汽乘用车</option>
+
+											</select> <i></i> </label>
+
+									</section>
+									<section class="col col-6">
+										<label class="input"> <i class="icon-prepend fa fa-user"></i>
+											<input type="text" name="lname" placeholder="联系人">
+										</label>
+									</section>
+								</div>
+
+								<div class="row">
+									<section class="col col-6">
+										<label class="input"> <i class="icon-prepend fa fa-envelope-o"></i>
+											<input type="email" name="email" placeholder="电子邮件">
+										</label>
+									</section>
+									<section class="col col-6">
+										<label class="input"> <i class="icon-prepend fa fa-phone"></i>
+											<input type="tel" name="phone" placeholder="电话" data-mask="(999) 9999-9999">
+										</label>
+									</section>
+								</div>
+							</fieldset>
+
+							<fieldset>
+									<section>
+										<label class="select">
+											<select name="disc">
+												<option value="0" selected="" disabled="">位置点选择</option>
+												<option value="244">LOC012AS11-上海康桥</option>
+												<option value="1">LOC012AS12-上海申江路</option>
+												<option value="2">LOC012AB01-上海临港</option>
+											</select> <i></i> </label>
+									</section>
+								<div class="row">
+									<section class="col col-3">
+										<label class="select">
+											<select name="prov">
+												<option value="0" selected="" disabled="">省</option>
+												<option value="244">北京市</option>
+												<option value="1">上海市</option>
+												<option value="2">江苏省</option>
+												<option value="3">浙江省</option>
+												<option value="4">福建省</option>
+												<option value="5">广东省</option>
+
+											</select> <i></i> </label>
+									</section>
+
+									<section class="col col-3">
+										<label class="select">
+											<select name="city">
+												<option value="0" selected="" disabled="">市</option>
+												<option value="244">北京市</option>
+												<option value="1">上海市</option>
+												<option value="2">南京市</option>
+												<option value="3">杭州市</option>
+												<option value="4">福州市</option>
+												<option value="5">深圳市</option>
+											</select> <i></i> </label>
+									</section>
+
+									<section class="col col-3">
+										<label class="select">
+											<select name="disc">
+												<option value="0" selected="" disabled="">区县</option>
+												<option value="244">徐汇区</option>
+												<option value="1">静安区</option>
+												<option value="2">黄浦区</option>
+												<option value="3">宝山区</option>
+												<option value="4">浦东新区</option>
+											</select> <i></i> </label>
+									</section>
+
+
+									<section class="col col-3">
+										<label class="input">
+											<input type="text" name="code" placeholder="邮编">
+										</label>
+									</section>
+								</div>
+
+								<section>
+									<label for="address" class="input">
+										<input type="text" name="address" placeholder="地址">
+									</label>
+								</section>
+
+								<section>
+									<label class="textarea"> 										
+										<textarea rows="3" name="info" placeholder="附加信息"></textarea> 
+									</label>
+								</section>
+							</fieldset>
+
+
+						</form>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						</div>
+						<table id="datatable_col_reorder" class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>客户订单</th>
+									<th>类型</th>
+									<th>运输方式</th>
+									<th>送达方</th>
+									<th>目的地省份</th>
+									<th>目的地市区</th>
+									<th>要求达到日期</th>
+									<th>总件数</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>U2100003101213000001</td>
+									<td>预付</td>
+									<td>公路</td>
+									<td>昆山华通汽车贸易服务有限公司</td>
+									<td>江苏省</td>
+									<td>苏州市</td>
+									<td>03/04/2014</td>
+									<td>1</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>U2100003101213000002</td>
+									<td>预付</td>
+									<td>航空</td>
+									<td>重庆龙华汽车贸易服务有限公司</td>
+									<td>重庆市</td>
+									<td>江北区</td>
+									<td>03/04/2014</td>
+									<td>14</td>
+								</tr>
+									<td>3</td>
+									<td>U2100003101213000003</td>
+									<td>预付</td>
+									<td>航空</td>
+									<td>安庆环通汽车销售服务有限公司</td>
+									<td>安徽省</td>
+									<td>安庆市</td>
+									<td>03/04/2014</td>
+									<td>9</td>
+							</tbody>
+						</table>
+
+					</div>
+					<!-- end widget content -->
+
+				</div>
+				<!-- end widget div -->
+
+			</div>
+			<!-- end widget -->
+
+
+		</article>
+		<!-- WIDGET END -->
+
+	</div>
+
+	<!-- end row -->
+
+	<!-- end row -->
+
+</section>
+<!-- end widget grid -->
+
+<script type="text/javascript">
+
+	// DO NOT REMOVE : GLOBAL FUNCTIONS!
+	pageSetUp();
+	
+	// PAGE RELATED SCRIPTS
+
+	loadDataTableScripts();
+	function loadDataTableScripts() {
+
+		loadScript("js/plugin/datatables/jquery.dataTables-cust.min.js", dt_2);
+
+		function dt_2() {
+			loadScript("js/plugin/datatables/ColReorder.min.js", dt_3);
+		}
+
+		function dt_3() {
+			loadScript("js/plugin/datatables/FixedColumns.min.js", dt_4);
+		}
+
+		function dt_4() {
+			loadScript("js/plugin/datatables/ColVis.min.js", dt_5);
+		}
+
+		function dt_5() {
+			loadScript("js/plugin/datatables/ZeroClipboard.js", dt_6);
+		}
+
+		function dt_6() {
+			loadScript("js/plugin/datatables/media/js/TableTools.min.js", dt_7);
+		}
+
+		function dt_7() {
+			loadScript("js/plugin/datatables/DT_bootstrap.js", runDataTables);
+		}
+
+	}
+
+	function runDataTables() {
+
+		/*
+		 * BASIC
+		 */
+		$('#dt_basic').dataTable({
+			"sPaginationType" : "bootstrap_full"
+		});
+
+		/* END BASIC */
+
+		/* Add the events etc before DataTables hides a column */
+		$("#datatable_fixed_column thead input").keyup(function() {
+			oTable.fnFilter(this.value, oTable.oApi._fnVisibleToColumnIndex(oTable.fnSettings(), $("thead input").index(this)));
+		});
+
+		$("#datatable_fixed_column thead input").each(function(i) {
+			this.initVal = this.value;
+		});
+		$("#datatable_fixed_column thead input").focus(function() {
+			if (this.className == "search_init") {
+				this.className = "";
+				this.value = "";
+			}
+		});
+		$("#datatable_fixed_column thead input").blur(function(i) {
+			if (this.value == "") {
+				this.className = "search_init";
+				this.value = this.initVal;
+			}
+		});		
+		
+
+		var oTable = $('#datatable_fixed_column').dataTable({
+			"sDom" : "<'dt-top-row'><'dt-wrapper't><'dt-row dt-bottom-row'<'row'<'col-sm-6'i><'col-sm-6 text-right'p>>",
+			//"sDom" : "t<'row dt-wrapper'<'col-sm-6'i><'dt-row dt-bottom-row'<'row'<'col-sm-6'i><'col-sm-6 text-right'>>",
+			"oLanguage" : {
+				"sSearch" : "Search all columns:"
+			},
+			"bSortCellsTop" : true
+		});		
+		
+
+
+		/*
+		 * COL ORDER
+		 */
+		$('#datatable_col_reorder').dataTable({
+			"sPaginationType" : "bootstrap",
+			"sDom" : "R<'dt-top-row'Clf>r<'dt-wrapper't><'dt-row dt-bottom-row'<'row'<'col-sm-6'i><'col-sm-6 text-right'p>>",
+			"fnInitComplete" : function(oSettings, json) {
+				$('.ColVis_Button').addClass('btn btn-default btn-sm').html('Columns <i class="icon-arrow-down"></i>');
+			}
+		});
+		
+		/* END COL ORDER */
+
+		/* TABLE TOOLS */
+		$('#datatable_tabletools').dataTable({
+			"sDom" : "<'dt-top-row'Tlf>r<'dt-wrapper't><'dt-row dt-bottom-row'<'row'<'col-sm-6'i><'col-sm-6 text-right'p>>",
+			"oTableTools" : {
+				"aButtons" : ["copy", "print", {
+					"sExtends" : "collection",
+					"sButtonText" : 'Save <span class="caret" />',
+					"aButtons" : ["csv", "xls", "pdf"]
+				}],
+				"sSwfPath" : "js/plugin/datatables/media/swf/copy_csv_xls_pdf.swf"
+			},
+			"fnInitComplete" : function(oSettings, json) {
+				$(this).closest('#dt_table_tools_wrapper').find('.DTTT.btn-group').addClass('table_tools_group').children('a.btn').each(function() {
+					$(this).addClass('btn-sm btn-default');
+				});
+			}
+		});
+		
+		/* END TABLE TOOLS */
+
+	}
+
+	// PAGE RELATED SCRIPTS
+
+	$('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
+	$('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch').on('click', function(e) {
+		var children = $(this).parent('li.parent_li').find(' > ul > li');
+		if (children.is(':visible')) {
+			children.hide('fast');
+			$(this).attr('title', 'Expand this branch').find(' > i').removeClass().addClass('fa fa-lg fa-plus-circle');
+		} else {
+			children.show('fast');
+			$(this).attr('title', 'Collapse this branch').find(' > i').removeClass().addClass('fa fa-lg fa-minus-circle');
+		}
+		e.stopPropagation();
+	});
+
+</script>

@@ -1,0 +1,315 @@
+﻿<section id="widget-grid" data-it-Jarvis ng-controller="eoAssignCtrl">
+<div class="row">
+    <div ng-include src='"views/pageTitle.html"'></div>
+</div>
+<!-- end row -->
+<div class="row">
+    <!-- NEW WIDGET START -->
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div class="jarviswidget jarviswidget-color-pink" id="wid-id-0" data-widget-editbutton="false"
+             data-widget-deletebutton="false">
+            <header>
+                <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+                <h2>需求分配状态</h2>
+
+                <div class="widget-toolbar">
+
+                    <div class="progress progress-striped active" rel="tooltip" data-original-title="78%"
+                         data-placement="bottom">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 78%">78 %</div>
+                    </div>
+
+                </div>
+                <div class="widget-toolbar">
+                    <a class="btn btn-default"><i class="fa fa-refresh"></i> 刷新</a>
+                </div>
+
+            </header>
+
+            <!-- widget div-->
+            <div>
+
+                <!-- widget edit box -->
+                <div class="jarviswidget-editbox">
+                    <!-- This area used as dropdown edit box -->
+                    <input type="text">
+                </div>
+                <!-- end widget edit box -->
+
+                <!-- widget content -->
+                <div class="widget-body no-padding">
+
+                    <div id="non-date-graph" class="chart no-padding"></div>
+
+                </div>
+                <!-- end widget content -->
+
+            </div>
+            <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+    </article>
+    <!-- WIDGET END -->
+</div>
+<!-- end row -->
+
+<div class="row">
+    <!-- NEW WIDGET START -->
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div class="jarviswidget  jarviswidget-color-pink" id="wid-id-1" data-widget-editbutton="false"
+             data-widget-deletebutton="false">
+            <header>
+                <span class="widget-icon"> <i class="fa fa-search"></i> </span>
+                <h2>查询可分配需求</h2>
+            </header>
+            <!-- widget div-->
+            <div>
+                <!-- widget edit box -->
+                <div class="jarviswidget-editbox">
+                    <!-- This area used as dropdown edit box -->
+                    <input type="text">
+                </div>
+                <!-- end widget edit box -->
+                <!-- widget content -->
+                <div class="widget-body no-padding">
+                    <form action="" class="smart-form" novalidate="novalidate">
+                        <fieldset>
+                            <div class="row">
+                                <section class="col col-4">
+                                    <label class="select">
+                                        <select name="prov">
+                                            <option value="0" selected="" disabled="">站点选择</option>
+                                            <option value="244">全部</option>
+                                            <option value="1">上海通用</option>
+                                            <option value="2">上汽临港</option>
+                                            <option value="3">欧莱雅</option>
+                                            <option value="4">法拉利</option>
+                                        </select> <i class="fa fa-check-square"></i></label>
+                                </section>
+                                <section class="col col-2">
+                                    <button class="btn btn-warning btn-sm" ng-click="searchSite()"><i
+                                            class="fa fa-search "></i> 站点搜索
+                                    </button>
+                                </section>
+                            </div>
+                            <div class="row">
+                                <section class="col col-4">
+                                    <label class="input"> <i class="icon-prepend fa fa-arrow-circle-up"></i>
+                                        <input type="text" name="CRP2" ng-model="searchCriteria.senderCode"
+                                               placeholder="发货方代码">
+                                    </label>
+                                </section>
+                                <section class="col col-2">
+                                    <button class="btn btn-success btn-sm" ng-click="searchCustomer()"><i class="fa fa-search "></i> 发货方搜索
+                                    </button>
+                                </section>
+                                <section class="col col-4">
+                                    <label class="input"> <i class="icon-prepend fa fa-map-marker"></i>
+                                        <input type="text" name="CRP2" ng-model="searchCriteria.senderLocation"
+                                               placeholder="发货方位置">
+                                    </label>
+                                </section>
+                                <section class="col col-2">
+                                    <button class="btn btn-info btn-sm" ng-click="searchLocation()"><i
+                                            class="fa fa-search "></i> 位置搜索
+                                    </button>
+                                </section>
+                            </div>
+                            <div class="row">
+                                <section class="col col-4">
+                                    <label class="input"> <i class="icon-prepend fa fa-arrow-circle-down"></i>
+                                        <input type="text" name="CRP2" ng-model="searchCriteria.receiverCode"
+                                               placeholder="收货方代码">
+                                    </label>
+                                </section>
+                                <section class="col col-2">
+                                    <button class="btn btn-success btn-sm" ng-click="searchCustomer()"><i class="fa fa-search "></i> 收货方搜索
+                                    </button>
+                                </section>
+                                <section class="col col-4">
+                                    <label class="input"> <i class="icon-prepend fa fa-map-marker"></i>
+                                        <input type="text" name="CRP2" ng-model="searchCriteria.receiverLocation"
+                                               placeholder="收货方位置">
+                                    </label>
+                                </section>
+                                <section class="col col-2">
+                                    <button class="btn btn-info btn-sm" ng-click="searchLocation()"><i
+                                            class="fa fa-search "></i> 位置搜索
+                                    </button>
+                                </section>
+                            </div>
+                        </fieldset>
+                        <footer>
+                            <button type="submit" class="btn  btn-default" ng-click="searchAssignableRequest()"><i
+                                    class="fa fa-search"></i>
+                                查询
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"
+                                    ng-click="searchCriteria.reset()"><i class="fa fa-reply-all "></i>
+                                重置
+                            </button>
+                        </footer>
+                    </form>
+                </div>
+                <!-- end widget content -->
+            </div>
+            <!-- end widget div -->
+        </div>
+        <!-- end widget -->
+    </article>
+    <!-- WIDGET END -->
+</div>
+<!-- end row -->
+<!-- row -->
+
+<div class="row"></div>
+<!-- end row -->
+<!-- Widget ID (each widget will need unique ID)-->
+<div class="jarviswidget jarviswidget-color-pink" id="wid-id-2" data-widget-editbutton="false"
+     data-widget-deletebutton="false">
+    <header>
+        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+        <h2>可分配需求 </h2>
+        <div class="widget-toolbar">
+            <div class="btn-group">
+                <button class="btn dropdown-toggle btn-xs btn-default " data-toggle="dropdown">
+                    操作 <i class="fa fa-caret-down"></i>
+                </button>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a ng-click="mergeERRequest()"><i class="fa fa-resize-small"></i> 合并至运单</a>
+                    </li>
+                    <li>
+                        <a ng-click="adjustDeliveryMethod()"><i class="fa fa-truck"></i> 运输方式调整</a>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-refresh"></i> 刷新</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>                                                      `
+    <!-- widget div-->
+    <div>
+        <!-- widget edit box -->
+        <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+        </div>
+        <!-- end widget edit box -->
+        <!-- widget content -->
+        <div class="widget-body no-padding">
+            <div class="widget-body-toolbar">
+            </div>
+            <div data-im-table header-titles="columns" my-source="orders"></div>
+        </div>
+        <!-- end widget content -->
+    </div>
+    <!-- end widget div -->
+</div>
+<!-- end widget -->
+</section>
+<!-- end widget grid -->
+
+<script type="text/javascript">
+
+    // Load morris dependency 1
+    loadScript("js/plugin/morris/raphael.2.1.0.min.js", loadMorrisEngine);
+    // Load morris dependency 2
+    function loadMorrisEngine() {
+        loadScript("js/plugin/morris/morris.min.js", runMorrisCharts);
+    }
+    /*
+     * Run all morris chart on this page
+     */
+    function runMorrisCharts() {
+        if ($('#non-date-graph').length) {
+            var day_data = [
+                {"elapsed": "上海通用康桥", "value": 100, "un": 23},
+                {"elapsed": "上汽临港", "value": 123, "un": 23},
+                {"elapsed": "欧莱雅", "value": 270, "un": 270},
+                {"elapsed": "法拉利临港1", "value": 100, "un": 23},
+                {"elapsed": "欧莱雅2", "value": 270, "un": 270},
+                {"elapsed": "法拉利临港2", "value": 100, "un": 23},
+                {"elapsed": "欧莱雅", "value": 270, "un": 270},
+                {"elapsed": "法拉利临港3", "value": 100, "un": 23},
+                {"elapsed": "法拉利临港4", "value": 100, "un": 23},
+                {"elapsed": "欧莱雅4", "value": 20, "un": 12},
+                {"elapsed": "法港4", "value": 40, "un": 23},
+                {"elapsed": "福建奔驰", "value": 310, "un": 189}
+            ];
+            Morris.Area({
+                element: 'non-date-graph',
+                data: day_data,
+                xkey: 'elapsed',
+                ykeys: ['value', 'un'],
+                labels: ['今日需求', '已分配'],
+                pointSize: 2,
+                parseTime: false,
+                hideHover: 'auto'
+            });
+        }
+    }
+
+   /* $("#smart-mod-createEO").click(function (e) {
+        $.SmartMessageBox({
+            title: "提示信息!",
+            content: "是否分配所选择需求至运单?",
+            buttons: '[否][是]'
+        }, function (ButtonPressed) {
+            if (ButtonPressed === "是") {
+
+                $.smallBox({
+                    title: "操作回执",
+                    content: "<i class='fa fa-clock-o'></i>运单EO00011已成功创建...",
+                    color: "#659265",
+                    iconSmall: "fa fa-check fa-2x fadeInRight animated",
+                    timeout: 4000
+                });
+            }
+            if (ButtonPressed === "否") {
+                $.smallBox({
+                    title: "操作回执",
+                    content: "<i class='fa fa-clock-o'></i> 分配已取消...",
+                    color: "#C46A69",
+                    iconSmall: "fa fa-times fa-2x fadeInRight animated",
+                    timeout: 4000
+                });
+            }
+        });
+        e.preventDefault();
+    });
+
+    $("#smart-mod-modifyTR").click(function (e) {
+        $.SmartMessageBox({
+            title: "提示信息!",
+            content: "是否修改运输方式及承运商?",
+            buttons: '[否][是]'
+        }, function (ButtonPressed) {
+            if (ButtonPressed === "是") {
+
+                $.smallBox({
+                    title: "操作回执",
+                    content: "<i class='fa fa-clock-o'></i>数据更新成功...",
+                    color: "#659265",
+                    iconSmall: "fa fa-check fa-2x fadeInRight animated",
+                    timeout: 4000
+                });
+            }
+            if (ButtonPressed === "否") {
+                $.smallBox({
+                    title: "操作回执",
+                    content: "<i class='fa fa-clock-o'></i> 已取消...",
+                    color: "#C46A69",
+                    iconSmall: "fa fa-times fa-2x fadeInRight animated",
+                    timeout: 4000
+                });
+            }
+        });
+        e.preventDefault();
+    });*/
+
+</script>

@@ -1,0 +1,1819 @@
+﻿<!-- Bread crumb is created dynamically -->
+<!-- row -->
+<div class="row">
+
+    <!-- col -->
+    <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
+        <h1 class="page-title txt-color-blueDark">
+
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-plane"></i>
+            计划
+			<span>>  
+				订舱管理
+			</span>
+        </h1>
+    </div>
+    <!-- end col -->
+
+    <!-- right side of the page with the sparkline graphs -->
+    <!-- col -->
+
+    <!-- end col -->
+
+</div>
+<!-- end row -->
+
+<!--
+	The ID "widget-grid" will start to initialize all widgets below 
+	You do not need to use widgets if you dont want to. Simply remove 
+	the <section></section> and you can use wells or panels instead 
+	-->
+
+<!-- widget grid -->
+<section id="widget-grid" class="" data-it-Jarvis>
+
+<!-- end row -->
+<div class="row">
+
+<!-- NEW WIDGET START -->
+<article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div class="jarviswidget jarviswidget-color-blue" id="wid-id-0" data-widget-editbutton="false"
+         data-widget-deletebutton="false">
+        <!-- widget options:
+            usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+            data-widget-colorbutton="false"
+            data-widget-editbutton="false"
+            data-widget-togglebutton="false"
+            data-widget-deletebutton="false"
+            data-widget-fullscreenbutton="false"
+            data-widget-custombutton="false"
+            data-widget-collapsed="true"
+            data-widget-sortable="false"
+
+        -->
+        <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>订舱状态</h2>
+
+            <div class="widget-toolbar hidden-mobile">
+                <span class="onoffswitch-title"><i class="fa fa-location-arrow"></i> 实时开关</span>
+						<span class="onoffswitch">
+							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" checked="checked"
+                                   id="myonoffswitch">
+							<label class="onoffswitch-label" for="myonoffswitch"> <span class="onoffswitch-inner"
+                                                                                        data-swchon-text="ON"
+                                                                                        data-swchoff-text="OFF"></span>
+                                <span class="onoffswitch-switch"></span> </label> </span>
+            </div>
+            <div class="widget-toolbar">
+                <a href="javascript:void" class="btn btn-default"><i class="fa fa-refresh"></i> 刷新</a>
+            </div>
+
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+            <!-- widget edit box -->
+            <div class="jarviswidget-editbox">
+                <!-- This area used as dropdown edit box -->
+                <input type="text">
+            </div>
+            <!-- end widget edit box -->
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+                <div id="non-date-graph" class="chart no-padding"></div>
+
+            </div>
+            <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+    </div>
+    <!-- end widget -->
+
+</article>
+<!-- WIDGET END -->
+
+
+<!-- NEW WIDGET START -->
+<article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div class="jarviswidget jarviswidget-color-blue" id="wid-id-1" data-widget-editbutton="false"
+         data-widget-deletebutton="false">
+        <!-- widget options:
+            usage: <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false">
+
+            data-widget-colorbutton="false"
+            data-widget-editbutton="false"
+            data-widget-togglebutton="false"
+            data-widget-deletebutton="false"
+            data-widget-fullscreenbutton="false"
+            data-widget-custombutton="false"
+            data-widget-collapsed="true"
+            data-widget-sortable="false"
+
+        -->
+        <header>
+            <span class="widget-icon"> <i class="fa fa-search"></i> </span>
+
+            <h2>查询运单EO项目</h2>
+
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+            <!-- widget edit box -->
+            <div class="jarviswidget-editbox">
+                <!-- This area used as dropdown edit box -->
+                <input type="text">
+            </div>
+            <!-- end widget edit box -->
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+                <form action="" id="checkout-form" class="smart-form" novalidate="novalidate">
+
+                    <fieldset>
+                        <div class="row">
+
+                            <section class="col col-4">
+                                <label class="select">
+                                    <select name="prov">
+                                        <option value="0" selected="" disabled="">发货站点</option>
+                                        <option value="244">全部</option>
+                                        <option value="1">上海通用</option>
+                                        <option value="2">上汽临港</option>
+                                        <option value="3">欧莱雅</option>
+                                        <option value="4">法拉利</option>
+                                    </select> <i class="fa fa-check-square"></i></label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="input"> <i class="icon-prepend fa fa-arrow-circle-up"></i>
+                                    <input type="text" name="CRP2" placeholder="发货方代码">
+                                </label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="input"> <i class="icon-prepend fa fa-arrow-circle-down"></i>
+                                    <input type="text" name="CRP2" placeholder="收货方代码">
+                                </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-4">
+                                <label class="select">
+                                    <select name="prov">
+                                        <option value="0" selected="" disabled="">运单类型</option>
+                                        <option value="244">普通</option>
+                                        <option value="1">加急</option>
+                                        <option value="2">预付</option>
+                                        <option value="3">统配</option>
+                                    </select> <i class="fa fa-check-square"></i></label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="select">
+                                    <select name="prov">
+                                        <option value="0" selected="" disabled="">运输方式</option>
+                                        <option value="244">空运</option>
+                                        <option value="1">公路</option>
+                                        <option value="2">第三方</option>
+                                    </select> <i class="fa fa-check-square"></i></label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="select">
+                                    <select name="prov">
+                                        <option value="0" selected="" disabled="">特殊标识</option>
+                                        <option value="244">危险品</option>
+                                        <option value="1">普通</option>
+                                    </select> <i class="fa fa-check-square"></i></label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-4">
+                                <label class="select">
+                                    <select>
+                                        <option value="0" selected="" disabled="">订舱状态</option>
+                                        <option value="1">未订舱</option>
+                                        <option value="2">已订舱</option>
+                                        <option value="3">已确认</option>
+                                    </select> <i></i> </label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="select">
+                                    <select>
+                                        <option value="0" selected="" disabled="">承运商</option>
+                                        <option value="1">顺丰</option>
+                                        <option value="2">申通</option>
+                                        <option value="3">联邦快递</option>
+                                        <option value="4">UPS</option>
+                                        <option value="5">德邦</option>
+                                    </select> <i></i> </label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="select">
+                                    <select>
+                                        <option value="0" selected="" disabled="">配送网络公司</option>
+                                        <option value="1">网络公司1</option>
+                                        <option value="2">网络公司2</option>
+                                        <option value="3">网络公司3</option>
+                                        <option value="4">网络公司4</option>
+                                    </select> <i></i> </label>
+                            </section>
+                        </div>
+                    </fieldset>
+                    <footer>
+                        <button type="submit" class="btn  btn-default"><i class="fa fa-search"></i>
+                            查询
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i
+                                class="fa fa-reply-all "></i>
+                            重置
+                        </button>
+                        <button type="submit" class="btn  btn-warning"><i class="fa fa-search-plus"></i>
+                            高级查询
+                        </button>
+
+
+                    </footer>
+
+                </form>
+
+
+            </div>
+            <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+    </div>
+    <!-- end widget -->
+
+</article>
+<!-- WIDGET END -->
+
+</div>
+
+<!-- end row -->
+<!-- row -->
+
+<div class="row">
+
+    <!-- a blank row to get started -->
+
+
+</div>
+
+<!-- Widget ID (each widget will need unique ID)-->
+<div class="jarviswidget jarviswidget-color-blue" id="wid-id-2" data-widget-editbutton="false"
+     data-widget-deletebutton="false">
+    <!-- widget options:
+    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+    data-widget-colorbutton="false"
+    data-widget-editbutton="false"
+    data-widget-togglebutton="false"
+    data-widget-deletebutton="false"
+    data-widget-fullscreenbutton="false"
+    data-widget-custombutton="false"
+    data-widget-collapsed="true"
+    data-widget-sortable="false"
+
+    -->
+    <header>
+        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+        <h2>运单EO清单</h2>
+
+        <div class="widget-toolbar">
+
+            <div class="btn-group">
+                <button class="btn dropdown-toggle btn-xs btn-warning " data-toggle="dropdown">
+                    操作 <i class="fa fa-caret-down"></i>
+                </button>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="javascript:void(0)" data-target="#myFlight" data-toggle="modal"><i
+                                class="fa fa-plane"></i> 空运订舱信息更新</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" data-target="#myFlight" data-toggle="modal"><i
+                                class="fa fa-truck"></i> 公路订舱信息更新</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" data-target="#myFlightStatus" data-toggle="modal"><i
+                                class="fa fa-info-circle "></i> 订舱状态更新</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-refresh"></i> 刷新</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- widget div-->
+    <div>
+
+        <!-- widget edit box -->
+        <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+        </div>
+        <!-- end widget edit box -->
+
+        <!-- widget content -->
+        <div class="widget-body no-padding">
+            <div class="widget-body-toolbar">
+
+            </div>
+            <table data-it-Table id="datatable_col_reorder" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checkbox-inline">
+                            <i></i>
+                        </label>
+                    </th>
+                    <th>EO</th>
+                    <th>ER</th>
+                    <th>ERITN</th>
+                    <th>类型</th>
+                    <th>特殊</th>
+                    <th>发货方</th>
+                    <th>收货方</th>
+                    <th>省</th>
+                    <th>市</th>
+                    <th>区县</th>
+                    <th>送达日期</th>
+                    <th>方式</th>
+                    <th>明细</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checkbox-inline">
+                            <i></i>
+                        </label>
+                    </td>
+                    <td>EO001</td>
+                    <td>1</td>
+                    <td>001</td>
+                    <td>预付</td>
+                    <td>普通</td>
+                    <td>上海通用</td>
+                    <td>南京4S</td>
+                    <td>江苏</td>
+                    <td>南京</td>
+                    <td>下关</td>
+                    <td>2014-4-1</td>
+                    <td>空运</td>
+                    <td><i class="fa fa-search"></i></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checkbox-inline">
+                            <i></i>
+                        </label>
+                    </td>
+                    <td>EO002</td>
+                    <td>2</td>
+                    <td>001</td>
+                    <td>加急</td>
+                    <td>危险品</td>
+                    <td>欧莱雅</td>
+                    <td>福州大洋经典</td>
+                    <td>福建</td>
+                    <td>福州</td>
+                    <td>鼓楼区</td>
+                    <td>2014-4-1</td>
+                    <td>第三方</td>
+                    <td><i class="fa fa-search"></i></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checkbox-inline">
+                            <i></i>
+                        </label>
+                    </td>
+                    <td>EO004</td>
+                    <td>3</td>
+                    <td>001</td>
+                    <td>统配</td>
+                    <td>普通</td>
+                    <td>上汽临港</td>
+                    <td>成都4S</td>
+                    <td>四川</td>
+                    <td>成都</td>
+                    <td>五羊区</td>
+                    <td>2014-4-1</td>
+                    <td>空运</td>
+                    <td><i class="fa fa-search"></i></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checkbox-inline">
+                            <i></i>
+                        </label>
+                    </td>
+                    <td>EO002</td>
+                    <td>3</td>
+                    <td>002</td>
+                    <td>统配</td>
+                    <td>普通</td>
+                    <td>上汽临港</td>
+                    <td>成都4S</td>
+                    <td>四川</td>
+                    <td>成都</td>
+                    <td>五羊区</td>
+                    <td>2014-4-1</td>
+                    <td>空运</td>
+                    <td><i class="fa fa-search"></i></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <!-- end widget content -->
+
+    </div>
+    <!-- end widget div -->
+
+</div>
+<!-- end widget -->
+
+
+</section>
+<!-- end widget grid -->
+
+<!-- Modal -->
+<div class="modal fade" id="mySite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="100" alt="iTMS">
+    </h4>
+</div>
+<div class="modal-body no-padding">
+
+    <form action="" id="login-form" class="smart-form">
+
+        <fieldset>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="select">
+                        <select>
+                            <option value="0" selected="" disabled="">站点所属区域</option>
+                            <option value="1">华东</option>
+                            <option value="2">华北</option>
+                            <option value="3">华南</option>
+                            <option value="4">东北</option>
+                        </select> <i></i> </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-3">
+                    <label class="select">
+                        <select name="prov">
+                            <option value="0" selected="" disabled="">省</option>
+                            <option value="244">北京市</option>
+                            <option value="1">上海市</option>
+                            <option value="2">江苏省</option>
+                            <option value="3">浙江省</option>
+                            <option value="4">福建省</option>
+                            <option value="5">广东省</option>
+
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-3">
+                    <label class="select">
+                        <select name="city">
+                            <option value="0" selected="" disabled="">市</option>
+                            <option value="244">北京市</option>
+                            <option value="1">上海市</option>
+                            <option value="2">南京市</option>
+                            <option value="3">杭州市</option>
+                            <option value="4">福州市</option>
+                            <option value="5">深圳市</option>
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-3">
+                    <label class="select">
+                        <select name="disc">
+                            <option value="0" selected="" disabled="">区县</option>
+                            <option value="244">徐汇区</option>
+                            <option value="1">静安区</option>
+                            <option value="2">黄浦区</option>
+                            <option value="3">宝山区</option>
+                            <option value="4">浦东新区</option>
+                        </select> <i></i> </label>
+                </section>
+
+            </div>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" placeholder="站点代码">
+                    </label>
+                </section>
+                <section class="col col-6">
+                    <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" placeholder="站点名称">
+                    </label>
+                </section>
+                <section class="col col-12">
+                    <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> 搜索站点</button>
+                </section>
+            </div>
+            <div class="row">
+                <article class="col col-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false">
+                        <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                        -->
+
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+                                <table data-it-Table
+                                       class="table table-bordered table-striped table-condensed table-hover smart-form has-tickbox">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </th>
+                                        <th>站点代码<a href="javascript:void(0);" class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                        <th>名称 <a href="javascript:void(0);"
+                                                  class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                        <th>所属区域 <a href="javascript:void(0);"
+                                                    class="btn btn-xs btn-default pull-right"><i class="fa fa-info"></i></a>
+                                        </th>
+                                        <th>城市区 <a href="javascript:void(0);" class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                        <th>地址 <a href="javascript:void(0);"
+                                                  class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>AB00011</td>
+                                        <td>站点名称1</td>
+                                        <td>华东区</td>
+                                        <td>上海市-徐汇区</td>
+                                        <td>龙华西路222号</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>AB00012</td>
+                                        <td>站点名称2</td>
+                                        <td>华东区</td>
+                                        <td>上海市-徐汇区</td>
+                                        <td>龙华西路222号</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>AB00013</td>
+                                        <td>站点名称3</td>
+                                        <td>华东区</td>
+                                        <td>上海市-徐汇区</td>
+                                        <td>龙华西路222号</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+            </div>
+
+
+        </fieldset>
+
+        <footer>
+            <button type="submit" class="btn btn-success">
+                插入
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                返回
+            </button>
+
+        </footer>
+    </form>
+
+
+</div>
+
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="mycustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="100" alt="iTMS">
+    </h4>
+</div>
+<div class="modal-body no-padding">
+
+    <form action="" id="login-form" class="smart-form">
+
+        <fieldset>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="select">
+                        <select>
+                            <option value="0" selected="" disabled="">客户所属区域</option>
+                            <option value="1">华东</option>
+                            <option value="2">华北</option>
+                            <option value="3">华南</option>
+                            <option value="4">东北</option>
+                        </select> <i></i> </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-3">
+                    <label class="select">
+                        <select name="prov">
+                            <option value="0" selected="" disabled="">省</option>
+                            <option value="244">北京市</option>
+                            <option value="1">上海市</option>
+                            <option value="2">江苏省</option>
+                            <option value="3">浙江省</option>
+                            <option value="4">福建省</option>
+                            <option value="5">广东省</option>
+
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-3">
+                    <label class="select">
+                        <select name="city">
+                            <option value="0" selected="" disabled="">市</option>
+                            <option value="244">北京市</option>
+                            <option value="1">上海市</option>
+                            <option value="2">南京市</option>
+                            <option value="3">杭州市</option>
+                            <option value="4">福州市</option>
+                            <option value="5">深圳市</option>
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-3">
+                    <label class="select">
+                        <select name="disc">
+                            <option value="0" selected="" disabled="">区县</option>
+                            <option value="244">徐汇区</option>
+                            <option value="1">静安区</option>
+                            <option value="2">黄浦区</option>
+                            <option value="3">宝山区</option>
+                            <option value="4">浦东新区</option>
+                        </select> <i></i> </label>
+                </section>
+
+
+                <section class="col col-3">
+                    <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" placeholder="邮编">
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" placeholder="客户代码">
+                    </label>
+                </section>
+                <section class="col col-6">
+                    <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" placeholder="客户名称">
+                    </label>
+                </section>
+                <section class="col col-12">
+                    <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> 搜索客户</button>
+                </section>
+            </div>
+            <div class="row">
+                <article class="col col-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false">
+                        <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                        -->
+
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+                                <table class="table table-bordered table-striped table-condensed table-hover smart-form has-tickbox">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </th>
+                                        <th>客户代码<a href="javascript:void(0);" class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                        <th>名称 <a href="javascript:void(0);"
+                                                  class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                        <th>所属区域 <a href="javascript:void(0);"
+                                                    class="btn btn-xs btn-default pull-right"><i class="fa fa-info"></i></a>
+                                        </th>
+                                        <th>城市区 <a href="javascript:void(0);" class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                        <th>地址 <a href="javascript:void(0);"
+                                                  class="btn btn-xs btn-default pull-right"><i
+                                                class="fa fa-info"></i></a></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>AB00011</td>
+                                        <td>客户名称1</td>
+                                        <td>华东区</td>
+                                        <td>上海市-徐汇区</td>
+                                        <td>龙华西路222号</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>AB00012</td>
+                                        <td>客户名称2</td>
+                                        <td>华东区</td>
+                                        <td>上海市-徐汇区</td>
+                                        <td>龙华西路222号</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="checkbox-inline">
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>AB00013</td>
+                                        <td>客户名称3</td>
+                                        <td>华东区</td>
+                                        <td>上海市-徐汇区</td>
+                                        <td>龙华西路222号</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+            </div>
+
+
+        </fieldset>
+
+        <footer>
+            <button type="submit" class="btn btn-success">
+                插入
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                返回
+            </button>
+
+        </footer>
+    </form>
+
+
+</div>
+
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myMerge" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    <img src="img/banner.png" width="100" alt="iTMS">
+                </h4>
+            </div>
+            <div class="modal-body no-padding">
+
+                <form action="" id="login-form" class="smart-form">
+
+                    <fieldset>
+                        <div class="alert alert-danger fade in">
+                            <button class="close" data-dismiss="alert">
+                                ×
+                            </button>
+                            <i class="fa-fw fa fa-warning"></i>
+                            <strong> 3 </strong>条ER需求项目将被转换成EO运单
+                        </div>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="select">
+                                    <select>
+                                        <option value="0" selected="" disabled="">运单EO类型</option>
+                                        <option value="1">普通</option>
+                                        <option value="2">紧急</option>
+                                        <option value="3">索赔</option>
+                                        <option value="4">统配</option>
+                                        <option value="5">预付</option>
+                                    </select> <i></i> </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="select">
+                                    <select>
+                                        <option value="0" selected="" disabled="">运输方式</option>
+                                        <option value="1">航空</option>
+                                        <option value="2">公路</option>
+                                        <option value="3">铁路</option>
+                                        <option value="4">第三方物流</option>
+                                        <option value="5">其它</option>
+                                    </select> <i></i> </label>
+                            </section>
+
+                        </div>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="input"> <i class="icon-prepend fa fa-list"></i>
+                                    <input type="text" name="Cr" placeholder="预付/合同编号">
+                                </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="select">
+                                    <select>
+                                        <option value="0" selected="" disabled="">特殊标识</option>
+                                        <option value="1">危险品</option>
+                                        <option value="2">不允许航空</option>
+                                        <option value="3">放射性</option>
+                                        <option value="4">冷链</option>
+                                    </select> <i></i> </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="select">
+                                    <select>
+                                        <option value="0" selected="" disabled="">承运商</option>
+                                        <option value="1">顺丰</option>
+                                        <option value="2">申通</option>
+                                        <option value="3">联邦快递</option>
+                                        <option value="4">UPS</option>
+                                        <option value="5">德邦</option>
+                                    </select> <i></i> </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="input"> <i class="icon-prepend fa fa-barcode "></i>
+                                    <input type="text" name="Cr" placeholder="承运商运单编号">
+                                </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="select">
+                                    <select>
+                                        <option value="0" selected="" disabled="">配送网络公司</option>
+                                        <option value="1">网络公司1</option>
+                                        <option value="2">网络公司2</option>
+                                        <option value="3">网络公司3</option>
+                                        <option value="4">网络公司4</option>
+                                    </select> <i></i> </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="select">
+                                    <select>
+                                        <option value="0" selected="" disabled="">网络公司位置代码</option>
+                                        <option value="1">LOC001-上海徐汇</option>
+                                        <option value="2">LOC002-苏州昆山</option>
+                                    </select> <i></i> </label>
+                            </section>
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-6">
+                                <div class="form-group">
+                                    <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                                        <input type="text" name="startdate" id="startdate" placeholder="要求达到日期">
+                                    </label>
+                                </div>
+                            </section>
+                            <section class="col col-6">
+                                <div class="form-group">
+                                    <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                                        <input type="text" name="startdate" id="startdate2" placeholder="要求配送日期">
+                                    </label>
+                                </div>
+                            </section>
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-9">
+                                <label class="textarea">
+                                    <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                                </label>
+                            </section>
+                        </div>
+
+                    </fieldset>
+
+
+                    <footer>
+                        <button type="submit" id="smart-mod-create" class="btn btn-success" data-dismiss="modal"><i
+                                class="fa fa-check"></i>
+                            创建运单
+                        </button>
+                    </footer>
+                </form>
+
+
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myFlight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="100" alt="iTMS">
+    </h4>
+</div>
+<div class="modal-body no-padding">
+
+<form action="" id="login-form" class="smart-form">
+
+<fieldset>
+    <div class="alert alert-info fade in">
+        <button class="close" data-dismiss="alert">
+            ×
+        </button>
+        <i class="fa-fw fa fa-info"></i>
+        <strong> 3 </strong>条EO项目订舱信息待更新
+    </div>
+    <div class="row">
+        <section class="col col-8">
+            <label class="select">
+                <select>
+                    <option value="0" selected="" disabled="">选择待更新的订舱记录</option>
+                    <option value="1">MU-东方航空/MU2211/2014-4-1/13:00</option>
+                    <option value="2">CA-中国国航/CA4814/2014-4-1/14:00</option>
+                </select> <i></i> </label>
+        </section>
+    </div>
+    <div class="row">
+
+        <section class="col col-4">
+            <label class="input"> <i class="icon-prepend fa fa-plane"></i>
+                <input type="text" list="list" placeholder="航空公司">
+                <datalist id="list">
+                    <option value="CA-中国国际航空公司"></option>
+                    <option value="CJ-中国北方航空公司"></option>
+                    <option value="CZ-中国南方航空公司"></option>
+                    <option value="SZ-中国西南航空公司"></option>
+                    <option value="WH-中国西北航空公司"></option>
+                    <option value="MU-东方航空公司"></option>
+                    <option value="MF-厦门航空公司"></option>
+                    <option value="SC-山东航空公司"></option>
+                    <option value="FM-上海航空公司"></option>
+                    <option value="4G-深圳航空公司"></option>
+                    <option value="X2-中国新华航空公司"></option>
+                    <option value="F6-中国航空股份公司"></option>
+                    <option value="3Q-云南航空公司"></option>
+                    <option value="XO-新疆航空公司"></option>
+                    <option value="3U-四川航空公司"></option>
+                    <option value="Z2-中原航空公司"></option>
+                    <option value="WU-武汉航空公司"></option>
+                    <option value="G4-贵州航空公司"></option>
+                    <option value="H4-海南航空公司"></option>
+                    <option value="GP-中国通用航空公司"></option>
+                    <option value="3W-南京航空公司"></option>
+                    <option value="ZJ-浙江航空公司"></option>
+                    <option value="GW-长城航空公司"></option>
+                    <option value="FJ-福建航空公司"></option>
+                    <option value="2Z-长安航空公司"></option>
+                </datalist>
+            </label>
+        </section>
+        <section class="col col-4">
+            <label class="input"> <i class="icon-prepend fa fa-tags"></i>
+                <input type="text" name="Cr" placeholder="航班号">
+            </label>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col col-8">
+            <label class="input"> <i class="icon-prepend fa fa-qrcode"></i>
+                <input type="text" name="Cr" placeholder="订舱编号">
+            </label>
+        </section>
+    </div>
+
+</fieldset>
+<fieldset>
+    <div class="row">
+        <section class="col col-4">
+            <div class="form-group">
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate" id="startdateD" placeholder="计划起飞日期">
+                </label>
+            </div>
+        </section>
+
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+                <input type="text" list="listhour" placeholder="时">
+                <datalist id="listhour">
+                    <option value="00"></option>
+                    <option value="05"></option>
+                    <option value="10"></option>
+                    <option value="15"></option>
+                    <option value="20"></option>
+                    <option value="25"></option>
+                    <option value="30"></option>
+                    <option value="35"></option>
+                    <option value="40"></option>
+                    <option value="45"></option>
+                    <option value="50"></option>
+                    <option value="55"></option>
+
+
+                </datalist>
+            </label>
+        </section>
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+                <input type="text" list="listmin" placeholder="分">
+                <datalist id="listmin">
+                    <option value="00"></option>
+                    <option value="01"></option>
+                    <option value="02"></option>
+                    <option value="03"></option>
+                    <option value="04"></option>
+                    <option value="05"></option>
+                    <option value="06"></option>
+                    <option value="07"></option>
+                    <option value="08"></option>
+                    <option value="09"></option>
+                    <option value="10"></option>
+                    <option value="11"></option>
+                    <option value="12"></option>
+                    <option value="13"></option>
+                    <option value="14"></option>
+                    <option value="15"></option>
+                    <option value="16"></option>
+                    <option value="17"></option>
+                    <option value="18"></option>
+                    <option value="19"></option>
+                    <option value="20"></option>
+                    <option value="21"></option>
+                    <option value="23"></option>
+
+
+                </datalist>
+            </label>
+        </section>
+    </div>
+
+    <div class="row">
+        <section class="col col-4">
+            <div class="form-group">
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate" id="startdateL" placeholder="计划到达日期">
+                </label>
+            </div>
+        </section>
+
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+                <input type="text" list="listhour2" placeholder="时">
+                <datalist id="listhour2">
+                    <option value="00"></option>
+                    <option value="05"></option>
+                    <option value="10"></option>
+                    <option value="15"></option>
+                    <option value="20"></option>
+                    <option value="25"></option>
+                    <option value="30"></option>
+                    <option value="35"></option>
+                    <option value="40"></option>
+                    <option value="45"></option>
+                    <option value="50"></option>
+                    <option value="55"></option>
+
+
+                </datalist>
+            </label>
+        </section>
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+                <input type="text" list="listmin2" placeholder="分">
+                <datalist id="listmin2">
+                    <option value="00"></option>
+                    <option value="01"></option>
+                    <option value="02"></option>
+                    <option value="03"></option>
+                    <option value="04"></option>
+                    <option value="05"></option>
+                    <option value="06"></option>
+                    <option value="07"></option>
+                    <option value="08"></option>
+                    <option value="09"></option>
+                    <option value="10"></option>
+                    <option value="11"></option>
+                    <option value="12"></option>
+                    <option value="13"></option>
+                    <option value="14"></option>
+                    <option value="15"></option>
+                    <option value="16"></option>
+                    <option value="17"></option>
+                    <option value="18"></option>
+                    <option value="19"></option>
+                    <option value="20"></option>
+                    <option value="21"></option>
+                    <option value="23"></option>
+
+
+                </datalist>
+            </label>
+        </section>
+    </div>
+
+</fieldset>
+<fieldset>
+    <div class="row">
+        <section class="col col-8">
+            <label class="textarea">
+                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+            </label>
+        </section>
+    </div>
+
+</fieldset>
+
+
+<footer>
+    <button type="submit" id="smart-mod-bookingupdate" class="btn btn-warning" data-dismiss="modal"><i
+            class="fa fa-refresh"></i>
+        更新
+    </button>
+    <button type="submit" id="smart-mod-bookingadd" class="btn btn-success" data-dismiss="modal"><i
+            class="fa fa-plus-circle"></i>
+        新增
+    </button>
+</footer>
+</form>
+
+
+</div>
+
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="myFlightStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="100" alt="iTMS">
+    </h4>
+</div>
+<div class="modal-body no-padding">
+
+<form action="" id="login-form" class="smart-form">
+
+<fieldset>
+    <div class="alert alert-info fade in">
+        <button class="close" data-dismiss="alert">
+            ×
+        </button>
+        <i class="fa-fw fa fa-info"></i>
+        <strong> 3 </strong>条EO项目订舱信息待更新
+    </div>
+    <div class="row">
+        <section class="col col-8">
+            <label class="select">
+                <select>
+                    <option value="0" selected="" disabled="">选择待更新的订舱记录</option>
+                    <option value="1">MU-东方航空/MU2211/2014-4-1/13:00</option>
+                    <option value="2">CA-中国国航/CA4814/2014-4-1/14:00</option>
+                </select> <i></i> </label>
+        </section>
+        <section class="col col-4">
+            <label class="select">
+                <select name="prov">
+                    <option value="0" selected="" disabled="">更新操作</option>
+                    <option value="244">订舱确认</option>
+                    <option value="1">执飞开始</option>
+                    <option value="1">执飞完毕</option>
+                    <option value="2">货物签收</option>
+                </select> <i class="fa fa-check-square"></i></label>
+        </section>
+    </div>
+</fieldset>
+
+<fieldset>
+    <div class="alert alert-warning fade in">
+        <button class="close" data-dismiss="alert">
+            ×
+        </button>
+        <i class="fa-fw fa fa-warning"></i>
+        <strong>提示: </strong>实际与计划若存在差异请在此更新
+    </div>
+    <div class="row">
+
+        <section class="col col-4">
+            <label class="input"> <i class="icon-prepend fa fa-plane"></i>
+                <input type="text" list="list" placeholder="航空公司">
+                <datalist id="list">
+                    <option value="CA-中国国际航空公司"></option>
+                    <option value="CJ-中国北方航空公司"></option>
+                    <option value="CZ-中国南方航空公司"></option>
+                    <option value="SZ-中国西南航空公司"></option>
+                    <option value="WH-中国西北航空公司"></option>
+                    <option value="MU-东方航空公司"></option>
+                    <option value="MF-厦门航空公司"></option>
+                    <option value="SC-山东航空公司"></option>
+                    <option value="FM-上海航空公司"></option>
+                    <option value="4G-深圳航空公司"></option>
+                    <option value="X2-中国新华航空公司"></option>
+                    <option value="F6-中国航空股份公司"></option>
+                    <option value="3Q-云南航空公司"></option>
+                    <option value="XO-新疆航空公司"></option>
+                    <option value="3U-四川航空公司"></option>
+                    <option value="Z2-中原航空公司"></option>
+                    <option value="WU-武汉航空公司"></option>
+                    <option value="G4-贵州航空公司"></option>
+                    <option value="H4-海南航空公司"></option>
+                    <option value="GP-中国通用航空公司"></option>
+                    <option value="3W-南京航空公司"></option>
+                    <option value="ZJ-浙江航空公司"></option>
+                    <option value="GW-长城航空公司"></option>
+                    <option value="FJ-福建航空公司"></option>
+                    <option value="2Z-长安航空公司"></option>
+                </datalist>
+            </label>
+        </section>
+        <section class="col col-4">
+            <label class="input"> <i class="icon-prepend fa fa-tags"></i>
+                <input type="text" name="Cr" placeholder="航班号">
+            </label>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col col-8">
+            <label class="input"> <i class="icon-prepend fa fa-qrcode"></i>
+                <input type="text" name="Cr" placeholder="订舱编号">
+            </label>
+        </section>
+    </div>
+
+    <div class="row">
+        <section class="col col-4">
+            <div class="form-group">
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate" id="startdateDA" placeholder="实际起飞日期">
+                </label>
+            </div>
+        </section>
+
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+                <input type="text" list="listhour" placeholder="时">
+                <datalist id="listhour">
+                    <option value="00"></option>
+                    <option value="05"></option>
+                    <option value="10"></option>
+                    <option value="15"></option>
+                    <option value="20"></option>
+                    <option value="25"></option>
+                    <option value="30"></option>
+                    <option value="35"></option>
+                    <option value="40"></option>
+                    <option value="45"></option>
+                    <option value="50"></option>
+                    <option value="55"></option>
+
+
+                </datalist>
+            </label>
+        </section>
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+                <input type="text" list="listmin" placeholder="分">
+                <datalist id="listmin">
+                    <option value="00"></option>
+                    <option value="01"></option>
+                    <option value="02"></option>
+                    <option value="03"></option>
+                    <option value="04"></option>
+                    <option value="05"></option>
+                    <option value="06"></option>
+                    <option value="07"></option>
+                    <option value="08"></option>
+                    <option value="09"></option>
+                    <option value="10"></option>
+                    <option value="11"></option>
+                    <option value="12"></option>
+                    <option value="13"></option>
+                    <option value="14"></option>
+                    <option value="15"></option>
+                    <option value="16"></option>
+                    <option value="17"></option>
+                    <option value="18"></option>
+                    <option value="19"></option>
+                    <option value="20"></option>
+                    <option value="21"></option>
+                    <option value="23"></option>
+
+
+                </datalist>
+            </label>
+        </section>
+    </div>
+
+    <div class="row">
+        <section class="col col-4">
+            <div class="form-group">
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate" id="startdateLA" placeholder="实际到达日期">
+                </label>
+            </div>
+        </section>
+
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+                <input type="text" list="listhour2" placeholder="时">
+                <datalist id="listhour2">
+                    <option value="00"></option>
+                    <option value="05"></option>
+                    <option value="10"></option>
+                    <option value="15"></option>
+                    <option value="20"></option>
+                    <option value="25"></option>
+                    <option value="30"></option>
+                    <option value="35"></option>
+                    <option value="40"></option>
+                    <option value="45"></option>
+                    <option value="50"></option>
+                    <option value="55"></option>
+
+
+                </datalist>
+            </label>
+        </section>
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+                <input type="text" list="listmin2" placeholder="分">
+                <datalist id="listmin2">
+                    <option value="00"></option>
+                    <option value="01"></option>
+                    <option value="02"></option>
+                    <option value="03"></option>
+                    <option value="04"></option>
+                    <option value="05"></option>
+                    <option value="06"></option>
+                    <option value="07"></option>
+                    <option value="08"></option>
+                    <option value="09"></option>
+                    <option value="10"></option>
+                    <option value="11"></option>
+                    <option value="12"></option>
+                    <option value="13"></option>
+                    <option value="14"></option>
+                    <option value="15"></option>
+                    <option value="16"></option>
+                    <option value="17"></option>
+                    <option value="18"></option>
+                    <option value="19"></option>
+                    <option value="20"></option>
+                    <option value="21"></option>
+                    <option value="23"></option>
+
+
+                </datalist>
+            </label>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col col-8">
+            <label class="textarea">
+                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+            </label>
+        </section>
+    </div>
+
+</fieldset>
+
+
+<footer>
+    <button type="submit" id="smart-mod-bookingstatusupdate" class="btn btn-warning" data-dismiss="modal"><i
+            class="fa fa-refresh"></i>
+        更新
+    </button>
+</footer>
+</form>
+
+
+</div>
+
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+
+
+loadScript("js/plugin/jquery-nestable/jquery.nestable.js", runNestables);
+loadScript("js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js", runTimePicker);
+
+function runNestables() {
+
+    $('#nestable1').nestable();
+    $('#nestable2').nestable();
+    $('#nestable3').nestable();
+
+}
+
+// Load morris dependency 1
+loadScript("js/plugin/morris/raphael.2.1.0.min.js", loadMorrisEngine);
+// Load morris dependency 2
+function loadMorrisEngine() {
+    loadScript("js/plugin/morris/morris.min.js", runMorrisCharts);
+}
+
+/*
+ * Run all morris chart on this page
+ */
+function runMorrisCharts() {
+
+
+    if ($('#non-date-graph').length) {
+        var day_data = [
+            {"elapsed": "普通订单", "value": 100, "bk": 63, "un": 23},
+            {"elapsed": "加急订单", "value": 123, "bk": 100, "un": 23},
+            {"elapsed": "预付订单", "value": 270, "bk": 200, "un": 270},
+            {"elapsed": "公路定班车", "value": 310, "bk": 300, "un": 189}
+        ];
+        Morris.Area({
+            element: 'non-date-graph',
+            data: day_data,
+            xkey: 'elapsed',
+            ykeys: ['value', 'bk', 'un'],
+            labels: ['总订舱需求', '已订舱', '已确认'],
+            pointSize: 6,
+            parseTime: false,
+            hideHover: 'auto'
+        });
+    }
+
+
+}
+
+
+loadScript("js/plugin/jquery-form/jquery-form.min.js", runFormValidation);
+function runFormValidation() {
+
+
+    // START AND FINISH DATE
+    $('#startdate').datepicker({
+        dateFormat: 'dd.mm.yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        onSelect: function (selectedDate) {
+            $('#finishdate').datepicker('option', 'minDate', selectedDate);
+        }
+    });
+
+    $('#startdateD').datepicker({
+        dateFormat: 'dd.mm.yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        onSelect: function (selectedDate) {
+            $('#finishdate').datepicker('option', 'minDate', selectedDate);
+        }
+    });
+
+    $('#startdateL').datepicker({
+        dateFormat: 'dd.mm.yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        onSelect: function (selectedDate) {
+            $('#finishdate').datepicker('option', 'minDate', selectedDate);
+        }
+    });
+
+    $('#startdateDA').datepicker({
+        dateFormat: 'dd.mm.yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        onSelect: function (selectedDate) {
+            $('#finishdate').datepicker('option', 'minDate', selectedDate);
+        }
+    });
+
+    $('#startdateLA').datepicker({
+        dateFormat: 'dd.mm.yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        onSelect: function (selectedDate) {
+            $('#finishdate').datepicker('option', 'minDate', selectedDate);
+        }
+    });
+
+    $('#finishdate').datepicker({
+        dateFormat: 'dd.mm.yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        onSelect: function (selectedDate) {
+            $('#startdate').datepicker('option', 'maxDate', selectedDate);
+        }
+    });
+
+
+}
+;
+$("#smart-mod-create").click(function (e) {
+    $.SmartMessageBox({
+        title: "提示信息!",
+        content: "是否创建运单?",
+        buttons: '[No][Yes]'
+    }, function (ButtonPressed) {
+        if (ButtonPressed === "Yes") {
+
+            $.smallBox({
+                title: "操作回执",
+                content: "<i class='fa fa-clock-o'></i> <i>运单EO00011已成功创建...</i>",
+                color: "#659265",
+                iconSmall: "fa fa-check fa-2x fadeInRight animated",
+                timeout: 4000
+            });
+        }
+        if (ButtonPressed === "No") {
+            $.smallBox({
+                title: "操作回执",
+                content: "<i class='fa fa-clock-o'></i> <i>创建取消...</i>",
+                color: "#C46A69",
+                iconSmall: "fa fa-times fa-2x fadeInRight animated",
+                timeout: 4000
+            });
+        }
+
+    });
+    e.preventDefault();
+})
+
+$("#smart-mod-bookingupdate").click(function (e) {
+    $.SmartMessageBox({
+        title: "提示信息!",
+        content: "是否更新现有订舱信息?",
+        buttons: '[No][Yes]'
+    }, function (ButtonPressed) {
+        if (ButtonPressed === "Yes") {
+
+            $.smallBox({
+                title: "操作回执",
+                content: "<i class='fa fa-clock-o'></i> <i>订舱信息已更新...</i>",
+                color: "#659265",
+                iconSmall: "fa fa-check fa-2x fadeInRight animated",
+                timeout: 4000
+            });
+        }
+        if (ButtonPressed === "No") {
+            $.smallBox({
+                title: "操作回执",
+                content: "<i class='fa fa-clock-o'></i> <i>更新取消...</i>",
+                color: "#C46A69",
+                iconSmall: "fa fa-times fa-2x fadeInRight animated",
+                timeout: 4000
+            });
+        }
+
+    });
+    e.preventDefault();
+})
+
+$("#smart-mod-bookingstatusupdate").click(function (e) {
+    $.SmartMessageBox({
+        title: "提示信息!",
+        content: "是否更新现有订舱信息?",
+        buttons: '[No][Yes]'
+    }, function (ButtonPressed) {
+        if (ButtonPressed === "Yes") {
+
+            $.smallBox({
+                title: "操作回执",
+                content: "<i class='fa fa-clock-o'></i> <i>订舱信息已更新...</i>",
+                color: "#659265",
+                iconSmall: "fa fa-check fa-2x fadeInRight animated",
+                timeout: 4000
+            });
+        }
+        if (ButtonPressed === "No") {
+            $.smallBox({
+                title: "操作回执",
+                content: "<i class='fa fa-clock-o'></i> <i>更新取消...</i>",
+                color: "#C46A69",
+                iconSmall: "fa fa-times fa-2x fadeInRight animated",
+                timeout: 4000
+            });
+        }
+
+    });
+    e.preventDefault();
+})
+
+$("#smart-mod-bookingadd").click(function (e) {
+    $.SmartMessageBox({
+        title: "提示信息!",
+        content: "是否新增订舱信息?",
+        buttons: '[No][Yes]'
+    }, function (ButtonPressed) {
+        if (ButtonPressed === "Yes") {
+
+            $.smallBox({
+                title: "操作回执",
+                content: "<i class='fa fa-clock-o'></i> <i>订舱信息已添加...</i>",
+                color: "#659265",
+                iconSmall: "fa fa-check fa-2x fadeInRight animated",
+                timeout: 4000
+            });
+        }
+        if (ButtonPressed === "No") {
+            $.smallBox({
+                title: "操作回执",
+                content: "<i class='fa fa-clock-o'></i> <i>新增取消...</i>",
+                color: "#C46A69",
+                iconSmall: "fa fa-times fa-2x fadeInRight animated",
+                timeout: 4000
+            });
+        }
+
+    });
+    e.preventDefault();
+})
+
+
+function runTimePicker() {
+    $('#timepickerD').timepicker();
+    $('#timepickerL').timepicker();
+    $('#timepicker3').timepicker();
+    $('#timepicker4').timepicker();
+    $('#timepicker5').timepicker();
+    $('#timepicker6').timepicker();
+    $('#timepicker7').timepicker();
+    $('#timepicker8').timepicker();
+    $('#timepicker9').timepicker();
+    $('#timepicker10').timepicker();
+    $('#timepicker11').timepicker();
+    $('#timepicker12').timepicker();
+}
+
+
+</script>

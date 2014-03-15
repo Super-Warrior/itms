@@ -1,0 +1,2635 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-search"></i>
+            运输执行
+            <span>>  
+                运单查询/维护
+            </span>
+        </h1>
+    </div>
+
+
+</div>
+
+
+<!-- widget grid -->
+<section id="widget-grid" data-it-Jarvis class="">
+
+
+<!-- START ROW -->
+
+<div class="row">
+
+<!-- NEW COL START -->
+<article class="col-sm-12 col-md-12 col-lg-12">
+
+<!-- WIDGET END -->
+
+<!-- Widget ID (each widget will need unique ID)-->
+<div class="jarviswidget jarviswidget-color-blue jarviswidget-sortable" id="wid-id-7" data-widget-editbutton="false"
+     data-widget-custombutton="false" data-widget-sortable="false" data-widget-deletebutton="false">
+
+<header>
+    <span class="widget-icon"> <i class="fa fa-search"></i> </span>
+
+    <h2> EO查询条件</h2>
+
+    <div class="widget-toolbar">
+
+        <div class="btn-group">
+            <button class="btn dropdown-toggle btn-xs btn-success" data-toggle="dropdown">
+                操作 <i class="fa fa-caret-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right">
+                <li>
+                    <a href="javascript:void(0)"> <i class="fa fa-refresh"></i> 重置搜索条件</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"> <i class="fa fa-search"></i> 查询</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <ul class="nav nav-tabs pull-right in">
+
+        <li class="active">
+
+            <a data-toggle="tab" data-target="#hr0"> <i class="fa fa-lg fa-fw fa-tag"></i> <span
+                    class="hidden-mobile hidden-tablet"> EO基本信息 </span> </a>
+
+        </li>
+
+        <li>
+
+            <a data-toggle="tab" data-target="#hr1"> <i class="fa fa-lg fa-fw fa-tags"></i> <span
+                    class="hidden-mobile hidden-tablet"> 行项目基本信息 </span> </a>
+
+        </li>
+
+        <li>
+
+            <a data-toggle="tab" data-target="#hr2"> <i class="fa fa-lg fa-arrow-circle-up"></i> <span
+                    class="hidden-mobile hidden-tablet"> 发货信息</span> </a>
+
+        </li>
+        <li>
+
+            <a data-toggle="tab" data-target="#hr3"> <i class="fa fa-lg fa-arrow-circle-down"></i> <span
+                    class="hidden-mobile hidden-tablet"> 收货信息</span> </a>
+
+        </li>
+        <li>
+
+            <a data-toggle="tab" data-target="#hr4"> <i class="fa fa-lg fa-info-circle"></i> <span
+                    class="hidden-mobile hidden-tablet">物料信息</span> </a>
+
+        </li>
+    </ul>
+</header>
+
+<!-- widget div-->
+<div>
+
+<!-- widget edit box -->
+<div class="jarviswidget-editbox">
+    <!-- This area used as dropdown edit box -->
+
+</div>
+<!-- end widget edit box -->
+
+<!-- widget content -->
+<div class="widget-body">
+
+<div class="tab-content">
+<div class="tab-pane active" id="hr0">
+
+<form action="" id="checkout-form" class="smart-form" novalidate="novalidate">
+<fieldset>
+    <div class="row">
+        <section class="col col-12">
+            <div class="alert alert-info fade in">
+                <button class="close" data-dismiss="alert">
+                    ×
+                </button>
+                <i class="fa-fw fa fa-warning"></i>
+                <strong>提示:</strong> 选择EO运单状态
+            </div>
+            <div class="inline-group">
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline" checked="checked">
+                    <i></i>创建</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline">
+                    <i></i>执行开始</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline">
+                    <i></i>已到达</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline">
+                    <i></i>配送开始</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline">
+                    <i></i>已签收</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline">
+                    <i></i>已关闭</label>
+            </div>
+        </section>
+    </div>
+</fieldset>
+
+
+<fieldset>
+    <div class="row">
+        <section class="col col-6">
+            <label class="select">
+                <select>
+                    <option value="0" selected="" disabled="">运单EO类型</option>
+                    <option value="1">普通</option>
+                    <option value="2">紧急</option>
+                    <option value="3">索赔</option>
+                    <option value="4">统配</option>
+                    <option value="5">预付</option>
+                </select> <i></i> </label>
+        </section>
+        <section class="col col-6">
+            <label class="select">
+                <select>
+                    <option value="0" selected="" disabled="">运输方式</option>
+                    <option value="1">航空</option>
+                    <option value="2">公路</option>
+                    <option value="3">铁路</option>
+                    <option value="4">第三方物流</option>
+                    <option value="5">其它</option>
+                </select> <i></i> </label>
+        </section>
+
+    </div>
+    <div class="row">
+        <section class="col col-6">
+            <label class="input"> <i class="icon-prepend fa fa-list"></i>
+                <input type="text" name="Cr" placeholder="预付/合同编号">
+            </label>
+        </section>
+        <section class="col col-6">
+            <label class="select">
+                <select>
+                    <option value="0" selected="" disabled="">特殊标识</option>
+                    <option value="1">危险品</option>
+                    <option value="2">不允许航空</option>
+                    <option value="3">放射性</option>
+                    <option value="4">冷链</option>
+                </select> <i></i> </label>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col col-6">
+            <label class="select">
+                <select>
+                    <option value="0" selected="" disabled="">承运商</option>
+                    <option value="1">顺丰</option>
+                    <option value="2">申通</option>
+                    <option value="3">联邦快递</option>
+                    <option value="4">UPS</option>
+                    <option value="5">德邦</option>
+                </select> <i></i> </label>
+        </section>
+        <section class="col col-6">
+            <label class="input"> <i class="icon-prepend fa fa-barcode "></i>
+                <input type="text" name="Cr" placeholder="承运商运单编号">
+            </label>
+        </section>
+        <section class="col col-6">
+            <label class="select">
+                <select>
+                    <option value="0" selected="" disabled="">配送网络公司</option>
+                    <option value="1">网络公司1</option>
+                    <option value="2">网络公司2</option>
+                    <option value="3">网络公司3</option>
+                    <option value="4">网络公司4</option>
+                </select> <i></i> </label>
+        </section>
+        <section class="col col-6">
+            <label class="select">
+                <select>
+                    <option value="0" selected="" disabled="">网络公司位置代码</option>
+                    <option value="1">LOC001-上海徐汇</option>
+                    <option value="2">LOC002-苏州昆山</option>
+                </select> <i></i> </label>
+        </section>
+    </div>
+
+</fieldset>
+<fieldset>
+    <div class="row">
+        <section class="col col-6">
+            <div class="form-group">
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate" id="startdate" placeholder="要求达到日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-6">
+            <div class="form-group">
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate" id="startdate2" placeholder="要求配送日期">
+                </label>
+            </div>
+        </section>
+    </div>
+
+</fieldset>
+<fieldset>
+<div class="row">
+    <section class="col col-4">
+        <label class="input"> <i class="icon-prepend fa fa-plane"></i>
+            <input type="text" list="list" placeholder="航空公司">
+            <datalist id="list">
+                <option value="CA-中国国际航空公司"></option>
+                <option value="CJ-中国北方航空公司"></option>
+                <option value="CZ-中国南方航空公司"></option>
+                <option value="SZ-中国西南航空公司"></option>
+                <option value="WH-中国西北航空公司"></option>
+                <option value="MU-东方航空公司"></option>
+                <option value="MF-厦门航空公司"></option>
+                <option value="SC-山东航空公司"></option>
+                <option value="FM-上海航空公司"></option>
+                <option value="4G-深圳航空公司"></option>
+                <option value="X2-中国新华航空公司"></option>
+                <option value="F6-中国航空股份公司"></option>
+                <option value="3Q-云南航空公司"></option>
+                <option value="XO-新疆航空公司"></option>
+                <option value="3U-四川航空公司"></option>
+                <option value="Z2-中原航空公司"></option>
+                <option value="WU-武汉航空公司"></option>
+                <option value="G4-贵州航空公司"></option>
+                <option value="H4-海南航空公司"></option>
+                <option value="GP-中国通用航空公司"></option>
+                <option value="3W-南京航空公司"></option>
+                <option value="ZJ-浙江航空公司"></option>
+                <option value="GW-长城航空公司"></option>
+                <option value="FJ-福建航空公司"></option>
+                <option value="2Z-长安航空公司"></option>
+            </datalist>
+        </label>
+    </section>
+    <section class="col col-4">
+        <label class="input"> <i class="icon-prepend fa fa-tags"></i>
+            <input type="text" name="Cr" placeholder="航班号">
+        </label>
+    </section>
+    <section class="col col-4">
+        <label class="input"> <i class="icon-prepend fa fa-qrcode"></i>
+            <input type="text" name="Cr" placeholder="订舱编号">
+        </label>
+    </section>
+</div>
+
+<div class="row">
+    <section class="col col-2">
+        <div class="form-group">
+            <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                <input type="text" name="startdate" id="startdateD" placeholder="计划起飞日期">
+            </label>
+        </div>
+    </section>
+
+    <section class="col col-2">
+        <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+            <input type="text" list="listhour" placeholder="时">
+            <datalist id="listhour">
+                <option value="00"></option>
+                <option value="05"></option>
+                <option value="10"></option>
+                <option value="15"></option>
+                <option value="20"></option>
+                <option value="25"></option>
+                <option value="30"></option>
+                <option value="35"></option>
+                <option value="40"></option>
+                <option value="45"></option>
+                <option value="50"></option>
+                <option value="55"></option>
+
+
+            </datalist>
+        </label>
+    </section>
+    <section class="col col-2">
+        <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+            <input type="text" list="listmin" placeholder="分">
+            <datalist id="listmin">
+                <option value="00"></option>
+                <option value="01"></option>
+                <option value="02"></option>
+                <option value="03"></option>
+                <option value="04"></option>
+                <option value="05"></option>
+                <option value="06"></option>
+                <option value="07"></option>
+                <option value="08"></option>
+                <option value="09"></option>
+                <option value="10"></option>
+                <option value="11"></option>
+                <option value="12"></option>
+                <option value="13"></option>
+                <option value="14"></option>
+                <option value="15"></option>
+                <option value="16"></option>
+                <option value="17"></option>
+                <option value="18"></option>
+                <option value="19"></option>
+                <option value="20"></option>
+                <option value="21"></option>
+                <option value="23"></option>
+
+
+            </datalist>
+        </label>
+    </section>
+    <section class="col col-2">
+        <div class="form-group">
+            <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                <input type="text" name="startdate" id="startdateDA" placeholder="实际起飞日期">
+            </label>
+        </div>
+    </section>
+
+    <section class="col col-2">
+        <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+            <input type="text" list="listhour" placeholder="时">
+            <datalist id="listhour">
+                <option value="00"></option>
+                <option value="05"></option>
+                <option value="10"></option>
+                <option value="15"></option>
+                <option value="20"></option>
+                <option value="25"></option>
+                <option value="30"></option>
+                <option value="35"></option>
+                <option value="40"></option>
+                <option value="45"></option>
+                <option value="50"></option>
+                <option value="55"></option>
+
+
+            </datalist>
+        </label>
+    </section>
+    <section class="col col-2">
+        <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+            <input type="text" list="listmin" placeholder="分">
+            <datalist id="listmin">
+                <option value="00"></option>
+                <option value="01"></option>
+                <option value="02"></option>
+                <option value="03"></option>
+                <option value="04"></option>
+                <option value="05"></option>
+                <option value="06"></option>
+                <option value="07"></option>
+                <option value="08"></option>
+                <option value="09"></option>
+                <option value="10"></option>
+                <option value="11"></option>
+                <option value="12"></option>
+                <option value="13"></option>
+                <option value="14"></option>
+                <option value="15"></option>
+                <option value="16"></option>
+                <option value="17"></option>
+                <option value="18"></option>
+                <option value="19"></option>
+                <option value="20"></option>
+                <option value="21"></option>
+                <option value="23"></option>
+
+
+            </datalist>
+        </label>
+    </section>
+</div>
+
+<div class="row">
+    <section class="col col-2">
+        <div class="form-group">
+            <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                <input type="text" name="startdate" id="startdateL" placeholder="计划到达日期">
+            </label>
+        </div>
+    </section>
+
+    <section class="col col-2">
+        <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+            <input type="text" list="listhour2" placeholder="时">
+            <datalist id="listhour2">
+                <option value="00"></option>
+                <option value="05"></option>
+                <option value="10"></option>
+                <option value="15"></option>
+                <option value="20"></option>
+                <option value="25"></option>
+                <option value="30"></option>
+                <option value="35"></option>
+                <option value="40"></option>
+                <option value="45"></option>
+                <option value="50"></option>
+                <option value="55"></option>
+
+
+            </datalist>
+        </label>
+    </section>
+    <section class="col col-2">
+        <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+            <input type="text" list="listmin2" placeholder="分">
+            <datalist id="listmin2">
+                <option value="00"></option>
+                <option value="01"></option>
+                <option value="02"></option>
+                <option value="03"></option>
+                <option value="04"></option>
+                <option value="05"></option>
+                <option value="06"></option>
+                <option value="07"></option>
+                <option value="08"></option>
+                <option value="09"></option>
+                <option value="10"></option>
+                <option value="11"></option>
+                <option value="12"></option>
+                <option value="13"></option>
+                <option value="14"></option>
+                <option value="15"></option>
+                <option value="16"></option>
+                <option value="17"></option>
+                <option value="18"></option>
+                <option value="19"></option>
+                <option value="20"></option>
+                <option value="21"></option>
+                <option value="23"></option>
+
+
+            </datalist>
+        </label>
+    </section>
+
+    <section class="col col-2">
+        <div class="form-group">
+            <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                <input type="text" name="startdate" id="startdateLA" placeholder="实际到达日期">
+            </label>
+        </div>
+    </section>
+
+    <section class="col col-2">
+        <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+            <input type="text" list="listhour2" placeholder="时">
+            <datalist id="listhour2">
+                <option value="00"></option>
+                <option value="05"></option>
+                <option value="10"></option>
+                <option value="15"></option>
+                <option value="20"></option>
+                <option value="25"></option>
+                <option value="30"></option>
+                <option value="35"></option>
+                <option value="40"></option>
+                <option value="45"></option>
+                <option value="50"></option>
+                <option value="55"></option>
+
+
+            </datalist>
+        </label>
+    </section>
+    <section class="col col-2">
+        <label class="input"> <i class="icon-prepend fa fa-clock-o"></i>
+            <input type="text" list="listmin2" placeholder="分">
+            <datalist id="listmin2">
+                <option value="00"></option>
+                <option value="01"></option>
+                <option value="02"></option>
+                <option value="03"></option>
+                <option value="04"></option>
+                <option value="05"></option>
+                <option value="06"></option>
+                <option value="07"></option>
+                <option value="08"></option>
+                <option value="09"></option>
+                <option value="10"></option>
+                <option value="11"></option>
+                <option value="12"></option>
+                <option value="13"></option>
+                <option value="14"></option>
+                <option value="15"></option>
+                <option value="16"></option>
+                <option value="17"></option>
+                <option value="18"></option>
+                <option value="19"></option>
+                <option value="20"></option>
+                <option value="21"></option>
+                <option value="23"></option>
+
+
+            </datalist>
+        </label>
+    </section>
+</div>
+</fieldset>
+</form>
+
+</div>
+<div class="tab-pane" id="hr1">
+
+<form action="" id="checkout-form" class="smart-form" novalidate="novalidate">
+
+<fieldset>
+    <div class="row">
+        <section class="col col-9">
+            <label class="label">需求状态</label>
+
+            <div class="inline-group">
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline" checked="checked">
+                    <i></i>创建</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline">
+                    <i></i>已交接</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline">
+                    <i></i>已装车</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline">
+                    <i></i>部分分配</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline">
+                    <i></i>已分配</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="radio-inline">
+                    <i></i>已执行</label>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col col-2">
+            <label class="select">
+                <select name="prov">
+                    <option value="0" selected="" disabled="">订单类型</option>
+                    <option value="244">紧急</option>
+                    <option value="1">预付</option>
+                    <option value="2">监控</option>
+                    <option value="3">索赔</option>
+                    <option value="4">统配</option>
+                </select> <i class="fa fa-check-square"></i></label>
+        </section>
+        <section class="col col-2">
+            <label class="select">
+                <select name="prov">
+                    <option value="0" selected="" disabled="">特种运输标识</option>
+                    <option value="244">危险品</option>
+                    <option value="1">冷链</option>
+                    <option value="2">放射性</option>
+                    <option value="3">剧毒</option>
+                </select> <i class="fa fa-check-square"></i></label>
+        </section>
+        <section class="col col-4">
+            <label class="input"> <i class="icon-prepend fa fa-phone"></i>
+                <input type="text" name="CRP2" placeholder="前序ER/EO订单号">
+            </label>
+        </section>
+    </div>
+
+    <div class="row">
+        <section class="col col-4">
+            <label class="input"> <i class="icon-prepend fa fa-tag"></i>
+                <input type="text" name="Cr" placeholder="客户订单号">
+            </label>
+        </section>
+        <section class="col col-4">
+            <label class="input"> <i class="icon-prepend fa fa-tag"></i>
+                <input type="text" name="CRP" placeholder="客户前序订单号">
+            </label>
+        </section>
+    </div>
+
+
+    <div class="row">
+        <section class="col col-8">
+            <label class="textarea">
+                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+            </label>
+        </section>
+    </div>
+
+</fieldset>
+
+<fieldset>
+    <div class="row">
+        <section class="col col-4">
+            <div class="form-group">
+                <label>要求到达日期(从)</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate" id="startdate" placeholder="要求达到日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-4">
+            <div class="form-group">
+                <label>要求到达日期(至)</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate" id="startdate" placeholder="要求达到日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>要求到达时间(最早)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker" type="text" value="" placeholder="要求到达时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>要求到达时间(最晚)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker2" type="text" placeholder="要求到达时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</fieldset>
+<fieldset>
+    <div class="row">
+        <section class="col col-4">
+            <div class="form-group">
+                <label>需求ER接收日期(从)</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate2" id="startdate2" placeholder="需求接收日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-4">
+            <div class="form-group">
+                <label>需求ER接收日期(至)</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate2" id="startdate2" placeholder="需求接收日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>需求ER接收时间(从)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker3" type="text" placeholder="需求接收时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>需求ER接收时间(至)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker3" type="text" placeholder="需求接收时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <div class="row">
+        <section class="col col-2">
+            <div class="form-group">
+                <label>ER货物交接日期(从)</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate2" id="startdate3" placeholder="需求接收日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>ER货物交接日期(至)</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate2" id="startdate3" placeholder="需求接收日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>交接时间(开始)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker4" type="text" placeholder="接收时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>交接时间(结束)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker5" type="text" placeholder="接收时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>装车时间(开始)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker6" type="text" placeholder="装车时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>装车时间(结束)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker7" type="text" placeholder="装车时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col col-2">
+            <div class="form-group">
+                <label>ER货物理货日期(从)</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate2" id="startdate4" placeholder="需求接收日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>ER货物理货日期(至)</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate2" id="startdate4" placeholder="需求接收日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>卸载时间(开始)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker8" type="text" placeholder="卸载时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>卸载时间(结束)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker9" type="text" placeholder="卸载时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>理货时间(开始)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker10" type="text" placeholder="理货时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>理货时间(结束)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker11" type="text" placeholder="理货时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</fieldset>
+
+</form>
+
+</div>
+
+
+<div class="tab-pane" id="hr2">
+    <form action="" id="checkout-formF" class="smart-form" novalidate="novalidate">
+
+        <fieldset>
+            <div class="row">
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-location-arrow "></i>
+                        <input type="text" name="lname" placeholder="发货站点 (从)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-location-arrow "></i>
+                        <input type="text" name="lname" placeholder="发货站点 (至)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <button class="btn btn-default btn-sm" data-target="#mycustomer" data-toggle="modal"><i
+                            class="fa fa-search "></i> 站点搜索
+                    </button>
+                </section>
+            </div>
+
+            <div class="row">
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                        <input type="text" name="lname" placeholder="发货客户代码 (从)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                        <input type="text" name="lname" placeholder="发货客户代码 (至)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <button class="btn btn-default btn-sm" data-target="#mycustomer" data-toggle="modal"><i
+                            class="fa fa-search "></i> 客户搜索
+                    </button>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-map-marker "></i>
+                        <input type="text" name="lname" placeholder="位置点 (从)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                        <input type="text" name="lname" placeholder="位置点 (至)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <button class="btn btn-default btn-sm" data-target="#mycustomer" data-toggle="modal"><i
+                            class="fa fa-search "></i> 位置搜索
+                    </button>
+                </section>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <div class="row">
+                <section class="col col-2">
+                    <label class="select">
+                        <select name="prov">
+                            <option value="0" selected="" disabled="">省</option>
+                            <option value="244">北京市</option>
+                            <option value="1">上海市</option>
+                            <option value="2">江苏省</option>
+                            <option value="3">浙江省</option>
+                            <option value="4">福建省</option>
+                            <option value="5">广东省</option>
+
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-2">
+                    <label class="select">
+                        <select name="city">
+                            <option value="0" selected="" disabled="">市</option>
+                            <option value="244">北京市</option>
+                            <option value="1">上海市</option>
+                            <option value="2">南京市</option>
+                            <option value="3">杭州市</option>
+                            <option value="4">福州市</option>
+                            <option value="5">深圳市</option>
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-2">
+                    <label class="select">
+                        <select name="disc">
+                            <option value="0" selected="" disabled="">区县</option>
+                            <option value="244">徐汇区</option>
+                            <option value="1">静安区</option>
+                            <option value="2">黄浦区</option>
+                            <option value="3">宝山区</option>
+                            <option value="4">浦东新区</option>
+                        </select> <i></i> </label>
+                </section>
+
+
+                <section class="col col-2">
+                    <label class="input">
+                        <input type="text" name="code" placeholder="邮编 (从)">
+                    </label>
+                </section>
+                <section class="col col-2">
+                    <label class="input">
+                        <input type="text" name="code" placeholder="邮编 (至)">
+                    </label>
+                </section>
+            </div>
+
+            <section>
+                <label for="address" class="input">
+                    <input type="text" name="address" placeholder="地址">
+                </label>
+            </section>
+
+        </fieldset>
+    </form>
+
+</div>
+
+<div class="tab-pane" id="hr3">
+
+    <form action="" id="checkout-formD" class="smart-form" novalidate="novalidate">
+
+        <fieldset>
+
+            <div class="row">
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                        <input type="text" name="lname" placeholder="收货客户代码 (从)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                        <input type="text" name="lname" placeholder="收货客户代码 (至)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <button class="btn btn-default btn-sm" data-target="#mycustomer" data-toggle="modal"><i
+                            class="fa fa-search "></i> 客户搜索
+                    </button>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-map-marker "></i>
+                        <input type="text" name="lname" placeholder="位置点 (从)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                        <input type="text" name="lname" placeholder="位置点 (至)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <button class="btn btn-default btn-sm" data-target="#mycustomer" data-toggle="modal"><i
+                            class="fa fa-search "></i> 位置搜索
+                    </button>
+                </section>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <div class="row">
+                <section class="col col-2">
+                    <label class="select">
+                        <select name="prov">
+                            <option value="0" selected="" disabled="">省</option>
+                            <option value="244">北京市</option>
+                            <option value="1">上海市</option>
+                            <option value="2">江苏省</option>
+                            <option value="3">浙江省</option>
+                            <option value="4">福建省</option>
+                            <option value="5">广东省</option>
+
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-2">
+                    <label class="select">
+                        <select name="city">
+                            <option value="0" selected="" disabled="">市</option>
+                            <option value="244">北京市</option>
+                            <option value="1">上海市</option>
+                            <option value="2">南京市</option>
+                            <option value="3">杭州市</option>
+                            <option value="4">福州市</option>
+                            <option value="5">深圳市</option>
+                        </select> <i></i> </label>
+                </section>
+
+                <section class="col col-2">
+                    <label class="select">
+                        <select name="disc">
+                            <option value="0" selected="" disabled="">区县</option>
+                            <option value="244">徐汇区</option>
+                            <option value="1">静安区</option>
+                            <option value="2">黄浦区</option>
+                            <option value="3">宝山区</option>
+                            <option value="4">浦东新区</option>
+                        </select> <i></i> </label>
+                </section>
+
+
+                <section class="col col-2">
+                    <label class="input">
+                        <input type="text" name="code" placeholder="邮编 (从)">
+                    </label>
+                </section>
+                <section class="col col-2">
+                    <label class="input">
+                        <input type="text" name="code" placeholder="邮编 (至)">
+                    </label>
+                </section>
+            </div>
+
+            <section>
+                <label for="address" class="input">
+                    <input type="text" name="address" placeholder="地址">
+                </label>
+            </section>
+
+        </fieldset>
+    </form>
+</div>
+<div class="tab-pane" id="hr4">
+
+    <form action="" id="checkout-formM" class="smart-form" novalidate="novalidate">
+
+        <fieldset>
+
+            <div class="row">
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-copy"></i>
+                        <input type="text" name="lname" placeholder="物料代码 (从)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-copy"></i>
+                        <input type="text" name="lname" placeholder="物料代码 (至)">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <button class="btn btn-default btn-sm" data-target="#mycustomer" data-toggle="modal"><i
+                            class="fa fa-search "></i> 物料搜索
+                    </button>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-4">
+                    <label class="select">
+                        <select>
+                            <option value="0" selected="" disabled="">物料类型 (从)</option>
+                            <option value="1">化学品</option>
+                            <option value="2">汽车零备件-钣金件</option>
+                            <option value="3">包装材料</option>
+                        </select> <i></i> </label>
+                </section>
+                <section class="col col-4">
+                    <label class="select">
+                        <select>
+                            <option value="0" selected="" disabled="">物料类型 (至)</option>
+                            <option value="1">化学品</option>
+                            <option value="2">汽车零备件-钣金件</option>
+                            <option value="3">包装材料</option>
+                        </select> <i></i> </label>
+                </section>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <div class="row">
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-copy"></i>
+                        <input type="text" name="lname" placeholder="客户物料代码">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                        <input type="text" name="lname" placeholder="物料所属客户">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <button class="btn btn-default btn-sm" data-target="#mycustomer" data-toggle="modal"><i
+                            class="fa fa-search "></i>客户搜索
+                    </button>
+                </section>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+</div>
+
+</div>
+<!-- end widget content -->
+
+</div>
+<!-- end widget div -->
+
+</div>
+<!-- end widget -->
+
+
+</article>
+<!-- END COL -->
+
+<!-- NEW COL START -->
+
+
+</div>
+
+<!-- END ROW -->
+
+<!-- row -->
+<div class="row">
+
+<!-- NEW WIDGET START -->
+<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+<!-- Widget ID (each widget will need unique ID)-->
+<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2r" data-widget-editbutton="false"
+     data-widget-collapsed="true" data-widget-deletebutton="false">
+    <!-- widget options:
+    usage: <div class="jarviswidget" id="wid-id-2r" data-widget-editbutton="false">
+
+    data-widget-colorbutton="false"
+    data-widget-editbutton="false"
+    data-widget-togglebutton="false"
+    data-widget-deletebutton="false"
+    data-widget-fullscreenbutton="false"
+    data-widget-custombutton="false"
+    data-widget-collapsed="true"
+    data-widget-sortable="false"
+
+    -->
+    <header>
+        <span class="widget-icon"> <i class="fa fa-search-plus"></i> </span>
+
+        <h2>EO查询结果清单</h2>
+
+        <div class="widget-toolbar">
+
+            <div class="btn-group">
+                <button class="btn dropdown-toggle btn-xs btn-success" data-toggle="dropdown">
+                    操作 <i class="fa fa-caret-down"></i>
+                </button>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="javascript:void(0)"> <i class="fa fa-edit"></i> 批量修改</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"> <i class="fa fa-times-circle "></i> 删除</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"> <i class="fa fa-cloud-download "></i> 导出</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- widget div-->
+    <div>
+
+        <!-- widget edit box -->
+        <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+        </div>
+        <!-- end widget edit box -->
+
+        <!-- widget content -->
+        <div class="widget-body no-padding">
+            <div class="widget-body-toolbar">
+
+            </div>
+            <table data-it-Table id="datatable_col_reorder" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checkbox-inline">
+                            <i></i>
+                        </label>
+                    </th>
+                    <th>EO</th>
+                    <th>ER</th>
+                    <th>ERITN</th>
+                    <th>运单状态</th>
+                    <th>类型</th>
+                    <th>特殊</th>
+                    <th>发货方</th>
+                    <th>收货方</th>
+                    <th>省/市/区</th>
+                    <th>送达日期</th>
+                    <th>方式</th>
+                    <th>承运方</th>
+                    <th>明细</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checkbox-inline">
+                            <i></i>
+                        </label>
+                    </td>
+                    <td>EO001</td>
+                    <td>1</td>
+                    <td>001</td>
+                    <td>发运开始</td>
+                    <td>预付</td>
+                    <td>普通</td>
+                    <td>上海通用</td>
+                    <td>南京4S</td>
+                    <td>江苏/南京/下关</td>
+                    <td>2014-4-1</td>
+                    <td>空运</td>
+                    <td>顺丰</td>
+                    <td><a href="#" data-target="#myTimeLine" data-toggle="modal"> <i class="fa fa-clock-o "></i></a> <i
+                            class="fa fa-search"></i></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checkbox-inline">
+                            <i></i>
+                        </label>
+                    </td>
+                    <td>EO002</td>
+                    <td>2</td>
+                    <td>001</td>
+                    <td>配送开始</td>
+                    <td>加急</td>
+                    <td>危险品</td>
+                    <td>欧莱雅</td>
+                    <td>福州大洋经典</td>
+                    <td>福建/福州/鼓楼区</td>
+                    <td>2014-4-1</td>
+                    <td>空运</td>
+                    <td>顺丰</td>
+                    <td><a href="#" data-target="#myTimeLine" data-toggle="modal"> <i class="fa fa-clock-o "></i></a> <i
+                            class="fa fa-search"></i></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checkbox-inline">
+                            <i></i>
+                        </label>
+                    </td>
+                    <td>EO004</td>
+                    <td>3</td>
+                    <td>001</td>
+                    <td>中转开始</td>
+                    <td>统配</td>
+                    <td>普通</td>
+                    <td>上汽临港</td>
+                    <td>成都4S</td>
+                    <td>四川/成都/五羊区</td>
+                    <td>2014-4-1</td>
+                    <td>空运</td>
+                    <td>顺丰</td>
+                    <td><a href="#" data-target="#myTimeLine" data-toggle="modal"> <i class="fa fa-clock-o "></i></a> <i
+                            class="fa fa-search"></i></td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        <!-- end widget content -->
+
+    </div>
+    <!-- end widget div -->
+
+</div>
+<!-- end widget -->
+
+
+<!-- Widget ID (each widget will need unique ID)-->
+<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2s" data-widget-editbutton="false"
+     data-widget-collapsed="true" data-widget-deletebutton="false">
+<!-- widget options:
+usage: <div class="jarviswidget" id="wid-id-1x" data-widget-editbutton="false">
+
+data-widget-colorbutton="false"
+data-widget-editbutton="false"
+data-widget-togglebutton="false"
+data-widget-deletebutton="false"
+data-widget-fullscreenbutton="false"
+data-widget-custombutton="false"
+data-widget-collapsed="true"
+data-widget-sortable="false"
+
+-->
+<header>
+    <span class="widget-icon"> <i class="fa fa-list-alt "></i> </span>
+
+    <h2>EO明细</h2>
+
+    <div class="widget-toolbar">
+
+        <div class="btn-group">
+            <button class="btn dropdown-toggle btn-xs btn-success" data-toggle="dropdown">
+                操作 <i class="fa fa-caret-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right">
+                <li>
+                    <a href="javascript:void(0);"> <i class="fa fa-print"></i> 打印</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);"> <i class="fa fa-edit"></i> 修改</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);"><i class="fa fa-save"></i> 保存</a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);"><i class="fa fa-times-circle "></i> 删除</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</header>
+
+<!-- widget div-->
+<div>
+
+<!-- widget edit box -->
+<div class="jarviswidget-editbox">
+    <!-- This area used as dropdown edit box -->
+
+</div>
+<!-- end widget edit box -->
+
+<!-- widget content -->
+<div class="widget-body no-padding">
+<div class="widget-body-toolbar">
+<div class="alert alert-block alert-success">
+    <a class="close" data-dismiss="alert" href="#">×</a>
+    <h4 class="alert-heading"><i class="fa fa-search"></i> 需求编号: ER0001</h4>
+</div>
+
+<div class="panel-group smart-accordion-default" id="accordion-2">
+<div class="panel panel-default">
+<div class="panel-heading">
+    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-1"
+                               class="collapsed"> <i class="fa fa-fw fa-chevron-circle-right  txt-color-green"></i> <i
+            class="fa fa-fw fa-chevron-circle-down  txt-color-red"></i> 概要信息</a></h4>
+</div>
+<div id="collapseOne-1" class="panel-collapse collapse">
+<div class="panel-body">
+
+
+<form action="" id="checkout-form" class="smart-form" novalidate="novalidate">
+
+<fieldset>
+    <div class="row">
+        <section class="col col-2">
+            <label class="select">
+                <select name="prov">
+                    <option value="0" selected="" disabled="">订单类型</option>
+                    <option value="244">紧急</option>
+                    <option value="1">预付</option>
+                    <option value="2">监控</option>
+                    <option value="3">索赔</option>
+                    <option value="4">统配</option>
+                </select> <i class="fa fa-check-square"></i></label>
+        </section>
+        <section class="col col-2">
+            <label class="select">
+                <select name="prov">
+                    <option value="0" selected="" disabled="">特种运输标识</option>
+                    <option value="244">危险品</option>
+                    <option value="1">冷链</option>
+                    <option value="2">放射性</option>
+                    <option value="3">剧毒</option>
+                </select> <i class="fa fa-check-square"></i></label>
+        </section>
+        <section class="col col-4">
+            <label class="input"> <i class="icon-prepend fa fa-phone"></i>
+                <input type="text" name="CRP2" placeholder="前序ER/EO订单号">
+            </label>
+        </section>
+    </div>
+
+    <div class="row">
+        <section class="col col-4">
+            <label class="input"> <i class="icon-prepend fa fa-tag"></i>
+                <input type="text" name="Cr" placeholder="客户订单号">
+            </label>
+        </section>
+        <section class="col col-4">
+            <label class="input"> <i class="icon-prepend fa fa-tag"></i>
+                <input type="text" name="CRP" placeholder="客户前序订单号">
+            </label>
+        </section>
+    </div>
+
+
+    <div class="row">
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-list-ol "></i>
+                <input type="text" name="Cr" placeholder="总件数">
+            </label>
+        </section>
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-outdent "></i>
+                <input type="text" name="Cr" placeholder="总重量">
+            </label>
+        </section>
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-th "></i>
+                <input type="text" name="Cr" placeholder="总体积">
+            </label>
+        </section>
+        <section class="col col-2">
+            <label class="input"> <i class="icon-prepend fa fa-list"></i>
+                <input type="text" name="Cr" placeholder="总体积/重">
+            </label>
+        </section>
+
+    </div>
+    <div class="row">
+        <section class="col col-8">
+            <label for="file" class="input input-file">
+                <div class="button"><input type="file" name="file"
+                                           onchange="this.parentNode.nextSibling.value = this.value">文件
+                </div>
+                <input type="text" placeholder="插入附件" readonly="">
+            </label>
+        </section>
+    </div>
+
+    <div class="row">
+        <section class="col col-8">
+            <label class="textarea">
+                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+            </label>
+        </section>
+    </div>
+
+</fieldset>
+
+<fieldset>
+    <div class="row">
+        <section class="col col-4">
+            <div class="form-group">
+                <label>要求到达日期</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate" id="startdate" placeholder="要求达到日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>要求到达时间(最早)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker" type="text" value="" placeholder="要求到达时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>要求到达时间(最晚)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker2" type="text" placeholder="要求到达时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</fieldset>
+<fieldset>
+    <div class="row">
+        <section class="col col-4">
+            <div class="form-group">
+                <label>需求ER接收日期</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate2" id="startdate2" placeholder="需求接收日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-4">
+            <div class="form-group">
+                <label>需求ER接收时间</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker3" type="text" placeholder="需求接收时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <div class="row">
+        <section class="col col-4">
+            <div class="form-group">
+                <label>ER货物交接日期</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate2" id="startdate3" placeholder="需求接收日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>交接时间(开始)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker4" type="text" placeholder="接收时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>交接时间(结束)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker5" type="text" placeholder="接收时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>装车时间(开始)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker6" type="text" placeholder="装车时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>装车时间(结束)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker7" type="text" placeholder="装车时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col col-4">
+            <div class="form-group">
+                <label>ER货物理货日期</label>
+                <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                    <input type="text" name="startdate2" id="startdate4" placeholder="需求接收日期">
+                </label>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>卸载时间(开始)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker8" type="text" placeholder="卸载时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>卸载时间(结束)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker9" type="text" placeholder="卸载时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>理货时间(开始)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker10" type="text" placeholder="理货时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="col col-2">
+            <div class="form-group">
+                <label>理货时间(结束)</label>
+
+                <div class="input-group">
+                    <input class="form-control" id="timepicker11" type="text" placeholder="理货时间">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</fieldset>
+
+</form>
+
+
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseTwo-1"
+                                   class="collapsed"> <i class="fa fa-fw fa-chevron-circle-right  txt-color-green"></i>
+            <i class="fa fa-fw fa-chevron-circle-down  txt-color-red"></i> 发货方信息</a></h4>
+    </div>
+    <div id="collapseTwo-1" class="panel-collapse collapse">
+        <div class="panel-body">
+
+
+            <form action="" id="checkout-form" class="smart-form" novalidate="novalidate">
+
+                <fieldset>
+                    <section>
+                        <label class="select">
+                            <select name="disc">
+                                <option value="0" selected="" disabled="">需求接收区域</option>
+                                <option value="244">上海大众: 上海嘉定</option>
+                                <option value="1">上海大众: 仪征</option>
+                            </select> <i></i> </label>
+                    </section>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="select">
+                                <select name="prov">
+                                    <option value="0" selected="" disabled="">发货客户</option>
+                                    <option value="244">上海通用</option>
+                                    <option value="1">上海大众</option>
+                                    <option value="2">上汽乘用车</option>
+
+                                </select> <i></i> </label>
+                        </section>
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="lname" placeholder="联系人">
+                            </label>
+                        </section>
+                    </div>
+
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-envelope-o"></i>
+                                <input type="email" name="email" placeholder="电子邮件">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-phone"></i>
+                                <input type="tel" name="phone" placeholder="电话" data-mask="(999) 9999-9999">
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <section>
+                        <label class="select">
+                            <select name="disc">
+                                <option value="0" selected="" disabled="">位置点选择</option>
+                                <option value="244">LOC012AS11-上海康桥</option>
+                                <option value="1">LOC012AS12-上海申江路</option>
+                                <option value="2">LOC012AB01-上海临港</option>
+                            </select> <i></i> </label>
+                    </section>
+                    <div class="row">
+                        <section class="col col-3">
+                            <label class="select">
+                                <select name="prov">
+                                    <option value="0" selected="" disabled="">省</option>
+                                    <option value="244">北京市</option>
+                                    <option value="1">上海市</option>
+                                    <option value="2">江苏省</option>
+                                    <option value="3">浙江省</option>
+                                    <option value="4">福建省</option>
+                                    <option value="5">广东省</option>
+
+                                </select> <i></i> </label>
+                        </section>
+
+                        <section class="col col-3">
+                            <label class="select">
+                                <select name="city">
+                                    <option value="0" selected="" disabled="">市</option>
+                                    <option value="244">北京市</option>
+                                    <option value="1">上海市</option>
+                                    <option value="2">南京市</option>
+                                    <option value="3">杭州市</option>
+                                    <option value="4">福州市</option>
+                                    <option value="5">深圳市</option>
+                                </select> <i></i> </label>
+                        </section>
+
+                        <section class="col col-3">
+                            <label class="select">
+                                <select name="disc">
+                                    <option value="0" selected="" disabled="">区县</option>
+                                    <option value="244">徐汇区</option>
+                                    <option value="1">静安区</option>
+                                    <option value="2">黄浦区</option>
+                                    <option value="3">宝山区</option>
+                                    <option value="4">浦东新区</option>
+                                </select> <i></i> </label>
+                        </section>
+
+
+                        <section class="col col-3">
+                            <label class="input">
+                                <input type="text" name="code" placeholder="邮编">
+                            </label>
+                        </section>
+                    </div>
+
+                    <section>
+                        <label for="address" class="input">
+                            <input type="text" name="address" placeholder="地址">
+                        </label>
+                    </section>
+
+                    <section>
+                        <label class="textarea">
+                            <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                        </label>
+                    </section>
+                </fieldset>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseThree-1"
+                                   class="collapsed"> <i class="fa fa-fw fa-chevron-circle-right  txt-color-green"></i>
+            <i class="fa fa-fw fa-chevron-circle-down  txt-color-red"></i> 送达方信息</a></h4>
+    </div>
+    <div id="collapseThree-1" class="panel-collapse collapse">
+        <div class="panel-body">
+
+
+            <form action="" id="checkout-formD" class="smart-form" novalidate="novalidate">
+
+                <fieldset>
+
+                    <div class="row">
+
+                        <section class="col col-6">
+                            <label class="select">
+                                <select name="prov">
+                                    <option value="0" selected="" disabled="">收货客户</option>
+                                    <option value="244">上海通用</option>
+                                    <option value="1">上海大众</option>
+                                    <option value="2">上汽乘用车</option>
+
+                                </select> <i></i> </label>
+
+                        </section>
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="lname" placeholder="联系人">
+                            </label>
+                        </section>
+                    </div>
+
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-envelope-o"></i>
+                                <input type="email" name="email" placeholder="电子邮件">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-phone"></i>
+                                <input type="tel" name="phone" placeholder="电话" data-mask="(999) 9999-9999">
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <section>
+                        <label class="select">
+                            <select name="disc">
+                                <option value="0" selected="" disabled="">位置点选择</option>
+                                <option value="244">LOC012AS11-上海康桥</option>
+                                <option value="1">LOC012AS12-上海申江路</option>
+                                <option value="2">LOC012AB01-上海临港</option>
+                            </select> <i></i> </label>
+                    </section>
+                    <div class="row">
+                        <section class="col col-3">
+                            <label class="select">
+                                <select name="prov">
+                                    <option value="0" selected="" disabled="">省</option>
+                                    <option value="244">北京市</option>
+                                    <option value="1">上海市</option>
+                                    <option value="2">江苏省</option>
+                                    <option value="3">浙江省</option>
+                                    <option value="4">福建省</option>
+                                    <option value="5">广东省</option>
+
+                                </select> <i></i> </label>
+                        </section>
+
+                        <section class="col col-3">
+                            <label class="select">
+                                <select name="city">
+                                    <option value="0" selected="" disabled="">市</option>
+                                    <option value="244">北京市</option>
+                                    <option value="1">上海市</option>
+                                    <option value="2">南京市</option>
+                                    <option value="3">杭州市</option>
+                                    <option value="4">福州市</option>
+                                    <option value="5">深圳市</option>
+                                </select> <i></i> </label>
+                        </section>
+
+                        <section class="col col-3">
+                            <label class="select">
+                                <select name="disc">
+                                    <option value="0" selected="" disabled="">区县</option>
+                                    <option value="244">徐汇区</option>
+                                    <option value="1">静安区</option>
+                                    <option value="2">黄浦区</option>
+                                    <option value="3">宝山区</option>
+                                    <option value="4">浦东新区</option>
+                                </select> <i></i> </label>
+                        </section>
+
+
+                        <section class="col col-3">
+                            <label class="input">
+                                <input type="text" name="code" placeholder="邮编">
+                            </label>
+                        </section>
+                    </div>
+
+                    <section>
+                        <label for="address" class="input">
+                            <input type="text" name="address" placeholder="地址">
+                        </label>
+                    </section>
+
+                    <section>
+                        <label class="textarea">
+                            <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                        </label>
+                    </section>
+                </fieldset>
+
+
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+</div>
+<table id="datatable_col_reorder" class="table table-striped table-hover" data-it-Table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>客户订单</th>
+        <th>类型</th>
+        <th>运输方式</th>
+        <th>送达方</th>
+        <th>目的地省份</th>
+        <th>目的地市区</th>
+        <th>要求达到日期</th>
+        <th>总件数</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>U2100003101213000001</td>
+        <td>预付</td>
+        <td>公路</td>
+        <td>昆山华通汽车贸易服务有限公司</td>
+        <td>江苏省</td>
+        <td>苏州市</td>
+        <td>03/04/2014</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>U2100003101213000002</td>
+        <td>预付</td>
+        <td>航空</td>
+        <td>重庆龙华汽车贸易服务有限公司</td>
+        <td>重庆市</td>
+        <td>江北区</td>
+        <td>03/04/2014</td>
+        <td>14</td>
+    </tr>
+    <td>3</td>
+    <td>U2100003101213000003</td>
+    <td>预付</td>
+    <td>航空</td>
+    <td>安庆环通汽车销售服务有限公司</td>
+    <td>安徽省</td>
+    <td>安庆市</td>
+    <td>03/04/2014</td>
+    <td>9</td>
+    </tbody>
+</table>
+
+</div>
+<!-- end widget content -->
+
+</div>
+<!-- end widget div -->
+
+</div>
+<!-- end widget -->
+
+
+</article>
+<!-- WIDGET END -->
+
+</div>
+
+<!-- end row -->
+
+<!-- end row -->
+
+</section>
+<!-- end widget grid -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    <img src="img/banner.png" width="150" alt="iTMS">
+                </h4>
+            </div>
+            <div class="modal-body no-padding">
+
+                <form action="" id="login-form" class="smart-form">
+
+                    <fieldset>
+                        <section>
+                            <div class="row">
+                                <label class="label col col-2">Username</label>
+
+                                <div class="col col-10">
+                                    <label class="input"> <i class="icon-append fa fa-user"></i>
+                                        <input type="email" name="email">
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <div class="row">
+                                <label class="label col col-2">Password</label>
+
+                                <div class="col col-10">
+                                    <label class="input"> <i class="icon-append fa fa-lock"></i>
+                                        <input type="password" name="password">
+                                    </label>
+
+                                    <div class="note">
+                                        <a href="javascript:void(0)">Forgot password?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <div class="row">
+                                <div class="col col-2"></div>
+                                <div class="col col-10">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="remember" checked="">
+                                        <i></i>Keep me logged in</label>
+                                </div>
+                            </div>
+                        </section>
+                    </fieldset>
+
+                    <footer>
+                        <button type="submit" class="btn btn-primary">
+                            Sign in
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel
+                        </button>
+
+                    </footer>
+                </form>
+
+
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myMat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    <img src="img/banner.png" width="150" alt="iTMS">
+                </h4>
+            </div>
+            <div class="modal-body no-padding">
+
+                <form action="" id="login-form" class="smart-form">
+
+                    <fieldset>
+                        <div class="row">
+
+                            <section class="col col-4">
+                                <label class="input"> <i class="icon-prepend fa fa-filter"></i>
+                                    <input type="text" name="lname" placeholder="物料编码">
+                                </label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="input"> <i class="icon-prepend fa fa-filter "></i>
+                                    <input type="text" name="lname" placeholder="客户物料号">
+                                </label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="select">
+                                    <select>
+                                        <option value="0" selected="" disabled="">物料类型</option>
+                                        <option value="1">化学品</option>
+                                        <option value="2">汽车零备件-钣金件</option>
+                                        <option value="3">包装材料</option>
+                                    </select> <i></i> </label>
+                            </section>
+
+                            <section class="col col-6">
+                                <label class="input"> <i class="icon-prepend fa fa-filter"></i>
+                                    <input type="text" name="lname" placeholder="物料所属客户">
+                                </label>
+                            </section>
+
+                            <section class="col col-6">
+                                <label class="input"> <i class="icon-prepend fa fa-filter"></i>
+                                    <input type="text" name="lname" placeholder="物料描述">
+                                </label>
+                            </section>
+                            <section class="col col-6">
+                                <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> 搜索物料</button>
+                            </section>
+
+
+                            <article class="col col-12">
+
+                                <!-- Widget ID (each widget will need unique ID)-->
+                                <div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false">
+                                    <!-- widget options:
+                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                data-widget-colorbutton="false"
+                data-widget-editbutton="false"
+                data-widget-togglebutton="false"
+                data-widget-deletebutton="false"
+                data-widget-fullscreenbutton="false"
+                data-widget-custombutton="false"
+                data-widget-collapsed="true"
+                data-widget-sortable="false"
+
+                -->
+
+
+                                    <!-- widget div-->
+                                    <div>
+
+                                        <!-- widget edit box -->
+                                        <div class="jarviswidget-editbox">
+                                            <!-- This area used as dropdown edit box -->
+
+                                        </div>
+                                        <!-- end widget edit box -->
+
+                                        <!-- widget content -->
+                                        <div class="widget-body no-padding">
+                                            <table data-it-Table
+                                                   class="table table-bordered table-striped table-condensed table-hover smart-form has-tickbox">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+
+                                                    </th>
+                                                    <th>物料编码 <a href="javascript:void(0);"
+                                                                class="btn btn-xs btn-default pull-right"><i
+                                                            class="fa fa-info"></i></a></th>
+                                                    <th>物料类型 <a href="javascript:void(0);"
+                                                                class="btn btn-xs btn-default pull-right"><i
+                                                            class="fa fa-info"></i></a></th>
+                                                    <th>客户物料号 <a href="javascript:void(0);"
+                                                                 class="btn btn-xs btn-default pull-right"><i
+                                                            class="fa fa-info"></i></a></th>
+                                                    <th>描述 <a href="javascript:void(0);"
+                                                              class="btn btn-xs btn-default pull-right"><i
+                                                            class="fa fa-info"></i></a></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label class="radio">
+                                                            <input type="radio" name="checkbox-inline">
+                                                            <i></i>
+                                                        </label>
+                                                    </td>
+                                                    <td>AB00011</td>
+                                                    <td>汽车备件</td>
+                                                    <td>1001211</td>
+                                                    <td>发动机总成</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="radio">
+                                                            <input type="radio" name="checkbox-inline">
+                                                            <i></i>
+                                                        </label>
+                                                    </td>
+                                                    <td>AB00011</td>
+                                                    <td>汽车备件</td>
+                                                    <td>1001211</td>
+                                                    <td>发动机总成</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="radio">
+                                                            <input type="radio" name="checkbox-inline">
+                                                            <i></i>
+                                                        </label>
+                                                    </td>
+                                                    <td>AB00011</td>
+                                                    <td>汽车备件</td>
+                                                    <td>1001211</td>
+                                                    <td>发动机总成</td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <!-- end widget content -->
+
+                                    </div>
+                                    <!-- end widget div -->
+
+                                </div>
+                                <!-- end widget -->
+
+                            </article>
+
+                        </div>
+
+                    </fieldset>
+
+                    <footer>
+                        <button type="submit" class="btn btn-success">
+                            添加
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            取消
+                        </button>
+
+                    </footer>
+                </form>
+
+
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myTemplate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    <img src="img/banner.png" width="100" alt="iTMS">
+                </h4>
+            </div>
+            <div class="modal-body no-padding">
+
+                <form action="" id="login-form" class="smart-form">
+
+                    <fieldset>
+                        <section>
+                            <label class="select">
+                                <select>
+                                    <option value="0" selected="" disabled="">选择模板</option>
+                                    <option value="1">上汽模版1 - ABCV</option>
+                                    <option value="2">上汽模版2 - ABCV</option>
+                                    <option value="3">上汽模版3 - ABCV</option>
+                                    <option value="4">上汽模版4 - ABCV</option>
+                                </select> <i></i> </label>
+                        </section>
+
+                        <section>
+                            <label class="label"></label>
+
+                            <div class="inline-group">
+                                <label class="radio">
+                                    <input type="radio" name="radio-inline" checked="checked">
+                                    <i></i>全部</label>
+                                <label class="radio">
+                                    <input type="radio" name="radio-inline">
+                                    <i></i>头信息</label>
+                                <label class="radio">
+                                    <input type="radio" name="radio-inline">
+                                    <i></i>行项目信息</label>
+                            </div>
+                        </section>
+
+                    </fieldset>
+
+                    <footer>
+                        <button type="submit" class="btn btn-primary">
+                            确认
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            取消
+                        </button>
+
+                    </footer>
+                </form>
+
+
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="mycustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="100" alt="iTMS">
+    </h4>
+</div>
+<div class="modal-body no-padding">
+
+<form action="" id="login-form" class="smart-form">
+
+<fieldset>
+    <div class="row">
+        <section class="col col-6">
+            <label class="select">
+                <select>
+                    <option value="0" selected="" disabled="">客户所属区域</option>
+                    <option value="1">华东</option>
+                    <option value="2">华北</option>
+                    <option value="3">华南</option>
+                    <option value="4">东北</option>
+                </select> <i></i> </label>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col col-3">
+            <label class="select">
+                <select name="prov">
+                    <option value="0" selected="" disabled="">省</option>
+                    <option value="244">北京市</option>
+                    <option value="1">上海市</option>
+                    <option value="2">江苏省</option>
+                    <option value="3">浙江省</option>
+                    <option value="4">福建省</option>
+                    <option value="5">广东省</option>
+
+                </select> <i></i> </label>
+        </section>
+
+        <section class="col col-3">
+            <label class="select">
+                <select name="city">
+                    <option value="0" selected="" disabled="">市</option>
+                    <option value="244">北京市</option>
+                    <option value="1">上海市</option>
+                    <option value="2">南京市</option>
+                    <option value="3">杭州市</option>
+                    <option value="4">福州市</option>
+                    <option value="5">深圳市</option>
+                </select> <i></i> </label>
+        </section>
+
+        <section class="col col-3">
+            <label class="select">
+                <select name="disc">
+                    <option value="0" selected="" disabled="">区县</option>
+                    <option value="244">徐汇区</option>
+                    <option value="1">静安区</option>
+                    <option value="2">黄浦区</option>
+                    <option value="3">宝山区</option>
+                    <option value="4">浦东新区</option>
+                </select> <i></i> </label>
+        </section>
+
+
+        <section class="col col-3">
+            <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                <input type="text" name="code" placeholder="邮编">
+            </label>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col col-6">
+            <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                <input type="text" name="code" placeholder="客户代码">
+            </label>
+        </section>
+        <section class="col col-6">
+            <label class="input"><i class="icon-prepend fa fa-filter"></i>
+                <input type="text" name="code" placeholder="客户名称">
+            </label>
+        </section>
+        <section class="col col-12">
+            <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> 搜索客户</button>
+        </section>
+    </div>
+    <div class="row">
+        <article class="col col-12">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false">
+                <!-- widget options:
+usage: <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false">
+
+data-widget-colorbutton="false"
+data-widget-editbutton="false"
+data-widget-togglebutton="false"
+data-widget-deletebutton="false"
+data-widget-fullscreenbutton="false"
+data-widget-custombutton="false"
+data-widget-collapsed="true"
+data-widget-sortable="false"
+
+-->
+
+
+                <!-- widget div-->
+                <div>
+
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+
+                    </div>
+                    <!-- end widget edit box -->
+
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <table data-it-Table
+                               class="table table-bordered table-striped table-condensed table-hover smart-form has-tickbox">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </th>
+                                <th>客户代码<a href="javascript:void(0);" class="btn btn-xs btn-default pull-right"><i
+                                        class="fa fa-info"></i></a></th>
+                                <th>名称 <a href="javascript:void(0);"
+                                          class="btn btn-xs btn-default pull-right"><i
+                                        class="fa fa-info"></i></a></th>
+                                <th>所属区域 <a href="javascript:void(0);"
+                                            class="btn btn-xs btn-default pull-right"><i class="fa fa-info"></i></a>
+                                </th>
+                                <th>城市区 <a href="javascript:void(0);" class="btn btn-xs btn-default pull-right"><i
+                                        class="fa fa-info"></i></a></th>
+                                <th>地址 <a href="javascript:void(0);"
+                                          class="btn btn-xs btn-default pull-right"><i
+                                        class="fa fa-info"></i></a></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </td>
+                                <td>AB00011</td>
+                                <td>客户名称1</td>
+                                <td>华东区</td>
+                                <td>上海市-徐汇区</td>
+                                <td>龙华西路222号</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </td>
+                                <td>AB00012</td>
+                                <td>客户名称2</td>
+                                <td>华东区</td>
+                                <td>上海市-徐汇区</td>
+                                <td>龙华西路222号</td>
+                            </tr>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </td>
+                                <td>AB00013</td>
+                                <td>客户名称3</td>
+                                <td>华东区</td>
+                                <td>上海市-徐汇区</td>
+                                <td>龙华西路222号</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+
+        </article>
+    </div>
+
+
+</fieldset>
+
+<footer>
+    <button type="submit" class="btn btn-success">
+        确认
+    </button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        返回
+    </button>
+
+</footer>
+</form>
+
+
+</div>
+
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myTimeLine" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    <img src="img/banner.png" width="100" alt="iTMS">
+                </h4>
+            </div>
+            <div class="modal-body no-padding">
+
+                <form action="" id="login-form" class="smart-form">
+                    <div class="tree">
+                        <ul>
+                            <li>
+                                <span class="label label-default"><i class="fa fa-lg fa-clock-o"></i> 时间轴</span>
+                                <ul>
+                                    <li>
+                                        <span class="label label-success"><i class="fa fa-lg fa-check-circle"></i> 货物交接 2014-4-1 13:22PM</span>
+                                        <ul>
+                                            <li>
+                                                <span><i class="fa fa-clock-o"></i> 2014-4-1 13:22 <i
+                                                        class="fa fa-wrench"></i> 现场数据录入  <i class="fa fa-user"> 胡兵</i></span>
+                                            </li>
+                                            <li>
+                                                <span><i class="fa fa-clock-o"></i> 2014-4-1 14:32 <i
+                                                        class="fa fa-wrench"></i> 装车  <i class="fa fa-user">
+                                                    胡兵</i></span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span class="label label-success"><i class="fa fa-lg fa-check-circle"></i> 现场理货 2014-4-1 19:32</span>
+                                        <ul>
+                                            <li>
+                                                <span><i class="fa fa-clock-o"></i> 2014-4-1 18:19 <i
+                                                        class="fa fa-wrench"></i> 合箱  <i class="fa fa-user">
+                                                    胡兵</i></span>
+                                            </li>
+                                            <li>
+                                                <span><i class="fa fa-clock-o"></i> 2014-4-1 19:32 <i
+                                                        class="fa fa-wrench"></i> 运单分配  <i class="fa fa-user">
+                                                    胡兵</i></span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span><i class="fa fa-lg fa-power-off "></i> 运单起运开始</span>
+                                    </li>
+                                    <li>
+                                        <span><i class="fa fa-lg fa-power-off "></i> 运单到达中转</span>
+                                    </li>
+                                    <li>
+                                        <span><i class="fa fa-lg fa-power-off "></i> 配送开始</span>
+                                    </li>
+                                    <li>
+                                        <span><i class="fa fa-lg fa-power-off "></i> 运单签收关闭</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="label label-warning"><i class="fa fa-lg fa-eye "></i> 事件与动作</span>
+                                <ul>
+                                    <li>
+                                        <span><i class="fa fa-lg fa-eye"></i> 配送开始延迟</span>
+                                        <ul>
+                                            <li>
+                                                <span><i class="fa fa-clock-o"></i> 2014-4-1 14:00 PM <i
+                                                        class="fa fa-lg fa-gear"></i> 客户通知发送 <i class="fa fa-user">
+                                                    胡兵</i></span>
+                                            </li>
+                                            <li>
+                                                <span> <i class="fa fa-clock-o"></i> 2014-4-1 14:10 PM <i
+                                                        class="fa fa-lg fa-gear"></i> 网络公司催促通知发送 <i class="fa fa-user">
+                                                    胡兵</i></span>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
