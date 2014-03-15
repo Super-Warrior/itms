@@ -16,9 +16,10 @@
     }]);
 
     app.config(['$provide', function ($provide) {
-        $provide.decorator('$exceptionHandler', function () {
+        $provide.decorator('$exceptionHandler', function ($log) {
             return function (exception, cause) {
                 var error = { exception: exception, cause: cause};
+                $log.debug(error.exception);
                 throw error;
             };
         });

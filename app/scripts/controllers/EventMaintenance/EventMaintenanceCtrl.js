@@ -2,9 +2,9 @@
 (function () {
     'use strict'
     angular.module('itmsApp').controller('EventMaintenanceCtrl',
-        ['$scope', '$modal', '$log', 'orderService', 'common', EventMaintenanceCtrl]);
+        ['$scope', '$modal', '$log', 'orderService', 'common','eolist', EventMaintenanceCtrl]);
 
-    function EventMaintenanceCtrl($scope, $modal, $log, orderService, common) {
+    function EventMaintenanceCtrl($scope, $modal, $log, orderService, common,eolist) {
         $scope.module = '运输执行';
         $scope.title = '事件管理';
         $scope.columns = [
@@ -19,7 +19,8 @@
             {"mData": "ertrVendor", "sTitle": "计划到达时间"}
         ];
 
-        $scope.orders = [];
+        $log.debug(eolist.data);
+        $scope.orders = eolist.data;
 
         $scope.handleEvent = function () {
             var modalInstance = $modal.open({

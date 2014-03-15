@@ -28,7 +28,13 @@
                 templateUrl: 'views/transportation/lotusNewER.html'
             })
             .when('/transportation/eomaintainevent', {
-                templateUrl: 'views/transportation/lotusEOMaintainEvent.html'
+                templateUrl: 'views/transportation/lotusEOMaintainEvent.html',
+                controller: "EventMaintenanceCtrl",
+                resolve: {
+                    eolist: function (eoService) {
+                        return eoService.queryAll();
+                    }
+                }
             })
             .when('/requirement/myer', {
                 templateUrl: 'views/requirement/itmsMyER.html'
@@ -62,6 +68,16 @@
 
         orderReteiver.$inject = ['$q', 'orderService'];
         function orderReteiver($q, orderService) {
+            var deferred = $q.defer();
+            orderService.queryAll()
+                .then(function (result) {
+                    deferred.resolve(result);
+                });
+            return deferred.promise;
+        }
+
+        orderReteiver.$inject = ['$q', 'eoService'];
+        function eoRetriever($q, eoService) {
             var deferred = $q.defer();
             orderService.queryAll()
                 .then(function (result) {

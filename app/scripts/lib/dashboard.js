@@ -1,8 +1,8 @@
 	  // PAGE RELATED SCRIPTS
 
-	 /*
+/*	 *//*
 	  * Autostart Carousel
-	  */
+	  *//*
 	 $('.carousel.slide').carousel({
 	     interval: 3000,
 	     cycle: true
@@ -10,9 +10,9 @@
 	 $('.carousel.fade').carousel({
 	     interval: 3000,
 	     cycle: true
-	 });
+	 });*/
 
-	  // load bootstrap-progress bar script
+/*	  // load bootstrap-progress bar script
 	 loadScript("js/plugin/bootstrap-progressbar/bootstrap-progressbar.js", progressBarAnimate);
 
 	  // Fill all progress bars with animation
@@ -20,7 +20,7 @@
 	     $('.progress-bar').progressbar({
 	         display_text: 'fill'
 	     });
-	 }
+	 }*/
 
 	 /*
 	  * Smart Notifications
