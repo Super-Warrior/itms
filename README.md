@@ -1,4 +1,4 @@
-How to run app
+**How to run app**
 
 1. install node
 2. install grunt
@@ -10,3 +10,7 @@ How to run app
 8. run grunt serve to start server
 9. open browser (grunt should has open it for you)
 
+
+**Coding Style**
+
+read `CODESTYPE.md` for detail
