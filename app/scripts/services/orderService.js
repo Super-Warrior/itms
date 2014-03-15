@@ -5,8 +5,8 @@
 
     app.factory('orderService', function ($http, config) {
 
-        var baseUrl = 'http://211.144.85.15:8080/ordermanagement/rest/';
-        var searchUrl = baseUrl + 'ER/ERQuickSearch?SerType=AND&userID=&depAreaCode=&depCustomer=&depLocCode=&recCustomer=&recLocCode=&createDate=&ERITNStatus=ASGN&ERStatus=';
+        var searchUrl = config.baseUrl+'ER/ERQuickSearch';
+
         function queryAllLocal() {
             return $http({method: 'GET', url: '/mock/order.json'});
         }
@@ -23,8 +23,8 @@
                 createDate:'',
                 ERITNStatus:'ASGN',
                 ERStatus:''
-            }
-            return $http.post(searchUrl);
+            };
+            return $http.postXSRF(searchUrl, data);
         }
 
         // data: {selectedItems:[], eoid:''}
@@ -35,7 +35,7 @@
             var eritn = data.selectedItems.map(function (item) {
                 return item.erITN;
             });
-            var assignChange = baseUrl + 'ER/ERAssignChange?ERID[]=' + erid.join() + '&ERITN[]=' + eritn.join() + '&EOID=' + data.eoid;
+            var assignChange = config.baseUrl + 'ER/ERAssignChange?ERID[]=' + erid.join() + '&ERITN[]=' + eritn.join() + '&EOID=' + data.eoid;
             return $http.post(assignChange);
         }
 
@@ -47,7 +47,7 @@
             var eritn = data.selectedItems.map(function (item) {
                 return item.erITN;
             });
-            var assignChange = baseUrl + 'ER/ERAssignDel?ERID[]=' + erid.join() + '&ERITN[]=' + eritn.join();
+            var assignChange = config.baseUrl + 'ER/ERAssignDel?ERID[]=' + erid.join() + '&ERITN[]=' + eritn.join();
             return $http.post(assignChange);
         }
 

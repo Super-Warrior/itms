@@ -52,7 +52,7 @@ In this way the directory structure will look like:
 ```
 .
 ├── app
-│   ├── app.js
+│   ├── server.js
 │   ├── controllers
 │   │   ├── page1
 │   │   │   ├── FirstCtrl.js
@@ -87,7 +87,7 @@ Here is its layout:
 ```
 .
 ├── app
-│   ├── app.js
+│   ├── server.js
 │   ├── common
 │   │   ├── controllers
 │   │   ├── directives
@@ -147,7 +147,7 @@ services
     └── model1.spec.js
 ```
 
-* The `app.js` file contains route definitions, configuration and/or manual bootstrap (if required).
+* The `server.js` file contains route definitions, configuration and/or manual bootstrap (if required).
 * Each JavaScript file should only hold a single component. The file should be named with the component's name.
 * Use Angular project structure template like [Yeoman](http://yeoman.io), [ng-boilerplate](http://joshdmiller.github.io/ng-boilerplate/#/home).
 
@@ -173,7 +173,7 @@ The HTML markup is important too and should be written by the team as if it were
     <div ng-view></div>
   </div>
   <script src="angular.js"></script>
-  <script src="app.js"></script>
+  <script src="server.js"></script>
 </body>
 </html>
 ```

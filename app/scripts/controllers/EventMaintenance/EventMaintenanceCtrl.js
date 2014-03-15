@@ -2,9 +2,9 @@
 (function () {
     'use strict'
     angular.module('itmsApp').controller('EventMaintenanceCtrl',
-        ['$scope', '$log', 'orderService', 'common', EventMaintenanceCtrl]);
+        ['$scope', '$modal', '$log', 'orderService', 'common', EventMaintenanceCtrl]);
 
-    function EventMaintenanceCtrl($scope, $log, orderService, common) {
+    function EventMaintenanceCtrl($scope, $modal, $log, orderService, common) {
         $scope.module = '运输执行';
         $scope.title = '事件管理';
         $scope.columns = [
@@ -20,6 +20,24 @@
         ];
 
         $scope.orders = [];
+
+        $scope.handleEvent = function () {
+            var modalInstance = $modal.open({
+                templateUrl: 'views/transportation/handleEvent.html',
+                controller: 'HandleEventCtrl',
+                resolve: {
+                    items: function () {
+                        return [];
+                    }
+                }
+            });
+          /*  modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });*/
+        };
+
     }
 
 }());

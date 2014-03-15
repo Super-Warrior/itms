@@ -1,7 +1,11 @@
 {
   "name": "itms",
   "version": "0.0.0",
-  "dependencies": {},
+  "main": "server.js",
+  "dependencies": {
+      "express": "~3.0.0",
+      "ejs": "~0.8.4"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
