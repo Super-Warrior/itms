@@ -9,19 +9,6 @@
         <!-- Widget ID (each widget will need unique ID)-->
         <div class="jarviswidget jarviswidget-color-teal" id="wid-id-0" data-widget-editbutton="false"
              data-widget-deletebutton="false">
-            <!-- widget options:
-                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-                data-widget-colorbutton="false"
-                data-widget-editbutton="false"
-                data-widget-togglebutton="false"
-                data-widget-deletebutton="false"
-                data-widget-fullscreenbutton="false"
-                data-widget-custombutton="false"
-                data-widget-collapsed="true"
-                data-widget-sortable="false"
-
-            -->
             <header>
                 <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
 
@@ -37,12 +24,8 @@
             </header>
             <!-- widget div-->
             <div>
-
                 <!-- widget edit box -->
                 <div class="jarviswidget-editbox">
-                    <!-- This area used as dropdown edit box -->
-                    <!-- Normally there would be an input text box here to change widget title.
-                        Use this area only if plan to let users change widget title -->
                 </div>
                 <!-- end widget edit box -->
                 <!-- widget content -->
@@ -133,19 +116,6 @@
         <!-- Widget ID (each widget will need unique ID)-->
         <div class="jarviswidget jarviswidget-color-teal" id="wid-id-2r" data-widget-editbutton="false"
              data-widget-deletebutton="false">
-            <!-- widget options:
-            usage: <div class="jarviswidget" id="wid-id-2r" data-widget-editbutton="false">
-
-            data-widget-colorbutton="false"
-            data-widget-editbutton="false"
-            data-widget-togglebutton="false"
-            data-widget-deletebutton="false"
-            data-widget-fullscreenbutton="false"
-            data-widget-custombutton="false"
-            data-widget-collapsed="true"
-            data-widget-sortable="false"
-
-            -->
             <header>
                 <span class="widget-icon"> <i class="fa fa-search-plus"></i> </span>
                 <h2>我的EO作业区</h2>
@@ -157,16 +127,16 @@
                         </button>
                         <ul class="dropdown-menu pull-right js-status-update">
                             <li>
-                                <a href="javascript:void(0);"><i class="fa fa-check-circle  txt-color-green"></i> 正常</a>
+                                <a ng-click="filterEvent('N')"><i class="fa fa-check-circle  txt-color-green"></i> 正常</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);"><i class="fa fa-exclamation-circle  txt-color-red"></i> 延迟</a>
+                                <a ng-click="filterEvent('D')"><i class="fa fa-exclamation-circle  txt-color-red"></i> 延迟</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);"><i class="fa fa-question-circle  txt-color-orange"></i> 意外</a>
+                                <a ng-click="filterEvent('E')"><i class="fa fa-question-circle  txt-color-orange"></i> 意外</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);"><i class="fa fa-square  txt-color-blue"></i> 全部</a>
+                                <a ng-click="filterEvent()"><i class="fa fa-square  txt-color-blue"></i> 全部</a>
                             </li>
                         </ul>
                     </div>

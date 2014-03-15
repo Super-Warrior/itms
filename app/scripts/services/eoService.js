@@ -36,20 +36,42 @@
             DeliverBP2: '',
             depCustomer: '',
             depLocCode: ''
-        }
+        };
 
         var searchUrl = config.baseUrl + 'EO/EOQuickSearch';
+        var createEventUrl = config.baseUrl + 'EO/EventCreate';
+
+        return {
+            queryAll: queryAllRemote,
+            queryByEventType: queryByEventType,
+            createEvent: createEvent
+        };
 
         function queryAllRemote() {
             var data = defaultQueryOption;
             return $http.postXSRF(searchUrl, data);
         }
 
-        var eoService = {
-            queryAll: queryAllRemote
-        };
+        function queryByEventType(type) {
+            var data = defaultQueryOption;
+            data.eventstatus = type || '';
+            return $http.postXSRF(searchUrl, data);
+        }
 
-        return eoService;
+        function createEvent(data) {
+            var event = {
+                createUser: '10000',
+                eventListener1: '',
+                eventListener2: '',
+                eventListener3: '',
+                eventListener4: '',
+                EO: [],
+                ERID: [],
+                ERITN: []
+            };
+            angular.extend(event, data);
+            return $http.postXSRF(createEventUrl, event);
+        }
+
     }
-
 }());

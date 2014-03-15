@@ -208,6 +208,7 @@
                 element['_rowId'] = +((new Date).getTime()) + index;
             });
             source && table.fnAddData(source);
+            table.fnDraw();
         }
 
         function _resetSelected(scope) {
