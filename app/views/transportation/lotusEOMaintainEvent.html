@@ -120,12 +120,11 @@
                 <span class="widget-icon"> <i class="fa fa-search-plus"></i> </span>
                 <h2>我的EO作业区</h2>
                 <div class="widget-toolbar">
-
                     <div class="btn-group">
-                        <button class="btn dropdown-toggle btn-xs btn-default" data-toggle="dropdown">
+                        <button class="btn dropdown-toggle btn-xs btn-default">
                             <i class="fa fa-filter"></i> 事件类型 <i class="fa fa-caret-down"></i>
                         </button>
-                        <ul class="dropdown-menu pull-right js-status-update">
+                        <ul class="dropdown-menu pull-right">
                             <li>
                                 <a ng-click="filterEvent('N')"><i class="fa fa-check-circle  txt-color-green"></i> 正常</a>
                             </li>
@@ -143,7 +142,7 @@
                 </div>
                 <div class="widget-toolbar">
                     <div class="btn-group">
-                        <button class="btn dropdown-toggle btn-xs btn-warning" data-toggle="dropdown">
+                        <button class="btn dropdown-toggle btn-xs btn-warning">
                             执行动作 <i class="fa fa-caret-down"></i>
                         </button>
                         <ul class="dropdown-menu pull-right">
@@ -153,12 +152,10 @@
                             <li>
                                 <a ng-click="handleEvent()"> <i class="fa fa-edit"></i> 事件处理</a>
                             </li>
-
                         </ul>
                     </div>
                 </div>
             </header>
-
             <!-- widget div-->
             <div>
                 <!-- widget edit box -->
@@ -172,13 +169,10 @@
                     <div data-im-table header-titles="columns" my-source="orders"></div>
                 </div>
                 <!-- end widget content -->
-
             </div>
             <!-- end widget div -->
-
         </div>
         <!-- end widget -->
-
     </article>
     <!-- END COL -->
     <!-- NEW COL START -->
@@ -191,37 +185,5 @@
 
 <!-- SCRIPTS ON PAGE EVENT -->
 <script type="text/javascript">
-
 runAllCharts();
-
-$("#smart-mod-eg1").click(function (e) {
-    $.SmartMessageBox({
-        title: "提示信息!",
-        content: "是否执行  [2014-4-1 13:21 配送开始]  事件?",
-        buttons: '[No][Yes]'
-    }, function (ButtonPressed) {
-        if (ButtonPressed === "Yes") {
-
-            $.smallBox({
-                title: "操作回执",
-                content: "<i class='fa fa-clock-o'></i> <i>事件执行成功...</i>",
-                color: "#659265",
-                iconSmall: "fa fa-check fa-2x fadeInRight animated",
-                timeout: 4000
-            });
-        }
-        if (ButtonPressed === "No") {
-            $.smallBox({
-                title: "操作回执",
-                content: "<i class='fa fa-clock-o'></i> <i>取消...</i>",
-                color: "#C46A69",
-                iconSmall: "fa fa-times fa-2x fadeInRight animated",
-                timeout: 4000
-            });
-        }
-
-    });
-    e.preventDefault();
-});
-
 </script>

@@ -5,7 +5,7 @@
 
     app.factory('orderService', function ($http, config) {
 
-        var searchUrl = config.baseUrl+'ER/ERQuickSearch';
+        var searchUrl = config.baseUrl + 'ER/ERQuickSearch';
 
         function queryAllLocal() {
             return $http({method: 'GET', url: '/mock/order.json'});
@@ -13,16 +13,16 @@
 
         function queryAllRemote() {
             var data = {
-                SerType:'AND',
-                userID:'',
-                depAreaCode:'',
-                depCustomer:'',
-                depLocCode:'',
-                recCustomer:'',
-                recLocCode:'',
-                createDate:'',
-                ERITNStatus:'ASGN',
-                ERStatus:''
+                SerType: 'AND',
+                userID: '',
+                depAreaCode: '',
+                depCustomer: '',
+                depLocCode: '',
+                recCustomer: '',
+                recLocCode: '',
+                createDate: '',
+                ERITNStatus: ['ASGN'],
+                ERStatus: ['']
             };
             return $http.postXSRF(searchUrl, data);
         }

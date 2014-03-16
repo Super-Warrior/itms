@@ -5,7 +5,7 @@
 
     var config = {
         version: '0.0.1',
-        mode: 'production', //development or production
+        mode: 'development', //development or production
         baseUrl: 'http://211.144.85.15:8080/ordermanagement/rest/'
     };
 

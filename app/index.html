@@ -38,7 +38,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div data-ng-include="'/views/layout/shell.html'"></div>
+    <div ng-app="itmsApp">
+        <div data-ng-include="'/views/layout/shell.html'"></div>
+    </div>
 
     <!--[if lt IE 9]>
     <script src="vendor/es5-shim/es5-shim.js"></script>

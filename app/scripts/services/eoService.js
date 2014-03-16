@@ -7,8 +7,8 @@
 
         var defaultQueryOption = {
             SerType: 'AND',
-            EOStatus: 'S001',
-            eventstatus: '',
+            EOStatus: ['S001'],
+            eventstatus: [''],
             EO: '',
             EOType: '',
             EOTRType: '',
@@ -41,15 +41,26 @@
         var searchUrl = config.baseUrl + 'EO/EOQuickSearch';
         var createEventUrl = config.baseUrl + 'EO/EventCreate';
 
-        return {
-            queryAll: queryAllRemote,
+        var service = {
             queryByEventType: queryByEventType,
             createEvent: createEvent
         };
 
+        if (config.mode === 'development') {
+            service.queryAll = queryAllLocal
+        } else {
+            service.queryAll = queryAllRemote
+        }
+
+        return service;
+
         function queryAllRemote() {
             var data = defaultQueryOption;
             return $http.postXSRF(searchUrl, data);
+        }
+
+        function queryAllLocal() {
+            return $http({method: 'GET', url: '/mock/eoservice.json'});
         }
 
         function queryByEventType(type) {

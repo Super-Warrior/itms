@@ -9,10 +9,7 @@
     ]);
 
     // app.run until app.config finished!!! this is important
-    app.run(function ($rootScope, $templateCache, $location, config) {
-        if (config.mode === 'development') {
-            //  $templateCache.removeAll();
-        }
+    app.run(function ($rootScope, $location) {
         $location.path('/');
         console.log('app started!!!!');
     });

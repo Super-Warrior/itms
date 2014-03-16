@@ -69,10 +69,7 @@
                 $this.next('.ajax-dropdown').fadeOut(150);
                 $this.removeClass('active')
             }
-
-            var mytest = $this.next('.ajax-dropdown').find('.btn-group > .active > input').attr('id');
-            //console.log(mytest)
-
+            $this.next('.ajax-dropdown').find('.btn-group > .active > input').attr('id');
             e.preventDefault();
         });
 
