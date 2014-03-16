@@ -237,7 +237,7 @@
         }
     });
 
-    commonDirectives.directive('imWidget', function () {
+    commonDirectives.directive('swWidget', function () {
 
         var defaultOptions = {
             grid: 'article',
@@ -315,6 +315,11 @@
 
         return {
             restrict: 'A',
+            scope: {
+
+            },
+            transclude: true,
+            templateUrl:'views/shared/swwidge.html',
             link: function (scope, element, attrs) {
                 element.jarvisWidgets(defaultOptions);
             }

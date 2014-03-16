@@ -982,12 +982,7 @@ function setup_widgets_desktop() {
             // custom btn
             customButton: false,
             customClass: 'folder-10 | next-10',
-            customStart: function () {
-                alert('Hello you, this is a custom button...')
-            },
-            customEnd: function () {
-                alert('bye, till next time...')
-            },
+
             // order
             buttonOrder: '%refresh% %custom% %edit% %toggle% %fullscreen% %delete%',
             opacity: 1.0,

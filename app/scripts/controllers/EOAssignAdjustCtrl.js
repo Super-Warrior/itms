@@ -1,9 +1,10 @@
-;(function(){
+;
+(function () {
     'use strict'
     angular.module('itmsApp').controller('EOAssignAdjustCtrl',
-        ['$scope', '$modal', '$log', 'orderService', 'common',EOAssignAdjustCtrl]);
+        ['$scope', '$modal', '$log', 'orderService', 'common', EOAssignAdjustCtrl]);
 
-    function EOAssignAdjustCtrl ($scope, $modal, $log, orderService, common) {
+    function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
 
         var notifier = common.notifier;
 
@@ -23,12 +24,13 @@
         };
 
         $scope.reallocate = function () {
-            common.messageBox({
-                title: "分配至其它运单",
-                content: "请输入运单号",
-                input: "text",
-                placeholder: "EO运单编号"
-            })
+            common
+                .messageBox({
+                    title: "分配至其它运单",
+                    content: "请输入运单号",
+                    input: "text",
+                    placeholder: "EO运单编号"
+                })
                 .success(reallocate)
                 .error(cancel);
 

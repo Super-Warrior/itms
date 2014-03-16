@@ -59,6 +59,8 @@ angular.module('itmsApp').controller('eventmanagementCtrl', function ($scope, or
 
 angular.module('itmsApp').controller('dashboardCtrl', function ($scope) {
 
+    $scope.module = 'iTMS';
+    $scope.title = 'my iTMS';
 });
 
 angular.module('itmsApp').controller('eoAssignCtrl', function ($scope, $modal, $log, orderService) {

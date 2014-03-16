@@ -65,7 +65,7 @@
 
         function queryByEventType(type) {
             var data = defaultQueryOption;
-            data.eventstatus = type || '';
+            data.eventstatus = [type || ''];
             return $http.postXSRF(searchUrl, data);
         }
 

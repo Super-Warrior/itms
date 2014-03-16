@@ -46,7 +46,7 @@
         this.customClass = this.o.customClass.split('|');
 
         this.init();
-    };
+    }
 
     Plugin.prototype = {
 
@@ -63,14 +63,15 @@
             //////////////////////// LOCALSTORAGE CHECK /////////////////////////
             //*****************************************************************//
 
-            storage = !! function () {
+            storage = !!function () {
                 var result, uid = +new Date;
                 try {
                     localStorage.setItem(uid, uid);
                     result = localStorage.getItem(uid) == uid;
                     localStorage.removeItem(uid);
                     return result;
-                } catch (e) {}
+                } catch (e) {
+                }
             }() && localStorage;
 
             //*****************************************************************//
@@ -106,7 +107,6 @@
                 } // end else
 
             } // end if
-
 
 
             //*****************************************************************//
@@ -504,10 +504,10 @@
                     }
 
                     /**
-					 * Hide the content of the widget if the dataset
-					 * 'widget-collapsed' is set to true.
+                     * Hide the content of the widget if the dataset
+                     * 'widget-collapsed' is set to true.
 
-					 **/
+                     **/
                     if (tWidget.data('widget-collapsed') === true) {
                         tWidget.addClass('jarviswidget-collapsed')
                             .children('div')
@@ -530,7 +530,7 @@
                         undefined && self.customClass[0].length != 0) {
                         var customBtn =
                             '<a href="javascript:void(0);" class="button-icon jarviswidget-custom-btn"><i class="' +
-                            self.customClass[0] + '"></i></a>';
+                                self.customClass[0] + '"></i></a>';
                     } else {
                         customBtn = '';
                     }
@@ -542,7 +542,7 @@
                         undefined) {
                         var deleteBtn =
                             '<a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="Delete" data-placement="bottom"><i class="' +
-                            self.o.deleteClass + '"></i></a>';
+                                self.o.deleteClass + '"></i></a>';
                     } else {
                         deleteBtn = '';
                     }
@@ -553,7 +553,7 @@
                     if (self.o.editButton === true && tWidget.data('widget-editbutton') === undefined) {
                         var editBtn =
                             '<a href="javascript:void(0);" class="button-icon jarviswidget-edit-btn" rel="tooltip" title="Edit Title" data-placement="bottom"><i class="' +
-                            self.editClass[0] + '"></i></a>';
+                                self.editClass[0] + '"></i></a>';
                     } else {
                         editBtn = '';
                     }
@@ -561,11 +561,10 @@
                     /**
                      * Add a delete button to the widget header (if set to true).
                      **/
-                    if (self.o.fullscreenButton === true && tWidget.data('widget-fullscreenbutton') ===
-                        undefined) {
+                    if (self.o.fullscreenButton === true && tWidget.data('widget-fullscreenbutton') === undefined) {
                         var fullscreenBtn =
                             '<a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="Fullscreen" data-placement="bottom"><i class="' +
-                            self.fullscreenClass[0] + '"></i></a>';
+                                self.fullscreenClass[0] + '"></i></a>';
                     } else {
                         fullscreenBtn = '';
                     }
@@ -596,7 +595,7 @@
                         }
                         var toggleBtn =
                             '<a href="#" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="Collapse" data-placement="bottom"><i class="' +
-                            toggleSettings + '"></i></a>';
+                                toggleSettings + '"></i></a>';
                     } else {
                         toggleBtn = '';
                     }
@@ -608,7 +607,7 @@
                         false && tWidget.data('widget-load')) {
                         var refreshBtn =
                             '<a href="#" class="button-icon jarviswidget-refresh-btn" data-loading-text="&nbsp;&nbsp;Loading...&nbsp;" rel="tooltip" title="Refresh" data-placement="bottom"><i class="' +
-                            self.o.refreshButtonClass + '"></i></a>';
+                                self.o.refreshButtonClass + '"></i></a>';
                     } else {
                         refreshBtn = '';
                     }
@@ -1028,10 +1027,10 @@
                         .addClass('nooverflow');
 
                     /**
-					 * Wrap, append it to the body, show the right button
+                     * Wrap, append it to the body, show the right button
 
-					 * and hide all other buttons.
-					 **/
+                     * and hide all other buttons.
+                     **/
                     thisWidget.wrap('<div id="jarviswidget-fullscreen-mode"/>')
                         .parent()
                         .find('.jarviswidget-fullscreen-btn')
@@ -1309,7 +1308,7 @@
                  * Variables.
                  **/
                 var rItem = $(this)
-                    .parents(self.o.widgets),
+                        .parents(self.o.widgets),
                     pathToFile = rItem.data('widget-load'),
                     ajaxLoader = rItem.children(),
                     btn = $(this);
@@ -1375,25 +1374,31 @@
         toggleButton: true,
         toggleClass: 'min-10 | plus-10',
         toggleSpeed: 200,
-        onToggle: function () {},
+        onToggle: function () {
+        },
         deleteButton: true,
         deleteClass: 'trashcan-10',
         deleteSpeed: 200,
-        onDelete: function () {},
+        onDelete: function () {
+        },
         editButton: true,
         editPlaceholder: '.jarviswidget-editbox',
         editClass: 'pencil-10 | delete-10',
         editSpeed: 200,
-        onEdit: function () {},
+        onEdit: function () {
+        },
         colorButton: true,
         fullscreenButton: true,
         fullscreenClass: 'fullscreen-10 | normalscreen-10',
         fullscreenDiff: 3,
-        onFullscreen: function () {},
+        onFullscreen: function () {
+        },
         customButton: true,
         customClass: '',
-        customStart: function () {},
-        customEnd: function () {},
+        customStart: function () {
+        },
+        customEnd: function () {
+        },
         buttonOrder: '%refresh% %delete% %custom% %edit% %fullscreen% %toggle%',
         opacity: 1.0,
         dragHandle: '> header',
@@ -1410,10 +1415,13 @@
         labelUpdated: 'Last Update:',
         labelRefresh: 'Refresh',
         labelDelete: 'Delete widget:',
-        afterLoad: function () {},
+        afterLoad: function () {
+        },
         rtl: false,
-        onChange: function () {},
-        onSave: function () {},
+        onChange: function () {
+        },
+        onSave: function () {
+        },
         ajaxnav: true
     };
 
