@@ -29,6 +29,8 @@ angular.module('itmsApp').controller('networkCtrl', function ($scope, orderlist)
 
 });
 
+
+
 angular.module('itmsApp').controller('eomaintainCtrl', function ($scope, orderService) {
 
 });
@@ -192,8 +194,81 @@ angular.module('itmsApp').controller('eoAssignCtrl', function ($scope, $modal, $
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
-
 });
+
+angular.module('itmsApp').controller('CarouselDemoCtrl', CarouselDemoCtrl);
+function CarouselDemoCtrl($scope) {
+    $scope.myInterval = 5000;
+    $scope.slides = [{
+        image: 'img/demo/cr_event.png',
+        text: 'adsf'
+    },{
+        image: 'img/demo/crd-2.png',
+        text: 'adsfdsadd'
+    },{
+        image: 'img/demo/crb-2.png',
+        text: 'adsf'
+    }];
+}
+angular.module('itmsApp').controller('CarouselDemoCtrl2', CarouselDemoCtrl2);
+function CarouselDemoCtrl2($scope) {
+    $scope.myInterval = 5000;
+    $scope.slides = [{
+        image: 'img/demo/cr_event.png',
+        text: 'adsf'
+    },{
+        image: 'img/demo/m6-2.png',
+        text: 'adsf'
+    },{
+        image: 'img/demo/m6.png',
+        text: 'adsf'
+    }];
+}
+angular.module('itmsApp').controller('CarouselDemoCtrl3', CarouselDemoCtrl3);
+function CarouselDemoCtrl3($scope) {
+    $scope.myInterval = 5000;
+    $scope.slides = [{
+        image: 'img/demo/mre1.png',
+        text: 'adsf'
+    },{
+        image: 'img/demo/mre2.png',
+        text: 'adsf'
+    },{
+        image: 'img/demo/mre3.png',
+        text: 'adsf'
+    },{
+        image: 'img/demo/mre2.png',
+        text: 'aaaaaaaaaaa'
+    }];
+}
+angular.module('itmsApp').controller('CarouselDemoCtrl4', CarouselDemoCtrl4);
+function CarouselDemoCtrl4($scope) {
+    $scope.myInterval = 5000;
+    $scope.slides = [{
+        image: 'img/demo/m4-2.png',
+        text: 'adsf'
+    },{
+        image: 'img/demo/m4-1.png',
+        text: 'adsf'
+    },{
+        image: 'img/demo/m4.png',
+        text: 'adsf'
+    }];
+}
+angular.module('itmsApp').controller('CarouselDemoCtrl5', CarouselDemoCtr5);
+function CarouselDemoCtr5($scope) {
+    $scope.myInterval = 5000;
+    $scope.slides = [{
+        image: 'img/demo/m5.png',
+        text: 'adsf'
+    },{
+        image: 'img/demo/m5-1.png',
+        text: 'adsf'
+    },{
+        image: 'img/demo/m5-2.png',
+        text: 'adsf'
+    }];
+}
 
 
 
