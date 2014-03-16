@@ -1,7 +1,7 @@
 (function() {
     'use strict'
 
-    angular.module('itmsApp').controller('shellCtrl', function($rootScope) {
+    angular.module('itmsApp').controller('shellCtrl', function($rootScope,$location) {
 
         drawBreadCrumb();
         $rootScope.$on('$routeChangeStart',
@@ -82,7 +82,7 @@
             e.preventDefault();
         });
 
-
+        $location.path('/');
 
     });
 
