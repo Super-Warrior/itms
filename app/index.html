@@ -2,8 +2,10 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>iTMS</title>
@@ -24,13 +26,13 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles/demo.css">
 
     <!-- endbuild -->
-      <!-- FAVICONS -->
-      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-      <link rel="icon" href="favicon.ico" type="image/x-icon">
-      <!-- GOOGLE FONT -->
-      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
-  </head>
-  <body ng-app="itmsApp">
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+</head>
+<body ng-app="itmsApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -107,7 +109,7 @@
 
     </script>
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/common/directives.js"></script>
     <script src="scripts/common/controllers.js"></script>
     <script src="scripts/app.js"></script>
@@ -117,11 +119,13 @@
 
     <script src="views/layout/shell.js"></script>
     <script src="scripts/services/orderService.js"></script>
+    <script src="scripts/services/stringService.js"></script>
+
     <script src="scripts/services/eoService.js"></script>
     <script src="scripts/controllers/networkCtrl.js"></script>
     <script src="scripts/controllers/EOAssignAdjustCtrl.js"></script>
     <script src="scripts/controllers/EventMaintenance/HandleEventCtrl.js"></script>
     <script src="scripts/controllers/EventMaintenance/EventMaintenanceCtrl.js"></script>
-        <!-- endbuild -->
+    <!-- endbuild -->
 </body>
 </html>
