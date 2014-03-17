@@ -39,7 +39,7 @@
             colorButton: true,
             // full screen
             fullscreenButton: true,
-            fullscreenClass: 'fa fa-resize-full | fa fa-resize-small',
+            fullscreenClass: 'fa fa-expand | fa fa-compress',
             fullscreenDiff: 3,
 //            onFullscreen: function () {
 //            },

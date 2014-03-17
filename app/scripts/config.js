@@ -59,9 +59,9 @@
         });
     }]);
 
-    app.config(function (cfpLoadingBarProvider) {
-        cfpLoadingBarProvider.includeSpinner = false;
-    });
+//    app.config(function (cfpLoadingBarProvider) {
+//        cfpLoadingBarProvider.includeSpinner = false;
+//    });
 
     app.value('config', config);
 

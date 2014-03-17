@@ -364,10 +364,10 @@
             /**
              * Force users to use an id(it's needed for the local storage).
              **/
-            if (!$('#' + self.objId)
+            /*if (!$('#' + self.objId)
                 .length) {
                 alert('It looks like your using a class instead of an ID, dont do that!')
-            }
+            }*/
 
             /**
              * Add RTL support.

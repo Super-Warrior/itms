@@ -2,6 +2,7 @@
     'use strict'
 
     var app = angular.module('itmsApp', [
+//        'ngAnimate',
         'ngRoute',
         'ui.bootstrap',
         'common.directives',

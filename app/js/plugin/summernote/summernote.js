@@ -1438,7 +1438,7 @@
                        '<div class="arrow"></div>' +
                        '<div class="popover-content note-image-content">' +
                          '<div class="btn-group">' +
-                           '<button type="button" class="btn btn-default" title="Resize Full" data-event="resize" data-value="1" tabindex="-1"><i class="fa fa-resize-full"></i></button>' +
+                           '<button type="button" class="btn btn-default" title="Resize Full" data-event="resize" data-value="1" tabindex="-1"><i class="fa fa-expand"></i></button>' +
                            '<button type="button" class="btn btn-default" title="Resize Half" data-event="resize" data-value="0.5" tabindex="-1">½</button>' +
                            '<button type="button" class="btn btn-default" title="Resize Thrid" data-event="resize" data-value="0.33" tabindex="-1">⅓</button>' +
                            '<button type="button" class="btn btn-default" title="Resize Quarter" data-event="resize" data-value="0.25" tabindex="-1">¼</button>' +
