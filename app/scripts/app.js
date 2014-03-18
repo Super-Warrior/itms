@@ -4,6 +4,7 @@
     var app = angular.module('itmsApp', [
 //        'ngAnimate',
         'ngRoute',
+        'ngSanitize',
         'ui.bootstrap',
         'common.directives',
         'angular-loading-bar'

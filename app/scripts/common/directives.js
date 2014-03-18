@@ -121,7 +121,8 @@
             scope: {
                 headerTitles: "=headerTitles",
                 dataSource: "=mySource",
-                selectAll: "@selectAll"
+                selectAll: "@selectAll",
+                selectedItems: "=selectedItems"
             },
             template: '<table class="table table-striped table-hover"></table>',
             link: postLink
@@ -166,24 +167,87 @@
                 });
             });
 
-            table.on('click', 'tbody input[type="checkbox"]', function () {
-                var row = table.fnGetData($(this).parent().parent().get(0));
-                var $that = $(this);
+            table.on('click', 'tbody tr', function (e) {
+                var selectedRow = this,
+                    rowData = table.fnGetData(this),
+                    $checkBox = $(selectedRow).find('input[type="checkbox"]');
+
                 scope.$apply(function () {
-                    var obj = scope.dataSource.filter(function (element) {
-                        return element["_rowId"] === row["_rowId"];
-                    });
-                    if ($that.is(":checked")) {
-                        obj.forEach(function (element) {
-                            element["selected"] = true;
-                        })
+                    if (isRowSelected(selectedRow)) {
+                        $checkBox.prop("checked", false);
+                        $(selectedRow).removeClass('highlight');
+                        scope.selectedItems.splice(getRowIndex(selectedRow), 1);
                     } else {
-                        obj.forEach(function (element) {
-                            element["selected"] = false;
-                        })
+                        $checkBox.prop("checked", true);
+                        rowData._rowId = selectedRow._DT_RowIndex;
+                        $(selectedRow).addClass('highlight');
+                        scope.selectedItems.push(rowData);
                     }
+//                    //when user click check box directly
+//                    if (e.target instanceof HTMLInputElement && e.target.type === 'checkbox') {
+//                        if ($checkBox.is(':checked')) {
+//                            scope.selectedItems.push({
+//                                rowId: selectedRow._DT_RowIndex,
+//                                value: rowData
+//                            });
+//                        } else {
+//                            removeSelectedItemByRowId(selectedRow._DT_RowIndex);
+//                        }
+//                    } else if (e.target instanceof HTMLTableCellElement) { //when user clicked on the row toggle the click on checkbox
+//                        if ($checkBox.is(":checked")) {
+//                            $checkBox.prop("checked", false);
+//                            removeSelectedItemByRowId(selectedRow._DT_RowIndex);
+//                        } else {
+//                            $checkBox.prop("checked", true);
+//                            scope.selectedItems.push({
+//                                rowId: selectedRow._DT_RowIndex,
+//                                value: rowData
+//                            });
+//                        }
+//                    }
+
                 });
             });
+
+            function isRowSelected(row) {
+                return scope.selectedItems.some(checkItem);
+                function checkItem(item) {
+                    if (item._rowId === row._DT_RowIndex) {
+                        return true;
+                    }
+                }
+            }
+
+            function getRowIndex(row) {
+                var rowIndex;
+                scope.selectedItems.forEach(function(item, index){
+                    if (item._rowId === row._DT_RowIndex) {
+                        rowIndex = index;
+                    }
+                });
+                return rowIndex;
+            }
+
+//            table.on('click', 'tbody input[type="checkbox"]', function () {
+//                var selectedRow = $(this).parent().parent().get(0);
+//                var rowData = table.fnGetData($(this).parent().parent().get(0));
+//                var $that = $(this);
+//                scope.$apply(function () {
+//                    var obj = scope.dataSource.filter(function (element) {
+//                        return element["_rowId"] === row["_rowId"];
+//                    });
+//                    if ($that.is(":checked")) {
+//                        obj.forEach(function (element) {
+//                            element["selected"] = true;
+//                        })
+//                    } else {
+//                        obj.forEach(function (element) {
+//                            element["selected"] = false;
+//                        })
+//                    }
+//                });
+//            });
+
         }
 
         function setWatchOnTheSource(scope, element) {
@@ -195,7 +259,7 @@
                         initilizeTable(source, element, scope);
                         isInitilize = false;
                     } else if (!isInitilize) {
-                        _resetSelected(scope);
+                        //  _resetSelected(scope);
                         refreshData(source);
                     }
                 });
@@ -204,18 +268,18 @@
 
         function refreshData(source) {
             table.fnClearTable(false);
-            source.forEach(function (element, index) {
-                element['_rowId'] = +((new Date).getTime()) + index;
-            });
+//            source.forEach(function (element, index) {
+//                element['_rowId'] = +((new Date).getTime()) + index;
+//            });
             source && table.fnAddData(source);
             table.fnDraw();
         }
 
-        function _resetSelected(scope) {
-            scope.dataSource.forEach(function (element) {
-                element.selected = false;
-            });
-        }
+        /*function _resetSelected(scope) {
+         scope.dataSource.forEach(function (element) {
+         element.selected = false;
+         });
+         }*/
     });
 
     commonDirectives.directive('imDatepicker', function () {
@@ -319,7 +383,7 @@
 
             },
             transclude: true,
-            templateUrl:'views/shared/swwidge.html',
+            templateUrl: 'views/shared/swwidge.html',
             link: function (scope, element, attrs) {
                 element.jarvisWidgets(defaultOptions);
             }

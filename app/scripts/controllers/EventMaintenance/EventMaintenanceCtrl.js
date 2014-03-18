@@ -47,9 +47,9 @@
 
     angular.module('itmsApp')
         .controller('EventMaintenance.MyWorkSpace',
-            ['$scope', '$modal', 'eoService', MyWorkSpace]);
+            ['$scope', '$modal','common', 'eoService', MyWorkSpace]);
 
-    function MyWorkSpace($scope, $modal, eoService) {
+    function MyWorkSpace($scope, $modal, common,eoService) {
         $scope.columns = [
             {"mData": "eventStatus", "sTitle": "事件"},
             {"mData": "eoNumber", "sTitle": "EO"},
@@ -62,11 +62,7 @@
             {"mData": "arrtime1", "sTitle": "计划到达时间"}
         ];
 
-        $scope.selectedItems = function () {
-            return $scope.orders.filter(function (item) {
-                return !!item.selected;
-            });
-        };
+        $scope.selectedItems = [];
 
         $scope.filterEvent = function (eventType) {
             eoService
@@ -83,7 +79,7 @@
                 controller: 'HandleEventCtrl',
                 resolve: {
                     items: function () {
-                        return $scope.selectedItems();
+                        return $scope.selectedItems;
                     }
                 }
             });
