@@ -13,4 +13,4 @@
 
 **Coding Style**
 
-read `CODESTYPE.md` for detail
+read `CODESTYLE.md` for detail
