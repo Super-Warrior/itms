@@ -46,7 +46,7 @@
                 templateUrl: 'views/requirement/lotusERMaintain2.html'
             })
             .when('/requirement/requirementupload', {
-                templateUrl: 'views/requirement/LotusdropzoneSingle.html'
+               templateUrl: 'views/requirement/requirementUpload.html'
             })
             .when('/planning/eoassign', {
                 templateUrl: 'views/planning/lotusEOAssign.html'

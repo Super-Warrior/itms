@@ -5,7 +5,6 @@
         ['$scope', '$modal', '$log', 'orderService', 'common', EOAssignAdjustCtrl]);
 
     function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
-
         var notifier = common.notifier;
 
         $scope.module = '计划';

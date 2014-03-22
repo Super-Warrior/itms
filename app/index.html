@@ -20,8 +20,8 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <!--<link rel="stylesheet" href="styles/font-awesome.min.css">-->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">-->
     <link rel="stylesheet" type="text/css" media="screen" href="styles/smartadmin-production.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/smartadmin-skins.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/demo.css">
@@ -34,7 +34,6 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 </head>
 <body ng-app="itmsApp">
-
     <!-- Add your site or application content here -->
     <div ng-app="itmsApp">
         <div data-ng-include="'/views/layout/shell.html'"></div>
@@ -53,6 +52,7 @@
     <script src="vendor/angular-route/angular-route.js"></script>
     <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="vendor/jqueryui/ui/jquery-ui.js"></script>
+    <script src="vendor/jquery-form/jquery.form.js"></script>
     <script src="vendor/angular-loading-bar/src/loading-bar.js"></script>
     <script src="vendor/angular-animate/angular-animate.js"></script>
     <!-- endbower -->
@@ -122,6 +122,8 @@
     <script src="scripts/controllers/EOAssignAdjustCtrl.js"></script>
     <script src="scripts/controllers/EventMaintenance/HandleEventCtrl.js"></script>
     <script src="scripts/controllers/EventMaintenance/EventMaintenanceCtrl.js"></script>
+    <script src="scripts/controllers/RequirementUploadCtrl.js"></script>
+
     <!-- endbuild -->
 </body>
 </html>
