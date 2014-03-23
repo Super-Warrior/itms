@@ -1,7 +1,10 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
@@ -19,9 +22,9 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">-->
+    <!--<link rel="stylesheet" href="styles/font-awesome.min.css">-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/smartadmin-production.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/smartadmin-skins.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/demo.css">
@@ -34,96 +37,96 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 </head>
 <body ng-app="itmsApp">
-    <!-- Add your site or application content here -->
-    <div ng-app="itmsApp">
-        <div data-ng-include="'/views/layout/shell.html'"></div>
-    </div>
+<!-- Add your site or application content here -->
+<div ng-app="itmsApp">
+    <div data-ng-include="'/views/layout/shell.html'"></div>
+</div>
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="vendor/jquery/dist/jquery.js"></script>
-    <script src="vendor/es5-shim/es5-shim.js"></script>
-    <script src="vendor/json3/lib/json3.min.js"></script>
-    <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="vendor/angular/angular.js"></script>
-    <script src="vendor/angular-resource/angular-resource.js"></script>
-    <script src="vendor/angular-cookies/angular-cookies.js"></script>
-    <script src="vendor/angular-sanitize/angular-sanitize.js"></script>
-    <script src="vendor/angular-route/angular-route.js"></script>
-    <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="vendor/jqueryui/ui/jquery-ui.js"></script>
-    <script src="vendor/jquery-form/jquery.form.js"></script>
-    <script src="vendor/angular-loading-bar/src/loading-bar.js"></script>
-    <script src="vendor/angular-animate/angular-animate.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="vendor/jquery/dist/jquery.js"></script>
+<script src="vendor/es5-shim/es5-shim.js"></script>
+<script src="vendor/json3/lib/json3.min.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script src="vendor/angular/angular.js"></script>
+<script src="vendor/angular-resource/angular-resource.js"></script>
+<script src="vendor/angular-cookies/angular-cookies.js"></script>
+<script src="vendor/angular-sanitize/angular-sanitize.js"></script>
+<script src="vendor/angular-route/angular-route.js"></script>
+<script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="vendor/jqueryui/ui/jquery-ui.js"></script>
+<script src="vendor/jquery-form/jquery.form.js"></script>
+<script src="vendor/angular-loading-bar/src/loading-bar.js"></script>
+<script src="vendor/angular-animate/angular-animate.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-    <!-- CUSTOM -->
-    <script src="js/jarvismenu.js"></script>
-    <script src="js/legacyscript.js"></script>
-    <script src="js/notification/SmartNotification.min.js"></script>
-    <script src="js/smartwidgets/jarvis.widget.js"></script>
-    <script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
-    <script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
-    <script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
-    <script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
-    <script src="js/plugin/select2/select2.min.js"></script>
-    <script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
-    <script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
-    <script src="js/plugin/smartclick/smartclick.js"></script>
-    <script src="js/plugin/datatables/jquery.dataTables-cust.min.js"></script>
-    <script src="js/plugin/datatables/ColReorder.min.js"></script>
-    <script src="js/plugin/datatables/FixedColumns.min.js"></script>
-    <script src="js/plugin/datatables/ColVis.min.js"></script>
-    <script src="js/plugin/datatables/ZeroClipboard.js"></script>
-    <script src="js/plugin/datatables/media/js/TableTools.min.js"></script>
-    <script src="js/plugin/datatables/DT_bootstrap.js"></script>
-    <script src="js/demo.js"></script>
-    <!-- CUSTOM -->
+<!-- CUSTOM -->
+<script src="js/jarvismenu.js"></script>
+<script src="js/legacyscript.js"></script>
+<script src="js/notification/SmartNotification.min.js"></script>
+<script src="js/smartwidgets/jarvis.widget.js"></script>
+<script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+<script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
+<script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
+<script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+<script src="js/plugin/select2/select2.min.js"></script>
+<script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+<script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+<script src="js/plugin/smartclick/smartclick.js"></script>
+<script src="js/plugin/datatables/jquery.dataTables-cust.min.js"></script>
+<script src="js/plugin/datatables/ColReorder.min.js"></script>
+<script src="js/plugin/datatables/FixedColumns.min.js"></script>
+<script src="js/plugin/datatables/ColVis.min.js"></script>
+<script src="js/plugin/datatables/ZeroClipboard.js"></script>
+<script src="js/plugin/datatables/media/js/TableTools.min.js"></script>
+<script src="js/plugin/datatables/DT_bootstrap.js"></script>
+<script src="js/demo.js"></script>
+<!-- CUSTOM -->
 
-    <script>
+<script>
 
-        $.menu_speed = 235;
-        $(function () {
-            nav_page_height();
-            $('nav ul').jarvismenu({
-                accordion: true,
-                speed: $.menu_speed,
-                closedSign: '<em class="fa fa-expand-o"></em>',
-                openedSign: '<em class="fa fa-collapse-o"></em>'
-            });
-
-            $('#main').resize(function () {
-                nav_page_height();
-                //check_if_mobile_width();
-            })
-
-            $('nav').resize(function () {
-                nav_page_height();
-            })
+    $.menu_speed = 235;
+    $(function () {
+        nav_page_height();
+        $('nav ul').jarvismenu({
+            accordion: true,
+            speed: $.menu_speed,
+            closedSign: '<em class="fa fa-expand-o"></em>',
+            openedSign: '<em class="fa fa-collapse-o"></em>'
         });
 
-    </script>
+        $('#main').resize(function () {
+            nav_page_height();
+            //check_if_mobile_width();
+        })
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/common/directives.js"></script>
-    <script src="scripts/common/controllers.js"></script>
-    <script src="scripts/app.js"></script>
+        $('nav').resize(function () {
+            nav_page_height();
+        })
+    });
 
-    <script src="scripts/config.js"></script>
-    <script src="scripts/routeConfig.js"></script>
+</script>
 
-    <script src="views/layout/shell.js"></script>
-    <script src="scripts/services/orderService.js"></script>
-    <script src="scripts/services/stringService.js"></script>
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/common/directives.js"></script>
+<script src="scripts/common/controllers.js"></script>
+<script src="scripts/app.js"></script>
 
-    <script src="scripts/services/eoService.js"></script>
-    <script src="scripts/controllers/networkCtrl.js"></script>
-    <script src="scripts/controllers/EOAssignAdjustCtrl.js"></script>
-    <script src="scripts/controllers/EventMaintenance/HandleEventCtrl.js"></script>
-    <script src="scripts/controllers/EventMaintenance/EventMaintenanceCtrl.js"></script>
-    <script src="scripts/controllers/RequirementUploadCtrl.js"></script>
+<script src="scripts/config.js"></script>
+<script src="scripts/routeConfig.js"></script>
 
-    <!-- endbuild -->
+<script src="views/layout/shell.js"></script>
+<script src="scripts/services/orderService.js"></script>
+<script src="scripts/services/stringService.js"></script>
+
+<script src="scripts/services/eoService.js"></script>
+<script src="scripts/controllers/networkCtrl.js"></script>
+<script src="scripts/controllers/EOAssignAdjustCtrl.js"></script>
+<script src="scripts/controllers/EventMaintenance/HandleEventCtrl.js"></script>
+<script src="scripts/controllers/EventMaintenance/EventMaintenanceCtrl.js"></script>
+<script src="scripts/controllers/RequirementUploadCtrl.js"></script>
+
+<!-- endbuild -->
 </body>
 </html>

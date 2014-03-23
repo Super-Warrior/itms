@@ -122,7 +122,7 @@
             headerTitles: "=headerTitles",
             dataSource: "=mySource",
             selectAll: "@selectAll",
-            selectedItems: "=selectedItems",
+            selectedItems: "=selectedItems"
          },
          template: '<table class="table table-striped table-hover"></table>',
          link: postLink
@@ -199,28 +199,6 @@
                   $(selectedRow).addClass('highlight');
                   scope.selectedItems.push(rowData);
                }
-               //                    //when user click check box directly
-               //                    if (e.target instanceof HTMLInputElement && e.target.type === 'checkbox') {
-               //                        if ($checkBox.is(':checked')) {
-               //                            scope.selectedItems.push({
-               //                                rowId: selectedRow._DT_RowIndex,
-               //                                value: rowData
-               //                            });
-               //                        } else {
-               //                            removeSelectedItemByRowId(selectedRow._DT_RowIndex);
-               //                        }
-               //                    } else if (e.target instanceof HTMLTableCellElement) { //when user clicked on the row toggle the click on checkbox
-               //                        if ($checkBox.is(":checked")) {
-               //                            $checkBox.prop("checked", false);
-               //                            removeSelectedItemByRowId(selectedRow._DT_RowIndex);
-               //                        } else {
-               //                            $checkBox.prop("checked", true);
-               //                            scope.selectedItems.push({
-               //                                rowId: selectedRow._DT_RowIndex,
-               //                                value: rowData
-               //                            });
-               //                        }
-               //                    }
 
             });
          });
@@ -243,26 +221,6 @@
             });
             return rowIndex;
          }
-
-         //            table.on('click', 'tbody input[type="checkbox"]', function () {
-         //                var selectedRow = $(this).parent().parent().get(0);
-         //                var rowData = table.fnGetData($(this).parent().parent().get(0));
-         //                var $that = $(this);
-         //                scope.$apply(function () {
-         //                    var obj = scope.dataSource.filter(function (element) {
-         //                        return element["_rowId"] === row["_rowId"];
-         //                    });
-         //                    if ($that.is(":checked")) {
-         //                        obj.forEach(function (element) {
-         //                            element["selected"] = true;
-         //                        })
-         //                    } else {
-         //                        obj.forEach(function (element) {
-         //                            element["selected"] = false;
-         //                        })
-         //                    }
-         //                });
-         //            });
 
       }
 
