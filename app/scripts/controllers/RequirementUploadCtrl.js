@@ -2,7 +2,7 @@
 (function (angular) {
    "use strict";
    angular.module("itmsApp").controller("RequirementUploadCtrl",
-       ["$scope", "$http", "config", "$compile", "$modal", "$log", "common", controller]);
+       ["$scope", "$http", "config", "$compile", "$modal", "$log", "common" , controller]);
 
    function controller($scope, $http, config, $compile, $modal, $log, common) {
       $scope.module = "需求管理";
@@ -188,6 +188,7 @@
          if (icon.hasClass("jarviswidget-collapsed"))
             icon.find(".jarviswidget-toggle-btn").click();
       };
+    
    }
 })(angular);
 

@@ -163,7 +163,7 @@
                "sDefaultContent": "<input type='checkbox'/>",
                "bSortable": false
             });
-    
+
          source.forEach(function (ele, index) {
             ele['_rowId'] = +((new Date).getTime()) + index;
          });
@@ -185,9 +185,9 @@
          });
 
          if (scope.detailTarget) {
-            t.on('click', 'tbody tr a', function(e) {
+            t.on('click', 'tbody tr a', function (e) {
                var modalInstance = $modal.open({
-                  templateUrl: 'views/requirement/uploadDetail.html',
+                  templateUrl: scope.detailTarget
                });
                e.preventDefault();
                return false;
