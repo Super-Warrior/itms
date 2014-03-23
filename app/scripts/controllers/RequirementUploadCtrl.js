@@ -10,7 +10,7 @@
       $scope.selectFile = function (element) {
          $("#fileDisplay").val($(element).val());
       };
-     
+
       $scope.getExtName = function (name) {
          var index = name.lastIndexOf(".");
          if (index < 0)
@@ -165,8 +165,7 @@
       $scope.cancel = function () {
          if (!$scope.hasUploaded)
             return;
-         var data =
-         {
+         var data = {
             "userID": config.userID,
             "KEY": $scope.previewData.key,
          };
@@ -185,7 +184,7 @@
       };
       $scope.hasUploaded = false;
       $scope.expandTable = function () {
-         var icon = $("#wid-id-1");
+         var icon = $("#widgetPreview");
          if (icon.hasClass("jarviswidget-collapsed"))
             icon.find(".jarviswidget-toggle-btn").click();
       };

@@ -6,7 +6,7 @@
 
         <!-- NEW WIDGET START -->
         <article class="col-sm-12">
-            <div class="jarviswidget jarviswidget-color-orange" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
+            <div class="jarviswidget jarviswidget-color-orange" id="widgetUpload" data-widget-editbutton="false" data-widget-deletebutton="false">
                 <header>
                     <span class="widget-icon"><i class="fa fa-cloud-upload "></i></span>
                     <h2>站点需求上载 </h2>
@@ -61,7 +61,7 @@
 
     <div class="row">
         <article class="col-sm-12">
-            <div class="jarviswidget jarviswidget-color-orange" id="widgetUpload" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-collapsed="true">
+            <div class="jarviswidget jarviswidget-color-orange" id="widgetPreview" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-collapsed="true">
                 <header>
                     <span class="widget-icon"><i class="fa fa-search"></i></span>
                     <h2>上载预览</h2>
@@ -86,44 +86,8 @@
                     </div>
                     <div id="tableWidget" class="widget-body no-padding">
                         <div class="widget-body-toolbar"></div>
-                        <div data-im-table header-titles="columns" can-select can-view-detail my-source="previewData.list"></div>
-                        
-                        <!-- <table id="datatable_col_reorder" class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th><i class="fa fa-search"></i></th>
-                                    <th>类型</th>
-                                    <th>客户订单号</th>
-                                    <th>ERITN</th>
-                                    <th>物料描述</th>
-                                    <th>数量</th>
-                                    <th>箱号</th>
-                                    <th>客户名称</th>
-                                    <th>客户运单号</th>
-                                    <th>客户出库号</th>
-                                    <th>收货地</th>
-                                    <th>目的地</th>
-                                    <th>要求到达日期</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in previewData.list">
-                                    <td><a href="javascript:void(0);" data-target="#ERTemp" data-toggle="modal"><i class="fa fa-search"></i></a></td>
-                                    <td>{{item.erType}}</td>
-                                    <td>{{item.id.customerOrder1}}</td>
-                                    <td>{{item.id.erITN}}</td>
-                                    <td>{{item.matIID}}</td>
-                                    <td>{{item.amt}}</td>
-                                    <td>{{item.packNum}}</td>
-                                    <td>{{item.depAreaCode}}</td>
-                                    <td>{{item.customerOrder2}}</td>
-                                    <td>{{item.customerOrder3}}</td>
-                                    <td>{{item.depCustomer}}</td>
-                                    <td>{{item.recLocCode}}</td>
-                                    <td>{{item.reqDelDate}}</td>
-                                </tr>
-                            </tbody>
-                        </table>-->
+                        <div data-im-table header-titles="columns" detail-target="views/planning/searchSite2.html" my-source="previewData.list"></div>
+                    
                     </div>
                 </div>
             </div>
