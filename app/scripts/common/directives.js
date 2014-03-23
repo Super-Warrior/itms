@@ -124,7 +124,7 @@
             dataSource: "=mySource",
             canSelect: "@canSelect",
             detailTarget: "@detailTarget",
-            selectedItems: "=selectedItems",
+            selectedItems: "=selectedItems"
          },
          template: '<table class="table table-striped table-hover"></table>',
          link: postLink
@@ -187,15 +187,15 @@
          if (scope.detailTarget) {
             t.on('click', 'tbody tr a', function(e) {
                var modalInstance = $modal.open({
-                  templateUrl: 'views/requirement/uploadDetail.html',
+                  templateUrl: 'views/requirement/uploadDetail.html'
                });
                e.preventDefault();
                return false;
             });
-         };
+         }
 
          if (typeof scope.canSelect !== "undefined") {
-            t.on('click', 'tbody tr', function (e) {
+            t.on('click', 'tbody tr', function () {
                var selectedRow = this,
                    rowData = t.fnGetData(this),
                    $checkBox = $(selectedRow).find('input[type="checkbox"]');
@@ -214,7 +214,6 @@
 
                });
             });
-
          }
 
          function isRowSelected(row) {
@@ -247,7 +246,6 @@
                   initilizeTable(source, element, scope);
                   isInitilize = false;
                } else if (!isInitilize) {
-                  //  _resetSelected(scope);
                   refreshData(source);
                }
             });
@@ -256,18 +254,10 @@
 
       function refreshData(source) {
          table.fnClearTable(false);
-         //            source.forEach(function (element, index) {
-         //                element['_rowId'] = +((new Date).getTime()) + index;
-         //            });
          source && table.fnAddData(source);
          table.fnDraw();
       }
 
-      /*function _resetSelected(scope) {
-       scope.dataSource.forEach(function (element) {
-       element.selected = false;
-       });
-       }*/
    });
 
    commonDirectives.directive('imDatepicker', function () {
