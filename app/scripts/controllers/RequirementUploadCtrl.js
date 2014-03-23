@@ -10,6 +10,7 @@
       $scope.selectFile = function (element) {
          $("#fileDisplay").val($(element).val());
       };
+     
       $scope.getExtName = function (name) {
          var index = name.lastIndexOf(".");
          if (index < 0)
