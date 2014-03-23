@@ -94,16 +94,6 @@ var SearchCustomerCtrl = function ($scope, $http, config, $modalInstance, type) 
    };
 };
 
-
-
-
-
-
-
-
-
-
-
 var SearchLocationCtrl = function ($scope, $modalInstance, items) {
    $scope.items = items;
    $scope.adjust = {

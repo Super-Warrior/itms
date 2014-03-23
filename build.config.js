@@ -2,6 +2,7 @@ module.exports = {
     vendor_files: {
         js: [
             'app/vendor/jquery/dist/jquery.js',
+            'app/vendor/lodash/dist/lodash.js',
             'app/vendor/json3/lib/json3.min.js',
             'app/vendor/es5-shim/es5-shim.js',
             'app/vendor/bootstrap/dist/js/bootstrap.js',
@@ -41,7 +42,7 @@ module.exports = {
             'app/vendor/bootstrap/dist/css/bootstrap.css',
             'app/vendor/angular-loading-bar/src/loading-bar.css',
             'app/vendor/font-awesome/css/font-awesome.min.css',
-            'app/styles/smartadmin-production.css',
+            'app/styles/smartadmin-production_unminified.css',
             'app/styles/smartadmin-skins.css',
             'app/styles/demo.css',
             'app/styles/style.css'
