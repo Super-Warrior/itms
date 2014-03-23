@@ -351,6 +351,7 @@ module.exports = function (grunt) {
 
     });
 
+    require('./build.task.js')(grunt);
 
     grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
@@ -367,13 +368,11 @@ module.exports = function (grunt) {
             'watch'
         ]);
     });
-
     grunt.registerTask('style',['less:development']);
     grunt.registerTask('server', function () {
         grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
         grunt.task.run(['serve']);
     });
-
     grunt.registerTask('test', [
         'clean:server',
         'concurrent:test',
@@ -382,25 +381,23 @@ module.exports = function (grunt) {
         'connect:test',
         'karma'
     ]);
-
     grunt.registerTask('build', [
         'clean:dist',
-        'bower-install',
+        //'bower-install',
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
         'concat',
         'ngmin',
         'copy:dist',
-        'cdnify',
+        //'cdnify',
         'cssmin',
         'uglify',
         'rev',
         'usemin',
-        'htmlmin',
+        //'htmlmin',
         'style'
     ]);
-
     grunt.registerTask('default', [
         'newer:jshint',
         'test',

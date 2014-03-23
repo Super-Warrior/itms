@@ -187,7 +187,8 @@
          if (scope.detailTarget) {
             t.on('click', 'tbody tr a', function(e) {
                var modalInstance = $modal.open({
-                  templateUrl: 'views/requirement/uploadDetail.html'
+                  templateUrl: 'views/requirement/uploadDetail.html',
+
                });
                e.preventDefault();
                return false;
