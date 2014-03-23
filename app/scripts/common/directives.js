@@ -5,7 +5,6 @@
    var commonDirectives = angular.module('common.directives', []);
 
    commonDirectives.directive('itJarvis', function () {
-
       var defaultOptions = {
          grid: 'article',
          widgets: '.jarviswidget',
@@ -108,9 +107,11 @@
    });
 
    /* usage
-    *  <div data-im-table header-titles="columns" my-source="orders" select-all=true></div>
+    *  <div data-im-table header-titles="columns" my-source="orders" detail-target="views/planning/searchSite2.html" can-select></div>
+    optional attributes:can-select
+    optional attributes: detailTarget
     * */
-   commonDirectives.directive('imTable', function () {
+   commonDirectives.directive('imTable', function ($modal) {
 
       var settings = {},
           table;
@@ -121,7 +122,8 @@
          scope: {
             headerTitles: "=headerTitles",
             dataSource: "=mySource",
-            selectAll: "@selectAll",
+            canSelect: "@canSelect",
+            detailTarget: "@detailTarget",
             selectedItems: "=selectedItems",
          },
          template: '<table class="table table-striped table-hover"></table>',
@@ -145,9 +147,15 @@
 
       function initilizeTable(source, element, scope) {
          var canSelect = ((typeof element.attr("can-select")) !== "undefined");
-         var canViewDetail = ((typeof element.attr("can-view-detail")) !== "undefined");
-
          settings.aaData = source;
+         if (scope.detailTarget)
+            settings.aoColumns.unshift({
+               "sTitle": "<i class='fa fa-search'></i>",
+               "mData": null,
+               "sDefaultContent": "<a href='#'><i class='fa fa-search'></i></a>",
+               "bSortable": false
+            });
+
          if (canSelect)
             settings.aoColumns.unshift({
                "sTitle": "<input type='checkbox' id='selectAll'/>",
@@ -155,26 +163,19 @@
                "sDefaultContent": "<input type='checkbox'/>",
                "bSortable": false
             });
-         if (canViewDetail)
-            settings.aoColumns.unshift({
-               "sTitle": "<i class='fa fa-search'></i>",
-               "mData": null,
-               "sDefaultContent": "<a href='javascript:void(0);' data-target='#ERTemp' data-toggle='modal'><i class='fa fa-search'></i></a>",
-               "bSortable": false
-            });
-
-         source.forEach(function (element, index) {
-            element['_rowId'] = +((new Date).getTime()) + index;
+    
+         source.forEach(function (ele, index) {
+            ele['_rowId'] = +((new Date).getTime()) + index;
          });
          table = element.dataTable(settings);
          bindEventHandler(scope, table);
       }
 
-      function bindEventHandler(scope, table) {
+      function bindEventHandler(scope, t) {
          // check if has select all set
-         table.find('#selectAll').click(function () {
+         t.find('#selectAll').click(function () {
             var that = this;
-            table.find('tbody input[type="checkbox"]').each(function (index, element) {
+            t.find('tbody input[type="checkbox"]').each(function (index, element) {
                if ($(that).is(":checked")) {
                   $(element).prop("checked", true);
                } else {
@@ -183,47 +184,60 @@
             });
          });
 
-         table.on('click', 'tbody tr', function (e) {
-            var selectedRow = this,
-                rowData = table.fnGetData(this),
-                $checkBox = $(selectedRow).find('input[type="checkbox"]');
-
-            scope.$apply(function () {
-               if (isRowSelected(selectedRow)) {
-                  $checkBox.prop("checked", false);
-                  $(selectedRow).removeClass('highlight');
-                  scope.selectedItems.splice(getRowIndex(selectedRow), 1);
-               } else {
-                  $checkBox.prop("checked", true);
-                  rowData._rowId = selectedRow._DT_RowIndex;
-                  $(selectedRow).addClass('highlight');
-                  scope.selectedItems.push(rowData);
-               }
-               //                    //when user click check box directly
-               //                    if (e.target instanceof HTMLInputElement && e.target.type === 'checkbox') {
-               //                        if ($checkBox.is(':checked')) {
-               //                            scope.selectedItems.push({
-               //                                rowId: selectedRow._DT_RowIndex,
-               //                                value: rowData
-               //                            });
-               //                        } else {
-               //                            removeSelectedItemByRowId(selectedRow._DT_RowIndex);
-               //                        }
-               //                    } else if (e.target instanceof HTMLTableCellElement) { //when user clicked on the row toggle the click on checkbox
-               //                        if ($checkBox.is(":checked")) {
-               //                            $checkBox.prop("checked", false);
-               //                            removeSelectedItemByRowId(selectedRow._DT_RowIndex);
-               //                        } else {
-               //                            $checkBox.prop("checked", true);
-               //                            scope.selectedItems.push({
-               //                                rowId: selectedRow._DT_RowIndex,
-               //                                value: rowData
-               //                            });
-               //                        }
-               //                    }
-
+         if (scope.detailTarget) {
+            t.on('click', 'tbody tr a', function(e) {
+               var modalInstance = $modal.open({
+                  templateUrl: 'views/requirement/uploadDetail.html',
+               });
+               e.preventDefault();
+               return false;
             });
-         });
+         };
+
+         if (typeof scope.canSelect !== "undefined") {
+            t.on('click', 'tbody tr', function (e) {
+               var selectedRow = this,
+                   rowData = t.fnGetData(this),
+                   $checkBox = $(selectedRow).find('input[type="checkbox"]');
+
+               scope.$apply(function () {
+                  if (isRowSelected(selectedRow)) {
+                     $checkBox.prop("checked", false);
+                     $(selectedRow).removeClass('highlight');
+                     scope.selectedItems.splice(getRowIndex(selectedRow), 1);
+                  } else {
+                     $checkBox.prop("checked", true);
+                     rowData._rowId = selectedRow._DT_RowIndex;
+                     $(selectedRow).addClass('highlight');
+                     scope.selectedItems.push(rowData);
+                  }
+                  //                    //when user click check box directly
+                  //                    if (e.target instanceof HTMLInputElement && e.target.type === 'checkbox') {
+                  //                        if ($checkBox.is(':checked')) {
+                  //                            scope.selectedItems.push({
+                  //                                rowId: selectedRow._DT_RowIndex,
+                  //                                value: rowData
+                  //                            });
+                  //                        } else {
+                  //                            removeSelectedItemByRowId(selectedRow._DT_RowIndex);
+                  //                        }
+                  //                    } else if (e.target instanceof HTMLTableCellElement) { //when user clicked on the row toggle the click on checkbox
+                  //                        if ($checkBox.is(":checked")) {
+                  //                            $checkBox.prop("checked", false);
+                  //                            removeSelectedItemByRowId(selectedRow._DT_RowIndex);
+                  //                        } else {
+                  //                            $checkBox.prop("checked", true);
+                  //                            scope.selectedItems.push({
+                  //                                rowId: selectedRow._DT_RowIndex,
+                  //                                value: rowData
+                  //                            });
+                  //                        }
+                  //                    }
+
+               });
+            });
+
+         }
 
          function isRowSelected(row) {
             return scope.selectedItems.some(checkItem);
