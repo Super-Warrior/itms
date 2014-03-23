@@ -124,7 +124,7 @@
             dataSource: "=mySource",
             canSelect: "@canSelect",
             detailTarget: "@detailTarget",
-            selectedItems: "=selectedItems"
+            selectedItems: "=selectedItems",
          },
          template: '<table class="table table-striped table-hover"></table>',
          link: postLink
@@ -163,7 +163,7 @@
                "sDefaultContent": "<input type='checkbox'/>",
                "bSortable": false
             });
-    
+
          source.forEach(function (ele, index) {
             ele['_rowId'] = +((new Date).getTime()) + index;
          });
@@ -185,18 +185,18 @@
          });
 
          if (scope.detailTarget) {
-            t.on('click', 'tbody tr a', function(e) {
+            t.on('click', 'tbody tr a', function (e) {
                var modalInstance = $modal.open({
-                  templateUrl: 'views/requirement/uploadDetail.html',
+                  templateUrl: scope.detailTarget
 
                });
                e.preventDefault();
                return false;
             });
-         }
+         };
 
          if (typeof scope.canSelect !== "undefined") {
-            t.on('click', 'tbody tr', function () {
+            t.on('click', 'tbody tr', function (e) {
                var selectedRow = this,
                    rowData = t.fnGetData(this),
                    $checkBox = $(selectedRow).find('input[type="checkbox"]');
@@ -212,9 +212,32 @@
                      $(selectedRow).addClass('highlight');
                      scope.selectedItems.push(rowData);
                   }
+                  //                    //when user click check box directly
+                  //                    if (e.target instanceof HTMLInputElement && e.target.type === 'checkbox') {
+                  //                        if ($checkBox.is(':checked')) {
+                  //                            scope.selectedItems.push({
+                  //                                rowId: selectedRow._DT_RowIndex,
+                  //                                value: rowData
+                  //                            });
+                  //                        } else {
+                  //                            removeSelectedItemByRowId(selectedRow._DT_RowIndex);
+                  //                        }
+                  //                    } else if (e.target instanceof HTMLTableCellElement) { //when user clicked on the row toggle the click on checkbox
+                  //                        if ($checkBox.is(":checked")) {
+                  //                            $checkBox.prop("checked", false);
+                  //                            removeSelectedItemByRowId(selectedRow._DT_RowIndex);
+                  //                        } else {
+                  //                            $checkBox.prop("checked", true);
+                  //                            scope.selectedItems.push({
+                  //                                rowId: selectedRow._DT_RowIndex,
+                  //                                value: rowData
+                  //                            });
+                  //                        }
+                  //                    }
 
                });
             });
+
          }
 
          function isRowSelected(row) {
@@ -236,6 +259,26 @@
             return rowIndex;
          }
 
+         //            table.on('click', 'tbody input[type="checkbox"]', function () {
+         //                var selectedRow = $(this).parent().parent().get(0);
+         //                var rowData = table.fnGetData($(this).parent().parent().get(0));
+         //                var $that = $(this);
+         //                scope.$apply(function () {
+         //                    var obj = scope.dataSource.filter(function (element) {
+         //                        return element["_rowId"] === row["_rowId"];
+         //                    });
+         //                    if ($that.is(":checked")) {
+         //                        obj.forEach(function (element) {
+         //                            element["selected"] = true;
+         //                        })
+         //                    } else {
+         //                        obj.forEach(function (element) {
+         //                            element["selected"] = false;
+         //                        })
+         //                    }
+         //                });
+         //            });
+
       }
 
       function setWatchOnTheSource(scope, element) {
@@ -247,6 +290,7 @@
                   initilizeTable(source, element, scope);
                   isInitilize = false;
                } else if (!isInitilize) {
+                  //  _resetSelected(scope);
                   refreshData(source);
                }
             });
@@ -255,10 +299,18 @@
 
       function refreshData(source) {
          table.fnClearTable(false);
+         //            source.forEach(function (element, index) {
+         //                element['_rowId'] = +((new Date).getTime()) + index;
+         //            });
          source && table.fnAddData(source);
          table.fnDraw();
       }
 
+      /*function _resetSelected(scope) {
+       scope.dataSource.forEach(function (element) {
+       element.selected = false;
+       });
+       }*/
    });
 
    commonDirectives.directive('imDatepicker', function () {

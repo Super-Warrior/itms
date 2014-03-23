@@ -1,10 +1,7 @@
 <!doctype html>
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
@@ -26,58 +23,59 @@
 
 <body>
 
-<div ng-app="itmsApp">
-    <div data-ng-include="'/views/layout/shell.html'"></div>
-</div>
+    <div ng-app="itmsApp">
+        <div data-ng-include="'/views/layout/shell.html'"></div>
+    </div>
 
 <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
 <script type="text/javascript" src="<%= file %>"></script>
 <% }); %>
 <!--compiled JavaScript end-->
 
-<script>
+    <script>
 
-    $.menu_speed = 235;
-    $(function () {
-        nav_page_height();
-        $('nav ul').jarvismenu({
-            accordion: true,
-            speed: $.menu_speed,
-            closedSign: '<em class="fa fa-expand-o"></em>',
-            openedSign: '<em class="fa fa-collapse-o"></em>'
+        $.menu_speed = 235;
+        $(function () {
+            nav_page_height();
+            $('nav ul').jarvismenu({
+                accordion: true,
+                speed: $.menu_speed,
+                closedSign: '<em class="fa fa-expand-o"></em>',
+                openedSign: '<em class="fa fa-collapse-o"></em>'
+            });
+
+            $('#main').resize(function () {
+                nav_page_height();
+                //check_if_mobile_width();
+            })
+
+            $('nav').resize(function () {
+                nav_page_height();
+            })
         });
 
-        $('#main').resize(function () {
-            nav_page_height();
-            //check_if_mobile_width();
-        })
+    </script>
 
-        $('nav').resize(function () {
-            nav_page_height();
-        })
-    });
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/common/directives.js"></script>
+    <script src="scripts/common/controllers.js"></script>
+    <script src="scripts/app.js"></script>
 
-</script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/routeConfig.js"></script>
 
-<!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/common/directives.js"></script>
-<script src="scripts/common/controllers.js"></script>
-<script src="scripts/app.js"></script>
+    <script src="views/layout/shell.js"></script>
+    <script src="scripts/services/orderService.js"></script>
+    <script src="scripts/services/stringService.js"></script>
 
-<script src="scripts/config.js"></script>
-<script src="scripts/routeConfig.js"></script>
+    <script src="scripts/services/eoService.js"></script>
+    <script src="scripts/controllers/networkCtrl.js"></script>
+    <script src="scripts/controllers/EOAssignAdjustCtrl.js"></script>
+    <script src="scripts/controllers/EventMaintenance/HandleEventCtrl.js"></script>
+    <script src="scripts/controllers/EventMaintenance/EventMaintenanceCtrl.js"></script>
+    <script src="scripts/controllers/RequirementUploadCtrl.js"></script>
+    <script src="scripts/controllers/EOAssignCtrl.js"></script>
 
-<script src="views/layout/shell.js"></script>
-<script src="scripts/services/orderService.js"></script>
-<script src="scripts/services/stringService.js"></script>
-
-<script src="scripts/services/eoService.js"></script>
-<script src="scripts/controllers/networkCtrl.js"></script>
-<script src="scripts/controllers/EOAssignAdjustCtrl.js"></script>
-<script src="scripts/controllers/EventMaintenance/HandleEventCtrl.js"></script>
-<script src="scripts/controllers/EventMaintenance/EventMaintenanceCtrl.js"></script>
-<script src="scripts/controllers/RequirementUploadCtrl.js"></script>
-
-<!-- endbuild -->
+    <!-- endbuild -->
 </body>
 </html>
