@@ -242,7 +242,7 @@
              dataSource = scope.dataSource;
          if (dataSource) {
             scope.$watch("dataSource", function (source) {
-               if (isInitilize && source && source.length > 0) {
+               if (isInitilize && (typeof dataSource !== 'undefined')) {
                   initilizeTable(source, element, scope);
                   isInitilize = false;
                } else if (!isInitilize) {

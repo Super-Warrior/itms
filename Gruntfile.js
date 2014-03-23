@@ -362,6 +362,7 @@ module.exports = function (grunt) {
             'bower-install',
             'concurrent:server',
             'autoprefixer',
+            'style',
             'connect:livereload',
             'watch'
         ]);
@@ -397,7 +398,7 @@ module.exports = function (grunt) {
         'rev',
         'usemin',
         'htmlmin',
-        'style',
+        'style'
     ]);
 
     grunt.registerTask('default', [

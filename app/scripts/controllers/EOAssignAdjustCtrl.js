@@ -16,11 +16,7 @@
             });
         };
 
-        $scope.selectedItems = function () {
-            return $scope.orders.filter(function (item) {
-                return !!item.selected;
-            });
-        };
+        $scope.selectedItems=[];
 
         $scope.reallocate = function () {
             common
@@ -36,7 +32,7 @@
             function reallocate(value) {
                 orderService
                     .erAssignChange({
-                        selectedItems: $scope.selectedItems(),
+                        selectedItems: $scope.selectedItems,
                         eoid: value
                     })
                     .success(function () {
@@ -64,7 +60,7 @@
             function cancelAssignment() {
                 orderService
                     .erDeleteAssignment({
-                        selectedItems: $scope.selectedItems()
+                        selectedItems: $scope.selectedItems
                     })
                     .success(function () {
                         notifier.success("已成功取消运单分配...");
@@ -74,7 +70,7 @@
         };
 
         $scope.disableAction = function () {
-            return $scope.selectedItems().length === 0;
+            return $scope.selectedItems.length === 0;
         };
 
         $scope.columns = [
@@ -119,7 +115,7 @@
                 controller: SearchSiteCtrl,
                 resolve: {
                     items: function () {
-                        return $scope.selectedItems();
+                        return $scope.selectedItems;
                     }
                 }
             });
@@ -136,7 +132,7 @@
                 controller: SearchCustomerCtrl,
                 resolve: {
                     items: function () {
-                        return $scope.selectedItems();
+                        return $scope.selectedItems;
                     }
                 }
             });
@@ -153,7 +149,7 @@
                 controller: SearchCustomerCtrl,
                 resolve: {
                     items: function () {
-                        return $scope.selectedItems();
+                        return $scope.selectedItems;
                     }
                 }
             });
