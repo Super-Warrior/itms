@@ -12,9 +12,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>"/>
-    <% }); %>
+    <!-- compiled CSS --><link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="vendor/angular-loading-bar/src/loading-bar.css"/>
+    <link rel="stylesheet" type="text/css" href="vendor/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/smartadmin-production.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/smartadmin-skins.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -23,59 +28,91 @@
 
 <body>
 
-    <div ng-app="itmsApp">
-        <div data-ng-include="'/views/layout/shell.html'"></div>
-    </div>
+<div ng-app="itmsApp">
+    <div data-ng-include="'/views/layout/shell.html'"></div>
+</div>
 
-<!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-<script type="text/javascript" src="<%= file %>"></script>
-<% }); %>
+<!-- compiled JavaScript --><script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="vendor/json3/lib/json3.min.js"></script>
+<script type="text/javascript" src="vendor/es5-shim/es5-shim.js"></script>
+<script type="text/javascript" src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="vendor/angular/angular.js"></script>
+<script type="text/javascript" src="vendor/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="vendor/angular-cookies/angular-cookies.js"></script>
+<script type="text/javascript" src="vendor/angular-sanitize/angular-sanitize.js"></script>
+<script type="text/javascript" src="vendor/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script type="text/javascript" src="vendor/jqueryui/ui/jquery-ui.js"></script>
+<script type="text/javascript" src="vendor/jquery-form/jquery.form.js"></script>
+<script type="text/javascript" src="vendor/angular-loading-bar/src/loading-bar.js"></script>
+<script type="text/javascript" src="vendor/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="js/jarvismenu.js"></script>
+<script type="text/javascript" src="js/legacyscript.js"></script>
+<script type="text/javascript" src="js/notification/SmartNotification.min.js"></script>
+<script type="text/javascript" src="js/smartwidgets/jarvis.widget.js"></script>
+<script type="text/javascript" src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+<script type="text/javascript" src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
+<script type="text/javascript" src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+<script type="text/javascript" src="js/plugin/select2/select2.min.js"></script>
+<script type="text/javascript" src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+<script type="text/javascript" src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+<script type="text/javascript" src="js/plugin/smartclick/smartclick.js"></script>
+<script type="text/javascript" src="js/plugin/datatables/jquery.dataTables-cust.min.js"></script>
+<script type="text/javascript" src="js/plugin/datatables/ColReorder.min.js"></script>
+<script type="text/javascript" src="js/plugin/datatables/FixedColumns.min.js"></script>
+<script type="text/javascript" src="js/plugin/datatables/ColVis.min.js"></script>
+<script type="text/javascript" src="js/plugin/datatables/ZeroClipboard.js"></script>
+<script type="text/javascript" src="js/plugin/datatables/media/js/TableTools.min.js"></script>
+<script type="text/javascript" src="js/plugin/datatables/DT_bootstrap.js"></script>
+<script type="text/javascript" src="js/demo.js"></script>
+
 <!--compiled JavaScript end-->
 
-    <script>
+<script>
 
-        $.menu_speed = 235;
-        $(function () {
-            nav_page_height();
-            $('nav ul').jarvismenu({
-                accordion: true,
-                speed: $.menu_speed,
-                closedSign: '<em class="fa fa-expand-o"></em>',
-                openedSign: '<em class="fa fa-collapse-o"></em>'
-            });
-
-            $('#main').resize(function () {
-                nav_page_height();
-                //check_if_mobile_width();
-            })
-
-            $('nav').resize(function () {
-                nav_page_height();
-            })
+    $.menu_speed = 235;
+    $(function () {
+        nav_page_height();
+        $('nav ul').jarvismenu({
+            accordion: true,
+            speed: $.menu_speed,
+            closedSign: '<em class="fa fa-expand-o"></em>',
+            openedSign: '<em class="fa fa-collapse-o"></em>'
         });
 
-    </script>
+        $('#main').resize(function () {
+            nav_page_height();
+            //check_if_mobile_width();
+        })
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/common/directives.js"></script>
-    <script src="scripts/common/controllers.js"></script>
-    <script src="scripts/app.js"></script>
+        $('nav').resize(function () {
+            nav_page_height();
+        })
+    });
 
-    <script src="scripts/config.js"></script>
-    <script src="scripts/routeConfig.js"></script>
+</script>
 
-    <script src="views/layout/shell.js"></script>
-    <script src="scripts/services/orderService.js"></script>
-    <script src="scripts/services/stringService.js"></script>
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/common/directives.js"></script>
+<script src="scripts/common/controllers.js"></script>
+<script src="scripts/app.js"></script>
 
-    <script src="scripts/services/eoService.js"></script>
-    <script src="scripts/controllers/networkCtrl.js"></script>
-    <script src="scripts/controllers/EOAssignAdjustCtrl.js"></script>
-    <script src="scripts/controllers/EventMaintenance/HandleEventCtrl.js"></script>
-    <script src="scripts/controllers/EventMaintenance/EventMaintenanceCtrl.js"></script>
-    <script src="scripts/controllers/RequirementUploadCtrl.js"></script>
-    <script src="scripts/controllers/EOAssignCtrl.js"></script>
+<script src="scripts/config.js"></script>
+<script src="scripts/routeConfig.js"></script>
 
-    <!-- endbuild -->
+<script src="views/layout/shell.js"></script>
+<script src="scripts/services/orderService.js"></script>
+<script src="scripts/services/stringService.js"></script>
+
+<script src="scripts/services/eoService.js"></script>
+<script src="scripts/controllers/networkCtrl.js"></script>
+<script src="scripts/controllers/EOAssignAdjustCtrl.js"></script>
+<script src="scripts/controllers/EventMaintenance/HandleEventCtrl.js"></script>
+<script src="scripts/controllers/EventMaintenance/EventMaintenanceCtrl.js"></script>
+<script src="scripts/controllers/RequirementUploadCtrl.js"></script>
+<script src="scripts/controllers/EOAssignCtrl.js"></script>
+
+<!-- endbuild -->
 </body>
 </html>

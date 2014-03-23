@@ -1,8 +1,6 @@
-
-
 module.exports = function (grunt) {
     var buildConfig =  require('./build.config');
-    console.log(buildConfig);
+
     grunt.initConfig({
         /**
          * The `index` task compiles the `index.html` file as a Grunt template. CSS
@@ -19,7 +17,7 @@ module.exports = function (grunt) {
              * `src` property contains the list of included files.
              */
             build: {
-             //   dir: '<%= build_dir %>',
+                //   dir: '<%= build_dir %>',
                 src: [
                     '<%= buildConfig.vendor_files.js %>',
                     '<%= buildConfig.vendor_files.css %>'
@@ -42,18 +40,12 @@ module.exports = function (grunt) {
         }
     });
 
-    /**
-     * A utility function to get all app JavaScript sources.
-     */
     function filterForJS(files) {
         return files.filter(function (file) {
             return file.match(/\.js$/);
         });
     }
 
-    /**
-     * A utility function to get all app CSS sources.
-     */
     function filterForCSS(files) {
         return files.filter(function (file) {
             return file.match(/\.css$/);
@@ -62,12 +54,9 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('index', 'Process index.html template', function () {
         var dirRE = new RegExp('^(' + grunt.config('build_dir') + '|' + grunt.config('compile_dir') + ')\/', 'g');
-        console.log(dirRE);
-        console.log(this.filesSrc);
         var jsFiles = filterForJS(this.filesSrc).map(function (file) {
             return file.replace(dirRE, '');
         });
-        console.log(jsFiles);
         var cssFiles = filterForCSS(this.filesSrc).map(function (file) {
             return file.replace(dirRE, '');
         });
@@ -83,7 +72,7 @@ module.exports = function (grunt) {
 //                });
 //            }
 //        });
-        grunt.file.copy('app/index.html', 'app/indexcompiled.html', {
+        grunt.file.copy('app/index.html2', 'app/index.html', {
             process: function (contents, path) {
                 return grunt.template.process(contents, {
                     data: {
