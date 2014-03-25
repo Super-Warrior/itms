@@ -43,9 +43,8 @@ var SearchSiteCtrl = function ($scope, $http, config, $modalInstance) {
    };
 };
 
-var SearchCustomerCtrl = function ($scope, $http, config, $modalInstance,customerService, type) {
-       $scope.type = type;
-  
+var SearchCustomerCtrl = function ($scope, $http, config, $modalInstance, customerService, type) {
+   $scope.type = type;
    $scope.items = [];
    $scope.ok = function () {
       var keys = $scope.items.filter(
@@ -58,7 +57,7 @@ var SearchCustomerCtrl = function ($scope, $http, config, $modalInstance,custome
       $modalInstance.close(keys);
    };
    $scope.search = function () {
-       customerService.searchCustomer().then(function (result) {
+      customerService.searchCustomer().then(function (result) {
          $scope.items = result.data;
       });
    };

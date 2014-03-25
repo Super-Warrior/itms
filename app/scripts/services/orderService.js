@@ -142,8 +142,8 @@
          var confirm = option.confirm,
              cancel = option.cancel;
          if (!confirm && !cancel) {
-            confirm = "Yes";
-            cancel = "No";
+            confirm = "是";
+            cancel = "否";
          }
          var formatButton = function (text) {
             return text ? ("[" + text + "]") : "";

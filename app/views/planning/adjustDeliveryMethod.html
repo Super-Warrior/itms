@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <button type="button" class="close" ng-click="cancel()">
+    <button type="button" class="close" ng-click="$dismiss()">
         &times;
     </button>
     <h4 class="modal-title">
@@ -7,49 +7,46 @@
     </h4>
 </div>
 <div class="modal-body no-padding">
-    <form action="" id="login-form" class="smart-form">
+
+    <div action="" id="" class="smart-form">
+
         <fieldset>
             <div class="alert alert-danger fade in">
                 <button class="close" data-dismiss="alert">
                     ×
                 </button>
                 <i class="fa-fw fa fa-warning"></i>
-                <strong> {{items.length}} </strong>条ER需求项目被选择操作
+                <strong>{{selectedItems.length}}&nbsp;</strong>条ER需求项目被选择操作
             </div>
             <div class="row">
                 <section class="col col-6">
                     <label class="select">
-                        <select ng-model="adjust.deliveryMethod">
-                            <option value="0" selected="" disabled="">运输方式</option>
-                            <option value="航空">航空</option>
-                            <option value="公路">公路</option>
-                            <option value="铁路">铁路</option>
-                            <option value="第三方物流">第三方物流</option>
-                            <option value="其它">其它</option>
-                        </select> <i></i> </label>
+                        <select ng-model="adjustData.ERTRType">
+                            <option value="" disabled>运输方式</option>
+                            <option value="1">航空</option>
+                            <option value="2">公路</option>
+                            <option value="3">铁路</option>
+                            <option value="4">第三方物流</option>
+                            <option value="5">其它</option>
+                        </select>
+                        <i></i>
+                    </label>
                 </section>
-
-            </div>
-            <div class="row">
                 <section class="col col-6">
                     <label class="select">
-                        <select ng-model="adjust.vendor">
-                            <option value="承运商" selected="" disabled="">承运商</option>
-                            <option value="顺丰">顺丰</option>
-                            <option value="申通">申通</option>
-                            <option value="联邦快递">联邦快递</option>
-                            <option value="UPS">UPS</option>
-                            <option value="德邦">德邦</option>
-                        </select> <i></i> </label>
+                        <select ng-model="adjustData.ERTRVendor" ng-options="value.customer as value.name for value in carriers">
+                            <option value="" disabled>承运商</option>
+                        </select>
+                        <i></i>
+                    </label>
                 </section>
             </div>
         </fieldset>
         <footer>
-            <button type="submit" id="smart-mod-modifyTR" class="btn btn-success" data-dismiss="modal"
-                    ng-click="ok()"><i
-                    class="fa fa-check"></i>
+            <button id="smart-mod-modifyTR" class="btn btn-success" ng-click="confirmAdjust()" data-dismiss="modal">
+                <i class="fa fa-check"></i>
                 确认修改
             </button>
         </footer>
-    </form>
+    </div>
 </div>
