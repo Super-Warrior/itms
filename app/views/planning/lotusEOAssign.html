@@ -1,47 +1,10 @@
-﻿<section id="widget-grid" data-it-Jarvis ng-controller="eoAssignCtrl">
-    <!--
-        
-         <div class="row">
-        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="jarviswidget jarviswidget-color-pink" id="wid-diagram" data-widget-editbutton="false" data-widget-deletebutton="false">
-                <header>
-                    <span class="widget-icon"><i class="fa fa-bar-chart-o"></i></span>
-                    <h2>需求分配状态</h2>
-                    <div class="widget-toolbar">
-
-                        <div class="progress progress-striped active" rel="tooltip" data-original-title="78%" data-placement="bottom">
-                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 78%">78 %</div>
-                        </div>
-
-                    </div>
-                    <div class="widget-toolbar">
-                        <a href="javascript:void" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
-                    </div>
-
-                </header>
-
-                <div>
-                    <div class="jarviswidget-editbox">
-                        <input type="text">
-                    </div>
-
-                    <div class="widget-body no-padding">
-
-                        <div id="non-date-graph" class="chart no-padding"></div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </article>
+﻿<section data-it-jarvis data-ng-controller="eoAssignCtrl">
+    <div class="row">
+        <div ng-include src='"views/pageTitle.html"'></div>
     </div>
 
-        -->
+    
     <div class="row">
-
-        <!-- NEW WIDGET START -->
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
             <!-- Widget ID (each widget will need unique ID)-->
@@ -150,65 +113,55 @@
             </div>
         </article>
     </div>
-    <div class="row">
-    </div>
 
-    <div class="jarviswidget jarviswidget-color-pink" id="wid-result" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-collapsed="true">
-        <header>
-            <span class="widget-icon"><i class="fa fa-table"></i></span>
-            <h2>可分配需求</h2>
-            <div class="widget-toolbar">
-                <div class="btn-group">
-                    <button class="btn dropdown-toggle btn-xs btn-default " data-toggle="dropdown">
-                        操作 <i class="fa fa-caret-down"></i>
-                    </button>
-                    <ul class="dropdown-menu pull-right">
-                        <li ng-class="{disabled:!isAnythingSelected()}">
-                            <a href="javascript:void(0)" ng-click="create()"><i class="fa fa-resize-small"></i>&nbsp;合并至运单</a>
-                        </li>
-                        <li ng-class="{disabled:!isAnythingSelected()}">
-                            <a href="javascript:void(0)" ng-click="adjust()"><i class="fa fa-truck"></i>&nbsp;运输方式调整</a>
-                        </li>
-                        <li ng-class="{disabled:!isAnythingSelected()}">
-                            <a href="javascript:void(0)" ng-click="deleteEr()" id="smart-mod-delER"><i class="fa fa-minus-circle "></i>&nbsp;删除项目</a>
-                        </li>
-                        <li ng-class="{disabled:!isAnythingSelected()}">
-                            <a href="javascript:void(0)" ng-click="deleteEritm()" id="smart-mod-delERITN"><i class="fa fa-times-circle "></i>&nbsp;删除需求</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" ng-click="quickSearch()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-        <div>
-            <div class="jarviswidget-editbox">
-            </div>
-            <div id="tableWidget" class="widget-body no-padding">
-                <div class="widget-body-toolbar">
-                </div>
-                <div data-im-table header-titles="columns" can-select detail-target="views/planning/eoDetail.html" my-source="quickResult" selected-items="selectedItems"></div>
-            </div>
-        </div>
+    <div class="row">
+         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+         <div class="jarviswidget jarviswidget-color-pink" id="wid-result" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-collapsed="true">
+             <header>
+                 <span class="widget-icon"><i class="fa fa-table"></i></span>
+                 <h2>可分配需求</h2>
+                 <div class="widget-toolbar">
+                     <div class="btn-group">
+                         <button class="btn dropdown-toggle btn-xs btn-default " data-toggle="dropdown">
+                             操作 <i class="fa fa-caret-down"></i>
+                         </button>
+                         <ul class="dropdown-menu pull-right">
+                             <li ng-class="{disabled:!isAnythingSelected()}">
+                                 <a href="javascript:void(0)" ng-click="create()"><i class="fa fa-resize-small"></i>&nbsp;合并至运单</a>
+                             </li>
+                             <li ng-class="{disabled:!isAnythingSelected()}">
+                                 <a href="javascript:void(0)" ng-click="adjust()"><i class="fa fa-truck"></i>&nbsp;运输方式调整</a>
+                             </li>
+                             <li ng-class="{disabled:!isAnythingSelected()}">
+                                 <a href="javascript:void(0)" ng-click="deleteEr()" id="smart-mod-delER"><i class="fa fa-minus-circle "></i>&nbsp;删除项目</a>
+                             </li>
+                             <li ng-class="{disabled:!isAnythingSelected()}">
+                                 <a href="javascript:void(0)" ng-click="deleteEritm()" id="smart-mod-delERITN"><i class="fa fa-times-circle "></i>&nbsp;删除需求</a>
+                             </li>
+                             <li>
+                                 <a href="javascript:void(0)" ng-click="quickSearch()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                             </li>
+                         </ul>
+                     </div>
+                 </div>
+             </header>
+             <div>
+                 <div class="jarviswidget-editbox">
+                 </div>
+                 <div id="tableWidget" class="widget-body no-padding">
+                     <div class="widget-body-toolbar">
+                     </div>
+                     <div data-im-table header-titles="columns" can-select detail-target="views/planning/eoDetail.html" my-source="quickResult" selected-items="selectedItems"></div>
+                 </div>
+             </div>
+         </div>
+             </article>
     </div>
+    
 </section>
 
 <script type="text/javascript">
-
-    $('#startdateEO').datepicker({
-        dateFormat: 'yy-mm-dd',
-        prevText: '<i class="fa fa-chevron-left"></i>',
-        nextText: '<i class="fa fa-chevron-right"></i>',
-
-    });
-
-    $('#DeldateEO').datepicker({
-        dateFormat: 'yy-mm-dd',
-        prevText: '<i class="fa fa-chevron-left"></i>',
-        nextText: '<i class="fa fa-chevron-right"></i>',
-
-    });
 
     $('#ercreatedate').datepicker({
         dateFormat: 'yy-mm-dd',
