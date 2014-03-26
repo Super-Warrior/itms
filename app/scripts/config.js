@@ -5,7 +5,7 @@
 
    var config = {
       version: '0.0.1',
-      mode: 'development', //development or production
+      mode: 'production', //development or production
       baseUrl: 'http://211.144.85.15:8080/ordermanagement/rest/',
       userID: 10000
    };
@@ -60,9 +60,9 @@
       });
    }]);
 
-   //    app.config(function (cfpLoadingBarProvider) {
-   //        cfpLoadingBarProvider.includeSpinner = false;
-   //    });
+   app.config(function (cfpLoadingBarProvider) {
+       cfpLoadingBarProvider.includeSpinner = true;
+   });
 
    app.value('config', config);
 

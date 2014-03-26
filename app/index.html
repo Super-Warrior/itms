@@ -1,36 +1,44 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>iTMS</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>iTMS</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
 
-    <!-- compiled CSS --><link rel="stylesheet" type="text/css" href="styles/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="styles/loading-bar.css"/>
-    <link rel="stylesheet" type="text/css" href="styles/smartadmin-production_unminified.css"/>
-    <link rel="stylesheet" type="text/css" href="styles/smartadmin-skins.css"/>
-    <link rel="stylesheet" type="text/css" href="styles/demo.css"/>
-    
+  <!-- compiled CSS -->
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="styles/loading-bar.css"/>
+  <link rel="stylesheet" type="text/css" href="styles/font-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="styles/smartadmin-production_unminified.css"/>
+  <link rel="stylesheet" type="text/css" href="styles/smartadmin-skins.css"/>
+  <link rel="stylesheet" type="text/css" href="styles/demo.css"/>
+  <link rel="stylesheet" type="text/css" href="styles/style.css"/>
 
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 </head>
 
 <body>
 
 <div ng-app="itmsApp">
-    <div data-ng-include="'/views/layout/shell.html'"></div>
+  <div data-ng-include="'/views/layout/shell.html'"></div>
 </div>
 
-<!-- compiled JavaScript --><script type="text/javascript" src="scripts/jquery.js"></script>
+<!-- compiled JavaScript -->
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/lodash.js"></script>
 <script type="text/javascript" src="scripts/json3.min.js"></script>
 <script type="text/javascript" src="scripts/es5-shim.js"></script>
 <script type="text/javascript" src="scripts/bootstrap.js"></script>
@@ -41,6 +49,7 @@
 <script type="text/javascript" src="scripts/angular-route.js"></script>
 <script type="text/javascript" src="scripts/ui-bootstrap-tpls.js"></script>
 <script type="text/javascript" src="scripts/jquery-ui.js"></script>
+<script type="text/javascript" src="scripts/jquery.form.js"></script>
 <script type="text/javascript" src="scripts/loading-bar.js"></script>
 <script type="text/javascript" src="scripts/angular-animate.js"></script>
 <script type="text/javascript" src="scripts/jarvismenu.js"></script>
@@ -68,25 +77,25 @@
 
 <script>
 
-    $.menu_speed = 235;
-    $(function () {
-        nav_page_height();
-        $('nav ul').jarvismenu({
-            accordion: true,
-            speed: $.menu_speed,
-            closedSign: '<em class="fa fa-expand-o"></em>',
-            openedSign: '<em class="fa fa-collapse-o"></em>'
-        });
-
-        $('#main').resize(function () {
-            nav_page_height();
-            //check_if_mobile_width();
-        })
-
-        $('nav').resize(function () {
-            nav_page_height();
-        })
+  $.menu_speed = 235;
+  $(function () {
+    nav_page_height();
+    $('nav ul').jarvismenu({
+      accordion: true,
+      speed: $.menu_speed,
+      closedSign: '<em class="fa fa-expand-o"></em>',
+      openedSign: '<em class="fa fa-collapse-o"></em>'
     });
+
+    $('#main').resize(function () {
+      nav_page_height();
+      //check_if_mobile_width();
+    })
+
+    $('nav').resize(function () {
+      nav_page_height();
+    })
+  });
 
 </script>
 
@@ -110,6 +119,7 @@
 <script src="scripts/controllers/EventMaintenance/EventMaintenanceCtrl.js"></script>
 <script src="scripts/controllers/RequirementUploadCtrl.js"></script>
 <script src="scripts/controllers/EOAssignCtrl.js"></script>
+
 <!-- endbuild -->
 </body>
 </html>

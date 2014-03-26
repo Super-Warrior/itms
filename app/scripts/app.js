@@ -12,7 +12,6 @@
 
     // app.run until app.config finished!!! this is important
     app.run(function ($rootScope, $location) {
-       // $location.path('/loginurl');
         console.log('app started!!!!');
     });
 

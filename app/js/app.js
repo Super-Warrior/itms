@@ -19,6 +19,7 @@ $.root_ = $('body');
 $.left_panel = $('#left-panel');
 $.shortcut_dropdown = $('#shortcut');
 
+
 /*
  * APP CONFIGURATION
  * Description: Enable / disable certain theme features here
