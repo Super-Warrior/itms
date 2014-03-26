@@ -14,3 +14,7 @@
 **Coding Style**
 
 read `CODESTYLE.md` for detail
+
+html coding style
+
+http://mdo.github.io/code-guide/
