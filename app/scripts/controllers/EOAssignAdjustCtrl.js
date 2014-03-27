@@ -111,7 +111,7 @@
 
         $scope.searchSite = function () {
             var modalInstance = $modal.open({
-                templateUrl: 'views/planning/searchSite2.html',
+                templateUrl: 'views/planning/searchSite.html',
                 controller: SearchSiteCtrl,
                 resolve: {
                     items: function () {
@@ -128,7 +128,7 @@
 
         $scope.searchDepCustomer = function () {
             var modalInstance = $modal.open({
-                templateUrl: 'views/planning/searchCustomer2.html',
+                templateUrl: 'views/planning/searchCustomer.html',
                 controller: SearchCustomerCtrl,
                 resolve: {
                     items: function () {
@@ -145,7 +145,7 @@
 
         $scope.searchRecCustomer = function () {
             var modalInstance = $modal.open({
-                templateUrl: 'views/planning/searchCustomer2.html',
+                templateUrl: 'views/planning/searchCustomer.html',
                 controller: SearchCustomerCtrl,
                 resolve: {
                     items: function () {

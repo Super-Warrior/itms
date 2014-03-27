@@ -71,7 +71,7 @@
                                 操作 <i class="fa fa-caret-down"></i>
                             </button>
                             <ul class="dropdown-menu pull-right">
-                                <li>
+                                <li ng-class="{disabled:!hasUploaded}">
                                     <a href="javascript:void(0);" ng-click="cancel()" id="smart-mod-eg2">
                                         <i class="fa fa-chain-broken "></i>&nbsp;删除上载记录
                                     </a>
@@ -86,7 +86,7 @@
                     </div>
                     <div id="tableWidget" class="widget-body no-padding">
                         <div class="widget-body-toolbar"></div>
-                        <div data-im-table header-titles="columns" detail-target="views/planning/searchSite2.html" my-source="previewData.list"></div>
+                        <div data-im-table header-titles="columns" detail-target="views/planning/searchSite.html" my-source="previewData.list"></div>
                     
                     </div>
                 </div>
@@ -94,14 +94,8 @@
         </article>
     </div>
     <p align="center">
-        <a class="btn btn-default btn-circle btn-xl" href="javascript:void(0);" ng-click="confirm()" id="smart-mod-eg1">
+        <a class="btn btn-default btn-circle btn-xl" ng-class="{disabled:!hasUploaded}" href="javascript:void(0);" ng-click="confirm()" id="smart-mod-eg1">
             <i class="glyphicon glyphicon-cloud-upload"></i>
         </a>
     </p>
 </section>
-
-<!--<script type="text/javascript">
-    pageSetUp();
-    loadDataTableScripts();
- 
-</script>-->
