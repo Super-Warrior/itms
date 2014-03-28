@@ -107,7 +107,7 @@
     });
 
     /* usage
-     *  <div data-im-table header-titles="columns" my-source="orders" detail-target="views/planning/searchSite2.html" can-select></div>
+     *  <div data-im-table header-titles="columns" my-source="orders" detail-target="views/planning/searchSite.html" can-select></div>
      optional attributes:can-select
      optional attributes: detailTarget
      * */

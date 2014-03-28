@@ -36,62 +36,6 @@
       $scope.updateTable = function (data) {
          $scope.previewData = data;
          $scope.test = $scope.previewData.list;
-         $scope.$apply();
-
-         //$("#datatable_col_reorder_wrapper").remove();
-
-         //var table =
-         //   '<table id="datatable_col_reorder" class="table table-striped table-hover">' +
-         //      '<thead>' +
-         //      '<tr>' +
-         //      '<th><i class="fa fa-search"></i></th>' +
-         //      '<th>类型</th>' +
-         //      '<th>客户订单号</th>' +
-         //      '<th>ERITN</th>' +
-         //      '<th>物料描述</th>' +
-         //      '<th>数量</th>' +
-         //      '<th>箱号</th>' +
-         //      '<th>客户名称</th>' +
-         //      '<th>客户运单号</th>' +
-         //      '<th>客户出库号</th>' +
-         //      '<th>收货地</th>' +
-         //      '<th>目的地</th>' +
-         //      '<th>要求到达日期</th>' +
-         //      '</tr>' +
-         //      '</thead>' +
-         //      '<tbody>' +
-         //      '<tr ng-repeat="item in previewData.list">' +
-         //      '<td><a href="javascript:void(0);" data-target="#ERTemp" data-toggle="modal"><i class="fa fa-search"></i></a></td>' +
-         //      '<td>{{item.erType}}</td>' +
-         //      '<td>{{item.id.customerOrder1}}</td>' +
-         //      '<td>{{item.id.erITN}}</td>' +
-         //      '<td>{{item.matIID}}</td>' +
-         //      '<td>{{item.amt}}</td>' +
-         //      '<td>{{item.packNum}}</td>' +
-         //      '<td>{{item.depAreaCode}}</td>' +
-         //      '<td>{{item.customerOrder2}}</td>' +
-         //      '<td>{{item.customerOrder3}}</td>' +
-         //      '<td>{{item.depCustomer}}</td>' +
-         //      '<td>{{item.recLocCode}}</td>' +
-         //      '<td>{{item.reqDelDate}}</td>' +
-         //      '</tr>' +
-         //      '</tbody>' +
-         //      '</table>';
-
-         //$compile(table)($scope, function (clonedElement) {
-         //   $("#tableWidget").append(clonedElement);
-         //});
-         //try {
-         //   $scope.$apply();
-         //} catch (e) {
-         //}
-         //$('#datatable_col_reorder').dataTable({
-         //   "sPaginationType": "bootstrap",
-         //   "sDom": "R<'dt-top-row'Clf>r<'dt-wrapper't><'dt-row dt-bottom-row'<'row'<'col-sm-6'i><'col-sm-6 text-right'p>>",
-         //   "fnInitComplete": function (oSettings, json) {
-         //      $('.ColVis_Button').addClass('btn btn-default btn-sm').html('Columns <i class="icon-arrow-down"></i>');
-         //   }
-         //});
       };
       $scope.validate = function () {
          var ele = $("#fileUpload")[0];
@@ -136,6 +80,8 @@
                   } else {
                      $scope.hasUploaded = false;
                   }
+                  
+                  $scope.$apply();
                }
             };
             $('#checkout-form').ajaxSubmit(submitData);
