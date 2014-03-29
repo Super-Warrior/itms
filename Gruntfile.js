@@ -14,6 +14,68 @@ module.exports = function (grunt) {
         clean: ['build', 'release'],
 
         copy: {
+            build_vendor: {
+                files: [
+                    {
+                        expand: true,
+                        src: ['<%= vendor_files.vendorjs %>'],
+                        dest: 'build/vendor/',
+                        flatten: true
+                    }
+                ]
+            },
+            build_assets: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src/assets',
+                        src: ['img/**', 'sound/**'],
+                        dest: 'build/'
+                    },
+                    {
+                        expand: true,
+                        cwd: '.',
+                        src: ['vendor/font-awesome/fonts/*', 'vendor/bootstrap/dist/fonts/*'],
+                        dest: 'build/fonts/',
+                        flatten: true
+                    },
+                    {
+                        expand: true,
+                        src: ['<%= vendor_files.css %>'],
+                        dest: 'build/styles',
+                        flatten: true
+                    }
+                ]
+            },
+            build_html: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src',
+                        src: ['*.html','!*.tpl.html'],
+                        dest: 'build/',
+                        flatten: true
+                    },
+                    {
+                        expand: true,
+                        cwd: '.',
+                        src: ['.tmp/*.html'],
+                        dest: 'build/',
+                        flatten: true
+                    }
+                ]
+            },
+            build_app: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src',
+                        src: ['app/**/*','common/**/*'],
+                        dest: 'build/'
+                    }
+                ]
+            },
+
             build: {
                 files: [
                     {
@@ -88,15 +150,21 @@ module.exports = function (grunt) {
         },
 
         index: {
-            src: [
-                '<%= vendor_files.js %>',
-                '<%= vendor_files.css %>'
-            ]
+            build: {
+                expand: true,
+                dir: '.tmp',
+                src: [
+                    '<%= vendor_files.vendorjs %>',
+                    '<%= vendor_files.css %>',
+                    '<%= app_files.js %>'
+                ]
+            }
+
         },
         watch: {
             js: {
-                files: ['app/scripts/**/*.js'],
-                tasks: ['newer:copy:build'],
+                files: ['src/app/**/*'],
+                tasks: ['build2'],
                 options: {
                     livereload: true
                 }
@@ -139,26 +207,14 @@ module.exports = function (grunt) {
 
         var FILE_PATH = '^([a-z]:|/[a-z0-9 %._-]+/[a-z0-9 $%._-]+)?(/?(?:[^/:*?"<>|\r\n]+/)+)';
         var dirRE = new RegExp(FILE_PATH, 'g');
-        var jsFiles = filterForJS(this.filesSrc).map(function (file) {
-            return 'scripts/' + file.replace(dirRE, '');
+        var jsFiles = filterForVendorJS(this.filesSrc).map(function (file) {
+            return 'vendor/' + file.replace(dirRE, '');
         });
         var cssFiles = filterForCSS(this.filesSrc).map(function (file) {
             return 'styles/' + file.replace(dirRE, '');
         });
 
-        //    can get custom property via attribute data
-        //        grunt.file.copy('app/index.html', this.data.dir + '/index.html', {
-        //            process: function (contents, path) {
-        //                return grunt.template.process(contents, {
-        //                    data: {
-        //                        scripts: jsFiles,
-        //                        styles: cssFiles,
-        //                        version: grunt.config('pkg.version')
-        //                    }
-        //                });
-        //            }
-        //        });
-        grunt.file.copy('app/index2.html', 'app/index.html', {
+        grunt.file.copy('src/index.tpl.html', this.data.dir+'/index.html', {
             process: function (contents, path) {
                 return grunt.template.process(contents, {
                     data: {
@@ -170,9 +226,14 @@ module.exports = function (grunt) {
             }
         });
 
-        function filterForJS(files) {
+        function filterForVendorJS(files) {
             return files.filter(function (file) {
-                return file.match(/\.js$/);
+                return file.match(/^vendor|src\/legacyscripts/) && file.match(/\.js$/);
+            });
+        }
+        function filterForAppjs(files) {
+            return files.filter(function (file) {
+                return file.match(/^src\/app|src\/common/) && file.match(/\.js$/);
             });
         }
 
@@ -185,6 +246,14 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['clean', 'copy:build']);
     grunt.registerTask('build', ['clean', 'index', 'copy:build']);
-    grunt.registerTask('serve', ['build', 'connect:livereload','watch']);
+    grunt.registerTask('build2', [
+        'clean',
+        'index:build',
+        'copy:build_vendor',
+        'copy:build_assets',
+        'copy:build_html',
+        'copy:build_app'
+    ]);
+    grunt.registerTask('serve', ['build2', 'connect:livereload', 'watch']);
 
 };

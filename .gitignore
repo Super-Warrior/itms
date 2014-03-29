@@ -8,3 +8,6 @@ app/bower_components
 *.log
 app/vendor
 /app/Web.config
+vendor
+sample
+compile

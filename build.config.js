@@ -1,53 +1,77 @@
 module.exports = {
     vendor_files: {
-        js: [
-            'app/vendor/jquery/dist/jquery.js',
-            'app/vendor/lodash/dist/lodash.js',
-            'app/vendor/json3/lib/json3.min.js',
-            'app/vendor/es5-shim/es5-shim.js',
-            'app/vendor/bootstrap/dist/js/bootstrap.js',
-            'app/vendor/angular/angular.js',
-            'app/vendor/angular-resource/angular-resource.js',
-            'app/vendor/angular-cookies/angular-cookies.js',
-            'app/vendor/angular-sanitize/angular-sanitize.js',
-            'app/vendor/angular-route/angular-route.js',
-            'app/vendor/angular-bootstrap/ui-bootstrap-tpls.js',
-            'app/vendor/jqueryui/ui/jquery-ui.js',
-            'app/vendor/jquery-form/jquery.form.js',
-            'app/vendor/angular-loading-bar/src/loading-bar.js',
-            'app/vendor/angular-animate/angular-animate.js',
+        vendorjs: [
+            'vendor/jquery/dist/jquery.js',
+            'vendor/lodash/dist/lodash.js',
+            'vendor/json3/lib/json3.min.js',
+            'vendor/es5-shim/es5-shim.js',
+            'vendor/bootstrap/dist/js/bootstrap.js',
+            'vendor/angular/angular.js',
+            'vendor/angular-resource/angular-resource.js',
+            'vendor/angular-cookies/angular-cookies.js',
+            'vendor/angular-sanitize/angular-sanitize.js',
+            'vendor/angular-route/angular-route.js',
+            'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
+            'vendor/jqueryui/ui/jquery-ui.js',
+            'vendor/jquery-form/jquery.form.js',
+            'vendor/angular-loading-bar/src/loading-bar.js',
+            'vendor/angular-animate/angular-animate.js',
+            'vendor/angular-ui-router/release/angular-ui-router.js',
 
-            'app/js/jarvismenu.js',
-            'app/js/legacyscript.js',
-            'app/js/notification/SmartNotification.min.js',
-            'app/js/smartwidgets/jarvis.widget.js',
-            'app/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js',
-            'app/js/plugin/sparkline/jquery.sparkline.min.js',
-            'app/js/plugin/jquery-validate/jquery.validate.min.js',
-            'app/js/plugin/masked-input/jquery.maskedinput.min.js',
-            'app/js/plugin/select2/select2.min.js',
-            'app/js/plugin/bootstrap-slider/bootstrap-slider.min.js',
-            'app/js/plugin/msie-fix/jquery.mb.browser.min.js',
-            'app/js/plugin/smartclick/smartclick.js',
-            'app/js/plugin/datatables/jquery.dataTables-cust.min.js',
-            'app/js/plugin/datatables/ColReorder.min.js',
-            'app/js/plugin/datatables/FixedColumns.min.js',
-            'app/js/plugin/datatables/ColVis.min.js',
-            'app/js/plugin/datatables/ZeroClipboard.js',
-            'app/js/plugin/datatables/media/js/TableTools.min.js',
-            'app/js/plugin/datatables/DT_bootstrap.js',
-            'app/js/demo.js'
+            'src/legacyscripts/jarvismenu.js',
+            'src/legacyscripts/legacyscript.js',
+            'src/legacyscripts/notification/SmartNotification.min.js',
+            'src/legacyscripts/smartwidgets/jarvis.widget.js',
+            'src/legacyscripts/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js',
+            'src/legacyscripts/plugin/sparkline/jquery.sparkline.min.js',
+            'src/legacyscripts/plugin/jquery-validate/jquery.validate.min.js',
+            'src/legacyscripts/plugin/masked-input/jquery.maskedinput.min.js',
+            'src/legacyscripts/plugin/select2/select2.min.js',
+            'src/legacyscripts/plugin/bootstrap-slider/bootstrap-slider.min.js',
+            'src/legacyscripts/plugin/msie-fix/jquery.mb.browser.min.js',
+            'src/legacyscripts/plugin/smartclick/smartclick.js',
+            'src/legacyscripts/plugin/datatables/jquery.dataTables-cust.min.js',
+            'src/legacyscripts/plugin/datatables/ColReorder.min.js',
+            'src/legacyscripts/plugin/datatables/FixedColumns.min.js',
+            'src/legacyscripts/plugin/datatables/ColVis.min.js',
+            'src/legacyscripts/plugin/datatables/ZeroClipboard.js',
+            'src/legacyscripts/plugin/datatables/media/js/TableTools.min.js',
+            'src/legacyscripts/plugin/datatables/DT_bootstrap.js',
+            'src/legacyscripts/demo.js'
         ],
         css: [
-            'app/vendor/bootstrap/dist/css/bootstrap.css',
-            'app/vendor/angular-loading-bar/src/loading-bar.css',
-            'app/vendor/font-awesome/css/font-awesome.min.css',
-            'app/styles/smartadmin-production_unminified.css',
-            'app/styles/smartadmin-skins.css',
-            'app/styles/demo.css',
-            'app/styles/style.css'
+            'vendor/bootstrap/dist/css/bootstrap.css',
+            'vendor/angular-loading-bar/src/loading-bar.css',
+            'vendor/font-awesome/css/font-awesome.min.css',
+            'src/assets/styles/smartadmin-production_unminified.css',
+            'src/assets/styles/smartadmin-skins.css',
+            'src/assets/styles/demo.css',
+            'src/assets/styles/style.css'
         ],
         assets: [
+        ]
+    },
+    app_files: {
+        js: [
+            'src/common/datepicker/datepicker.js',
+            'src/common/table/table.js',
+            'src/common/widget/widget.js',
+            'src/common/common.module.js',
+
+            'src/app/common/common.svc.js',
+
+            'src/app/layout/shell.js',
+
+            'src/app/transport/event/eoService.js',
+            'src/app/transport/event/event.module.js',
+            'src/app/transport/event/event.ctrl.js',
+
+            'src/app/transport/network/network.module.js',
+            'src/app/transport/transport.module.js',
+
+            'src/app/app.js',
+            'src/app/config.js'
+
         ]
     }
 };

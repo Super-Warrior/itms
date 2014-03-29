@@ -1,0 +1,552 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="close()">
+    <!--onclick="cancel()"-->
+    &times;
+  </button>
+  <h4 class="modal-title">
+    <img src="img/banner.png" width="150" alt="iTMS">
+  </h4>
+</div>
+<div class="modal-body no-padding">
+<div class="panel-group smart-accordion-default" id="accordion-2">
+<div class="panel panel-default">
+<div class="panel-heading">
+  <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-1"
+                             class="collapsed"><i class="fa fa-fw fa-chevron-circle-right  txt-color-green"></i><i
+      class="fa fa-fw fa-chevron-circle-down  txt-color-red"></i>概要信息</a></h4>
+</div>
+<div id="collapseOne-1" class="panel-collapse collapse">
+<div class="panel-body">
+
+
+<form action="" id="Form1" class="smart-form" novalidate="novalidate">
+
+<fieldset>
+  <div class="row">
+    <section class="col col-3">
+      <label class="input">
+        <i class="icon-prepend fa fa-list"></i>
+        <input type="text" name="CRP2" placeholder="订单类型">
+      </label>
+    </section>
+    <section class="col col-3">
+      <label class="input">
+        <i class="icon-prepend fa fa-list"></i>
+        <input type="text" name="CRP2" placeholder="特殊标识">
+      </label>
+    </section>
+    <section class="col col-4">
+      <label class="input">
+        <i class="icon-prepend fa fa-phone"></i>
+        <input type="text" name="CRP2" placeholder="前序ER/EO订单号">
+      </label>
+    </section>
+  </div>
+
+  <div class="row">
+    <section class="col col-4">
+      <label class="input">
+        <i class="icon-prepend fa fa-tag"></i>
+        <input type="text" name="Cr" placeholder="客户订单号">
+      </label>
+    </section>
+    <section class="col col-4">
+      <label class="input">
+        <i class="icon-prepend fa fa-tag"></i>
+        <input type="text" name="CRP" placeholder="客户运单号">
+      </label>
+    </section>
+    <section class="col col-4">
+      <label class="input">
+        <i class="icon-prepend fa fa-tag"></i>
+        <input type="text" name="CRP" placeholder="客户出库单号">
+      </label>
+    </section>
+  </div>
+
+
+  <div class="row">
+    <section class="col col-3">
+      <label class="input">
+        <i class="icon-prepend fa fa-list-ol "></i>
+        <input type="text" name="Cr" placeholder="总件数">
+      </label>
+    </section>
+    <section class="col col-3">
+      <label class="input">
+        <i class="icon-prepend fa fa-outdent "></i>
+        <input type="text" name="Cr" placeholder="总重量">
+      </label>
+    </section>
+    <section class="col col-3">
+      <label class="input">
+        <i class="icon-prepend fa fa-th "></i>
+        <input type="text" name="Cr" placeholder="总体积">
+      </label>
+    </section>
+    <section class="col col-3">
+      <label class="input">
+        <i class="icon-prepend fa fa-list"></i>
+        <input type="text" name="Cr" placeholder="总体积/重">
+      </label>
+    </section>
+
+  </div>
+
+  <div class="row">
+    <section class="col col-8">
+      <label class="textarea">
+        <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+      </label>
+    </section>
+  </div>
+
+</fieldset>
+
+<fieldset>
+  <div class="row">
+    <section class="col col-4">
+      <div class="form-group">
+        <label>要求到达日期</label>
+        <label class="input">
+          <i class="icon-prepend fa fa-calendar"></i>
+          <input type="text" name="startdate" id="startdate" placeholder="要求达到日期">
+        </label>
+      </div>
+    </section>
+    <section class="col col-3">
+      <div class="form-group">
+        <label>要求到达时间(最早)</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker" type="text" value="" placeholder="要求到达时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+    <section class="col col-3">
+      <div class="form-group">
+        <label>要求到达时间(最晚)</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker2" type="text" placeholder="要求到达时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</fieldset>
+<fieldset>
+  <div class="row">
+    <section class="col col-4">
+      <div class="form-group">
+        <label>需求ER接收日期</label>
+        <label class="input">
+          <i class="icon-prepend fa fa-calendar"></i>
+          <input type="text" name="startdate2" id="startdate2" placeholder="需求接收日期">
+        </label>
+      </div>
+    </section>
+    <section class="col col-4">
+      <div class="form-group">
+        <label>需求ER接收时间</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker3" type="text" placeholder="需求接收时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <div class="row">
+    <section class="col col-4">
+      <div class="form-group">
+        <label>ER货物交接日期</label>
+        <label class="input">
+          <i class="icon-prepend fa fa-calendar"></i>
+          <input type="text" name="startdate2" id="startdate3" placeholder="需求接收日期">
+        </label>
+      </div>
+    </section>
+  </div>
+  <div class="row">
+    <section class="col col-3">
+      <div class="form-group">
+        <label>交接时间(开始)</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker4" type="text" placeholder="接收时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+    <section class="col col-3">
+      <div class="form-group">
+        <label>交接时间(结束)</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker5" type="text" placeholder="接收时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+    <section class="col col-3">
+      <div class="form-group">
+        <label>装车时间(开始)</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker6" type="text" placeholder="装车时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+    <section class="col col-3">
+      <div class="form-group">
+        <label>装车时间(结束)</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker7" type="text" placeholder="装车时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="row">
+    <section class="col col-4">
+      <div class="form-group">
+        <label>ER货物理货日期</label>
+        <label class="input">
+          <i class="icon-prepend fa fa-calendar"></i>
+          <input type="text" name="startdate2" id="startdate4" placeholder="需求接收日期">
+        </label>
+      </div>
+    </section>
+  </div>
+  <div class="row">
+    <section class="col col-3">
+      <div class="form-group">
+        <label>卸载时间(开始)</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker8" type="text" placeholder="卸载时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+    <section class="col col-3">
+      <div class="form-group">
+        <label>卸载时间(结束)</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker9" type="text" placeholder="卸载时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+    <section class="col col-3">
+      <div class="form-group">
+        <label>理货时间(开始)</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker10" type="text" placeholder="理货时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+    <section class="col col-3">
+      <div class="form-group">
+        <label>理货时间(结束)</label>
+
+        <div class="input-group">
+          <input class="form-control" id="timepicker11" type="text" placeholder="理货时间">
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</fieldset>
+
+</form>
+
+
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseTwo-1"
+                               class="collapsed"><i class="fa fa-fw fa-chevron-circle-right  txt-color-green"></i><i
+        class="fa fa-fw fa-chevron-circle-down  txt-color-red"></i>发货方信息</a></h4>
+  </div>
+  <div id="collapseTwo-1" class="panel-collapse collapse">
+    <div class="panel-body">
+
+
+      <form action="" id="Form2" class="smart-form" novalidate="novalidate">
+
+        <fieldset>
+          <section>
+            <label class="input">
+              <i class="icon-prepend fa fa-map-marker"></i>
+              <input type="text" name="lname" placeholder="需求接收区">
+            </label>
+          </section>
+          <div class="row">
+            <section class="col col-6">
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="lname" placeholder="发货客户">
+              </label>
+            </section>
+            <section class="col col-6">
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="lname" placeholder="联系人">
+              </label>
+            </section>
+          </div>
+
+          <div class="row">
+            <section class="col col-6">
+              <label class="input">
+                <i class="icon-prepend fa fa-envelope-o"></i>
+                <input type="email" name="email" placeholder="电子邮件">
+              </label>
+            </section>
+            <section class="col col-6">
+              <label class="input">
+                <i class="icon-prepend fa fa-phone"></i>
+                <input type="tel" name="phone" placeholder="电话" data-mask="(999) 9999-9999">
+              </label>
+            </section>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <section>
+            <label class="input">
+              <i class="icon-prepend fa fa-map-marker"></i>
+              <input type="text" name="lname" placeholder="客户位置点">
+            </label>
+          </section>
+          <div class="row">
+            <section class="col col-3">
+              <label class="input">
+                <input type="text" name="code" placeholder="省">
+              </label>
+            </section>
+
+            <section class="col col-3">
+              <label class="input">
+                <input type="text" name="code" placeholder="市">
+              </label>
+            </section>
+
+            <section class="col col-3">
+              <label class="input">
+                <input type="text" name="code" placeholder="区县">
+              </label>
+            </section>
+
+
+            <section class="col col-3">
+              <label class="input">
+                <input type="text" name="code" placeholder="邮编">
+              </label>
+            </section>
+          </div>
+
+          <section>
+            <label for="address" class="input">
+              <input type="text" name="address" placeholder="地址">
+            </label>
+          </section>
+
+          <section>
+            <label class="textarea">
+              <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+            </label>
+          </section>
+        </fieldset>
+      </form>
+
+
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseThree-1"
+                               class="collapsed"><i class="fa fa-fw fa-chevron-circle-right  txt-color-green"></i><i
+        class="fa fa-fw fa-chevron-circle-down  txt-color-red"></i>送达方信息</a></h4>
+  </div>
+  <div id="collapseThree-1" class="panel-collapse collapse">
+    <div class="panel-body">
+
+
+      <form action="" id="checkout-formD" class="smart-form" novalidate="novalidate">
+
+        <fieldset>
+
+          <div class="row">
+
+            <section class="col col-6">
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="lname" placeholder="收货客户">
+              </label>
+
+            </section>
+            <section class="col col-6">
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="lname" placeholder="联系人">
+              </label>
+            </section>
+          </div>
+
+          <div class="row">
+            <section class="col col-6">
+              <label class="input">
+                <i class="icon-prepend fa fa-envelope-o"></i>
+                <input type="email" name="email" placeholder="电子邮件">
+              </label>
+            </section>
+            <section class="col col-6">
+              <label class="input">
+                <i class="icon-prepend fa fa-phone"></i>
+                <input type="tel" name="phone" placeholder="电话" data-mask="(999) 9999-9999">
+              </label>
+            </section>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <section>
+            <label class="input">
+              <i class="icon-prepend fa fa-map-marker"></i>
+              <input type="text" name="lname" placeholder="收货位置点">
+            </label>
+          </section>
+          <div class="row">
+            <section class="col col-3">
+              <label class="input">
+                <input type="text" name="code" placeholder="省">
+              </label>
+            </section>
+
+            <section class="col col-3">
+              <label class="input">
+                <input type="text" name="code" placeholder="市">
+              </label>
+            </section>
+
+            <section class="col col-3">
+              <label class="input">
+                <input type="text" name="code" placeholder="区县">
+              </label>
+            </section>
+
+
+            <section class="col col-3">
+              <label class="input">
+                <input type="text" name="code" placeholder="邮编">
+              </label>
+            </section>
+          </div>
+
+          <section>
+            <label for="address" class="input">
+              <input type="text" name="address" placeholder="地址">
+            </label>
+          </section>
+
+          <section>
+            <label class="textarea">
+              <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+            </label>
+          </section>
+        </fieldset>
+
+
+      </form>
+
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2" href="#collapseFour-1"
+                               class="collapsed"><i class="fa fa-fw fa-chevron-circle-right  txt-color-green"></i><i
+        class="fa fa-fw fa-chevron-circle-down  txt-color-red"></i>资源信息</a></h4>
+  </div>
+  <!-- <iframe id="uploadIframe" name="uploadIframe" style="display: none;"></iframe>-->
+  <div id="collapseFour-1" class="panel-collapse collapse">
+    <div class="panel-body">
+      <form action="" id="resource-form" target="uploadIframe" class="smart-form" novalidate="novalidate">
+
+        <fieldset>
+          <div class="row">
+            <section class="col col-4">
+              <label class="input">
+                <i class="icon-prepend fa  fa-tag"></i>
+                <input type="number" name="Cr" placeholder="资源类型">
+              </label>
+            </section>
+            <section class="col col-3">
+              <label class="input">
+                <i class="icon-prepend fa  fa-list-ol "></i>
+                <input type="number" name="Cr" placeholder="数量">
+              </label>
+            </section>
+          </div>
+
+          <div class="row">
+            <section class="col col-4">
+              <label class="input">
+                <i class="icon-prepend fa  fa-tag"></i>
+                <input type="number" name="Cr" placeholder="资源类型">
+              </label>
+            </section>
+            <section class="col col-3">
+              <label class="input">
+                <i class="icon-prepend fa  fa-list-ol "></i>
+                <input type="text" name="Cr" placeholder="数量">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <label class="input">
+                <i class="icon-prepend fa  fa-tag"></i>
+                <input type="number" name="Cr" placeholder="资源类型">
+              </label>
+            </section>
+            <section class="col col-3">
+              <label class="input">
+                <i class="icon-prepend fa  fa-list-ol "></i>
+                <input type="text" name="Cr" placeholder="数量">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section>
+              <label class="textarea">
+                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+              </label>
+            </section>
+          </div>
+
+
+        </fieldset>
+      </form>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
