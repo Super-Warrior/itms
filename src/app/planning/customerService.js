@@ -1,4 +1,4 @@
-angular.module('itms.planning.assignment')
+angular.module('itms.planning.common')
     .factory('customerService', ['$http', 'config', customerService]);
 
 function customerService($http, config) {

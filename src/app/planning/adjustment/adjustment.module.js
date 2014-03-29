@@ -1,7 +1,8 @@
 angular
     .module('itms.planning.adjustment', [
         'ui.router',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'itms.planning.common'
     ])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider

@@ -108,7 +108,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
 
     $scope.searchSite = function () {
         var modalInstance = $modal.open({
-            templateUrl: 'views/planning/searchSite.html',
+            templateUrl: 'app/planning/searchSite.tpl.html',
             controller: SearchSiteCtrl,
             resolve: {
                 items: function () {
@@ -125,7 +125,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
 
     $scope.searchDepCustomer = function () {
         var modalInstance = $modal.open({
-            templateUrl: 'views/planning/searchCustomer.html',
+            templateUrl: 'app/planning/searchCustomer.tpl.html',
             controller: SearchCustomerCtrl,
             resolve: {
                 items: function () {
