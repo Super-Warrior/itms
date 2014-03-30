@@ -1,8 +1,14 @@
-angular.module('itms').controller('shellCtrl', function ($rootScope, $location) {
+angular.module('itms').controller('shellCtrl', function($rootScope, $location) {
+
+    $.navbar_height = 49;
+
+    $.root_ = $('body');
+    $.left_panel = $('#left-panel');
+    $.shortcut_dropdown = $('#shortcut');
 
     drawBreadCrumb();
     $rootScope.$on('$routeChangeStart',
-        function (event, current, previous) {
+        function(event, current, previous) {
             console.log('rout change start');
             drawBreadCrumb();
             // update title with breadcrumb...
@@ -19,29 +25,29 @@ angular.module('itms').controller('shellCtrl', function ($rootScope, $location) 
         openedSign: '<em class="fa fa-minus-square-o"></em>'
     });
 
-    $('#main').resize(function () {
+    $('#main').resize(function() {
         nav_page_height();
         //check_if_mobile_width();
     });
 
-    $('nav').resize(function () {
+    $('nav').resize(function() {
         nav_page_height();
     });
 
     // COLLAPSE LEFT NAV
-    $('.minifyme').click(function (e) {
+    $('.minifyme').click(function(e) {
         $('body').toggleClass("minified");
         $(this).effect("highlight", {}, 500);
         e.preventDefault();
     });
 
     // HIDE MENU
-    $('#hide-menu >:first-child > a').click(function (e) {
+    $('#hide-menu >:first-child > a').click(function(e) {
         $('body').toggleClass("hidden-menu");
         e.preventDefault();
     });
 
-    $('#show-shortcut').click(function (e) {
+    $('#show-shortcut').click(function(e) {
         if ($.shortcut_dropdown.is(":visible")) {
             shortcut_buttons_hide();
         } else {
@@ -50,7 +56,7 @@ angular.module('itms').controller('shellCtrl', function ($rootScope, $location) 
         e.preventDefault();
     });
 
-    $('#activity').click(function (e) {
+    $('#activity').click(function(e) {
         var $this = $(this);
 
         if ($this.find('.badge').hasClass('bg-color-red')) {
@@ -70,7 +76,7 @@ angular.module('itms').controller('shellCtrl', function ($rootScope, $location) 
         e.preventDefault();
     });
 
-    $('#show-shortcut').click(function (e) {
+    $('#show-shortcut').click(function(e) {
         if ($.shortcut_dropdown.is(":visible")) {
             shortcut_buttons_hide();
         } else {
