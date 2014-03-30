@@ -1,7 +1,6 @@
 angular.module('itms').controller('shellCtrl', function($rootScope, $location) {
 
     $.navbar_height = 49;
-
     $.root_ = $('body');
     $.left_panel = $('#left-panel');
     $.shortcut_dropdown = $('#shortcut');

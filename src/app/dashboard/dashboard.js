@@ -1,14 +1,16 @@
 angular
-    .module('itms.dashboard', [])
+    .module('itms.dashboard', ['ui.router', 'ui.bootstrap'])
     .config(['$stateProvider',
-        function ($stateProvider) {
+        function($stateProvider) {
             $stateProvider
                 .state('dashboard', {
                     url: '/dashboard',
-                    //template: '<div>this is transportation state</div><div ui-view></div>',
-                    controller: ['$scope', '$state', 'contacts', 'utils',
-                        function ($scope, $state, contacts, utils) {
-
-                        }]
+                    views: {
+                        'container@': {
+                            templateUrl: 'app/dashboard/dashboard.tpl.html',
+                            controller: 'DashboardCtrl'
+                        }
+                    }
                 });
-        }]);
+        }
+    ]);
