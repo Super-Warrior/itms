@@ -26,6 +26,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
    $scope.selectedPosition = { "dep": [], "rec": [] };
    $scope.selectedCustomer = { "dep": [], "rec": [] };
    $scope.quickResult = [];
+   $scope.createDate = "";
    $scope.quickSearch = function () {
       var data = {
          SerType: "AND",
@@ -35,12 +36,15 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
          depLocCode: $scope.selectedPosition.dep.toString(),
          recCustomer: $scope.selectedCustomer.rec.toString(),
          recLocCode: $scope.selectedPosition.rec.toString(),
-         createDate: $("#ercreatedate").val(),
+         createDate: $scope.createDate,
          ERITNStatus: ["UNAS"],
          ERStatus: [""]
       };
       $http.post(config.baseUrl + "ER/ERQuickSearch" + "?" + $.param(data)).then(function (result) {
-         $scope.quickResult = result.data;
+         if (result.data.errorMessage)
+            $scope.quickResult = [];
+         else
+            $scope.quickResult = result.data;
          $scope.selectedItems = [];
          if ($scope.quickResult.length) {
             var icon = $("#wid-result");
@@ -49,12 +53,12 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
          }
       });
    };
-
    $scope.reset = function () {
+
       $scope.selectedCustomer = { "dep": [], "rec": [] };
       $scope.selectedSite = [];
       $scope.selectedPosition = { "dep": [], "rec": [] };
-      $.datepicker._clearDate($("#ercreatedate"));
+      $scope.createDate = "";
       $scope.user = "";
    };
 
@@ -141,7 +145,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
       customerService.searchCustomer("car").then(function (result) {
          $scope.carriers = result.data;
          $scope.modalInstance = $modal.open({
-            templateUrl: "app/planning/mergeERRequest.tpl.html",
+            templateUrl: "app/planning/assignment/merge.tpl.html",
             scope: $scope
          });
       }).then(function () {
@@ -166,8 +170,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
       if (!$scope.isAnythingSelected())
          return;
 
-      $scope.createData.reqDelDate1 = $("#startdateEO").val();
-      $scope.createData.reqDelDate2 = $("#deldateEO").val();
+      $scope.createData.reqDelDate1 = $("#arriveDate").val();
+      $scope.createData.reqDelDate2 = $("#sendDate").val();
 
       $scope.createData.ERID = $scope.selectedItems.map(function (i) {
          return i.requirementDetail.pk.erID;
@@ -192,7 +196,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
       customerService.searchCustomer("car").then(function (result) {
          $scope.carriers = result.data;
          $scope.modalInstance = $modal.open({
-            templateUrl: "app/planning/adjustDeliveryMethod.tpl.html",
+            templateUrl: "app/planning/assignment/adjustDeliveryMethod.tpl.html",
             scope: $scope
          });
       });
