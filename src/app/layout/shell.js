@@ -1,17 +1,17 @@
 angular.module('itms').controller('shellCtrl', function ($rootScope, $location) {
 
-//    drawBreadCrumb();
+    drawBreadCrumb();
     $rootScope.$on('$routeChangeStart',
         function (event, current, previous) {
             console.log('rout change start');
-//            drawBreadCrumb();
+            drawBreadCrumb();
             // update title with breadcrumb...
             document.title = $(".breadcrumb li:last-child").text();
         });
 
     $.menu_speed = 235;
 
-   // nav_page_height();
+    nav_page_height();
     $('nav ul').jarvismenu({
         accordion: true,
         speed: $.menu_speed,
@@ -20,12 +20,12 @@ angular.module('itms').controller('shellCtrl', function ($rootScope, $location) 
     });
 
     $('#main').resize(function () {
-     //   nav_page_height();
+        nav_page_height();
         //check_if_mobile_width();
     });
 
     $('nav').resize(function () {
-       // nav_page_height();
+        nav_page_height();
     });
 
     // COLLAPSE LEFT NAV
