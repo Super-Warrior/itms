@@ -28,7 +28,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
     $scope.quickResult = [];
     $scope.quickSearch = function () {
         var data = {
-            SerType: "OR",
+            SerType: "AND",
             userID: config.userID,
             depAreaCode: $scope.selectedSite.toString(),
             depCustomer: $scope.selectedCustomer.dep.toString(),
@@ -62,8 +62,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
 
     $scope.searchSite = function () {
         var modalInstance = $modal.open({
-            templateUrl: "views/planning/searchSite.html",
-            controller: SearchSiteCtrl
+           templateUrl: "app/planning/searchSite.tpl.html",
+            controller: searchSiteCtrl
             //resolve: {
             //   items: function () {
             //      return $scope.selectedItems();
@@ -79,8 +79,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
 
     $scope.searchCustomer = function (type) {
         var modalInstance = $modal.open({
-            templateUrl: "views/planning/searchCustomer.html",
-            controller: SearchCustomerCtrl,
+           templateUrl: "app/planning/searchCustomer.tpl.html",
+            controller: searchCustomerCtrl,
             resolve: { "type": type }
         });
         modalInstance.result.then(function (selectedItem) {
@@ -93,7 +93,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
     $scope.searchLocation = function () {
         var modalInstance = $modal.open({
             templateUrl: "",
-            controller: SearchLocationCtrl,
+            controller: searchLocationCtrl,
             resolve: {
                 items: function () {
                     return $scope.selectedItems();
@@ -180,6 +180,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
             if (!result.errorMessage || result.errorMessage === "OK") {
                 common.notifier.success("运单已成功创建...");
             }
+        }).then(function() {
+           $scope.quickSearch();
         });
     };
 
@@ -221,6 +223,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
             if (!result.errorMessage || result.errorMessage === "OK") {
                 common.notifier.success("数据更新成功...");
             }
+        }).then(function () {
+           $scope.quickSearch();
         });
     };
 
@@ -248,6 +252,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
                 if (!result.errorMessage || result.errorMessage === "OK") {
                     common.notifier.success("删除操作成功...");
                 }
+            }).then(function () {
+               $scope.quickSearch();
             });
     };
 
@@ -276,6 +282,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
                 if (!result.errorMessage || result.errorMessage === "OK") {
                     common.notifier.success("删除操作成功...");
                 }
+            }).then(function () {
+               $scope.quickSearch();
             });
     };
 }
