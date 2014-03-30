@@ -18,7 +18,7 @@
                 <div class="row">
                   <section class="col col-4">
                     <label class="input"> <i class="icon-prepend fa fa-sitemap"></i>
-                      <input type="text" name="CRP2" placeholder="站点代码">
+                      <input type="text" name="CRP2" ng-model="selectedSite" placeholder="站点代码">
                     </label>
                   </section>
                   <section class="col col-2">
@@ -30,17 +30,17 @@
                 <div class="row">
                   <section class="col col-4">
                     <label class="input"> <i class="icon-prepend fa fa-arrow-circle-up"></i>
-                      <input type="text" name="CRP2" placeholder="发货方代码">
+                      <input type="text" name="CRP2" ng-model="selectedCustomer.dep" placeholder="发货方代码">
                     </label>
                   </section>
                   <section class="col col-2">
-                    <button class="btn btn-success btn-sm" ng-click="searchDepCustomer()"><i class="fa fa-search "></i>
+                    <button class="btn btn-success btn-sm" ng-click="searchCustomer('dep')"><i class="fa fa-search "></i>
                       发货方搜索
                     </button>
                   </section>
                   <section class="col col-4">
                     <label class="input"> <i class="icon-prepend fa fa-map-marker"></i>
-                      <input type="text" name="CRP2" placeholder="发货方位置">
+                      <input type="text" name="CRP2" ng-model="selectedPosition.dep" placeholder="发货方位置">
                     </label>
                   </section>
                   <section class="col col-2">
@@ -52,11 +52,11 @@
                 <div class="row">
                   <section class="col col-4">
                     <label class="input"> <i class="icon-prepend fa fa-arrow-circle-down"></i>
-                      <input type="text" name="CRP2" placeholder="收货方代码">
+                      <input type="text" name="CRP2" ng-model="selectedCustomer.rec" placeholder="收货方代码">
                     </label>
                   </section>
                   <section class="col col-2">
-                    <button class="btn btn-success btn-sm" ng-click="searchRecCustomer()"><i class="fa fa-search "></i>
+                    <button class="btn btn-success btn-sm" ng-click="searchCustomer('rec')"><i class="fa fa-search "></i>
                       收货方搜索
                     </button>
                   </section>
@@ -93,7 +93,7 @@
                     class="fa fa-search"></i>
                   查询
                 </button>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><i
+                <button type="button" class="btn btn-default" ng-click="reset()" data-dismiss="modal"><i
                     class="fa fa-reply-all "></i>
                   重置
                 </button>

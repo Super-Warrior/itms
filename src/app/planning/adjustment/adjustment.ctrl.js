@@ -7,13 +7,26 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
    $scope.module = '计划';
    $scope.title = '分配调整';
 
+   $scope.orders = [];
+
+   $scope.selectedItems = [];
+   $scope.selectedSite = [];
+   $scope.selectedPosition = { "dep": [], "rec": [] };
+   $scope.selectedCustomer = { "dep": [], "rec": [] };
+
+   $scope.reset = function () {
+      $scope.selectedCustomer = { "dep": [], "rec": [] };
+      $scope.selectedSite = [];
+      $scope.selectedPosition = { "dep": [], "rec": [] };
+      $scope.createDate = "";
+      $scope.user = "";
+   };
+
    $scope.searchAssignableRequest = function () {
       orderService.queryAll().success(function (data) {
          $scope.orders = orderService.getRequirementPartial(data);
       });
    };
-
-   $scope.selectedItems = [];
 
    $scope.reallocate = function () {
       common
@@ -104,49 +117,39 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
       }
    };
 
-   $scope.orders = [];
 
    $scope.searchSite = function () {
       var modalInstance = $modal.open({
-         templateUrl: 'app/planning/searchSite.tpl.html',
-         controller: searchSiteCtrl,
-         resolve: {
-            items: function () {
-               return $scope.selectedItems;
-            }
-         }
+         templateUrl: "app/planning/searchSite.tpl.html",
+         controller: searchSiteCtrl
       });
-      modalInstance.result.then(function (selectedItem) {
-         $scope.selected = selectedItem;
+      modalInstance.result.then(function (keys) {
+         $scope.selectedSite = keys;
       }, function () {
          $log.info('Modal dismissed at: ' + new Date());
       });
    };
 
-   $scope.searchDepCustomer = function () {
-      var modalInstance = $modal.open({
-         templateUrl: 'app/planning/searchCustomer.tpl.html',
-         controller: searchCustomerCtrl,
-         resolve: {
-            items: function () {
-               return $scope.selectedItems;
-            }
-         }
-      });
-      modalInstance.result.then(function (selectedItem) {
-         $scope.selected = selectedItem;
-      }, function () {
-         $log.info('Modal dismissed at: ' + new Date());
-      });
-   };
-
-   $scope.searchRecCustomer = function () {
+   $scope.searchCustomer = function (type) {
       var modalInstance = $modal.open({
          templateUrl: "app/planning/searchCustomer.tpl.html",
          controller: searchCustomerCtrl,
+         resolve: { "type": type }
+      });
+      modalInstance.result.then(function (selectedItem) {
+         $scope.selectedCustomer[type] = selectedItem;
+      }, function () {
+         $log.info('Modal dismissed at: ' + new Date());
+      });
+   };
+
+   $scope.searchLocation = function () {
+      var modalInstance = $modal.open({
+         templateUrl: "",
+         controller: searchLocationCtrl,
          resolve: {
             items: function () {
-               return $scope.selectedItems;
+               return $scope.selectedItems();
             }
          }
       });
