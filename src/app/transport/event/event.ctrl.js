@@ -52,6 +52,10 @@ function MyWorkSpace($scope, $modal,eoService, common) {
 
     $scope.selectedItems = [];
 
+    $scope.disableAction = function() {
+        return $scope.selectedItems.length === 0;
+    };
+
     $scope.filterEvent = function (eventType) {
         eoService
             .queryByEventType(eventType)

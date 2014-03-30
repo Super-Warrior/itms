@@ -138,10 +138,7 @@
                 执行动作 <i class="fa fa-caret-down"></i>
               </button>
               <ul class="dropdown-menu pull-right">
-                <li>
-                  <a href="javascript:void(0)"> <i class="fa  fa-search-plus "></i> 查看订单</a>
-                </li>
-                <li>
+                <li ng-class="{disabled:disableAction()}">
                   <a ng-click="handleEvent()"> <i class="fa fa-edit"></i> 事件处理</a>
                 </li>
               </ul>
@@ -157,7 +154,6 @@
           <!-- end widget edit box -->
           <!-- widget content -->
           <div class="widget-body no-padding">
-
             <div class="widget-body-toolbar"></div>
             <div data-im-table can-select header-titles="columns" my-source="orders" selected-items="selectedItems"></div>
           </div>
