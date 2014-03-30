@@ -7,21 +7,28 @@ angular
         'itms.transport',
         'itms.planning',
         'itms.requirement',
-        'itms.common'
+        'itms.common',
+        'itms.dashboard'
     ])
-    .run(['$rootScope', '$state', '$stateParams', '$log', bootstrap])
+    .run(['$rootScope', '$state', '$stateParams', '$log', '$location', bootstrap])
     .config(['$urlRouterProvider', routerConfig]);
 
 function routerConfig($urlRouterProvider) {
     $urlRouterProvider
 
-//        .when('/c?id', '/transportation/eventmaintenance')
-//        .when('/user/:id', '/transportation/eventmaintenance')
-        .otherwise('/');
+    //        .when('/c?id', '/transportation/eventmaintenance')
+    //        .when('/user/:id', '/transportation/eventmaintenance')
+    .otherwise('dashboard');
 }
 
-function bootstrap($rootScope, $state, $stateParams, $log) {
+function bootstrap($rootScope, $state, $stateParams, $log, $location) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $log.info('app start');
+    $log.debug($state);
+    $log.debug($stateParams);
+    $log.debug($location);
+    if ($location.$$path === '') {
+        $state.go('dashboard');
+    }
 }
