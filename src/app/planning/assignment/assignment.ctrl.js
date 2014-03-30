@@ -145,7 +145,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
       customerService.searchCustomer("car").then(function (result) {
          $scope.carriers = result.data;
          $scope.modalInstance = $modal.open({
-            templateUrl: "app/planning/assignment/mergeERRequest.tpl.html",
+            templateUrl: "app/planning/assignment/merge.tpl.html",
             scope: $scope
          });
       }).then(function () {
