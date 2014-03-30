@@ -1,4 +1,4 @@
-angular.module("itms.requirement.upload").controller("RequirementUploadCtrl",
+angular.module("itms.requirement.upload").controller("requirementUploadCtrl",
     ["$scope", "$http", "config", "$compile", "$modal", "$log", "common" , controller]);
 
 function controller($scope, $http, config, $compile, $modal, $log, common) {

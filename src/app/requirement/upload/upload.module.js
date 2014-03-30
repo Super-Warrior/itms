@@ -10,7 +10,7 @@ angular
                 views: {
                     'container@': {
                         templateUrl: 'app/requirement/upload/requirementUpload.tpl.html',
-                        controller: 'RequirementUploadCtrl'
+                        controller: 'requirementUploadCtrl'
 
                     }
                 }
