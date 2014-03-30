@@ -11,3 +11,4 @@ app/vendor
 vendor
 sample
 compile
+/src/Web.config
