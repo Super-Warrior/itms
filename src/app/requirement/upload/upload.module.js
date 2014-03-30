@@ -7,6 +7,9 @@ angular
         $stateProvider
             .state('requirement.upload', {
                 url: '/upload',
+                data: {
+                    displayName: '需求上载'
+                },
                 views: {
                     'container@': {
                         templateUrl: 'app/requirement/upload/requirementUpload.tpl.html',

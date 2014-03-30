@@ -8,6 +8,9 @@ angular
             $stateProvider
                 .state('requirement', {
                     abstract: true,
+                    data: {
+                        displayName: '需求管理'
+                    },
                     url: '/requirement'
                 });
 

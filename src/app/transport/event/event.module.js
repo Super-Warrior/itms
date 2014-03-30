@@ -7,11 +7,13 @@ angular
         $stateProvider
             .state('transport.event', {
                 url: '/event',
+                data: {
+                    displayName: '事件管理'
+                },
                 views: {
                     'container@': {
                         templateUrl: 'app/transport/event/event.tpl.html',
                         controller: 'EventMaintenanceCtrl'
-
                     }
                 },
                 resolve: {

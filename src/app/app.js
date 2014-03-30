@@ -24,9 +24,9 @@ function routerConfig($urlRouterProvider) {
 function bootstrap($rootScope, $state, $stateParams, $log, $location) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $log.info('app start');
     $log.debug($state);
     $log.debug($stateParams);
+    $log.info('app start');
     $log.debug($location);
     if ($location.$$path === '') {
         $state.go('dashboard');

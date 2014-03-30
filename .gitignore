@@ -12,3 +12,4 @@ vendor
 sample
 compile
 /src/Web.config
+*.swp

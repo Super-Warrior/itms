@@ -6,6 +6,9 @@ angular
         $stateProvider
             .state('transport.network', {
                 url: '/network',
+                data: {
+                    displayName: '网络公司'
+                },
                 views: {
                     'container@': {
                         templateUrl: 'app/transport/network/network.tpl.html',

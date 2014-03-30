@@ -1,20 +1,33 @@
-angular.module('itms').controller('shellCtrl', function($rootScope, $location) {
+angular.module('itms').controller('shellCtrl', function($rootScope) {
 
+    $.menu_speed = 235;
     $.navbar_height = 49;
     $.root_ = $('body');
     $.left_panel = $('#left-panel');
     $.shortcut_dropdown = $('#shortcut');
 
-    drawBreadCrumb();
-    $rootScope.$on('$routeChangeStart',
-        function(event, current, previous) {
-            console.log('rout change start');
-            drawBreadCrumb();
-            // update title with breadcrumb...
-            document.title = $(".breadcrumb li:last-child").text();
-        });
+    //to generate breadcrumb,
 
-    $.menu_speed = 235;
+    drawBreadCrumb();
+    $rootScope.$on('$stateChangeSuccess',
+        function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.paths = [];
+            console.log(toState);
+            getPath(toState);
+        }
+    );
+
+    function getPath(state) {
+        var parent;
+        $rootScope.paths.unshift({
+            state: state.name,
+            displayName: state.data.displayName
+        });
+        if (state.name.indexOf('.') > 0) {
+            parent = state.name.split('.')[0];
+            getPath($rootScope.$state.get(parent));
+        }
+    }
 
     nav_page_height();
     $('nav ul').jarvismenu({
@@ -83,7 +96,4 @@ angular.module('itms').controller('shellCtrl', function($rootScope, $location) {
         }
         e.preventDefault();
     });
-
-    //$location.path('/');
-
 });

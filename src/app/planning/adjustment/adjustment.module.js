@@ -8,6 +8,9 @@ angular
         $stateProvider
             .state('planning.adjustment', {
                 url: '/adjust',
+                data: {
+                    displayName: '分配调整'
+                },
                 views: {
                     'container@': {
                         templateUrl: 'app/planning/adjustment/adjustment.tpl.html',

@@ -6,6 +6,9 @@ angular.module('itms.requirement.create',[
         $stateProvider
             .state('requirement.create',{
                 url: '/create',
+                data: {
+                    displayName: '新建需求'
+                },
                 views: {
                     'container@': {
                         templateUrl: 'app/requirement/create/lotusNewER.html',
