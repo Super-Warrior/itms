@@ -56,10 +56,6 @@ angular.module('common.directives.table', [])
                 "sDefaultContent": "<input type='checkbox'/>",
                 "bSortable": false
             });
-
-        source.forEach(function(ele, index) {
-            ele['_rowId'] = +((new Date).getTime()) + index;
-        });
         table = element.dataTable(settings);
         bindEventHandler(scope, table);
     }
@@ -87,7 +83,6 @@ angular.module('common.directives.table', [])
             });
         }
 
-
         if (typeof scope.canSelect !== "undefined") {
             t.on('click', 'tbody tr', function(e) {
                 var selectedRow = this,
@@ -109,7 +104,6 @@ angular.module('common.directives.table', [])
                     }
                 });
 
-
                 function isRowSelected(row) {
                     return scope.selectedItems.some(function(item) {
                         if (item._rowId === row._DT_RowIndex) {
@@ -130,7 +124,6 @@ angular.module('common.directives.table', [])
                     initilizeTable(source, element, scope);
                     isInitilize = false;
                 } else if (!isInitilize) {
-                    //  _resetSelected(scope);
                     refreshData(source);
                 }
             });
@@ -139,7 +132,6 @@ angular.module('common.directives.table', [])
 
     function refreshData(source) {
         table.fnClearTable(false);
-
         source && table.fnAddData(source);
         table.fnDraw();
     }
