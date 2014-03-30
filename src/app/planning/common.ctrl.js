@@ -1,10 +1,10 @@
 angular
-    .module('itms.planning.common',[])
-    .controller('SearchSiteCtrl', ['$scope', '$http', 'config', '$modalInstance', SearchSiteCtrl])
-    .controller('SearchCustomerCtrl', ['$scope', '$http', 'config', '$modalInstance','customerService','type', SearchCustomerCtrl])
-    .controller('SearchLocationCtrl', ['$scope', '$modalInstance','items', SearchLocationCtrl])
+   .module('itms.planning.common', [])
+   .controller('searchSiteCtrl', ['$scope', '$http', 'config', '$modalInstance', searchSiteCtrl])
+   .controller('searchCustomerCtrl', ['$scope', '$http', 'config', '$modalInstance', 'customerService', 'type', searchCustomerCtrl])
+   .controller('searchLocationCtrl', ['$scope', '$modalInstance', 'items', searchLocationCtrl]);
 
-function SearchSiteCtrl($scope, $http, config, $modalInstance) {
+function searchSiteCtrl($scope, $http, config, $modalInstance) {
     $scope.items = [];
     $scope.adjust = {
         deliveryMethod: '',
@@ -49,7 +49,7 @@ function SearchSiteCtrl($scope, $http, config, $modalInstance) {
     };
 };
 
-function SearchCustomerCtrl ($scope, $http, config, $modalInstance, customerService, type) {
+function searchCustomerCtrl ($scope, $http, config, $modalInstance, customerService, type) {
     $scope.type = type;
     $scope.items = [];
     $scope.ok = function () {
@@ -72,7 +72,7 @@ function SearchCustomerCtrl ($scope, $http, config, $modalInstance, customerServ
     };
 };
 
-function SearchLocationCtrl ($scope, $modalInstance, items) {
+function searchLocationCtrl ($scope, $modalInstance, items) {
     $scope.items = items;
     $scope.adjust = {
         deliveryMethod: '',
