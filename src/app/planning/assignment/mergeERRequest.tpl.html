@@ -110,7 +110,8 @@
                     <div class="form-group">
                         <label class="input">
                             <i class="icon-prepend fa fa-calendar"></i>
-                            <input type="text" name="startdate" id="startdateEO" placeholder="要求达到日期">
+                            <input type="text" id="arriveDate" ng-model="createDate.reqDelDate1" im-datepicker  placeholder="要求达到日期">
+                            
                         </label>
                     </div>
                 </section>
@@ -118,7 +119,7 @@
                     <div class="form-group">
                         <label class="input">
                             <i class="icon-prepend fa fa-calendar"></i>
-                            <input type="text" name="startdate" id="deldateEO" placeholder="要求配送日期">
+                            <input type="text" id="sendDate" ng-model="createDate.reqDelDate2" im-datepicker  placeholder="要求配送日期">
                         </label>
                     </div>
                 </section>
@@ -145,17 +146,4 @@
 </div>
 <script>
     
-    $('#startdateEO').datepicker({
-        dateFormat: 'yy-mm-dd',
-        prevText: '<i class="fa fa-chevron-left"></i>',
-        nextText: '<i class="fa fa-chevron-right"></i>',
-
-    });
-
-    $('#deldateEO').datepicker({
-        dateFormat: 'yy-mm-dd',
-        prevText: '<i class="fa fa-chevron-left"></i>',
-        nextText: '<i class="fa fa-chevron-right"></i>',
-
-    });
 </script>
