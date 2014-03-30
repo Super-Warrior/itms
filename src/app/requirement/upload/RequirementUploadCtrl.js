@@ -1,7 +1,7 @@
 angular.module("itms.requirement.upload").controller("requirementUploadCtrl",
-    ["$scope", "$http", "config", "$compile", "$modal", "$log", "common" , controller]);
+    ["$scope", "$http", "config", "$compile", "$modal", "$log", "common", "cfpLoadingBar", controller]);
 
-function controller($scope, $http, config, $compile, $modal, $log, common) {
+function controller($scope, $http, config, $compile, $modal, $log, common, cfpLoadingBar) {
     $scope.module = "需求管理";
     $scope.title = "站点上载";
     $scope.selectFile = function (element) {
@@ -65,22 +65,25 @@ function controller($scope, $http, config, $compile, $modal, $log, common) {
                 dataType: "",
                 url: config.baseUrl + "ER/Upload",
                 success: function (data) {
-                    //var re1 = />-</gi;
-                    //data = data.replace(re1, '');
-                    //var re2 = /<[^>]+>/gi;
-                    //data = data.replace(re2, '');
+                   cfpLoadingBar.complete();
                     $scope.updateTable(data);
                     if (data && data.key) {
                         common.notifier.success("上载内容已成功");
                         $scope.hasUploaded = true;
                         $scope.expandTable();
                     } else {
+                       common.notifier.cancel(data);
                         $scope.hasUploaded = false;
                     }
 
                     $scope.$apply();
+                },
+                error: function(data) {
+                   cfpLoadingBar.complete();
+                   common.notifier.cancel(data);
                 }
             };
+           cfpLoadingBar.start();
             $('#checkout-form').ajaxSubmit(submitData);
         }
     };
