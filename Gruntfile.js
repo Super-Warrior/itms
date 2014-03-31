@@ -6,6 +6,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-newer');
+    grunt.loadNpmTasks('grunt-karma');
 
     var userConfig = require('./build.config.js');
 
@@ -196,7 +197,19 @@ module.exports = function (grunt) {
 //                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
-        }
+        },
+        
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                singleRun: true,
+                autoWatch: false
+            },
+            debug: {
+                configFile: 'karma.conf.js',
+                singleRun: false
+            }
+        },
     };
 
     grunt.util._.extend(taskConfig, userConfig);

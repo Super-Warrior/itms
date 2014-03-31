@@ -2,27 +2,21 @@
 // http://karma-runner.github.io/0.10/config/configuration-file.html
 
 module.exports = function (config) {
+
     config.set({
         // base path, that will be used to resolve files and exclude
         basePath: '',
 
         // testing framework to use (jasmine/mocha/qunit/...)
-        frameworks: ['mocha'],
+        frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
         files: [
-            'app/vendor/angular/angular.js',
-            'app/vendor/angular-bootstrap/ui-bootstrap.js',
-            'app/vendor/angular-loading-bar/build/loading-bar.js',
-            'app/vendor/jquery/dist/jquery.js',
-            'app/vendor/angular-mocks/angular-mocks.js',
-            'app/vendor/angular-resource/angular-resource.js',
-            'app/vendor/angular-cookies/angular-cookies.js',
-            'app/vendor/angular-sanitize/angular-sanitize.js',
-            'app/vendor/angular-route/angular-route.js',
-            'app/scripts/*.js',
-            'app/scripts/**/*.js',
-            //'test/mock/**/*.js',
+            'vendor/angular/angular.js',
+            'vendor/jquery/dist/jquery.js',
+            'vendor/angular-mocks/angular-mocks.js',
+            'vendor/chai/chai.js',
+            'src/common/breadcrumb/breadcrumb.js',
             'test/spec/**/*.js'
         ],
 
@@ -34,12 +28,10 @@ module.exports = function (config) {
 
         reporters: ['progress'],
 
-        plugins: [
-            'karma-jasmine',
-            'karma-mocha',
-            'karma-phantomjs-launcher',
-            'karma-chrome-launcher'
-        ],
+        //plugins: [
+            //'karma-mocha',
+            //'karma-chrome-launcher'
+        //],
 
         color: true,
         // level of logging
@@ -48,7 +40,8 @@ module.exports = function (config) {
 
 
         // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: false,
+        // be sure to set autoWatch to true if you want to debug in browser
+        autoWatch: true,
 
 
         // Start these browsers, currently available:
@@ -59,7 +52,7 @@ module.exports = function (config) {
         // - Safari (only Mac)
         // - PhantomJS
         // - IE (only Windows)
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
 
 
         // Continuous Integration mode

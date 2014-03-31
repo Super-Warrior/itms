@@ -1,9 +1,8 @@
 'use strict';
 
-describe('Service: eoService', function () {
-    this.timeout(15000);
+describe('Service: eoService', function() {
     // load the controller's module
-    beforeEach(module('itmsApp'));
+    beforeEach(module('common.directives.breadcrumb'));
 
     var sut,
         scope,
@@ -11,25 +10,11 @@ describe('Service: eoService', function () {
 
     // Initialize the controller and a mock scope
 
-    beforeEach(inject(function (orderService, $httpBackend, $rootScope, config) {
-        sut = orderService;
+    beforeEach(inject(function($rootScope) {
         scope = $rootScope.$new();
-        //httpBackend = $httpBackend;
-        //httpBackend.when('POST', config.baseUrl + 'EO/EOQuickSearch').respond({name: 'test'});
     }));
 
-    it('should get all data', function (done) {
-        scope.$apply(function(){
-            sut.queryAll()
-                .success(function (data) {
-                    console.log(data);
-                    done();
-                }).error(function () {
-                    done();
-                });
-        });
-
-
-    })
-
+    it('should able to create new scope from rootScope', function() {
+        expect(scope).not.toBe(null);
+    });
 });
