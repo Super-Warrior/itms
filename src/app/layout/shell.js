@@ -1,6 +1,6 @@
 angular.module('itms')
-    .controller('shellCtrl',
-        function($rootScope) {
+    .controller('shellCtrl', ['$rootScope', '$state',
+        function($rootScope, $state) {
 
             $.menu_speed = 235;
             $.navbar_height = 49;
@@ -11,10 +11,16 @@ angular.module('itms')
             $rootScope.$on('$stateChangeSuccess',
                 function(event, toState, toParams, fromState, fromParams) {
                     $rootScope.paths = [];
-                    console.log(toState);
                     getPath(toState);
+                    saveLastState(toState.name);
                 }
             );
+
+            function getLastState() {
+                if (window.localStorage) {
+                    return localStorage['lastState'];
+                }
+            }
 
             function getPath(state) {
                 var parent;
@@ -25,6 +31,12 @@ angular.module('itms')
                 if (state.name.indexOf('.') > 0) {
                     parent = state.name.split('.')[0];
                     getPath($rootScope.$state.get(parent));
+                }
+            }
+
+            function saveLastState(state) {
+                if (window.localStorage) {
+                    localStorage['lastState'] = state;
                 }
             }
 
@@ -95,4 +107,9 @@ angular.module('itms')
                 }
                 e.preventDefault();
             });
-        });
+            var lastState = getLastState();
+            if (lastState) {
+                $state.go(lastState);
+            }
+        }
+    ]);

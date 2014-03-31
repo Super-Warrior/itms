@@ -27,7 +27,6 @@ function bootstrap($rootScope, $state, $stateParams, $log, $location) {
     $log.debug($state);
     $log.debug($stateParams);
     $log.info('app start');
-    $log.debug($location);
     if ($location.$$path === '') {
         $state.go('dashboard');
     }
