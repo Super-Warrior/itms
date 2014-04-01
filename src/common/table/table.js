@@ -28,11 +28,13 @@ angular.module('common.directives.table', [])
             console.log('click all');
         };
         settings = {
-            "aoColumns": scope.headerTitles,
-            "aaData": scope.dataSource,
-            "sDom": "R<'dt-top-row'Clf>r<'dt-wrapper't><'dt-row dt-bottom-row'<'row'<'col-sm-6'i><'col-sm-6 text-right'p>>",
-            "fnInitComplete": function(oSettings, json) {
-                $('.ColVis_Button').addClass('btn btn-default btn-sm').html('Columns <i class="icon-arrow-down"></i>');
+            aoColumns: scope.headerTitles,
+            aaData: scope.dataSource,
+            sDom: "R<'dt-top-row'Clf>r<'dt-wrapper't><'dt-row dt-bottom-row'<'row'<'col-sm-6'i><'col-sm-6 text-right'p>>",
+            fnInitComplete: function(oSettings, json) {
+                $('.ColVis_Button')
+                    .addClass('btn btn-default btn-sm')
+                    .html('Columns <i class="icon-arrow-down"></i>');
             }
         };
         setWatchOnTheSource(scope, element);
@@ -43,18 +45,18 @@ angular.module('common.directives.table', [])
         settings.aaData = source;
         if (scope.detailTarget)
             settings.aoColumns.unshift({
-                "sTitle": "<i class='fa fa-search'></i>",
-                "mData": null,
-                "sDefaultContent": "<a href='#'><i class='fa fa-search'></i></a>",
-                "bSortable": false
+                sTitle: "<i class='fa fa-search'></i>",
+                mData: null,
+                sDefaultContent: "<a href='#'><i class='fa fa-search'></i></a>",
+                bSortable: false
             });
 
         if (canSelect)
             settings.aoColumns.unshift({
-                "sTitle": "<input type='checkbox' id='selectAll'/>",
-                "mData": null,
-                "sDefaultContent": "<input type='checkbox'/>",
-                "bSortable": false
+                sTitle: "<input type='checkbox' id='selectAll'>",
+                mData: null,
+                sDefaultContent: "<input type='checkbox'>",
+                bSortable: false
             });
         table = element.dataTable(settings);
         bindEventHandler(scope, table);
@@ -66,9 +68,13 @@ angular.module('common.directives.table', [])
             var that = this;
             t.find('tbody input[type="checkbox"]').each(function(index, element) {
                 if ($(that).is(":checked")) {
-                    $(element).prop("checked", true);
+                    if(!$(element).is(':checked')){
+                        $(element).trigger('click');
+                    }
                 } else {
-                    $(element).prop("checked", false);
+                    if($(element).is(':checked')){
+                        $(element).trigger('click');
+                    }
                 }
             });
         });
@@ -135,5 +141,4 @@ angular.module('common.directives.table', [])
         source && table.fnAddData(source);
         table.fnDraw();
     }
-
 });
