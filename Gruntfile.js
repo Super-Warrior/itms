@@ -13,13 +13,23 @@ module.exports = function (grunt) {
     var taskConfig = {
 
         clean: ['build', 'release'],
+        
+        concat: {
+            options: {
+                separator: ';'
+            },
+            build_vendor: {
+                src: ['<%= vendor_files.vendorjs %>'],
+                dest: '.tmp/vendor.js'
+            }
+        },
 
         copy: {
             build_vendor: {
                 files: [
                     {
                         expand: true,
-                        src: ['<%= vendor_files.vendorjs %>'],
+                        src: ['.tmp/vendor.js'],
                         dest: 'build/vendor/',
                         flatten: true
                     }
@@ -155,7 +165,7 @@ module.exports = function (grunt) {
                 expand: true,
                 dir: '.tmp',
                 src: [
-                    '<%= vendor_files.vendorjs %>',
+                    '.tmp/vendor.js',
                     '<%= vendor_files.css %>',
                     '<%= app_files.js %>'
                 ]
@@ -223,6 +233,7 @@ module.exports = function (grunt) {
         var jsFiles = filterForVendorJS(this.filesSrc).map(function (file) {
             return 'vendor/' + file.replace(dirRE, '');
         });
+        console.log(jsFiles);
         var cssFiles = filterForCSS(this.filesSrc).map(function (file) {
             return 'styles/' + file.replace(dirRE, '');
         });
@@ -241,7 +252,7 @@ module.exports = function (grunt) {
 
         function filterForVendorJS(files) {
             return files.filter(function (file) {
-                return file.match(/^vendor|src\/legacyscripts/) && file.match(/\.js$/);
+                return file.match(/^\.tmp|src\/legacyscripts/) && file.match(/\.js$/);
             });
         }
         function filterForAppjs(files) {
@@ -261,6 +272,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', ['clean', 'index', 'copy:build']);
     grunt.registerTask('build2', [
         'clean',
+        'concat',
         'index:build',
         'copy:build_vendor',
         'copy:build_assets',
