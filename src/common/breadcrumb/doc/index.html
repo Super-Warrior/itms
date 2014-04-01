@@ -10,14 +10,17 @@
     <div sw-breadcrumb></div>
 
     <script src='angular.js'></script>
-    <script src='../breadcrumb.js'></script>
     <script>
         angular.module('app',['common.directives.breadcrumb'])
             .controller('breadcrumb'
                     ,function($scope){
-                        $scope.paths=['a','b','c'];
+                        $scope.paths=[
+                            { displayName: 'parent'},
+                            { displayName: 'children'}
+                        ];
                     });
     </script>
+    <script src='../breadcrumb.js'></script>
 
 </body>
 </html>
