@@ -38,10 +38,12 @@ function eoService($http, config) {
 
     var searchUrl = config.baseUrl + 'EO/EOQuickSearch';
     var createEventUrl = config.baseUrl + 'EO/EventCreate';
+    var configUrl = config.baseUrl + 'Config/ConSearch';
 
     var service = {
         queryByEventType: queryByEventType,
-        createEvent: createEvent
+        createEvent: createEvent,
+        getEventCode: getEventCode
     };
 
     if (config.mode === 'development') {
@@ -58,7 +60,10 @@ function eoService($http, config) {
     }
 
     function queryAllLocal() {
-        return $http({method: 'GET', url: '/mock/eoservice.json'});
+        return $http({
+            method: 'GET',
+            url: '/mock/eoservice.json'
+        });
     }
 
     function queryByEventType(type) {
@@ -82,4 +87,19 @@ function eoService($http, config) {
         return $http.postXSRF(createEventUrl, event);
     }
 
+    function getEventCode(type) {
+        var params = {
+            Code: type,
+            ConType: 'EVNT',
+            Group1: '',
+            Group2: '',
+            Group3: '',
+            Language: 'CN'
+        }
+        return $http({
+            method: 'GET',
+            url: configUrl,
+            params: params
+        });
+    }
 }

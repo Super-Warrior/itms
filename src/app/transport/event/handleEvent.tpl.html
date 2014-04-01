@@ -12,7 +12,7 @@
             <div class="row">
                 <section class="col col-4">
                     <label class="select">
-                        <select ng-model="event.eventType" ng-options="type.value as type.text for type in types">
+                        <select ng-model="event.eventType" ng-change="getEventCode(event.eventType)" ng-options="type.value as type.text for type in types">
                             <option value="" ng-hide="eventType">事件类型</option>
                         </select> <i></i></label>
                 </section>
