@@ -53,25 +53,11 @@ module.exports = {
     },
     app_files: {
         js: [
-            'src/common/datepicker/datepicker.js',
-            'src/common/table/table.js',
-            'src/common/widget/widget.js',
-            'src/common/common.module.js',
-
-            'src/app/common/common.svc.js',
-
-            'src/app/layout/shell.js',
-
-            'src/app/transport/event/eoService.js',
-            'src/app/transport/event/event.module.js',
-            'src/app/transport/event/event.ctrl.js',
-
-            'src/app/transport/network/network.module.js',
-            'src/app/transport/transport.module.js',
-
-            'src/app/app.js',
-            'src/app/config.js'
-
+            'src/common/**/*.module.js',
+            'src/common/**/*.js',
+            'src/app/**/*.module.js',
+            '!src/**/*.exclude.js',
+            'src/app/**/*.js',
         ]
     }
 };

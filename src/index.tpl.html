@@ -35,42 +35,8 @@
 <!--compiled Vendor JavaScript end-->
 
 <!-- compiled app JavaScript -->
-<script src="common/common.module.js"></script>
-<script src="common/datepicker/datepicker.js"></script>
-<script src="common/table/table.js"></script>
-<script src="common/widget/widget.js"></script>
-<script src="common/breadcrumb/breadcrumb.js"></script>
-<script src="app/common/common.svc.js"></script>
-<script src="app/app.js"></script>
-<script src="app/config.js"></script>
-
-<script src="app/layout/shell.js"></script>
-<script src="app/transport/transport.module.js"></script>
-<script src="app/transport/network/network.module.js"></script>
-<script src="app/transport/event/event.module.js"></script>
-<script src="app/transport/event/event.ctrl.js"></script>
-<script src="app/transport/event/eoService.js"></script>
-
-<script src="app/planning/common.ctrl.js"></script>
-<script src="app/planning/planning.module.js"></script>
-<script src="app/planning/adjustment/adjustment.module.js"></script>
-<script src="app/planning/adjustment/adjustment.ctrl.js"></script>
-<script src="app/planning/adjustment/orderService.js"></script>
-
-<script src="app/planning/assignment/assignment.module.js"></script>
-<script src="app/planning/assignment/assignment.ctrl.js"></script>
-<script src="app/planning/customerService.js"></script>
-
-
-<script src="app/requirement/requirement.module.js"></script>
-<script src="app/requirement/upload/upload.module.js"></script>
-<script src="app/requirement/upload/RequirementUploadCtrl.js"></script>
-<script src="app/requirement/create/create.module.js"></script>
-
-<script src="app/dashboard/dashboard.module.js"></script>
-<script src="app/dashboard/dashboard.ctrl.js"></script>
-
-
+<% appjs.forEach( function ( file ) { %><script src="<%= file %>"></script>
+<% }); %>
 <!-- compiled app JavaScript end-->
 
 </body>

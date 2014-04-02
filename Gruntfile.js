@@ -170,7 +170,6 @@ module.exports = function (grunt) {
                     '<%= app_files.js %>'
                 ]
             }
-
         },
         watch: {
             js: {
@@ -229,11 +228,17 @@ module.exports = function (grunt) {
     grunt.registerMultiTask('index', 'Process index.html template', function () {
 
         var FILE_PATH = '^([a-z]:|/[a-z0-9 %._-]+/[a-z0-9 $%._-]+)?(/?(?:[^/:*?"<>|\r\n]+/)+)';
+        var APP_PATH = '^src/';
         var dirRE = new RegExp(FILE_PATH, 'g');
+        var appRE = new RegExp(APP_PATH, 'g');
         var jsFiles = filterForVendorJS(this.filesSrc).map(function (file) {
             return 'vendor/' + file.replace(dirRE, '');
         });
         console.log(jsFiles);
+        var appFiles = filterForAppjs(this.filesSrc).map(function (file) {
+            return file.replace(appRE, '');
+        });
+        console.log(appFiles);
         var cssFiles = filterForCSS(this.filesSrc).map(function (file) {
             return 'styles/' + file.replace(dirRE, '');
         });
@@ -243,6 +248,7 @@ module.exports = function (grunt) {
                 return grunt.template.process(contents, {
                     data: {
                         scripts: jsFiles,
+                        appjs: appFiles,
                         styles: cssFiles,
                         version: grunt.config('pkg.version')
                     }
