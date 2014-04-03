@@ -55,6 +55,9 @@ module.exports = {
         js: [
             'src/common/**/*.module.js',
             'src/common/**/*.js',
+			'!src/common/breadcrumb/doc/angular.js',
+			
+			
             'src/app/**/*.module.js',
             '!src/**/*.exclude.js',
             'src/app/**/*.js',

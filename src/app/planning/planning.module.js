@@ -1,7 +1,7 @@
 angular
     .module('itms.planning', [
         'itms.planning.adjustment',
-        'itms.planning.assignment',
+        'itms.planning.assignment'
     ])
     .config(['$stateProvider',
         function($stateProvider) {
@@ -22,3 +22,5 @@ angular
 
         }
     ]);
+angular.module('itms.planning.common', []);
+

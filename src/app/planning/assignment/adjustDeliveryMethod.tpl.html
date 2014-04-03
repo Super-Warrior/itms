@@ -21,13 +21,8 @@
             <div class="row">
                 <section class="col col-6">
                     <label class="select">
-                        <select ng-model="adjustData.ERTRType">
-                            <option value="" disabled>运输方式</option>
-                            <option value="1">航空</option>
-                            <option value="2">公路</option>
-                            <option value="3">铁路</option>
-                            <option value="4">第三方物流</option>
-                            <option value="5">其它</option>
+                        <select ng-model="adjustData.ERTRType"  ng-options="value.code as value.description for value in transportTypes">
+                            <option value="" selected disabled>运输方式</option>
                         </select>
                         <i></i>
                     </label>
@@ -35,7 +30,7 @@
                 <section class="col col-6">
                     <label class="select">
                         <select ng-model="adjustData.ERTRVendor" ng-options="value.customer as value.name for value in carriers">
-                            <option value="" disabled>承运商</option>
+                            <option value="" selected disabled>承运商</option>
                         </select>
                         <i></i>
                     </label>
@@ -43,7 +38,7 @@
             </div>
         </fieldset>
         <footer>
-            <button id="smart-mod-modifyTR" class="btn btn-success" ng-click="confirmAdjust()" data-dismiss="modal">
+            <button id="smart-mod-modifyTR" class="btn btn-success" ng-click="confirmAdjust()">
                 <i class="fa fa-check"></i>
                 确认修改
             </button>

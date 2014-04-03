@@ -81,9 +81,9 @@ function orderService($http, config) {
     };
 
     if (config.mode === 'development') {
-        orderService.queryAll = queryAllLocal
+       orderService.queryAll = queryAllLocal;
     } else {
-        orderService.queryAll = queryAllRemote
+       orderService.queryAll = queryAllRemote;
     }
 
     return orderService;

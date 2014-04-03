@@ -19,26 +19,16 @@
             <div class="row">
                 <section class="col col-6">
                     <label class="select">
-                        <select ng-model="createData.EOType">
-                            <option value="0" selected disabled>运单EO类型</option>
-                            <option value="1">普通</option>
-                            <option value="2">紧急</option>
-                            <option value="3">索赔</option>
-                            <option value="4">统配</option>
-                            <option value="5">预付</option>
+                        <select ng-model="createData.EOType" ng-options="value.code as value.description for value in eoTypes">
+                            <option value="" selected disabled>运单EO类型</option>
                         </select>
                         <i></i>
                     </label>
                 </section>
                 <section class="col col-6">
                     <label class="select">
-                        <select ng-model="createData.EOTRType">
-                            <option value="0" selected disabled>运输方式</option>
-                            <option value="1">航空</option>
-                            <option value="2">公路</option>
-                            <option value="3">铁路</option>
-                            <option value="4">第三方物流</option>
-                            <option value="5">其它</option>
+                        <select ng-model="createData.EOTRType" ng-options="value.code as value.description for value in transportTypes">
+                            <option value="" selected disabled>运输方式</option>
                         </select>
                         <i></i>
                     </label>
@@ -54,12 +44,8 @@
                 </section>
                 <section class="col col-6">
                     <label class="select">
-                        <select ng-model="createData.EOTag">
-                            <option value="0" selected disabled>特殊标识</option>
-                            <option value="1">危险品</option>
-                            <option value="2">不允许航空</option>
-                            <option value="3">放射性</option>
-                            <option value="4">冷链</option>
+                        <select ng-model="createData.EOTag" ng-options="value.code as value.description for value in tags">
+                            <option value="" selected disabled>特殊标识</option>
                         </select>
                         <i></i>
                     </label>
@@ -69,7 +55,7 @@
                 <section class="col col-6">
                     <label class="select">
                         <select ng-model="createData.EOTRVendor1" ng-options="value.customer as value.name for value in carriers">
-                            <option value="" disabled>承运商</option>
+                            <option value="" selected disabled>承运商</option>
                         </select>
                         <i></i>
                     </label>
@@ -82,12 +68,8 @@
                 </section>
                 <section class="col col-6">
                     <label class="select">
-                        <select ng-model="createData.DeliverBP1">
-                            <option value="0" selected disabled>配送网络公司</option>
-                            <option value="1">网络公司1</option>
-                            <option value="2">网络公司2</option>
-                            <option value="3">网络公司3</option>
-                            <option value="4">网络公司4</option>
+                        <select ng-model="createData.DeliverBP1" ng-options="value.customer as value.name for value in nets">
+                            <option value="" selected disabled>配送网络公司</option>
                         </select>
                         <i></i>
                     </label>
@@ -110,8 +92,7 @@
                     <div class="form-group">
                         <label class="input">
                             <i class="icon-prepend fa fa-calendar"></i>
-                            <input type="text" id="arriveDate" ng-model="createDate.reqDelDate1" im-datepicker  placeholder="要求达到日期">
-                            
+                            <input type="text" id="arriveDate" ng-model="createDate.reqDelDate1" im-datepicker placeholder="要求达到日期">
                         </label>
                     </div>
                 </section>
@@ -119,7 +100,7 @@
                     <div class="form-group">
                         <label class="input">
                             <i class="icon-prepend fa fa-calendar"></i>
-                            <input type="text" id="sendDate" ng-model="createDate.reqDelDate2" im-datepicker  placeholder="要求配送日期">
+                            <input type="text" id="sendDate" ng-model="createDate.reqDelDate2" im-datepicker placeholder="要求配送日期">
                         </label>
                     </div>
                 </section>

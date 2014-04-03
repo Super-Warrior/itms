@@ -2,39 +2,49 @@ angular.module('itms.planning.common')
     .factory('customerService', ['$http', 'config', customerService]);
 
 function customerService($http, config) {
+   var Criteria = function (type) {
+      this.type = [];
+      this.SerType = "OR";
+      this.customer = [""];
+      this.name = [""];
+      this.contact = [""];
+      this.Email = [""];
+      this.phone = [""];
+      this.Country = [""];
+      this.State = [""];
+      this.City = [""];
+      this.Disc = [""];
+      this.postcode = [""];
+      this.address1 = [""];
+      this.SalesArea = [""];
+      this.Group1 = [""];
+      this.Group2 = [""];
 
-    var criteria = {
-        "type": [],
-        "SerType": "OR",
-        "customer": [""],
-        "name": [""],
-        "contact": [""],
-        "Email": [""],
-        "phone": [""],
-        "Country": [""],
-        "State": [""],
-        "City": [""],
-        "Disc": [""],
-        "postcode": [""],
-        "address1": [""],
-        "SalesArea": [""],
-        "Group1": [""],
-        "Group2": [""]
-    };
-    var searchCustomer = function (type) {
-        if (!type || type == "1" || type.toLowerCase() == "dep")
-            type = 1;
-        else if (type == "2" || type.toLowerCase() == "rec")
-            type = 2;
-        else if (type == "5" || type.toLowerCase() == "car")
-            type = 5;
-        criteria.type = [type];
-        return $http({
-            method: "GET",
-            url: config.baseUrl + "search/Customer" + "?" + $.param(criteria),
-            dataType: "json"
-        });
+      switch (type) {
+         case "dep":
+            this.type = [1];
+            break;
+         case "rec":
+            this.type = [2];
+            break;
+         case "car":
+            this.type = [5];
+            break;
+         case "net":
+            this.type = [5];
+            this.Group1 = ["TTP2"];
+            break;
+      }
 
-    };
-    return { "searchCustomer": searchCustomer };
+   };
+  
+   var searchCustomer = function (type) {
+      var criteria = new Criteria(type);
+      return $http({
+         method: "GET",
+         url: config.baseUrl + "search/Customer" + "?" + $.param(criteria),
+         dataType: "json"
+      });
+   };
+   return { "searchCustomer": searchCustomer };
 }

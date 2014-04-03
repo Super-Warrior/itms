@@ -1,5 +1,5 @@
 angular
-   .module('itms.planning.common', [])
+   .module('itms.planning.common')
    .controller('searchSiteCtrl', ['$scope', '$http', 'config', '$modalInstance', searchSiteCtrl])
    .controller('searchCustomerCtrl', ['$scope', '$http', 'config', '$modalInstance', 'customerService', 'type', searchCustomerCtrl])
    .controller('searchLocationCtrl', ['$scope', '$modalInstance', 'items', searchLocationCtrl]);

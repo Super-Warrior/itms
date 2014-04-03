@@ -1,10 +1,27 @@
 angular.module("itms.planning.assignment")
-    .controller("EOAssignCtrl", ["$scope", "$modal", "$log", "$http", "config", "common", "customerService",
-        EOAssignCtrl]);
+    .controller("EOAssignCtrl", ["$scope", "$modal", "$log",
+       "$http", "config", "common", "configService", "customerService", EOAssignCtrl]);
 
-function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerService) {
+function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService) {
    $scope.module = "计划";
    $scope.title = "需求分配";
+
+   configService.getConfig("transport").then(function (result) {
+      $scope.transportTypes = result.data;
+   });
+   customerService.searchCustomer("car").then(function (result) {
+      $scope.carriers = result.data;
+   });
+   configService.getConfig("eo").then(function (result) {
+      $scope.eoTypes = result.data;
+   });
+   configService.getConfig("tag").then(function (result) {
+      $scope.tags = result.data;
+   });
+   customerService.searchCustomer("net").then(function (result) {
+      $scope.nets = result.data;
+   });
+
    $scope.columns = [
        { "mData": "requirementDetail.pk.erID", "sTitle": "ER" },
        { "mData": "requirementDetail.pk.erITN", "sTitle": "ERITN" },
@@ -118,13 +135,13 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
       "ERTRVendor": ""
    };
    $scope.createData = {
-      "EOType": "0",
+      "EOType": "",
       "userID": config.userID,
-      "EOTRType": "0",
+      "EOTRType": "",
       "EOTag": "0",
       "EOTRVendor1": "",
       "VendorOrder1": "",
-      "DeliverBP1": "0",
+      "DeliverBP1": "",
       "reqDelDate1": "",
       "reqDelDate2": "",
       "customerOrder1": "",
@@ -136,19 +153,13 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
       return ($scope.selectedItems.length > 0);
    };
 
-   $scope.carriers = [];
    $scope.modalInstance = null;
    $scope.create = function () {
       if (!$scope.isAnythingSelected())
          return;
-      // if (!$scope.carriers.length)
-      customerService.searchCustomer("car").then(function (result) {
-         $scope.carriers = result.data;
-         $scope.modalInstance = $modal.open({
-            templateUrl: "app/planning/assignment/merge.tpl.html",
-            scope: $scope
-         });
-      }).then(function () {
+      $scope.modalInstance = $modal.open({
+         templateUrl: "app/planning/assignment/merge.tpl.html",
+         scope: $scope
       });
    };
 
@@ -192,13 +203,9 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, customerServi
    $scope.adjust = function () {
       if (!$scope.isAnythingSelected())
          return;
-      //   if (!$scope.carriers.length)
-      customerService.searchCustomer("car").then(function (result) {
-         $scope.carriers = result.data;
-         $scope.modalInstance = $modal.open({
-            templateUrl: "app/planning/assignment/adjustDeliveryMethod.tpl.html",
-            scope: $scope
-         });
+      $scope.modalInstance = $modal.open({
+         templateUrl: "app/planning/assignment/adjustDeliveryMethod.tpl.html",
+         scope: $scope
       });
    };
    $scope.confirmAdjust = function () {
