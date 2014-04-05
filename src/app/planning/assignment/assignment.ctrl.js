@@ -58,6 +58,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          ERStatus: [""]
       };
       $http.post(config.baseUrl + "ER/ERQuickSearch" + "?" + $.param(data)).then(function (result) {
+         $scope.adjustData = new AdjustData();
+         $scope.createData = new CreateData();
          if (result.data.errorMessage)
             $scope.quickResult = [];
          else
@@ -127,28 +129,30 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          $log.info('Modal dismissed at: ' + new Date());
       });
    };
-
-   $scope.adjustData = {
-      "userID": config.userID,
-      "ERID": [],
-      "ERTRType": "",
-      "ERTRVendor": ""
+   var AdjustData = function () {
+      this.userID = config.userID;
+      this.ERID = [];
+      this.ERTRType = "";
+      this.ERTRVendor = "";
    };
-   $scope.createData = {
-      "EOType": "",
-      "userID": config.userID,
-      "EOTRType": "",
-      "EOTag": "0",
-      "EOTRVendor1": "",
-      "VendorOrder1": "",
-      "DeliverBP1": "",
-      "reqDelDate1": "",
-      "reqDelDate2": "",
-      "customerOrder1": "",
-      "ERID": [],
-      "ERITN": [],
-      "memo": ""
+   $scope.adjustData = new AdjustData();
+   var CreateData = function() {
+      this.EOType = "";
+      this.userID = config.userID;
+      this.EOTRType = "";
+      this.EOTag = "0";
+      this.EOTRVendor1 = "";
+      this.VendorOrder1 = "";
+      this.DeliverBP1 = "";
+      this.reqDelDate1 = "";
+      this.reqDelDate2 = "";
+      this.customerOrder1 = "";
+      this.ERID = [];
+      this.ERITN = [];
+      this.memo = "";
    };
+   $scope.createData = CreateData();
+   
    $scope.isAnythingSelected = function () {
       return ($scope.selectedItems.length > 0);
    };

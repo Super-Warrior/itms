@@ -21,16 +21,20 @@
             <div class="row">
                 <section class="col col-6">
                     <label class="select">
-                        <select ng-model="adjustData.ERTRType"  ng-options="value.code as value.description for value in transportTypes">
+                        <select ng-model="adjustData.ERTRType">
                             <option value="" selected disabled>运输方式</option>
+                            <option ng-repeat="value in transportTypes" value="{{value.code}}">{{value.description}}</option>
                         </select>
                         <i></i>
                     </label>
+
                 </section>
                 <section class="col col-6">
                     <label class="select">
-                        <select ng-model="adjustData.ERTRVendor" ng-options="value.customer as value.name for value in carriers">
+                        <!--ng-options="value.customer as value.name for value in carriers"-->
+                        <select ng-model="adjustData.ERTRVendor">
                             <option value="" selected disabled>承运商</option>
+                            <option ng-repeat="value in carriers" value="{{value.customer}}">{{value.name}}</option>
                         </select>
                         <i></i>
                     </label>
