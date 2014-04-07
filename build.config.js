@@ -39,6 +39,40 @@ module.exports = {
             'src/legacyscripts/plugin/datatables/DT_bootstrap.js',
             'src/legacyscripts/demo.js'
         ],
+        vendorjs_min: [
+            'vendor/jquery/dist/jquery.min.js',
+            'vendor/lodash/dist/lodash.min.js',
+            'vendor/json3/lib/json3.min.js',
+            'vendor/bootstrap/dist/js/bootstrap.min.js',
+            'vendor/angular/angular.min.js',
+            'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
+            'vendor/jqueryui/ui/jquery-ui.js',
+            'vendor/jquery-form/jquery.form.js',
+            'vendor/angular-loading-bar/src/loading-bar.js',
+            'vendor/angular-animate/angular-animate.min.js',
+            'vendor/angular-ui-router/release/angular-ui-router.min.js',
+
+            'src/legacyscripts/jarvismenu.js',
+            'src/legacyscripts/legacyscript.js',
+            'src/legacyscripts/notification/SmartNotification.min.js',
+            'src/legacyscripts/smartwidgets/jarvis.widget.js',
+            'src/legacyscripts/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js',
+            'src/legacyscripts/plugin/sparkline/jquery.sparkline.min.js',
+            'src/legacyscripts/plugin/jquery-validate/jquery.validate.min.js',
+            'src/legacyscripts/plugin/masked-input/jquery.maskedinput.min.js',
+            'src/legacyscripts/plugin/select2/select2.min.js',
+            'src/legacyscripts/plugin/bootstrap-slider/bootstrap-slider.min.js',
+            'src/legacyscripts/plugin/msie-fix/jquery.mb.browser.min.js',
+            'src/legacyscripts/plugin/smartclick/smartclick.js',
+            'src/legacyscripts/plugin/datatables/jquery.dataTables-cust.min.js',
+            'src/legacyscripts/plugin/datatables/ColReorder.min.js',
+            'src/legacyscripts/plugin/datatables/FixedColumns.min.js',
+            'src/legacyscripts/plugin/datatables/ColVis.min.js',
+            'src/legacyscripts/plugin/datatables/ZeroClipboard.js',
+            'src/legacyscripts/plugin/datatables/media/js/TableTools.min.js',
+            'src/legacyscripts/plugin/datatables/DT_bootstrap.js',
+            'src/legacyscripts/demo.js'
+        ],
         css: [
             'vendor/bootstrap/dist/css/bootstrap.min.css',
             'vendor/angular-loading-bar/src/loading-bar.min.css',
@@ -58,7 +92,7 @@ module.exports = {
 			'!src/common/**/doc/*',
             'src/app/**/*.module.js',
             '!src/**/*.exclude.js',
-            'src/app/**/*.js',
+            'src/app/**/*.js'
         ]
     }
 };

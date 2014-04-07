@@ -19,7 +19,7 @@ module.exports = function (grunt) {
                 separator: ';'
             },
             build_vendor: {
-                src: ['<%= vendor_files.vendorjs %>'],
+                src: ['<%= vendor_files.vendorjs_min %>'],
                 dest: '.tmp/vendor.js'
             }
         },
@@ -218,7 +218,7 @@ module.exports = function (grunt) {
                 configFile: 'karma.conf.js',
                 singleRun: false
             }
-        },
+        }
     };
 
     grunt.util._.extend(taskConfig, userConfig);
