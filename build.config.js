@@ -42,16 +42,16 @@ module.exports = {
         vendorjs_min: [
             'vendor/jquery/dist/jquery.min.js',
             'vendor/lodash/dist/lodash.min.js',
-            'vendor/json3/lib/json3.min.js',
             'vendor/bootstrap/dist/js/bootstrap.min.js',
             'vendor/angular/angular.min.js',
             'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-            'vendor/jqueryui/ui/jquery-ui.js',
-            'vendor/jquery-form/jquery.form.js',
             'vendor/angular-loading-bar/src/loading-bar.js',
             'vendor/angular-animate/angular-animate.min.js',
             'vendor/angular-ui-router/release/angular-ui-router.min.js',
-
+            'vendor/jquery-form/jquery.form.js',
+        ],
+        vendorjs_unmin: [
+            'vendor/jqueryui/ui/minified/jquery-ui.min.js',
             'src/legacyscripts/jarvismenu.js',
             'src/legacyscripts/legacyscript.js',
             'src/legacyscripts/notification/SmartNotification.min.js',
