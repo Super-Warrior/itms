@@ -40,10 +40,10 @@ module.exports = {
             'src/legacyscripts/demo.js'
         ],
         css: [
-            'vendor/bootstrap/dist/css/bootstrap.css',
-            'vendor/angular-loading-bar/src/loading-bar.css',
+            'vendor/bootstrap/dist/css/bootstrap.min.css',
+            'vendor/angular-loading-bar/src/loading-bar.min.css',
             'vendor/font-awesome/css/font-awesome.min.css',
-            'src/assets/styles/smartadmin-production_unminified.css',
+            'src/assets/styles/smartadmin-production.css',
             'src/assets/styles/smartadmin-skins.css',
             'src/assets/styles/demo.css',
             'src/assets/styles/style.css'
