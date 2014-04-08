@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="bootstrap.css">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="bootstrap.css">
 </head>
 <body ng-controller="breadcrumb">
-    
-    <div sw-breadcrumb></div>
 
-    <script src='angular.js'></script>
-    <script>
-        angular.module('app',['common.directives.breadcrumb'])
-            .controller('breadcrumb'
-                    ,function($scope){
-                        $scope.paths=[
-                            { displayName: 'parent'},
-                            { displayName: 'children'}
-                        ];
-                    });
-    </script>
-    <script src='../breadcrumb.js'></script>
+<div sw-breadcrumb></div>
+
+<script src='angular.js'></script>
+<script>
+  angular.module('app', ['common.directives.breadcrumb'])
+      .controller('breadcrumb'
+      , function ($scope) {
+        $scope.paths = [
+          { displayName: 'parent'},
+          { displayName: 'children'}
+        ];
+      });
+</script>
+<script src='../breadcrumb.js'></script>
 
 </body>
 </html>
