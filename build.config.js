@@ -20,7 +20,7 @@ module.exports = {
 
             'src/legacyscripts/jarvismenu.js',
             'src/legacyscripts/legacyscript.js',
-            'src/legacyscripts/notification/SmartNotification.min.js',
+            'src/legacyscripts/notification/SmartNotification.js',
             'src/legacyscripts/smartwidgets/jarvis.widget.js',
             'src/legacyscripts/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js',
             'src/legacyscripts/plugin/sparkline/jquery.sparkline.min.js',

@@ -15,7 +15,6 @@ module.exports = function (config) {
             'vendor/angular/angular.js',
             'vendor/jquery/dist/jquery.js',
             'vendor/angular-mocks/angular-mocks.js',
-            'vendor/chai/chai.js',
             'src/common/breadcrumb/breadcrumb.js',
             'test/spec/**/*.js'
         ],

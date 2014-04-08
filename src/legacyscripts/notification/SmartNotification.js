@@ -9,25 +9,12 @@ $(document).ready(function () {
 });
 
 //Closing Rutine for Loadings
-function SmartUnLoading() {
-
-    $(".divMessageBox").fadeOut(300, function () {
-        $(this).remove();
-    });
-
-    $(".LoadingBoxContainer").fadeOut(300, function () {
-        $(this).remove();
-    });
-}
 
 // Messagebox
-var ExistMsg = 0,
-    SmartMSGboxCount = 0,
-    PrevTop = 0;
-
 (function ($) {
     $.SmartMessageBox = function (settings, callback) {
-        var SmartMSG, Content;
+        var smartmessage, content;
+
         settings = $.extend({
             title: "",
             content: "",
@@ -39,9 +26,6 @@ var ExistMsg = 0,
             options: undefined
         }, settings);
 
-        var PlaySound = 0;
-
-        PlaySound = 1;
         //Messagebox Sound
 
         // SmallBox Sound
@@ -57,12 +41,12 @@ var ExistMsg = 0,
             audioElement.play();
         }
 
-        SmartMSGboxCount = SmartMSGboxCount + 1;
+        $.SmartMessageBox.SmartMSGboxCount = $.SmartMessageBox.SmartMSGboxCount + 1;
 
-        if (ExistMsg == 0) {
-            ExistMsg = 1;
-            SmartMSG = "<div class='divMessageBox animated fadeIn fast' id='MsgBoxBack'></div>";
-            $("body").append(SmartMSG);
+        if ($.SmartMessageBox.ExistMsg === 0) {
+            $.SmartMessageBox.ExistMsg = 1;
+            smartmessage = "<div class='divMessageBox animated fadeIn fast' id='MsgBoxBack'></div>";
+            $("body").append(smartmessage);
 
             if (isIE8orlower() == 1) {
                 $("#MsgBoxBack").addClass("MessageIE");
@@ -78,18 +62,18 @@ var ExistMsg = 0,
             switch (settings.input) {
             case "text":
                 InputType = "<input class='form-control' type='" + settings.input + "' id='txt" +
-                    SmartMSGboxCount + "' placeholder='" + settings.placeholder + "'/><br/><br/>";
+                    $.SmartMessageBox.SmartMSGboxCount  + "' placeholder='" + settings.placeholder + "'/><br/><br/>";
                 break;
             case "password":
                 InputType = "<input class='form-control' type='" + settings.input + "' id='txt" +
-                    SmartMSGboxCount + "' placeholder='" + settings.placeholder + "'/><br/><br/>";
+                    $.SmartMessageBox.SmartMSGboxCount  + "' placeholder='" + settings.placeholder + "'/><br/><br/>";
                 break;
 
             case "select":
                 if (settings.options == undefined) {
                     alert("For this type of input, the options parameter is required.");
                 } else {
-                    InputType = "<select class='form-control' id='txt" + SmartMSGboxCount + "'>";
+                    InputType = "<select class='form-control' id='txt" + $.SmartMessageBox.SmartMSGboxCount  + "'>";
                     for (var i = 0; i <= settings.options.length - 1; i++) {
                         if (settings.options[i] == "[") {
                             Name = "";
@@ -113,13 +97,13 @@ var ExistMsg = 0,
 
         }
 
-        Content = "<div class='MessageBoxContainer animated fadeIn fast' id='Msg" + SmartMSGboxCount +
+        content = "<div class='MessageBoxContainer animated fadeIn fast' id='Msg" + $.SmartMessageBox.SmartMSGboxCount  +
             "'>";
-        Content += "<div class='MessageBoxMiddle'>";
-        Content += "<span class='MsgTitle'>" + settings.title + "</span class='MsgTitle'>";
-        Content += "<p class='pText'>" + settings.content + "</p>";
-        Content += InputType;
-        Content += "<div class='MessageBoxButtonSection'>";
+        content += "<div class='MessageBoxMiddle'>";
+        content += "<span class='MsgTitle'>" + settings.title + "</span class='MsgTitle'>";
+        content += "<p class='pText'>" + settings.content + "</p>";
+        content += InputType;
+        content += "<div class='MessageBoxButtonSection'>";
 
         if (settings.buttons == undefined) {
             settings.buttons = "[Accept]";
@@ -145,43 +129,43 @@ var ExistMsg = 0,
             } else {
                 if (settings.buttons[i] == "]") {
                     NumBottons = NumBottons + 1;
-                    Name = "<button id='bot" + NumBottons + "-Msg" + SmartMSGboxCount +
+                    Name = "<button id='bot" + NumBottons + "-Msg" + $.SmartMessageBox.SmartMSGboxCount  +
                         "' class='btn btn-default btn-sm botTempo'> " + Name + "</button>";
-                    Content += Name;
+                    content += Name;
                 } else {
                     Name += settings.buttons[i];
                 }
             }
         };
 
-        Content += "</div>";
+        content += "</div>";
         //MessageBoxButtonSection
-        Content += "</div>";
+        content += "</div>";
         //MessageBoxMiddle
-        Content += "</div>";
+        content += "</div>";
         //MessageBoxContainer
 
         // alert(SmartMSGboxCount);
-        if (SmartMSGboxCount > 1) {
+        if ($.SmartMessageBox.SmartMSGboxCount  > 1) {
             $(".MessageBoxContainer").hide();
             $(".MessageBoxContainer").css("z-index", 99999);
         }
 
-        $(".divMessageBox").append(Content);
+        $(".divMessageBox").append(content);
 
         // Focus
         if (HasInput == 1) {
-            $("#txt" + SmartMSGboxCount).focus();
+            $("#txt" + $.SmartMessageBox.SmartMSGboxCount ).focus();
         }
 
-        $('.botTempo').hover(function () {
-            var ThisID = $(this).attr('id');
-            // alert(ThisID);
-            // $("#"+ThisID).css("background-color", settings.ActiveButton);
-        }, function () {
-            var ThisID = $(this).attr('id');
-            //$("#"+ThisID).css("background-color", settings.NormalButton);
-        });
+//        $('.botTempo').hover(function () {
+//            var ThisID = $(this).attr('id');
+//            // alert(ThisID);
+//            // $("#"+ThisID).css("background-color", settings.ActiveButton);
+//        }, function () {
+//            var ThisID = $(this).attr('id');
+//            //$("#"+ThisID).css("background-color", settings.NormalButton);
+//        });
 
         // Callback and button Pressed
         $(".botTempo").click(function () {
@@ -205,11 +189,11 @@ var ExistMsg = 0,
             }
 
             $("#" + MsgBoxID).addClass("animated fadeOut fast");
-            SmartMSGboxCount = SmartMSGboxCount - 1;
+            $.SmartMessageBox.SmartMSGboxCount  = $.SmartMessageBox.SmartMSGboxCount  - 1;
 
-            if (SmartMSGboxCount == 0) {
+            if ($.SmartMessageBox.SmartMSGboxCount  == 0) {
                 $("#MsgBoxBack").removeClass("fadeIn").addClass("fadeOut").delay(300).queue(function () {
-                    ExistMsg = 0;
+                    $.SmartMessageBox.ExistMsg = 0;
                     $(this).remove();
                 });
             }
@@ -256,11 +240,11 @@ var BigBoxes = 0;
             }
         }
 
-        BigBoxes = BigBoxes + 1;
+        $.bigBox.BigBoxes = $.bigBox.BigBoxes + 1;
 
-        boxBig = "<div id='bigBox" + BigBoxes +
-            "' class='bigBox animated fadeIn fast'><div id='bigBoxColor" + BigBoxes +
-            "'><i class='botClose fa fa-times' id='botClose" + BigBoxes + "'></i>";
+        boxBig = "<div id='bigBox" + $.bigBox.BigBoxes +
+            "' class='bigBox animated fadeIn fast'><div id='bigBoxColor" + $.bigBox.BigBoxes +
+            "'><i class='botClose fa fa-times' id='botClose" + $.bigBox.BigBoxes + "'></i>";
         boxBig += "<span>" + settings.title + "</span>";
         boxBig += "<p>" + settings.content + "</p>";
         boxBig += "<div class='bigboxicon'>";
@@ -286,14 +270,14 @@ var BigBoxes = 0;
             settings.color = "#004d60";
         }
 
-        $("#bigBox" + BigBoxes).css("background-color", settings.color);
+        $("#bigBox" + $.bigBox.BigBoxes).css("background-color", settings.color);
 
-        $("#divMiniIcons").append("<div id='miniIcon" + BigBoxes +
+        $("#divMiniIcons").append("<div id='miniIcon" + $.bigBox.BigBoxes +
             "' class='cajita animated fadeIn' style='background-color: " + settings.color +
             ";'><i class='" + settings.icon + "'/></i></div>");
 
         //Click Mini Icon
-        $("#miniIcon" + BigBoxes).bind('click', function () {
+        $("#miniIcon" + $.bigBox.BigBoxes).bind('click', function () {
             var FrontBox = $(this).attr('id');
             var FrontBigBox = FrontBox.replace("miniIcon", "bigBox");
             var FronBigBoxColor = FrontBox.replace("miniIcon", "bigBoxColor");
@@ -315,9 +299,9 @@ var BigBoxes = 0;
 
         });
 
-        var ThisBigBoxCloseCross = $("#botClose" + BigBoxes);
-        var ThisBigBox = $("#bigBox" + BigBoxes);
-        var ThisMiniIcon = $("#miniIcon" + BigBoxes);
+        var ThisBigBoxCloseCross = $("#botClose" + $.bigBox.BigBoxes);
+        var ThisBigBox = $("#bigBox" + $.bigBox.BigBoxes);
+        var ThisMiniIcon = $("#miniIcon" + $.bigBox.BigBoxes);
 
         // Color Functionality
         var ColorTimeInterval;
@@ -329,15 +313,15 @@ var BigBoxes = 0;
                 var ColorIndex = ThisBigBoxCloseCross.attr("colorcount");
 
                 ThisBigBoxCloseCross.animate({
-                    backgroundColor: settings.colors[ColorIndex].color,
+                    backgroundColor: settings.colors[ColorIndex].color
                 });
 
                 ThisBigBox.animate({
-                    backgroundColor: settings.colors[ColorIndex].color,
+                    backgroundColor: settings.colors[ColorIndex].color
                 });
 
                 ThisMiniIcon.animate({
-                    backgroundColor: settings.colors[ColorIndex].color,
+                    backgroundColor: settings.colors[ColorIndex].color
                 });
 
                 if (ColorIndex < settings.colors.length - 1) {
@@ -376,7 +360,7 @@ var BigBoxes = 0;
         });
 
         if (settings.timeout != undefined) {
-            var TimedID = BigBoxes;
+            var TimedID = $.bigBox.BigBoxes;
             setTimeout(function () {
                 clearInterval(ColorTimeInterval);
                 $("#bigBox" + TimedID).removeClass("fadeIn fast");
@@ -438,12 +422,12 @@ var SmallBoxes = 0,
             }
         }
 
-        SmallBoxes = SmallBoxes + 1;
+        $.smallBox.SmallBoxes = $.smallBox.SmallBoxes + 1;
 
         BoxSmall = ""
 
         var IconSection = "",
-            CurrentIDSmallbox = "smallbox" + SmallBoxes;
+            CurrentIDSmallbox = "smallbox" + $.smallBox.SmallBoxes;
 
         if (settings.iconSmall == undefined) {
             IconSection = "<div class='miniIcono'></div>";
@@ -453,39 +437,39 @@ var SmallBoxes = 0,
         }
 
         if (settings.icon == undefined) {
-            BoxSmall = "<div id='smallbox" + SmallBoxes +
+            BoxSmall = "<div id='smallbox" + $.smallBox.SmallBoxes +
                 "' class='SmallBox animated fadeInRight fast'><div class='textoFull'><span>" + settings.title +
                 "</span><p>" + settings.content + "</p></div>" + IconSection + "</div>";
         } else {
-            BoxSmall = "<div id='smallbox" + SmallBoxes +
+            BoxSmall = "<div id='smallbox" + $.smallBox.SmallBoxes +
                 "' class='SmallBox animated fadeInRight fast'><div class='foto'><i class='" + settings.icon +
                 "'></i></div><div class='textoFoto'><span>" + settings.title + "</span><p>" + settings.content +
                 "</p></div>" + IconSection + "</div>";
         }
 
-        if (SmallBoxes == 1) {
+        if ($.smallBox.SmallBoxes == 1) {
             $("#divSmallBoxes").append(BoxSmall);
-            SmallBoxesAnchos = $("#smallbox" + SmallBoxes).height() + 40;
+            $.smallBox.SmallBoxesAnchos = $("#smallbox" + $.smallBox.SmallBoxesAnchos).height() + 40;
         } else {
             var SmartExist = $(".SmallBox").size();
             if (SmartExist == 0) {
                 $("#divSmallBoxes").append(BoxSmall);
-                SmallBoxesAnchos = $("#smallbox" + SmallBoxes).height() + 40;
+                $.smallBox.SmallBoxesAnchos = $("#smallbox" + $.smallBox.SmallBoxes).height() + 40;
             } else {
                 $("#divSmallBoxes").append(BoxSmall);
-                $("#smallbox" + SmallBoxes).css("top", SmallBoxesAnchos);
-                SmallBoxesAnchos = SmallBoxesAnchos + $("#smallbox" + SmallBoxes).height() + 20;
+                $("#smallbox" + $.smallBox.SmallBoxes).css("top",  $.smallBox.SmallBoxesAnchos);
+                $.smallBox.SmallBoxesAnchos =  $.smallBox.SmallBoxesAnchos + $("#smallbox" + $.smallBox.SmallBoxes).height() + 20;
 
                 $(".SmallBox").each(function (index) {
 
                     if (index == 0) {
                         $(this).css("top", 20);
                         heightPrev = $(this).height() + 40;
-                        SmallBoxesAnchos = $(this).height() + 40;
+                        $.smallBox.SmallBoxesAnchos = $(this).height() + 40;
                     } else {
                         $(this).css("top", heightPrev);
                         heightPrev = heightPrev + $(this).height() + 20;
-                        SmallBoxesAnchos = SmallBoxesAnchos + $(this).height() + 20;
+                        $.smallBox.SmallBoxesAnchos = $.smallBox.SmallBoxesAnchos + $(this).height() + 20;
                     }
 
                 });
@@ -493,7 +477,7 @@ var SmallBoxes = 0,
             }
         }
 
-        var ThisSmallBox = $("#smallbox" + SmallBoxes);
+        var ThisSmallBox = $("#smallbox" + $.smallBox.SmallBoxes);
 
         // IE fix
         // if($.browser.msie) {
@@ -516,7 +500,7 @@ var SmallBoxes = 0,
                 var ColorIndex = ThisSmallBox.attr("colorcount");
 
                 ThisSmallBox.animate({
-                    backgroundColor: settings.colors[ColorIndex].color,
+                    backgroundColor: settings.colors[ColorIndex].color
                 });
 
                 if (ColorIndex < settings.colors.length - 1) {
@@ -542,7 +526,7 @@ var SmallBoxes = 0,
                 if ($("#" + CurrentIDSmallbox + ":hover").length != 0) {
                     //Mouse Over the element
                     $("#" + CurrentIDSmallbox).on("mouseleave", function () {
-                        SmallBoxesAnchos = SmallBoxesAnchos - ThisHeight;
+                        $.smallBox.SmallBoxesAnchos = $.smallBox.SmallBoxesAnchos - ThisHeight;
                         $("#" + CurrentIDSmallbox).remove();
                         if (typeof callback == "function") {
                             if (callback)
@@ -559,21 +543,21 @@ var SmallBoxes = 0,
                                 }, 300);
 
                                 heightPrev = $(this).height() + 40;
-                                SmallBoxesAnchos = $(this).height() + 40;
+                                $.smallBox.SmallBoxesAnchos = $(this).height() + 40;
                             } else {
                                 $(this).animate({
                                     top: heightPrev
                                 }, 350);
 
                                 heightPrev = heightPrev + $(this).height() + 20;
-                                SmallBoxesAnchos = SmallBoxesAnchos + $(this).height() + 20;
+                                $.smallBox.SmallBoxesAnchos = $.smallBox.SmallBoxesAnchos + $(this).height() + 20;
                             }
 
                         });
                     });
                 } else {
                     clearInterval(ColorTimeInterval);
-                    SmallBoxesAnchos = SmallBoxesAnchos - ThisHeight;
+                    $.smallBox.SmallBoxesAnchos = $.smallBox.SmallBoxesAnchos - ThisHeight;
 
                     if (typeof callback == "function") {
                         if (callback)
@@ -596,14 +580,14 @@ var SmallBoxes = 0,
                                 }, 300);
 
                                 heightPrev = $(this).height() + 40;
-                                SmallBoxesAnchos = $(this).height() + 40;
+                                $.smallBox.SmallBoxesAnchos = $(this).height() + 40;
                             } else {
                                 $(this).animate({
                                     top: heightPrev
                                 });
 
                                 heightPrev = heightPrev + $(this).height() + 20;
-                                SmallBoxesAnchos = SmallBoxesAnchos + $(this).height() + 20;
+                                $.smallBox.SmallBoxesAnchos = $.smallBox.SmallBoxesAnchos + $(this).height() + 20;
                             }
 
                         });
@@ -614,7 +598,7 @@ var SmallBoxes = 0,
         }
 
         // Click Closing
-        $("#smallbox" + SmallBoxes).bind('click', function () {
+        $("#smallbox" + $.smallBox.SmallBoxes).bind('click', function () {
             clearInterval(ColorTimeInterval);
             if (typeof callback == "function") {
                 if (callback)
@@ -625,7 +609,7 @@ var SmallBoxes = 0,
             var ID = $(this).attr('id');
             var ThisTop = $(this).css('top');
 
-            SmallBoxesAnchos = SmallBoxesAnchos - ThisHeight;
+            $.smallBox.SmallBoxesAnchos = $.smallBox.SmallBoxesAnchos - ThisHeight;
 
             $(this).removeClass().addClass("SmallBox").animate({
                 opacity: 0
@@ -639,16 +623,16 @@ var SmallBoxes = 0,
 
                     if (index == 0) {
                         $(this).animate({
-                            top: 20,
+                            top: 20
                         }, 300);
                         heightPrev = $(this).height() + 40;
-                        SmallBoxesAnchos = $(this).height() + 40;
+                        $.smallBox.SmallBoxesAnchos = $(this).height() + 40;
                     } else {
                         $(this).animate({
                             top: heightPrev
                         }, 350);
                         heightPrev = heightPrev + $(this).height() + 20;
-                        SmallBoxesAnchos = SmallBoxesAnchos + $(this).height() + 20;
+                        $.smallBox.SmallBoxesAnchos = $.smallBox.SmallBoxesAnchos + $(this).height() + 20;
                     }
 
                 });
@@ -672,20 +656,6 @@ function getInternetExplorerVersion() {
             rv = parseFloat(RegExp.$1);
     }
     return rv;
-}
-
-function checkVersion() {
-
-    var msg = "You're not using Windows Internet Explorer.";
-    var ver = getInternetExplorerVersion();
-    if (ver > -1) {
-        if (ver >= 8.0)
-            msg = "You're using a recent copy of Windows Internet Explorer."
-        else
-            msg = "You should upgrade your copy of Windows Internet Explorer.";
-    }
-    alert(msg);
-
 }
 
 function isIE8orlower() {

@@ -39,6 +39,5 @@ describe('Service: eoService', function() {
         //the watch expression will only be called once after digest
         scope.$digest();
         expect(scope.count).toBe(1);
-
     });
 });
