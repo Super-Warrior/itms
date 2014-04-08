@@ -13,3 +13,4 @@ sample
 compile
 /src/Web.config
 *.swp
+.DS_Store
