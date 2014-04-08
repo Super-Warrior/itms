@@ -11,7 +11,7 @@ angular
                 },
                 views: {
                     'container@': {
-                        templateUrl: 'app/transport/network/network.tpl.html',
+                        templateUrl: 'app/transport/network/maintainNetwork.tpl.html',
                         controller: function () {
 
                         }
