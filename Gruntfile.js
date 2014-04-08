@@ -19,7 +19,7 @@ module.exports = function (grunt) {
                 separator: ';'
             },
             build_vendor: {
-                src: ['<%= vendor_files.vendorjs %>'],
+                src: ['<%= vendor_files.vendorjs_min %>'],
                 dest: '.tmp/vendor.js'
             }
         },
@@ -29,7 +29,7 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: ['.tmp/vendor.js'],
+                        src: ['.tmp/vendor.js','<%= vendor_files.vendorjs_unmin %>'],
                         dest: 'build/vendor/',
                         flatten: true
                     }
@@ -166,6 +166,7 @@ module.exports = function (grunt) {
                 dir: '.tmp',
                 src: [
                     '.tmp/vendor.js',
+                    '<%= vendor_files.vendorjs_unmin %>',
                     '<%= vendor_files.css %>',
                     '<%= app_files.js %>'
                 ]
@@ -218,7 +219,7 @@ module.exports = function (grunt) {
                 configFile: 'karma.conf.js',
                 singleRun: false
             }
-        },
+        }
     };
 
     grunt.util._.extend(taskConfig, userConfig);
@@ -238,7 +239,6 @@ module.exports = function (grunt) {
         var appFiles = filterForAppjs(this.filesSrc).map(function (file) {
             return file.replace(appRE, '');
         });
-        console.log(appFiles);
         var cssFiles = filterForCSS(this.filesSrc).map(function (file) {
             return 'styles/' + file.replace(dirRE, '');
         });
@@ -258,7 +258,7 @@ module.exports = function (grunt) {
 
         function filterForVendorJS(files) {
             return files.filter(function (file) {
-                return file.match(/^\.tmp|src\/legacyscripts/) && file.match(/\.js$/);
+                return file.match(/^\.tmp|src\/legacyscripts|vendor/) && file.match(/\.js$/);
             });
         }
         function filterForAppjs(files) {
