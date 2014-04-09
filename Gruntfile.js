@@ -236,14 +236,14 @@ module.exports = function (grunt) {
         var jsFiles = filterForVendorJS(this.filesSrc).map(function (file) {
             return 'vendor/' + file.replace(dirRE, '');
         });
-        console.log(jsFiles);
+
         var appFiles = filterForAppjs(this.filesSrc).map(function (file) {
             return file.replace(appRE, '');
         });
         var cssFiles = filterForCSS(this.filesSrc).map(function (file) {
             return 'styles/' + file.replace(dirRE, '');
         });
-
+        console.log(cssFiles);
         grunt.file.copy('src/index.tpl.html', this.data.dir+'/index.html', {
             process: function (contents, path) {
                 return grunt.template.process(contents, {

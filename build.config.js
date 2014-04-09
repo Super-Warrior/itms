@@ -43,12 +43,12 @@ module.exports = {
             'vendor/jquery/dist/jquery.min.js',
             'vendor/lodash/dist/lodash.min.js',
             'vendor/bootstrap/dist/js/bootstrap.min.js',
-            'vendor/angular/angular.min.js',
+            'vendor/angular/angular.js',
             'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-            'vendor/angular-loading-bar/src/loading-bar.js',
-            'vendor/angular-animate/angular-animate.min.js',
             'vendor/angular-ui-router/release/angular-ui-router.min.js',
             'vendor/jquery-form/jquery.form.js',
+            'vendor/angular-animate/angular-animate.js',
+            'vendor/angular-loading-bar/src/loading-bar.js'
         ],
         vendorjs_unmin: [
             'vendor/jqueryui/ui/minified/jquery-ui.min.js',
@@ -75,7 +75,7 @@ module.exports = {
         ],
         css: [
             'vendor/bootstrap/dist/css/bootstrap.min.css',
-            'vendor/angular-loading-bar/src/loading-bar.min.css',
+            'vendor/angular-loading-bar/build/loading-bar.min.css',
             'vendor/font-awesome/css/font-awesome.min.css',
             'src/assets/styles/smartadmin-production.css',
             'src/assets/styles/smartadmin-skins.css',

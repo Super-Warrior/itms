@@ -1,105 +1,109 @@
 ﻿<section id="widget-grid">
-    <div class="row">
-        <div ng-include src='"app/common/pageTitle.html"'></div>
-    </div>
-    <!-- row -->
-    <div class="row">
-        <!-- NEW WIDGET START -->
-        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div data-sw-Widget id='widget'>
-                <div class="col-sm-6 col-md-6 col-lg-6 no-padding" data-ng-controller="CarouselDemoCtrl">
-                    <!-- well -->
-                    <div class="well no-padding">
-                        <carousel interval="myInterval" class="carousel slide">
-                            <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
-                                <img ng-src="{{slide.image}}">
-                                <div class="carousel-caption caption-right">
-                                    <h5><i class="fa fa-eye"></i> 我的事件</h5>
-                                    <p>
-                                        <i class="fa fa-magic"></i> 智能分配<br>
-                                        <i class="fa fa-map-marker"></i> 位置监控<br>
-                                        <i class="fa fa-plane"></i> 运输执行<br>
-                                    </p>
-                                    <br>
-                                    <a href="javascript:void(0);" class="btn btn-success btn-sm">进入应用</a>
-                                </div>
-                            </slide>
-                        </carousel>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-md-3 col-lg-3 no-padding" data-ng-controller="CarouselDemoCtrl2">
-                    <div class="well no-padding">
-                        <carousel interval="myInterval" class="carousel slide">
-                            <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
-                                <img ng-src="{{slide.image}}">
+  <div class="row">
+    <div ng-include src='"app/common/pageTitle.html"'></div>
+  </div>
+  <!-- row -->
+  <div class="row">
+    <!-- NEW WIDGET START -->
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div data-sw-Widget id='widget'>
+        <div class="col-sm-6 col-md-6 col-lg-6 no-padding" data-ng-controller="CarouselDemoCtrl">
+          <!-- well -->
+          <div class="well no-padding">
+            <carousel interval="myInterval" class="carousel slide">
+              <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
+                <img ng-src="{{slide.image}}">
 
-                                <div class="carousel-caption caption-right">
-                                    <p><i class="fa fa-info-circle "></i> <b>我的EO</b><br>
-                                        未完成数量: <b><font color="orange" size="5">31</font></b>
-                                    </p>
-                                    <a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-search"></i> 查看</a>
-                                </div>
-                            </slide>
-                        </carousel>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-md-3 col-lg-3 no-padding" data-ng-controller="CarouselDemoCtrl3">
-                    <div class="well no-padding">
-                        <carousel interval="myInterval" class="carousel slide">
-                            <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
-                                <img ng-src="{{slide.image}}">
-                                <div class="carousel-caption caption-right">
-                                    <p><i class="fa fa-bar-chart-o"></i> <b>我的ER转换率</b><br>
-                                        <a href="javascript:void(0);">
-                                            <div class="progress  progress-striped active" data-placement="bottom"
-                                                 data-original-title="78%" rel="tooltip">
-                                                <div class="progress-bar progress-bar-info" style="width: 78%" role="progressbar">
-                                                    78 %
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </p>
-                                </div>
-                            </slide>
-                        </carousel>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-md-3 col-lg-3 no-padding" data-ng-controller="CarouselDemoCtrl4">
-                    <div class="well no-padding">
-                        <carousel interval="myInterval" class="carousel slide">
-                            <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
-                                <img ng-src="{{slide.image}}">
+                <div class="carousel-caption caption-right">
+                  <h5><i class="fa fa-eye"></i> 我的事件</h5>
 
-                                <div class="carousel-caption">
-                                    <p><i class="fa  fa-exclamation-circle"></i> <b>我的异常例外事件</b><br><font
-                                            size="5"><b>5</b></font><br><a class="btn btn-default btn-circle"
-                                                                           href="javascript:void(0);"> <i
-                                            class="glyphicon glyphicon-eye-open"></i></a>
-                                    </p>
-                                </div>
-                            </slide>
-                        </carousel>
-                    </div>
+                  <p>
+                    <i class="fa fa-magic"></i> 智能分配<br>
+                    <i class="fa fa-map-marker"></i> 位置监控<br>
+                    <i class="fa fa-plane"></i> 运输执行<br>
+                  </p>
+                  <br>
+                  <a href="javascript:void(0);" class="btn btn-success btn-sm">进入应用</a>
                 </div>
-                <div class="col-sm-3 col-md-3 col-lg-3 no-padding" data-ng-controller="CarouselDemoCtrl5">
-                    <div class="well no-padding">
-                        <carousel interval="myInterval" class="carousel slide">
-                            <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
-                                <img ng-src="{{slide.image}}">
-                                <div class="carousel-caption">
-                                    <p><i class="fa fa-map-marker"></i><b> 我的监控订单</b><br>
-                                        <font size="5" color="orange"><b>15</b></font><br>
-                                        <a href="javascript:void(0);"><i class="fa fa-globe fa-2x fa-spin txt-color-white"></i>
-                                        </a>
-                                    </p>
-                                </div>
-                            </slide>
-                        </carousel>
-                    </div>
+              </slide>
+            </carousel>
+          </div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 no-padding" data-ng-controller="CarouselDemoCtrl2">
+          <div class="well no-padding">
+            <carousel interval="myInterval" class="carousel slide">
+              <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
+                <img ng-src="{{slide.image}}">
+
+                <div class="carousel-caption caption-right">
+                  <p><i class="fa fa-info-circle "></i> <b>我的EO</b><br>
+                    未完成数量: <b><font color="orange" size="5">31</font></b>
+                  </p>
+                  <a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-search"></i> 查看</a>
                 </div>
-            </div>
-        </article>
-    </div>
+              </slide>
+            </carousel>
+          </div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 no-padding" data-ng-controller="CarouselDemoCtrl3">
+          <div class="well no-padding">
+            <carousel interval="myInterval" class="carousel slide">
+              <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
+                <img ng-src="{{slide.image}}">
+
+                <div class="carousel-caption caption-right">
+                  <p><i class="fa fa-bar-chart-o"></i> <b>我的ER转换率</b><br>
+                    <a href="javascript:void(0);">
+                      <div class="progress  progress-striped active" data-placement="bottom"
+                           data-original-title="78%" rel="tooltip">
+                        <div class="progress-bar progress-bar-info" style="width: 78%" role="progressbar">
+                          78 %
+                        </div>
+                      </div>
+                    </a>
+                  </p>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 no-padding" data-ng-controller="CarouselDemoCtrl4">
+          <div class="well no-padding">
+            <carousel interval="myInterval" class="carousel slide">
+              <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
+                <img ng-src="{{slide.image}}">
+
+                <div class="carousel-caption">
+                  <p><i class="fa  fa-exclamation-circle"></i> <b>我的异常例外事件</b><br><font
+                      size="5"><b>5</b></font><br><a class="btn btn-default btn-circle"
+                                                     href="javascript:void(0);"> <i
+                      class="glyphicon glyphicon-eye-open"></i></a>
+                  </p>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 no-padding" data-ng-controller="CarouselDemoCtrl5">
+          <div class="well no-padding">
+            <carousel interval="myInterval" class="carousel slide">
+              <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
+                <img ng-src="{{slide.image}}">
+
+                <div class="carousel-caption">
+                  <p><i class="fa fa-map-marker"></i><b> 我的监控订单</b><br>
+                    <font size="5" color="orange"><b>15</b></font><br>
+                    <a href="javascript:void(0);"><i class="fa fa-globe fa-2x fa-spin txt-color-white"></i>
+                    </a>
+                  </p>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
 </section>
 
 

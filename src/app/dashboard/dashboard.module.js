@@ -6,7 +6,7 @@ angular
                 .state('dashboard', {
                     url: '/dashboard',
                     data: {
-                        displayName: '我的iTMS',
+                        displayName: '我的iTMS'
                     },
                     views: {
                         'container@': {
