@@ -43,12 +43,12 @@ module.exports = {
             'vendor/jquery/dist/jquery.min.js',
             'vendor/lodash/dist/lodash.min.js',
             'vendor/bootstrap/dist/js/bootstrap.min.js',
-            'vendor/angular/angular.js',
+            'vendor/angular/angular.min.js',
             'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
             'vendor/angular-ui-router/release/angular-ui-router.min.js',
-            'vendor/jquery-form/jquery.form.js',
             'vendor/angular-animate/angular-animate.js',
-            'vendor/angular-loading-bar/src/loading-bar.js'
+            'vendor/angular-loading-bar/src/loading-bar.js',
+            'vendor/jquery-form/jquery.form.js'
         ],
         vendorjs_unmin: [
             'vendor/jqueryui/ui/minified/jquery-ui.min.js',

@@ -16,20 +16,42 @@ module.exports = function (grunt) {
         
         concat: {
             options: {
-                separator: ';'
+                separator: ';',
+                process: function(src, filepath) {
+                    return removeComments(src);
+                }
             },
             build_vendor: {
                 src: ['<%= vendor_files.vendorjs_min %>'],
                 dest: '.tmp/vendor.js'
+            },
+            build_app: {
+                src: ['<%= app_files.js %>'],
+                dest: '.tmp/app.js'
             }
         },
 
         copy: {
-            build_vendor: {
+            release_vendor: {
                 files: [
                     {
                         expand: true,
-                        src: ['.tmp/vendor.js','<%= vendor_files.vendorjs_unmin %>'],
+                        src: [
+                            '.tmp/vendor.js',
+                            '<%= vendor_files.vendorjs_unmin %>'
+                        ],
+                        dest: 'build/vendor/',
+                        flatten: true
+                    }
+                ]
+            },
+            debug_vendor: {
+                files: [
+                    {
+                        expand: true,
+                        src: [
+                            '<%= vendor_files.vendorjs %>'
+                        ],
                         dest: 'build/vendor/',
                         flatten: true
                     }
@@ -76,7 +98,7 @@ module.exports = function (grunt) {
                     }
                 ]
             },
-            build_app: {
+            debug_app: {
                 files: [
                     {
                         expand: true,
@@ -86,63 +108,23 @@ module.exports = function (grunt) {
                     }
                 ]
             },
-
-            build: {
+            release_app: {
                 files: [
                     {
                         expand: true,
-                        cwd: 'app/',
-                        src: ['styles/*'],
-                        dest: 'build/styles',
+                        src: ['.tmp/app.js'],
+                        dest: 'build/app/',
                         flatten: true
                     },
                     {
                         expand: true,
-                        src: ['<%= vendor_files.css %>'],
-                        dest: 'build/styles',
-                        flatten: true
-                    },
-                    {
-                        expand: true,
-                        src: ['<%= vendor_files.js %>'],
-                        dest: 'build/scripts/',
-                        flatten: true
-                    },
-                    {
-                        expand: true,
-                        cwd: 'app/',
-                        src: ['*.html'],
-                        dest: 'build/',
-                        flatten: true
-                    },
-                    {
-                        expand: true,
-                        cwd: 'app/',
-                        src: ['img/**', 'sound/**'],
-                        dest: 'build/'
-                    },
-                    {
-                        expand: true,
-                        cwd: 'app/',
-                        src: ['vendor/font-awesome/fonts/*', 'vendor/bootstrap/dist/fonts/*'],
-                        dest: 'build/fonts/',
-                        flatten: true
-                    },
-
-                    {
-                        expand: true,
-                        cwd: 'app/',
-                        src: ['views/**'],
-                        dest: 'build/'
-                    },
-                    {
-                        expand: true,
-                        cwd: 'app/',
-                        src: ['scripts/**'],
+                        cwd: 'src',
+                        src: ['app/**/*.html','common/**/*.html'],
                         dest: 'build/'
                     }
                 ]
             }
+
         },
 
         connect: {
@@ -161,21 +143,30 @@ module.exports = function (grunt) {
         },
 
         index: {
-            build: {
+            debug: {
+                expand: true,
+                dir: '.tmp',
+                src: [
+                    '<%= vendor_files.vendorjs %>',
+                    '<%= vendor_files.css %>',
+                    '<%= app_files.js %>'
+                ]
+            },
+            release: {
                 expand: true,
                 dir: '.tmp',
                 src: [
                     '.tmp/vendor.js',
                     '<%= vendor_files.vendorjs_unmin %>',
                     '<%= vendor_files.css %>',
-                    '<%= app_files.js %>'
+                    'build/app/app.js'
                 ]
             }
         },
         watch: {
             js: {
                 files: ['src/app/**/*'],
-                tasks: ['build2'],
+                tasks: ['debug'],
                 options: {
                     livereload: true
                 }
@@ -226,20 +217,115 @@ module.exports = function (grunt) {
     grunt.util._.extend(taskConfig, userConfig);
     grunt.initConfig(taskConfig);
 
+    function removeComments(str) {
+        str = ('__' + str + '__').split('');
+        var mode = {
+            singleQuote: false,
+            doubleQuote: false,
+            regex: false,
+            blockComment: false,
+            lineComment: false,
+            condComp: false
+        };
+        for (var i = 0, l = str.length; i < l; i++) {
+
+            if (mode.regex) {
+                if (str[i] === '/' && str[i-1] !== '\\') {
+                    mode.regex = false;
+                }
+                continue;
+            }
+
+            if (mode.singleQuote) {
+                if (str[i] === "'" && str[i-1] !== '\\') {
+                    mode.singleQuote = false;
+                }
+                continue;
+            }
+
+            if (mode.doubleQuote) {
+                if (str[i] === '"' && str[i-1] !== '\\') {
+                    mode.doubleQuote = false;
+                }
+                continue;
+            }
+
+            if (mode.blockComment) {
+                if (str[i] === '*' && str[i+1] === '/') {
+                    str[i+1] = '';
+                    mode.blockComment = false;
+                }
+                str[i] = '';
+                continue;
+            }
+
+            if (mode.lineComment) {
+                if (str[i+1] === '\n' || str[i+1] === '\r') {
+                    mode.lineComment = false;
+                }
+                str[i] = '';
+                continue;
+            }
+
+            if (mode.condComp) {
+                if (str[i-2] === '@' && str[i-1] === '*' && str[i] === '/') {
+                    mode.condComp = false;
+                }
+                continue;
+            }
+
+            mode.doubleQuote = str[i] === '"';
+            mode.singleQuote = str[i] === "'";
+
+            if (str[i] === '/') {
+
+                if (str[i+1] === '*' && str[i+2] === '@') {
+                    mode.condComp = true;
+                    continue;
+                }
+                if (str[i+1] === '*') {
+                    str[i] = '';
+                    mode.blockComment = true;
+                    continue;
+                }
+                if (str[i+1] === '/') {
+                    str[i] = '';
+                    mode.lineComment = true;
+                    continue;
+                }
+                mode.regex = true;
+
+            }
+
+        }
+        return str.join('').slice(2, -2);
+    }
+    function removeBlanklines(str) {
+        str = (str).split('\r\n');
+        for(var i= 0,l=str.length;i<l;i++){
+           // console.log(str[i]);
+            if(str[i].match(/^$/g)){
+                console.log('matched blank line');
+                str.splice(i,1);
+            }
+        }
+        return str.join('');
+    }
 
     grunt.registerMultiTask('index', 'Process index.html template', function () {
 
         var FILE_PATH = '^([a-z]:|/[a-z0-9 %._-]+/[a-z0-9 $%._-]+)?(/?(?:[^/:*?"<>|\r\n]+/)+)';
-        var APP_PATH = '^src/';
+        var APP_PATH = '^src/|^build/';
         var dirRE = new RegExp(FILE_PATH, 'g');
         var appRE = new RegExp(APP_PATH, 'g');
         var jsFiles = filterForVendorJS(this.filesSrc).map(function (file) {
             return 'vendor/' + file.replace(dirRE, '');
         });
-
+        console.log(this.filesSrc);
         var appFiles = filterForAppjs(this.filesSrc).map(function (file) {
             return file.replace(appRE, '');
         });
+        console.log(appFiles);
         var cssFiles = filterForCSS(this.filesSrc).map(function (file) {
             return 'styles/' + file.replace(dirRE, '');
         });
@@ -264,7 +350,7 @@ module.exports = function (grunt) {
         }
         function filterForAppjs(files) {
             return files.filter(function (file) {
-                return file.match(/^src\/app|src\/common/) && file.match(/\.js$/);
+                return file.match(/^src\/app|src\/common|build\/app/) && file.match(/\.js$/);
             });
         }
 
@@ -277,15 +363,25 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['clean', 'copy:build']);
     grunt.registerTask('build', ['clean', 'index', 'copy:build']);
-    grunt.registerTask('build2', [
+    grunt.registerTask('debug', [
         'clean',
-        'concat',
-        'index:build',
-        'copy:build_vendor',
+        'index:debug',
+        'copy:debug_vendor',
+
         'copy:build_assets',
         'copy:build_html',
-        'copy:build_app'
+        'copy:debug_app'
     ]);
-    grunt.registerTask('serve', ['build2', 'connect:livereload', 'watch']);
+    grunt.registerTask('release', [
+        'clean',
+        'concat',
+        'copy:release_vendor',
+        'copy:build_assets',
+        'copy:release_app',
+        'index:release',
+        'copy:build_html'
+
+    ]);
+    grunt.registerTask('serve', ['debug', 'connect:livereload', 'watch']);
 
 };
