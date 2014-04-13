@@ -764,21 +764,6 @@ function runAllForms() {
     });
 }
 
-/* ~ END: INITIALIZE FORMS */
-
-function drawBreadCrumb()
-{
-
-   //console.log("breadcrumb")
-   $("#ribbon ol.breadcrumb").empty();
-   $("#ribbon ol.breadcrumb").append($("<li>Home</li>"));
-   $('nav li.active > a').each(function ()
-   {
-      $("#ribbon ol.breadcrumb").append($("<li></li>").html($.trim($(this).clone().children(".badge").remove().end().text())));
-   });
-
-}
-
 // SHORTCUT ANIMATE SHOW
 function shortcut_buttons_show() {
     $.shortcut_dropdown.animate({

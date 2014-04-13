@@ -1,15 +1,9 @@
 angular.module('itms')
     .controller('shellCtrl', ['$rootScope', '$state',
-        function($rootScope, $state) {
-
-            $.menu_speed = 235;
-            $.navbar_height = 49;
-            $.root_ = $('body');
-            $.left_panel = $('#left-panel');
-            $.shortcut_dropdown = $('#shortcut');
+        function ($rootScope, $state) {
 
             $rootScope.$on('$stateChangeSuccess',
-                function(event, toState, toParams, fromState, fromParams) {
+                function (event, toState, toParams, fromState, fromParams) {
                     $rootScope.paths = [];
                     getPath(toState);
                     saveLastState(toState.name);
@@ -40,52 +34,12 @@ angular.module('itms')
                 }
             }
 
-            nav_page_height();
-            $('nav ul').jarvismenu({
-                accordion: true,
-                speed: $.menu_speed,
-                closedSign: '<em class="fa fa-plus-square-o"></em>',
-                openedSign: '<em class="fa fa-minus-square-o"></em>'
-            });
-
-            $('#main').resize(function() {
-                nav_page_height();
-                //check_if_mobile_width();
-            });
-
-            $('nav').resize(function() {
-                nav_page_height();
-            });
-
-            // COLLAPSE LEFT NAV
-            $('.minifyme').click(function(e) {
-                $('body').toggleClass("minified");
-                $(this).effect("highlight", {}, 500);
-                e.preventDefault();
-            });
-
-            // HIDE MENU
-            $('#hide-menu >:first-child > a').click(function(e) {
-                $('body').toggleClass("hidden-menu");
-                e.preventDefault();
-            });
-
-            $('#show-shortcut').click(function(e) {
-                if ($.shortcut_dropdown.is(":visible")) {
-                    shortcut_buttons_hide();
-                } else {
-                    shortcut_buttons_show();
-                }
-                e.preventDefault();
-            });
-
-            $('#activity').click(function(e) {
+            $('#activity').click(function (e) {
                 var $this = $(this);
 
                 if ($this.find('.badge').hasClass('bg-color-red')) {
                     $this.find('.badge').removeClassPrefix('bg-color-');
                     $this.find('.badge').text("0");
-                    // console.log("Ajax call for activity")
                 }
 
                 if (!$this.next('.ajax-dropdown').is(':visible')) {
@@ -99,14 +53,7 @@ angular.module('itms')
                 e.preventDefault();
             });
 
-            $('#show-shortcut').click(function(e) {
-                if ($.shortcut_dropdown.is(":visible")) {
-                    shortcut_buttons_hide();
-                } else {
-                    shortcut_buttons_show();
-                }
-                e.preventDefault();
-            });
+
             var lastState = getLastState();
             if (lastState) {
                 $state.go(lastState);

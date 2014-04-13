@@ -11,14 +11,14 @@ angular
         'itms.dashboard'
     ])
     .run(['$rootScope', '$state', '$stateParams', '$log', '$location', bootstrap])
-    .config(['$urlRouterProvider', routerConfig]);
+    .config(['$urlRouterProvider', '$stateProvider', routerConfig]);
 
 function routerConfig($urlRouterProvider) {
     $urlRouterProvider
 
-    //        .when('/c?id', '/transportation/eventmaintenance')
-    //        .when('/user/:id', '/transportation/eventmaintenance')
-    .otherwise('dashboard');
+        //        .when('/c?id', '/transportation/eventmaintenance')
+        //        .when('/user/:id', '/transportation/eventmaintenance')
+        .otherwise('dashboard');
 }
 
 function bootstrap($rootScope, $state, $stateParams, $log, $location) {

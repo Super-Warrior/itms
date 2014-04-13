@@ -1,0 +1,281 @@
+<div>
+  <aside id="left-panel">
+  <!-- User info -->
+    <div class="login-info">
+          <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+              <img src="img/avatars/7.png" alt="me" class="online"/>
+              <a href="javascript:void(0);" id="show-shortcut">
+                胡兵 <i class="fa fa-angle-down"></i>
+              </a>
+          </span>
+    </div>
+  <!-- end user info -->
+    <nav>
+    <ul>
+    <li class="">
+      <a data-ui-sref="dashboard" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span
+          class="menu-item-parent">我的iTMS</span></a>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-lg fa-fw fa-tags"></i> <span class="menu-item-parent">需求管理</span></a>
+      <ul>
+        <li>
+          <a href="#/requirement/myer">我的需求 <i class="fa fa-lg fa-fw fa-check-square-o "></i></a>
+        </li>
+        <li>
+          <a data-ui-sref="requirement.create">新建需求</a>
+        </li>
+        <li>
+          <a href="#/requirement/ermaintain">查询/维护需求</a>
+          <ul>
+            <li>
+              <a href="#/requirement/ermaintain"><i class="fa fa-lg fa-fw fa-search"></i> 查询/维护</a>
+            </li>
+            <li>
+              <a href="#/requirement/ermaintain2"><i class="fa fa-lg fa-fw fa-sitemap "></i> 按站点查询/维护</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a>需求上载</a>
+          <ul>
+            <li>
+              <a data-ui-sref="requirement.upload"><i class="fa fa-lg fa-fw fa-cloud-upload "></i> 站点上载</a>
+            </li>
+
+          </ul>
+        </li>
+        <li>
+          <a href="#/blankfunction">资源调配</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-lg fa-fw fa-magic"></i> <span class="menu-item-parent">计划</span></a>
+      <ul>
+        <li>
+          <a>需求至运单分配</a>
+          <ul>
+            <li>
+              <a data-ui-sref="planning.assignment"><i class="fa fa-lg fa-fw fa-exchange"></i> 需求分配</a>
+            </li>
+            <li>
+              <a data-ui-sref="planning.adjustment"><i class="fa fa-lg fa-fw fa-pencil"></i> 分配调整</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#/planning/autoassign">智能分配</a>
+        </li>
+        <li>
+          <a href="#/blankfunction">资源计划</a>
+        </li>
+        <li>
+          <a href="#/planning/booking">订舱管理</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-lg fa-fw fa-plane "></i> <span class="menu-item-parent">运输执行</span></a>
+      <ul>
+        <li>
+          <a href="#/transportation/lotusnewer">我的运单 <i class="fa fa-lg fa-fw fa-check-square-o "></i></a>
+        </li>
+        <li>
+          <a href="#">运单维护</a>
+          <ul>
+            <li>
+              <a href="#/transportation/eomaintain"><i class="fa fa-lg fa-fw fa-search "></i> 运单查询/维护</a>
+            </li>
+            <li>
+              <a data-ui-sref="transport.network"><i class="fa fa-lg fa-fw fa-rocket "></i> 网络公司</a>
+            </li>
+            <li>
+              <a href="#/transportation/eomaintain3rd"><i class="fa fa-lg fa-fw fa-truck"></i> 第三方物流</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a data-ui-sref="transport.event">事件管理</a>
+        </li>
+        <li>
+          <a href="#/blankfunction">招投标管理</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">运输监控</span></a>
+      <ul>
+        <li>
+          <a href="#/blankfunction">实时监控看板</a>
+        </li>
+        <li>
+          <a href="#/blankfunction">网络公司看板</a>
+        </li>
+        <li>
+          <a href="#/blankfunction">分包业务看板</a>
+        </li>
+        <li>
+          <a href="#/blankfunction">特种运输业务看板</a>
+        </li>
+        <li>
+          <a href="#/blankfunction">预测与警报</a>
+        </li>
+        <li>
+          <a href="#/blankfunction">智能分析</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-lg fa-fw fa-group"></i> <span class="menu-item-parent">iTMS社区</span></a>
+      <ul>
+        <li>
+          <a href="#/blankfunction"><i class="fa fa-fw fa-gift"></i>客户关怀</a>
+          <ul>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-folder-open"></i> 3ed Level </a>
+              <ul>
+                <li>
+                  <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-fw fa-folder-open"></i> 4th Level</a>
+                  <ul>
+                    <li>
+                      <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-fw fa-folder-open"></i> 5th Level</a>
+                      <ul>
+                        <li>
+                          <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
+                        </li>
+                        <li>
+                          <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#/blankfunction"><i class="fa fa-fw fa-frown-o"></i>客户投诉</a>
+
+          <ul>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-folder-open"></i> 3ed Level </a>
+              <ul>
+                <li>
+                  <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#/blankfunction"><i class="fa fa-lg fa-fw fa-cny"></i> <span
+          class="menu-item-parent">结算</span></a>
+      <ul>
+        <li>
+          <a href="#"><i class="fa fa-fw fa-file-text"></i>合同管理</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-fw fa-quote-left"></i>供应商结算</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-fw fa-quote-right"></i>客户结算</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="ajax/gmap-xml.html"><i class="fa fa-lg fa-fw fa-map-marker"></i> <span
+          class="menu-item-parent">iTMS地图</span><span
+          class="badge bg-color-greenLight pull-right inbox-badge">9</span></a>
+    </li>
+    <li>
+      <a href="#/blankfunction"><i class="fa fa-lg fa-fw fa-android"></i> <span
+          class="menu-item-parent">iTMS 应用商店</span></a>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">iTMS设置</span></a>
+      <ul>
+        <li>
+          <a href="#/blankfunction"><i class="fa fa-fw fa-table"></i> 主数据管理</a>
+          <ul>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-file-text"></i>客户主数据</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-file-text"></i>供应商主数据</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-file-text"></i>物料主数据</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-map-marker"></i>位置主数据</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-compass"></i>运输模式主数据</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-location-arrow"></i>运输网络主数据</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-dollar"></i>价格主数据</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-tachometer"></i>资源主数据</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#/blankfunction"><i class="fa fa-fw fa-cogs"></i> 智能计划引擎</a>
+        </li>
+        <li>
+          <a href="#/blankfunction"><i class="fa fa-fw fa-male"></i> 用户管理</a>
+        </li>
+        <li>
+          <a href="#/blankfunction"><i class="fa fa-fw fa-key"></i> 权限管理</a>
+        </li>
+        <li>
+          <a href="#/blankfunction"><i class="fa fa-fw fa-random"></i> 第三方接口</a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+    </nav>
+    <span class="minifyme"> <i class="fa fa-arrow-circle-left hit"></i> </span>
+  </aside>
+
+  <div id="shortcut">
+    <ul>
+      <li>
+        <a href="#/blankfunction" class="jarvismetro-tile big-cubes bg-color-purple"> <span
+            class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>地图监控</span> </span> </a>
+      </li>
+      <li>
+        <a href="#/blankfunction" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span
+            class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>待处理结算 <span
+            class="label pull-right bg-color-darken">99</span></span> </span> </a>
+      </li>
+      <li>
+        <a href="lockitms.html" target="_top" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span
+            class="iconbox"> <i class="fa fa-lock fa-4x"></i> <span>锁屏 </span> </span> </a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+            class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>我的帐户信息 </span> </span> </a>
+      </li>
+    </ul>
+  </div>
+</div>
+

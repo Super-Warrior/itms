@@ -1,89 +1,74 @@
-<!-- possible classes: minified, fixed-ribbon, fixed-header, fixed-width-->
 <div ng-controller="shellCtrl">
-
 <!-- HEADER -->
-<header id="header" class="fixed-header">
-  <div id="logo-group">
+  <header id="header" class="fixed-header">
+    <div id="logo-group">
 
     <!-- PLACE YOUR LOGO HERE -->
-    <span id="logo"> <img src="img/banner.png" alt="iTMS"> </span>
+      <span id="logo"> <img src="img/banner.png" alt="iTMS"> </span>
     <!-- END LOGO PLACEHOLDER -->
-
     <!-- Note: The activity badge color changes when clicked and resets the number to 0
             Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-    <span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 32 </b> </span>
-
+      <span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 32 </b> </span>
     <!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
-    <div class="ajax-dropdown">
-
-      <!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
-      <div class="btn-group btn-group-justified" data-toggle="buttons">
-        <label class="btn btn-default">
-          <input type="radio" name="activity" id="ajax/notify/mail.html">
-          邮件 (14) </label>
-        <label class="btn btn-default">
-          <input type="radio" name="activity" id="ajax/notify/notifications.html">
-          事件 (3) </label>
-        <label class="btn btn-default">
-          <input type="radio" name="activity" id="ajax/notify/tasks.html">
-          任务 (4) </label>
-      </div>
-
-      <!-- notification content -->
-      <div class="ajax-notifications custom-scroll">
-
-        <div class="alert alert-transparent">
-          <h4>选择要显示的信息</h4>
-          所有事件，任务，邮件等信息概要将在此显示
+      <div class="ajax-dropdown">
+        <!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
+        <div class="btn-group btn-group-justified" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input type="radio" name="activity" id="ajax/notify/mail.html">
+            邮件 (14) </label>
+          <label class="btn btn-default">
+            <input type="radio" name="activity" id="ajax/notify/notifications.html">
+            事件 (3) </label>
+          <label class="btn btn-default">
+            <input type="radio" name="activity" id="ajax/notify/tasks.html">
+            任务 (4) </label>
         </div>
+        <!-- notification content -->
+        <div class="ajax-notifications custom-scroll">
 
-        <i class="fa fa-lock fa-4x fa-border"></i>
+          <div class="alert alert-transparent">
+            <h4>选择要显示的信息</h4>
+            所有事件，任务，邮件等信息概要将在此显示
+          </div>
 
+          <i class="fa fa-lock fa-4x fa-border"></i>
+
+        </div>
+        <!-- end notification content -->
+        <!-- footer: refresh area -->
+        <span> 上次更新: 12/12/2013 9:43AM
+                  <button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
+                          class="btn btn-xs btn-default pull-right">
+                    <i class="fa fa-refresh"></i>
+                  </button> </span>
+        <!-- end footer -->
       </div>
-      <!-- end notification content -->
-
-      <!-- footer: refresh area -->
-            <span> 上次更新: 12/12/2013 9:43AM
-                <button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
-                        class="btn btn-xs btn-default pull-right">
-                  <i class="fa fa-refresh"></i>
-                </button> </span>
-      <!-- end footer -->
-
-    </div>
     <!-- END AJAX-DROPDOWN -->
-  </div>
-
+    </div>
   <!-- projects dropdown -->
-  <div id="project-context">
-
-    <span class="label">用户</span>
-        <span id="project-selector" class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">胡兵 <i
-            class="fa fa-angle-down"></i></span>
-
-    <!-- Suggestion: populate this list with fetch and push technique -->
-    <ul class="dropdown-menu">
-      <li>
-        <a href="?file=#ajax/lotusNewER.html">新建需求</a>
-      </li>
-      <li>
-        <a href="javascript:void(0);">理货分配</a>
-      </li>
-      <li>
-        <a href="javascript:void(0);">运输监控</a>
-      </li>
-      <li class="divider"></li>
-      <li>
-        <a href="javascript:void(0);"><i class="fa fa-power-off"></i> 收起</a>
-      </li>
-    </ul>
-    <!-- end dropdown-menu-->
-
-  </div>
-  <!-- end projects dropdown -->
-
+    <div id="project-context">
+      <span class="label">用户</span>
+      <span id="project-selector" class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">胡兵
+        <i class="fa fa-angle-down"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="?file=#ajax/lotusNewER.html">新建需求</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);">理货分配</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);">运输监控</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="javascript:void(0);"><i class="fa fa-power-off"></i> 收起</a>
+        </li>
+      </ul>
+    </div>
   <!-- pulled right: nav area -->
-  <div class="pull-right">
+    <div class="pull-right">
 
     <!-- collapse menu button -->
     <div id="hide-menu" class="btn-header pull-right">
@@ -129,347 +114,41 @@
     <!-- end multiple lang -->
 
   </div>
-  <!-- end pulled right: nav area -->
-
-</header>
+  </header>
 <!-- END HEADER -->
-
 <!-- Left panel : Navigation area -->
 <!-- Note: This width of the aside area can be adjusted through LESS variables -->
-<aside id="left-panel">
+  <div data-sw-menu></div>
 
-<!-- User info -->
-<div class="login-info">
-        <span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-            <img src="img/avatars/7.png" alt="me" class="online"/>
-            <a href="javascript:void(0);" id="show-shortcut">
-              胡兵 <i class="fa fa-angle-down"></i>
-            </a> 
-        </span>
-</div>
-<!-- end user info -->
-<nav>
-<ul>
-<li class="">
-  <a data-ui-sref="dashboard" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span
-      class="menu-item-parent">我的iTMS</span></a>
-</li>
-<li>
-  <a href="#"><i class="fa fa-lg fa-fw fa-tags"></i> <span class="menu-item-parent">需求管理</span></a>
-  <ul>
-    <li>
-      <a href="#/requirement/myer">我的需求 <i class="fa fa-lg fa-fw fa-check-square-o "></i></a>
-    </li>
-    <li>
-      <a data-ui-sref="requirement.create">新建需求</a>
-    </li>
-    <li>
-      <a href="#/requirement/ermaintain">查询/维护需求</a>
-      <ul>
-        <li>
-          <a href="#/requirement/ermaintain"><i class="fa fa-lg fa-fw fa-search"></i> 查询/维护</a>
-        </li>
-        <li>
-          <a href="#/requirement/ermaintain2"><i class="fa fa-lg fa-fw fa-sitemap "></i> 按站点查询/维护</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a>需求上载</a>
-      <ul>
-        <li>
-          <a data-ui-sref="requirement.upload"><i class="fa fa-lg fa-fw fa-cloud-upload "></i> 站点上载</a>
-        </li>
-
-      </ul>
-    </li>
-    <li>
-      <a href="#/blankfunction">资源调配</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="#"><i class="fa fa-lg fa-fw fa-magic"></i> <span class="menu-item-parent">计划</span></a>
-  <ul>
-    <li>
-      <a>需求至运单分配</a>
-      <ul>
-        <li>
-          <a data-ui-sref="planning.assignment"><i class="fa fa-lg fa-fw fa-exchange"></i> 需求分配</a>
-        </li>
-        <li>
-          <a data-ui-sref="planning.adjustment"><i class="fa fa-lg fa-fw fa-pencil"></i> 分配调整</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#/planning/autoassign">智能分配</a>
-    </li>
-    <li>
-      <a href="#/blankfunction">资源计划</a>
-    </li>
-    <li>
-      <a href="#/planning/booking">订舱管理</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="#"><i class="fa fa-lg fa-fw fa-plane "></i> <span class="menu-item-parent">运输执行</span></a>
-  <ul>
-    <li>
-      <a href="#/transportation/lotusnewer">我的运单 <i class="fa fa-lg fa-fw fa-check-square-o "></i></a>
-    </li>
-    <li>
-      <a href="#">运单维护</a>
-      <ul>
-        <li>
-          <a href="#/transportation/eomaintain"><i class="fa fa-lg fa-fw fa-search "></i> 运单查询/维护</a>
-        </li>
-        <li>
-          <a data-ui-sref="transport.network"><i class="fa fa-lg fa-fw fa-rocket "></i> 网络公司</a>
-        </li>
-        <li>
-          <a href="#/transportation/eomaintain3rd"><i class="fa fa-lg fa-fw fa-truck"></i> 第三方物流</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a data-ui-sref="transport.event">事件管理</a>
-    </li>
-    <li>
-      <a href="#/blankfunction">招投标管理</a>
-    </li>
-  </ul>
-</li>
-
-<li>
-  <a href="#"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">运输监控</span></a>
-  <ul>
-    <li>
-      <a href="#/blankfunction">实时监控看板</a>
-    </li>
-    <li>
-      <a href="#/blankfunction">网络公司看板</a>
-    </li>
-    <li>
-      <a href="#/blankfunction">分包业务看板</a>
-    </li>
-    <li>
-      <a href="#/blankfunction">特种运输业务看板</a>
-    </li>
-    <li>
-      <a href="#/blankfunction">预测与警报</a>
-    </li>
-    <li>
-      <a href="#/blankfunction">智能分析</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="#"><i class="fa fa-lg fa-fw fa-group"></i> <span class="menu-item-parent">iTMS社区</span></a>
-  <ul>
-    <li>
-      <a href="#/blankfunction"><i class="fa fa-fw fa-gift"></i>客户关怀</a>
-      <ul>
-        <li>
-          <a href="#"><i class="fa fa-fw fa-folder-open"></i> 3ed Level </a>
-          <ul>
-            <li>
-              <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-fw fa-folder-open"></i> 4th Level</a>
-              <ul>
-                <li>
-                  <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-fw fa-folder-open"></i> 5th Level</a>
-                  <ul>
-                    <li>
-                      <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#/blankfunction"><i class="fa fa-fw fa-frown-o"></i>客户投诉</a>
-
-      <ul>
-        <li>
-          <a href="#"><i class="fa fa-fw fa-folder-open"></i> 3ed Level </a>
-          <ul>
-            <li>
-              <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-
-    </li>
-  </ul>
-</li>
-
-<li>
-  <a href="#/blankfunction"><i class="fa fa-lg fa-fw fa-cny"></i> <span
-      class="menu-item-parent">结算</span></a>
-  <ul>
-    <li>
-      <a href="#"><i class="fa fa-fw fa-file-text"></i>合同管理</a>
-    </li>
-    <li>
-      <a href="#"><i class="fa fa-fw fa-quote-left"></i>供应商结算</a>
-    </li>
-    <li>
-      <a href="#"><i class="fa fa-fw fa-quote-right"></i>客户结算</a>
-    </li>
-  </ul>
-</li>
-
-<li>
-  <a href="ajax/gmap-xml.html"><i class="fa fa-lg fa-fw fa-map-marker"></i> <span
-      class="menu-item-parent">iTMS地图</span><span
-      class="badge bg-color-greenLight pull-right inbox-badge">9</span></a>
-</li>
-<li>
-  <a href="#/blankfunction"><i class="fa fa-lg fa-fw fa-android"></i> <span
-      class="menu-item-parent">iTMS 应用商店</span></a>
-</li>
-
-<li>
-  <a href="#"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">iTMS设置</span></a>
-  <ul>
-    <li>
-      <a href="#/blankfunction"><i class="fa fa-fw fa-table"></i> 主数据管理</a>
-      <ul>
-        <li>
-          <a href="#"><i class="fa fa-fw fa-file-text"></i>客户主数据</a>
-        </li>
-        <li>
-          <a href="#"><i class="fa fa-fw fa-file-text"></i>供应商主数据</a>
-        </li>
-        <li>
-          <a href="#"><i class="fa fa-fw fa-file-text"></i>物料主数据</a>
-        </li>
-        <li>
-          <a href="#"><i class="fa fa-fw fa-map-marker"></i>位置主数据</a>
-        </li>
-        <li>
-          <a href="#"><i class="fa fa-fw fa-compass"></i>运输模式主数据</a>
-        </li>
-        <li>
-          <a href="#"><i class="fa fa-fw fa-location-arrow"></i>运输网络主数据</a>
-        </li>
-        <li>
-          <a href="#"><i class="fa fa-fw fa-dollar"></i>价格主数据</a>
-        </li>
-        <li>
-          <a href="#"><i class="fa fa-fw fa-tachometer"></i>资源主数据</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#/blankfunction"><i class="fa fa-fw fa-cogs"></i> 智能计划引擎</a>
-    </li>
-    <li>
-      <a href="#/blankfunction"><i class="fa fa-fw fa-male"></i> 用户管理</a>
-    </li>
-    <li>
-      <a href="#/blankfunction"><i class="fa fa-fw fa-key"></i> 权限管理</a>
-    </li>
-    <li>
-      <a href="#/blankfunction"><i class="fa fa-fw fa-random"></i> 第三方接口</a>
-    </li>
-  </ul>
-</li>
-</ul>
-</nav>
-
-<span class="minifyme"> <i class="fa fa-arrow-circle-left hit"></i> </span>
-
-</aside>
 <!-- END NAVIGATION -->
-
 <!-- MAIN PANEL -->
-<div id="main" role="main">
-
+  <div id="main" role="main">
   <!-- RIBBON -->
-  <div id="ribbon">
-
-        <span class="ribbon-button-alignment">
+    <div id="ribbon">
+      <span class="ribbon-button-alignment">
             <span id="refresh" class="btn btn-ribbon" data-title="refresh"
                   rel="tooltip" data-placement="bottom"
                   data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
-                  data-html="true"><i class="fa fa-refresh"></i></span>
-        </span>
-        <div sw-breadcrumb></div>
+                  data-html="true"><i class="fa fa-refresh"></i>
+            </span>
+      </span>
 
-    <!-- You can also add more buttons to the
-            ribbon for further usability
-
-            Example below:
-
-            <span class="ribbon-button-alignment pull-right">
-            <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-            <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-            <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-            </span> -->
-
-  </div>
+      <div sw-breadcrumb></div>
+    </div>
   <!-- END RIBBON -->
-
   <!-- MAIN CONTENT -->
-  <div id="content">
-    <div data-ui-view="container" class="fader-animation"></div>
-    <div id="splash-page" data-ng-show="false">
-      <div class="page-splash">
-        <div class="page-splash-message">
-          页面加载中...
+    <div id="content">
+      <div data-ui-view="container" class="fader-animation"></div>
+      <div id="splash-page" data-ng-show="false">
+        <div class="page-splash">
+          <div class="page-splash-message">
+            页面加载中...
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <!-- END MAIN CONTENT -->
 
-</div>
+  </div>
 <!-- END MAIN PANEL -->
-
-<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
-        Note: These tiles are completely responsive,
-        you can add as many as you like
-        -->
-<div id="shortcut">
-  <ul>
-
-    <li>
-      <a href="#/blankfunction" class="jarvismetro-tile big-cubes bg-color-purple"> <span
-          class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>地图监控</span> </span> </a>
-    </li>
-    <li>
-      <a href="#/blankfunction" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span
-          class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>待处理结算 <span
-          class="label pull-right bg-color-darken">99</span></span> </span> </a>
-    </li>
-    <li>
-      <a href="lockitms.html" target="_top" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span
-          class="iconbox"> <i class="fa fa-lock fa-4x"></i> <span>锁屏 </span> </span> </a>
-    </li>
-    <li>
-      <a href="javascript:void(0);" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
-          class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>我的帐户信息 </span> </span> </a>
-    </li>
-  </ul>
 </div>
-</div>
-<!-- END SHORTCUT AREA -->
