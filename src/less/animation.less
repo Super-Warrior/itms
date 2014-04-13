@@ -1,0 +1,56 @@
+.shuffle {
+  &.ng-enter {
+    position: relative;
+    -webkit-transition: 3.8 linear all;
+    transition: 3.8 linear all;
+    opacity: 0;
+    &.ng-enter-active {
+      opacity: 1;
+    }
+  }
+  &.ng-leave {
+    position: relative;
+    -webkit-transition: 3.8 linear all;
+    transition: 3.8 linear all;
+    opacity: 1;
+    &.ng-leave-active {
+      opacity: 0;
+    }
+  }
+}
+
+.fader {
+  &.ng-enter {
+    -webkit-transition: linear all 0.3;
+    -moz-transition: linear all 0.3;
+    -o-transition: linear all 0.3;
+    transition: linear all 0.3;
+    position: relative;
+    opacity: 0;
+    &.ng-enter-active {
+      opacity: 1;
+    }
+  }
+  &.ng-leave {
+    -webkit-transition: linear all 0.3;
+    -moz-transition: linear all 0.3;
+    -o-transition: linear all 0.3;
+    transition: linear all 0.3;
+    position: relative;
+    opacity: 1;
+    &.ng-leave-active {
+      opacity: 0;
+    }
+  }
+  &.ng-move {
+    -webkit-transition: linear all 0.3;
+    -moz-transition: linear all 0.3;
+    -o-transition: linear all 0.3;
+    transition: linear all 0.3;
+    position: relative;
+    opacity: 0.5;
+    &.ng-move-active {
+      opacity: 1;
+    }
+  }
+}

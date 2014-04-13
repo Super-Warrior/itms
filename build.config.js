@@ -89,10 +89,13 @@ module.exports = {
         js: [
             'src/common/**/*.module.js',
             'src/common/**/*.js',
-			'!src/common/**/doc/*',
+            '!src/common/**/doc/*',
             'src/app/**/*.module.js',
             '!src/**/*.exclude.js',
             'src/app/**/*.js'
+        ],
+        css: [
+            '.tmp/*.css'
         ]
     }
 };

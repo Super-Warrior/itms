@@ -304,19 +304,4 @@
     font-size: 200%;
 }
 
-.fa-resize-full:before {
-    content: "\f065";
-}
-.fa-resize-small:before {
-    content: "\f066";
-}
-.fa-expand-o:before {
-    content: "\f116";
-}
-.fa-collapse-o:before {
-    content: "\f117";
-}
 
-nav a {
-    cursor: pointer;
-}

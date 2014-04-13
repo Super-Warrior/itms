@@ -87,7 +87,7 @@ var gruntHelper = {
     removeBlanklines: function (str) {
         var arr = str.split('\r\n');
         for (var i = 0, l = arr.length; i < l; i++) {
-             console.log(str[i]);
+            console.log(str[i]);
             if (arr[i].match(/^$/g)) {
                 console.log('matched blank line');
                 arr.splice(i, 1);
@@ -116,11 +116,11 @@ var gruntHelper = {
         grunt.loadNpmTasks('grunt-contrib-concat');
         grunt.loadNpmTasks('grunt-contrib-connect');
         grunt.loadNpmTasks('grunt-contrib-watch');
+        grunt.loadNpmTasks('grunt-contrib-less');
         grunt.loadNpmTasks('grunt-newer');
         grunt.loadNpmTasks('grunt-karma');
     }
 };
-
 
 var grunttasks = function (grunt) {
 
@@ -133,7 +133,7 @@ var grunttasks = function (grunt) {
             options: {
                 separator: ';',
                 process: function (src) {
-                    return gruntHelper.removeBlanklines(gruntHelper.removeComments(src));
+                    return gruntHelper.removeComments(src);
                 }
             },
             build_vendor: {
@@ -189,7 +189,7 @@ var grunttasks = function (grunt) {
                     },
                     {
                         expand: true,
-                        src: ['<%= vendor_files.css %>'],
+                        src: ['<%= vendor_files.css %>','<%= app_files.css %>'],
                         dest: 'build/styles',
                         flatten: true
                     }
@@ -264,7 +264,8 @@ var grunttasks = function (grunt) {
                 src: [
                     '<%= vendor_files.vendorjs %>',
                     '<%= vendor_files.css %>',
-                    '<%= app_files.js %>'
+                    '<%= app_files.js %>',
+                    'build/styles/style.css'
                 ]
             },
             release: {
@@ -274,13 +275,37 @@ var grunttasks = function (grunt) {
                     '.tmp/vendor.js',
                     '<%= vendor_files.vendorjs_unmin %>',
                     '<%= vendor_files.css %>',
-                    'build/app/app.js'
+                    'build/app/app.js',
+                    'build/styles/style.css'
                 ]
             }
         },
+
+        less: {
+            debug: {
+                files: [
+                    {
+                        src: ['src/less/*.less'],
+                        dest: '.tmp/style.css'
+                    }
+                ]
+            },
+            release: {
+                options: {
+                    cleancss: true
+                },
+                files: [
+                    {
+                        src: ['src/less/*.less'],
+                        dest: '.tmp/style.css'
+                    }
+                ]
+            }
+        },
+
         watch: {
             js: {
-                files: ['src/app/**/*'],
+                files: ['src/app/**/*', 'src/**/*.less', 'Gruntfile.js'],
                 tasks: ['debug'],
                 options: {
                     livereload: true
@@ -365,15 +390,16 @@ var grunttasks = function (grunt) {
     grunt.registerTask('build', ['clean', 'index', 'copy:build']);
     grunt.registerTask('debug', [
         'clean',
-        'index:debug',
+        'less:debug',
         'copy:debug_vendor',
-
         'copy:build_assets',
+        'index:debug',
         'copy:build_html',
         'copy:debug_app'
     ]);
     grunt.registerTask('release', [
         'clean',
+        'less:release',
         'concat',
         'copy:release_vendor',
         'copy:build_assets',
