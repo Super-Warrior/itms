@@ -1,6 +1,6 @@
 <div ng-controller="shellCtrl">
 <!-- HEADER -->
-  <header id="header" class="fixed-header">
+  <header id="header" class="fixed-header" data-ng-show="!isLoginRequired()">
     <div id="logo-group">
 
     <!-- PLACE YOUR LOGO HERE -->
@@ -115,14 +115,23 @@
 
   </div>
   </header>
+  <header id="header" data-ng-show="isLoginRequired()">
+    <!--<span id="logo"></span>-->
+    <div id="logo-group">
+      <span id="logo"> <img src="img/logo.png" alt="SmartAdmin"> </span>
+      <!-- END AJAX-DROPDOWN -->
+    </div>
+
+  </header>
 <!-- END HEADER -->
+  <div data-ui-view="login" data-ng-show="isLoginRequired()"></div>
 <!-- Left panel : Navigation area -->
 <!-- Note: This width of the aside area can be adjusted through LESS variables -->
-  <div data-sw-menu></div>
+  <div data-sw-menu data-ng-show="!isLoginRequired()"></div>
 
 <!-- END NAVIGATION -->
 <!-- MAIN PANEL -->
-  <div id="main" role="main">
+  <div id="main" role="main" data-ng-show="!isLoginRequired()">
   <!-- RIBBON -->
     <div id="ribbon">
       <span class="ribbon-button-alignment">

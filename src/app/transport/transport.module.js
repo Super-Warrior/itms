@@ -6,7 +6,7 @@ angular
     .config(['$stateProvider',
         function($stateProvider) {
             $stateProvider
-                .state('transport', {
+                .state('app.transport', {
                     abstract: true,
                     url: '/transport',
                     data: {

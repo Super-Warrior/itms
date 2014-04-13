@@ -5,7 +5,7 @@ angular
     ])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state('requirement.upload', {
+            .state('app.requirement.upload', {
                 url: '/upload',
                 data: {
                     displayName: '需求上载'

@@ -6,7 +6,7 @@ angular
     ])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state('planning.adjustment', {
+            .state('app.planning.adjustment', {
                 url: '/adjust',
                 data: {
                     displayName: '分配调整'

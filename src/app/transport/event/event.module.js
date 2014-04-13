@@ -5,7 +5,7 @@ angular
     ])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state('transport.event', {
+            .state('app.transport.event', {
                 url: '/event',
                 data: {
                     displayName: '事件管理'

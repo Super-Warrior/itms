@@ -47,6 +47,7 @@ module.exports = {
             'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
             'vendor/angular-ui-router/release/angular-ui-router.min.js',
             'vendor/angular-animate/angular-animate.js',
+            'vendor/angular-cookies/angular-cookies.min.js',
             'vendor/angular-loading-bar/src/loading-bar.js',
             'vendor/jquery-form/jquery.form.js'
         ],

@@ -2,32 +2,41 @@ angular
     .module('itms', [
         'ui.router',
         'ui.bootstrap',
+        'ngCookies',
         'angular-loading-bar',
         'common',
+        'itms.auth',
         'itms.transport',
         'itms.planning',
         'itms.requirement',
         'itms.common',
-        'itms.dashboard'
+        'itms.dashboard',
+        'itms.login'
     ])
-    .run(['$rootScope', '$state', '$stateParams', '$log', '$location', bootstrap])
+    .run(['$rootScope', '$state', '$stateParams', '$log', '$location','auth', bootstrap])
     .config(['$urlRouterProvider', '$stateProvider', routerConfig]);
 
-function routerConfig($urlRouterProvider) {
+function routerConfig($urlRouterProvider, $stateProvider) {
     $urlRouterProvider
 
         //        .when('/c?id', '/transportation/eventmaintenance')
         //        .when('/user/:id', '/transportation/eventmaintenance')
         .otherwise('dashboard');
+    $stateProvider
+        .state('app', {
+            abstract: true,
+            template: '<div data-ui-view></div>'
+        });
 }
 
-function bootstrap($rootScope, $state, $stateParams, $log, $location) {
+function bootstrap($rootScope, $state, $stateParams, $log, $location,auth) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $log.debug($state);
-    $log.debug($stateParams);
     $log.info('app start');
-    if ($location.$$path === '') {
-        $state.go('dashboard');
+    if (auth.isLoginRequired()) {
+        $state.go('app.login');
+    }
+    else if ($location.$$path === '') {
+        $state.go('app.dashboard');
     }
 }

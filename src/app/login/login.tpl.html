@@ -1,0 +1,43 @@
+<div id="content" class="container login">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-centered">
+      <div class="well no-padding">
+        <form id="login-form" class="smart-form client-form">
+          <header>
+            Sign In
+          </header>
+
+          <fieldset>
+            <section>
+              <label class="label">UserName</label>
+              <label class="input"> <i class="icon-append fa fa-user"></i>
+                <input type="text" name="username" data-ng-model="username">
+                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>username</b></label>
+            </section>
+            <section>
+              <label class="label">Password</label>
+              <label class="input"> <i class="icon-append fa fa-lock"></i>
+                <input type="password" name="password" data-ng-model="password">
+                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b>
+              </label>
+
+              <div class="note">
+                <a href="javascript:void(0)">Forgot password?</a>
+              </div>
+            </section>
+            <section>
+              <label class="checkbox">
+                <input type="checkbox" name="remember" checked="">
+                <i></i>Stay signed in</label>
+            </section>
+          </fieldset>
+          <footer>
+            <button ng-click="logon(username,password)" class="btn btn-primary">
+              Sign in
+            </button>
+          </footer>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

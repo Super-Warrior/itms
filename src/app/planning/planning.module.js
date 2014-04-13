@@ -6,7 +6,7 @@ angular
     .config(['$stateProvider',
         function($stateProvider) {
             $stateProvider
-                .state('planning', {
+                .state('app.planning', {
                     abstract: true,
                     url: '/planning',
                     data: {

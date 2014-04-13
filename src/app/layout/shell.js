@@ -1,6 +1,8 @@
 angular.module('itms')
-    .controller('shellCtrl', ['$rootScope', '$state',
-        function ($rootScope, $state) {
+    .controller('shellCtrl', ['$rootScope', '$state', 'auth',
+        function ($rootScope, $state, auth) {
+
+            $rootScope.isLoginRequired = auth.isLoginRequired;
 
             $rootScope.$on('$stateChangeSuccess',
                 function (event, toState, toParams, fromState, fromParams) {
@@ -18,7 +20,7 @@ angular.module('itms')
 
             function getPath(state) {
                 var parent;
-                $rootScope.paths.unshift({
+                state.data && $rootScope.paths.unshift({
                     state: state.name,
                     displayName: state.data.displayName
                 });
@@ -55,7 +57,10 @@ angular.module('itms')
 
 
             var lastState = getLastState();
-            if (lastState) {
+            if (auth.isLoginRequired()) {
+                $state.go('app.login');
+            }
+            else if (lastState) {
                 $state.go(lastState);
             }
         }

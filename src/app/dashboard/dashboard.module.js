@@ -3,7 +3,7 @@ angular
     .config(['$stateProvider',
         function($stateProvider) {
             $stateProvider
-                .state('dashboard', {
+                .state('app.dashboard', {
                     url: '/dashboard',
                     data: {
                         displayName: '我的iTMS'

@@ -4,7 +4,7 @@ angular.module('itms.requirement.create',[
     ])
     .config(['$stateProvider', function($stateProvider){
         $stateProvider
-            .state('requirement.create',{
+            .state('app.requirement.create',{
                 url: '/create',
                 data: {
                     displayName: '新建需求'

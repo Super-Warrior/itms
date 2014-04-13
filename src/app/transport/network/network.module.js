@@ -4,7 +4,7 @@ angular
     ])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state('transport.network', {
+            .state('app.transport.network', {
                 url: '/network',
                 data: {
                     displayName: '网络公司'
