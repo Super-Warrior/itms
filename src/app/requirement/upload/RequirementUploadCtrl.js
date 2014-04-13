@@ -1,20 +1,11 @@
 angular.module("itms.requirement.upload").controller("requirementUploadCtrl",
-    ["$scope", "$http", "config", "$compile", "$modal", "$log", "common", "cfpLoadingBar", controller]);
+    ["$scope", "$http", "config", "common", "cfpLoadingBar", "uploadSvc", controller]);
 
-function controller($scope, $http, config, $compile, $modal, $log, common, cfpLoadingBar) {
+function controller($scope, $http, config, common, cfpLoadingBar, uploadSvc) {
+    var fileHelper = common.fileHelper;
+
     $scope.module = "需求管理";
     $scope.title = "站点上载";
-    $scope.selectFile = function (element) {
-        $("#fileDisplay").val($(element).val());
-    };
-
-    $scope.getExtName = function (name) {
-        var index = name.lastIndexOf(".");
-        if (index < 0)
-            return "";
-        var extName = name.substring(index + 1).toLowerCase();
-        return extName;
-    };
     $scope.columns = [
         /* { "mData": "", "sTitle": "detail" },*/
         { "mData": "erType", "sTitle": "类型" },
@@ -30,26 +21,25 @@ function controller($scope, $http, config, $compile, $modal, $log, common, cfpLo
         { "mData": "recLocCode", "sTitle": "目的地" },
         { "mData": "reqDelDate", "sTitle": "要求到达日期" }
     ];
+    $scope.previewData = {
+        "key": null,
+        "list": []
+    };
+    $scope.test = [];
+    $scope.hasUploaded = false;
+
+    $scope.selectFile = function (element) {
+        $("#fileDisplay").val($(element).val());
+    };
+
     $scope.updateTable = function (data) {
         $scope.previewData = data;
         $scope.test = $scope.previewData.list;
     };
-    $scope.validate = function () {
-        var ele = $("#fileUpload")[0];
-        if (!ele.files
-            || !ele.files[0])
-            return "请选择上传文件";
-        var file = ele.files[0];
 
-        if (file.size > 2000000)
-            return "文件太大";
-        var extName = $scope.getExtName(file.name);
-        if (extName != "xls" && extName != "xlsx")
-            return "文件类型错误";
-        return null;
-    };
     $scope.handleUpload = function () {
-        var msg = $scope.validate();
+        var $uploadFileInput = $("#fileUpload");
+        var msg = uploadSvc.validate($uploadFileInput);
         if (msg) {
             common.messageBox({
                 title: "错误信息:",
@@ -59,44 +49,39 @@ function controller($scope, $http, config, $compile, $modal, $log, common, cfpLo
 
         } else {
             // $('#checkout-form')[0].action = route.upload;
-            $("#type").val($scope.getExtName($("#fileUpload")[0].files[0].name));
+            $("#type").val(fileHelper.getExtName($uploadFileInput[0].files[0].name));
             var submitData = {
                 type: 'post',
                 dataType: "",
                 url: config.baseUrl + "ER/Upload",
                 success: function (data) {
-                   cfpLoadingBar.complete();
+                    cfpLoadingBar.complete();
                     $scope.updateTable(data);
                     if (data && data.key) {
                         common.notifier.success("上载内容已成功");
                         $scope.hasUploaded = true;
                         $scope.expandTable();
                     } else {
-                       common.notifier.cancel(data);
+                        common.notifier.cancel(data);
                         $scope.hasUploaded = false;
                     }
 
                     $scope.$apply();
                 },
-                error: function(data) {
-                   cfpLoadingBar.complete();
-                   common.notifier.cancel(data);
+                error: function (data) {
+                    cfpLoadingBar.complete();
+                    common.notifier.cancel(data);
                 }
             };
-           cfpLoadingBar.start();
+            cfpLoadingBar.start();
             $('#checkout-form').ajaxSubmit(submitData);
         }
     };
-    $scope.previewData = {
-        "key": null,
-        "list": []
-    };
-    $scope.test = [];
+
     $scope.confirm = function () {
         if (!$scope.hasUploaded)
             return;
-        var data =
-        {
+        var data = {
             "userID": config.userID,
             "KEY": $scope.previewData.key
         };
@@ -108,6 +93,7 @@ function controller($scope, $http, config, $compile, $modal, $log, common, cfpLo
                 $scope.hasUploaded = false;
             });
     };
+
     $scope.cancel = function () {
         if (!$scope.hasUploaded)
             return;
@@ -128,7 +114,7 @@ function controller($scope, $http, config, $compile, $modal, $log, common, cfpLo
             }
         );
     };
-    $scope.hasUploaded = false;
+
     $scope.expandTable = function () {
         var icon = $("#widgetPreview");
         if (icon.hasClass("jarviswidget-collapsed"))

@@ -1,24 +1,139 @@
-module.exports = function (grunt) {
+var userConfig = require('./build.config.js');
 
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-karma');
+var gruntHelper = {
+    removeComments: function (str) {
+        str = ('__' + str + '__').split('');
+        var mode = {
+            singleQuote: false,
+            doubleQuote: false,
+            regex: false,
+            blockComment: false,
+            lineComment: false,
+            condComp: false
+        };
+        for (var i = 0, l = str.length; i < l; i++) {
 
-    var userConfig = require('./build.config.js');
+            if (mode.regex) {
+                if (str[i] === '/' && str[i - 1] !== '\\') {
+                    mode.regex = false;
+                }
+                continue;
+            }
+
+            if (mode.singleQuote) {
+                if (str[i] === "'" && str[i - 1] !== '\\') {
+                    mode.singleQuote = false;
+                }
+                continue;
+            }
+
+            if (mode.doubleQuote) {
+                if (str[i] === '"' && str[i - 1] !== '\\') {
+                    mode.doubleQuote = false;
+                }
+                continue;
+            }
+
+            if (mode.blockComment) {
+                if (str[i] === '*' && str[i + 1] === '/') {
+                    str[i + 1] = '';
+                    mode.blockComment = false;
+                }
+                str[i] = '';
+                continue;
+            }
+
+            if (mode.lineComment) {
+                if (str[i + 1] === '\n' || str[i + 1] === '\r') {
+                    mode.lineComment = false;
+                }
+                str[i] = '';
+                continue;
+            }
+
+            if (mode.condComp) {
+                if (str[i - 2] === '@' && str[i - 1] === '*' && str[i] === '/') {
+                    mode.condComp = false;
+                }
+                continue;
+            }
+
+            mode.doubleQuote = str[i] === '"';
+            mode.singleQuote = str[i] === "'";
+
+            if (str[i] === '/') {
+
+                if (str[i + 1] === '*' && str[i + 2] === '@') {
+                    mode.condComp = true;
+                    continue;
+                }
+                if (str[i + 1] === '*') {
+                    str[i] = '';
+                    mode.blockComment = true;
+                    continue;
+                }
+                if (str[i + 1] === '/') {
+                    str[i] = '';
+                    mode.lineComment = true;
+                    continue;
+                }
+                mode.regex = true;
+
+            }
+
+        }
+        return str.join('').slice(2, -2);
+    },
+    removeBlanklines: function (str) {
+        var arr = str.split('\r\n');
+        for (var i = 0, l = arr.length; i < l; i++) {
+             console.log(str[i]);
+            if (arr[i].match(/^$/g)) {
+                console.log('matched blank line');
+                arr.splice(i, 1);
+            }
+        }
+        return arr.join('');
+    },
+    filterForVendorJS: function (files) {
+        return files.filter(function (file) {
+            return file.match(/^\.tmp|src\/legacyscripts|vendor/) && file.match(/\.js$/);
+        });
+    },
+    filterForAppjs: function (files) {
+        return files.filter(function (file) {
+            return file.match(/^src\/app|src\/common|build\/app/) && file.match(/\.js$/);
+        });
+    },
+    filterForCSS: function (files) {
+        return files.filter(function (file) {
+            return file.match(/\.css$/);
+        });
+    },
+    loadNpmTasks: function (grunt) {
+        grunt.loadNpmTasks('grunt-contrib-copy');
+        grunt.loadNpmTasks('grunt-contrib-clean');
+        grunt.loadNpmTasks('grunt-contrib-concat');
+        grunt.loadNpmTasks('grunt-contrib-connect');
+        grunt.loadNpmTasks('grunt-contrib-watch');
+        grunt.loadNpmTasks('grunt-newer');
+        grunt.loadNpmTasks('grunt-karma');
+    }
+};
+
+
+var grunttasks = function (grunt) {
+
+    gruntHelper.loadNpmTasks(grunt);
 
     var taskConfig = {
+        clean: ['build', 'release', '.tmp'],
 
-        clean: ['build', 'release'],
-        
         concat: {
             options: {
                 separator: ';',
-                process: function(src, filepath) {
-                    return removeComments(src);
+                process: function (src) {
+                    return gruntHelper.removeBlanklines(gruntHelper.removeComments(src));
                 }
             },
             build_vendor: {
@@ -85,7 +200,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'src',
-                        src: ['*.html','!*.tpl.html'],
+                        src: ['*.html', '!*.tpl.html'],
                         dest: 'build/',
                         flatten: true
                     },
@@ -103,7 +218,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'src',
-                        src: ['app/**/*','common/**/*'],
+                        src: ['app/**/*', 'common/**/*'],
                         dest: 'build/'
                     }
                 ]
@@ -119,7 +234,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'src',
-                        src: ['app/**/*.html','common/**/*.html'],
+                        src: ['app/**/*.html', 'common/**/*.html'],
                         dest: 'build/'
                     }
                 ]
@@ -199,7 +314,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        
+
         karma: {
             unit: {
                 configFile: 'karma.conf.js',
@@ -217,120 +332,22 @@ module.exports = function (grunt) {
     grunt.util._.extend(taskConfig, userConfig);
     grunt.initConfig(taskConfig);
 
-    function removeComments(str) {
-        str = ('__' + str + '__').split('');
-        var mode = {
-            singleQuote: false,
-            doubleQuote: false,
-            regex: false,
-            blockComment: false,
-            lineComment: false,
-            condComp: false
-        };
-        for (var i = 0, l = str.length; i < l; i++) {
-
-            if (mode.regex) {
-                if (str[i] === '/' && str[i-1] !== '\\') {
-                    mode.regex = false;
-                }
-                continue;
-            }
-
-            if (mode.singleQuote) {
-                if (str[i] === "'" && str[i-1] !== '\\') {
-                    mode.singleQuote = false;
-                }
-                continue;
-            }
-
-            if (mode.doubleQuote) {
-                if (str[i] === '"' && str[i-1] !== '\\') {
-                    mode.doubleQuote = false;
-                }
-                continue;
-            }
-
-            if (mode.blockComment) {
-                if (str[i] === '*' && str[i+1] === '/') {
-                    str[i+1] = '';
-                    mode.blockComment = false;
-                }
-                str[i] = '';
-                continue;
-            }
-
-            if (mode.lineComment) {
-                if (str[i+1] === '\n' || str[i+1] === '\r') {
-                    mode.lineComment = false;
-                }
-                str[i] = '';
-                continue;
-            }
-
-            if (mode.condComp) {
-                if (str[i-2] === '@' && str[i-1] === '*' && str[i] === '/') {
-                    mode.condComp = false;
-                }
-                continue;
-            }
-
-            mode.doubleQuote = str[i] === '"';
-            mode.singleQuote = str[i] === "'";
-
-            if (str[i] === '/') {
-
-                if (str[i+1] === '*' && str[i+2] === '@') {
-                    mode.condComp = true;
-                    continue;
-                }
-                if (str[i+1] === '*') {
-                    str[i] = '';
-                    mode.blockComment = true;
-                    continue;
-                }
-                if (str[i+1] === '/') {
-                    str[i] = '';
-                    mode.lineComment = true;
-                    continue;
-                }
-                mode.regex = true;
-
-            }
-
-        }
-        return str.join('').slice(2, -2);
-    }
-    function removeBlanklines(str) {
-        str = (str).split('\r\n');
-        for(var i= 0,l=str.length;i<l;i++){
-           // console.log(str[i]);
-            if(str[i].match(/^$/g)){
-                console.log('matched blank line');
-                str.splice(i,1);
-            }
-        }
-        return str.join('');
-    }
-
     grunt.registerMultiTask('index', 'Process index.html template', function () {
 
         var FILE_PATH = '^([a-z]:|/[a-z0-9 %._-]+/[a-z0-9 $%._-]+)?(/?(?:[^/:*?"<>|\r\n]+/)+)';
         var APP_PATH = '^src/|^build/';
         var dirRE = new RegExp(FILE_PATH, 'g');
         var appRE = new RegExp(APP_PATH, 'g');
-        var jsFiles = filterForVendorJS(this.filesSrc).map(function (file) {
+        var jsFiles = gruntHelper.filterForVendorJS(this.filesSrc).map(function (file) {
             return 'vendor/' + file.replace(dirRE, '');
         });
-        console.log(this.filesSrc);
-        var appFiles = filterForAppjs(this.filesSrc).map(function (file) {
+        var appFiles = gruntHelper.filterForAppjs(this.filesSrc).map(function (file) {
             return file.replace(appRE, '');
         });
-        console.log(appFiles);
-        var cssFiles = filterForCSS(this.filesSrc).map(function (file) {
+        var cssFiles = gruntHelper.filterForCSS(this.filesSrc).map(function (file) {
             return 'styles/' + file.replace(dirRE, '');
         });
-        console.log(cssFiles);
-        grunt.file.copy('src/index.tpl.html', this.data.dir+'/index.html', {
+        grunt.file.copy('src/index.tpl.html', this.data.dir + '/index.html', {
             process: function (contents, path) {
                 return grunt.template.process(contents, {
                     data: {
@@ -342,23 +359,6 @@ module.exports = function (grunt) {
                 });
             }
         });
-
-        function filterForVendorJS(files) {
-            return files.filter(function (file) {
-                return file.match(/^\.tmp|src\/legacyscripts|vendor/) && file.match(/\.js$/);
-            });
-        }
-        function filterForAppjs(files) {
-            return files.filter(function (file) {
-                return file.match(/^src\/app|src\/common|build\/app/) && file.match(/\.js$/);
-            });
-        }
-
-        function filterForCSS(files) {
-            return files.filter(function (file) {
-                return file.match(/\.css$/);
-            });
-        }
     });
 
     grunt.registerTask('default', ['clean', 'copy:build']);
@@ -380,8 +380,9 @@ module.exports = function (grunt) {
         'copy:release_app',
         'index:release',
         'copy:build_html'
-
     ]);
     grunt.registerTask('serve', ['debug', 'connect:livereload', 'watch']);
 
 };
+
+module.exports = grunttasks;

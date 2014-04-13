@@ -1,5 +1,5 @@
 angular
-    .module('itms.common',[])
+    .module('itms.common', [])
     .factory('notifier', function () {
 
         var defaultOption = {
@@ -38,11 +38,21 @@ angular
             });
         }
     })
-    .factory('common', ['notifier', '$q', common]);
+    .factory('fileHelper', function () {
+        return {
+            getExtName: function (name) {
+                var index = name.lastIndexOf(".");
+                return index < 0 ? "" : name.substring(index + 1).toLowerCase();
+            }
+        };
+    })
+    .factory('common', ['$q', 'notifier', 'fileHelper', common]);
 
-function common(notifier, $q) {
+function common($q, notifier, fileHelper) {
+
     return {
         notifier: notifier,
+        fileHelper: fileHelper,
         messageBox: messageBox
     };
 
@@ -71,4 +81,6 @@ function common(notifier, $q) {
         });
         return deferred.promise;
     }
+
+
 }
