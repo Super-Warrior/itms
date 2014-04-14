@@ -6,13 +6,13 @@ angular
     ])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state('app.planning.adjustment', {
+            .state('app.user.planning.adjustment', {
                 url: '/adjust',
                 data: {
                     displayName: '分配调整'
                 },
                 views: {
-                    'container@': {
+                    '@app.user': {
                         templateUrl: 'app/planning/adjustment/adjustment.tpl.html',
                         controller: 'EOAssignAdjustCtrl'
 

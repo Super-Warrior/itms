@@ -17,15 +17,20 @@ angular
     .config(['$urlRouterProvider', '$stateProvider', routerConfig]);
 
 function routerConfig($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider
-
-        //        .when('/c?id', '/transportation/eventmaintenance')
-        //        .when('/user/:id', '/transportation/eventmaintenance')
-        .otherwise('dashboard');
+//    $urlRouterProvider
+//
+//        //        .when('/c?id', '/transportation/eventmaintenance')
+//        //        .when('/user/:id', '/transportation/eventmaintenance')
+//        .otherwise('dashboard');
     $stateProvider
         .state('app', {
             abstract: true,
             template: '<div data-ui-view></div>'
+        })
+        .state('app.user', {
+            abstract: true,
+            templateUrl: 'app/layout/shell.html',
+            controller: 'shellCtrl'
         });
 }
 
@@ -37,6 +42,6 @@ function bootstrap($rootScope, $state, $stateParams, $log, $location,auth) {
         $state.go('app.login');
     }
     else if ($location.$$path === '') {
-        $state.go('app.dashboard');
+        $state.go('app.user.dashboard');
     }
 }

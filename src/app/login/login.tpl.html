@@ -1,24 +1,30 @@
+<header id="header">
+  <div id="logo-group">
+    <span id="logo"> <img src="img/banner.png"  alt="iTMS Platform"> </span>
+  </div>
+</header>
+
 <div id="content" class="container login">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-4 col-centered">
       <div class="well no-padding">
         <form id="login-form" class="smart-form client-form">
           <header>
-            Sign In
+            登录
           </header>
 
           <fieldset>
             <section>
-              <label class="label">UserName</label>
+              <label class="label">电子邮件</label>
               <label class="input"> <i class="icon-append fa fa-user"></i>
                 <input type="text" name="username" data-ng-model="username">
-                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>username</b></label>
+                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>输入注册邮箱/用户名</b></label>
             </section>
             <section>
-              <label class="label">Password</label>
+              <label class="label">密码</label>
               <label class="input"> <i class="icon-append fa fa-lock"></i>
                 <input type="password" name="password" data-ng-model="password">
-                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b>
+                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>  输入密码</b>
               </label>
 
               <div class="note">
@@ -33,7 +39,7 @@
           </fieldset>
           <footer>
             <button ng-click="logon(username,password)" class="btn btn-primary">
-              Sign in
+              登录
             </button>
           </footer>
         </form>

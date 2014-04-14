@@ -5,13 +5,13 @@ angular
     ])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state('app.transport.event', {
+            .state('app.user.transport.event', {
                 url: '/event',
                 data: {
                     displayName: '事件管理'
                 },
                 views: {
-                    'container@': {
+                    '@app.user': {
                         templateUrl: 'app/transport/event/event.tpl.html',
                         controller: 'EventMaintenanceCtrl'
                     }

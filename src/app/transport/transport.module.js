@@ -6,23 +6,12 @@ angular
     .config(['$stateProvider',
         function($stateProvider) {
             $stateProvider
-                .state('app.transport', {
+                .state('app.user.transport', {
                     abstract: true,
                     url: '/transport',
                     data: {
                         displayName: '运输执行'
-                    },
-                    controller: ['$scope', '$state',
-                        function($scope, $state) {
-                            $scope.goToRandom = function() {
-                                // $state.go() can be used as a high level convenience method
-                                // for activating a state programmatically.
-                                $state.go('contacts.detail', {
-                                    contactId: randId
-                                });
-                            };
-                        }
-                    ]
+                    }
                 });
 
         }

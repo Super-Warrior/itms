@@ -4,13 +4,13 @@ angular
     ])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state('app.transport.network', {
+            .state('app.user.transport.network', {
                 url: '/network',
                 data: {
                     displayName: '网络公司'
                 },
                 views: {
-                    'container@': {
+                    '@app.user': {
                         templateUrl: 'app/transport/network/maintainNetwork.tpl.html',
                         controller: function () {
 

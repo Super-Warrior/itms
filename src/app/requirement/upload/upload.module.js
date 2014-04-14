@@ -5,13 +5,13 @@ angular
     ])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state('app.requirement.upload', {
+            .state('app.user.requirement.upload', {
                 url: '/upload',
                 data: {
                     displayName: '需求上载'
                 },
                 views: {
-                    'container@': {
+                    '@app.user': {
                         templateUrl: 'app/requirement/upload/requirementUpload.tpl.html',
                         controller: 'requirementUploadCtrl'
 

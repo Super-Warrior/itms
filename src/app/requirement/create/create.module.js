@@ -4,13 +4,13 @@ angular.module('itms.requirement.create',[
     ])
     .config(['$stateProvider', function($stateProvider){
         $stateProvider
-            .state('app.requirement.create',{
+            .state('app.user.requirement.create',{
                 url: '/create',
                 data: {
                     displayName: '新建需求'
                 },
                 views: {
-                    'container@': {
+                    '@app.user': {
                         templateUrl: 'app/requirement/create/lotusNewER.html',
                         controller: function($scope){
                         }

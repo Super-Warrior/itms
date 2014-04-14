@@ -16,6 +16,7 @@ angular.module('itms')
                 if (window.localStorage) {
                     return localStorage['lastState'];
                 }
+                return null;
             }
 
             function getPath(state) {

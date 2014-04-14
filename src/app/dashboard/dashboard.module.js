@@ -3,13 +3,13 @@ angular
     .config(['$stateProvider',
         function($stateProvider) {
             $stateProvider
-                .state('app.dashboard', {
+                .state('app.user.dashboard', {
                     url: '/dashboard',
                     data: {
                         displayName: '我的iTMS'
                     },
                     views: {
-                        'container@': {
+                        '': {
                             templateUrl: 'app/dashboard/dashboard.tpl.html',
                             controller: 'DashboardCtrl'
                         }

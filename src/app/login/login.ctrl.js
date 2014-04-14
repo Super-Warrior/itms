@@ -6,9 +6,10 @@ function LoginCtrl($scope, $state, auth) {
     $scope.username='';
     $scope.password='';
 
+
     $scope.logon = function (username, password) {
         if (auth.logon(username, password)) {
-            $state.go('app.dashboard');
+            $state.go('app.user.dashboard');
         }
     }
 

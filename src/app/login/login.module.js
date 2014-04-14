@@ -10,7 +10,7 @@ angular
                         displayName: '登陆'
                     },
                     views: {
-                        'login@': {
+                        '': {
                             templateUrl: 'app/login/login.tpl.html',
                             controller: LoginCtrl
                         }

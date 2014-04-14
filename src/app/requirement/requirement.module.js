@@ -6,7 +6,7 @@ angular
     .config(['$stateProvider',
         function($stateProvider) {
             $stateProvider
-                .state('app.requirement', {
+                .state('app.user.requirement', {
                     abstract: true,
                     data: {
                         displayName: '需求管理'
