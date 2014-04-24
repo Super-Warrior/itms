@@ -109,44 +109,49 @@
     </article>
   </div>
   <div class="row"></div>
-  <div data-it-Jarvis class="jarviswidget jarviswidget-color-pink" id="wid-id-2" data-widget-editbutton="false"
-       data-widget-deletebutton="false">
-    <header>
-      <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+  <div class="row">
+    <article  data-it-Jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="jarviswidget jarviswidget-color-pink" id="wid-result" data-widget-editbutton="false"
+           data-widget-deletebutton="false" data-widget-collapsed="true">
+        <header>
+          <span class="widget-icon"> <i class="fa fa-table"></i> </span>
 
-      <h2>可调整需求 </h2>
+          <h2>可调整需求 </h2>
 
-      <div class="widget-toolbar">
-        <div class="btn-group">
-          <button class="btn dropdown-toggle btn-xs btn-default " data-toggle="dropdown">
-            操作 <i class="fa fa-caret-down"></i>
-          </button>
-          <ul class="dropdown-menu pull-right">
-            <li ng-class="{disabled:disableAction()}">
-              <a ng-click="reallocate()"><i class="fa fa-wrench"></i> 分配至其它运单</a>
-            </li>
-            <li ng-class="{disabled:disableAction()}">
-              <a ng-click="cancelAssignment()"><i class="fa fa-mail-reply-all"></i>
-                取消分配</a>
-            </li>
-            <li ng-class="{disabled:disableAction()}">
-              <a href="javascript:void(0)"><i class="fa fa-minus-circle "></i> 删除项目</a>
-            </li>
-            <li ng-class="{disabled:disableAction()}">
-              <a href="javascript:void(0)"><i class="fa fa-times-circle "></i> 删除运单</a>
-            </li>
-            <li>
-              <a href="javascript:void(0)"><i class="fa fa-refresh"></i> 刷新</a>
-            </li>
-          </ul>
+          <div class="widget-toolbar">
+            <div class="btn-group">
+              <button class="btn dropdown-toggle btn-xs btn-default " data-toggle="dropdown">
+                操作 <i class="fa fa-caret-down"></i>
+              </button>
+              <ul class="dropdown-menu pull-right">
+                <li ng-class="{disabled:disableAction()}">
+                  <a ng-click="reallocate()"><i class="fa fa-wrench"></i> 分配至其它运单</a>
+                </li>
+                <li ng-class="{disabled:disableAction()}">
+                  <a ng-click="cancelAssignment()"><i class="fa fa-mail-reply-all"></i>
+                    取消分配</a>
+                </li>
+                <li ng-class="{disabled:disableAction()}">
+                  <a href="javascript:void(0)"><i class="fa fa-minus-circle "></i> 删除项目</a>
+                </li>
+                <li ng-class="{disabled:disableAction()}">
+                  <a href="javascript:void(0)"><i class="fa fa-times-circle "></i> 删除运单</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)"><i class="fa fa-refresh"></i> 刷新</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </header>
+        <div>
+          <div class="widget-body no-padding">
+            <div class="widget-body-toolbar"></div>
+            <div data-im-table header-titles="columns" can-select my-source="orders" selected-items="selectedItems"></div>
+          </div>
         </div>
       </div>
-    </header>
-    <div>
-      <div class="widget-body no-padding">
-        <div class="widget-body-toolbar"></div>
-        <div data-im-table header-titles="columns" can-select my-source="orders" selected-items="selectedItems"></div>
-      </div>
-    </div>
+    </article>
   </div>
+
 </section>

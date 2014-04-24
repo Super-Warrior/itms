@@ -7,10 +7,10 @@ function eoService($http, config) {
         SerType: 'AND',
         EOStatus: ['S001'],
         eventstatus: [''],
-        EO: '',
-        EOType: '',
-        EOTRType: '',
-        EOTag: '',
+        EO: [''],
+        EOType: [''],
+        EOTRType: [''],
+        EOTag: [''],
         EOTRVendor1: '',
         EOTRVendor2: '',
         EOTRVendor3: '',
@@ -90,11 +90,11 @@ function eoService($http, config) {
     function getEventCode(type) {
         var params = {
             Code: type,
-            ConType: 'EVNT',
+            ConType: ['EVNT'],
             Group1: '',
             Group2: '',
             Group3: '',
-            Language: 'CN'
+            Language: ['CN']
         }
         return $http({
             method: 'GET',

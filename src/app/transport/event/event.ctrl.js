@@ -17,6 +17,9 @@ function EventMaintenanceCtrl($scope, eolist) {
 
     //todo: move to help method
     function getPartialEoList(items) {
+        if(items.errorMessage && items.errorMessage === 'NO_RESULT'){
+            return [];
+        }
         return items.map(mapper);
 
         function mapper(item) {
@@ -98,6 +101,9 @@ function MyWorkSpace($scope, $modal, eoService, common) {
     };
 
     function getPartialEoList(items) {
+        if(items.errorMessage && item.errorMessage === 'NO_RESULT'){
+            return [];
+        }
         return items.map(mapper);
 
         function mapper(item) {
@@ -150,15 +156,7 @@ function HandleEventCtrl($scope, $modalInstance, eoService, items) {
                     };
                 });
             });
-    }
-
-    //$scope.codes = [{
-        //value: 'E01',
-        //text: '天气异常'
-    //}, {
-        //value: 'E02',
-        //text: '货物丢失'
-    //}];
+    };
 
     $scope.ok = function() {
         eoService.createEvent({

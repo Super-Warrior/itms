@@ -5,11 +5,11 @@ function configService($http, config) {
 
    var criteria = {
       "Code": null,
-      "ConType": null,
+      "ConType[]": null,
       "Group1": null,
       "Group2": null,
       "Group3": null,
-      "Language": "CN"
+      "Language[]": "CN"
    };
    var configType = {
       "transport": "TRPY",
