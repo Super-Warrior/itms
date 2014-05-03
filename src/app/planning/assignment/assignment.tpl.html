@@ -1,172 +1,172 @@
 ﻿<section>
-  <div class="row">
-    <div ng-include src='"app/common/pageTitle.html"'></div>
-  </div>
-  <div class="row">
-    <article  data-it-Jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <!-- Widget ID (each widget will need unique ID)-->
-      <div class="jarviswidget  jarviswidget-color-pink" id="wid-query" data-widget-editbutton="false"
-           data-widget-deletebutton="false">
-        <header>
-          <span class="widget-icon"><i class="fa fa-search"></i></span>
+    <div class="row">
+        <div ng-include src='"app/common/pageTitle.html"'></div>
+    </div>
+    <div class="row">
+        <article data-it-jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget  jarviswidget-color-pink" id="wid-query" data-widget-editbutton="false"
+                data-widget-deletebutton="false">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-search"></i></span>
 
-          <h2>查询可分配需求</h2>
-        </header>
-        <!-- widget div-->
-        <div>
-          <!-- widget edit box -->
-          <div class="jarviswidget-editbox">
-            <!-- This area used as dropdown edit box -->
-            <input type="text">
-          </div>
-          <!-- end widget edit box -->
-          <!-- widget content -->
-          <div class="widget-body no-padding">
-            <div id="checkout-form" class="smart-form" novalidate="novalidate">
-              <fieldset>
-                <div class="row">
-                  <section class="col col-4">
-                    <label class="input">
-                      <i class="icon-prepend fa fa-sitemap"></i>
-                      <input type="text" name="CRP2" ng-model="selectedSite" placeholder="站点代码">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <button class="btn btn-warning btn-sm" ng-click="searchSite()">
-                      <i class="fa fa-search "></i>&nbsp;站点搜索
-                    </button>
-                    <!--ng-click="popup($event);"-->
-                  </section>
+                    <h2>查询可分配需求</h2>
+                </header>
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                        <input type="text">
+                    </div>
+                    <!-- end widget edit box -->
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <div id="checkout-form" class="smart-form" novalidate="novalidate">
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-sitemap"></i>
+                                            <input type="text" name="CRP2" ng-model="selectedSite" placeholder="站点代码">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <button class="btn btn-warning btn-sm" ng-click="searchSite()">
+                                            <i class="fa fa-search "></i>&nbsp;站点搜索
+                                        </button>
+                                        <!--ng-click="popup($event);"-->
+                                    </section>
+                                </div>
+                                <div class="row">
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-arrow-circle-up"></i>
+                                            <input type="text" name="CRP2" ng-model="selectedCustomer.dep" placeholder="发货方代码">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <button class="btn btn-success btn-sm" ng-click="searchCustomer('dep')">
+                                            <i
+                                                class="fa fa-search "></i>&nbsp;发货方搜索
+                                        </button>
+                                    </section>
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-map-marker"></i>
+                                            <input type="text" name="CRP2" ng-model="selectedPosition.dep" placeholder="发货方位置">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <button class="btn btn-info btn-sm"><i class="fa fa-search "></i>&nbsp;位置搜索</button>
+                                    </section>
+                                </div>
+                                <div class="row">
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-arrow-circle-down"></i>
+                                            <input type="text" name="CRP2" ng-model="selectedCustomer.rec" placeholder="收货方代码">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <button class="btn btn-success btn-sm" ng-click="searchCustomer('rec')">
+                                            <i class="fa fa-search "></i>&nbsp;收货方搜索
+                                        </button>
+                                    </section>
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-map-marker"></i>
+                                            <input type="text" name="CRP2" ng-model="selectedPosition.rec" placeholder="收货方位置">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <button class="btn btn-info btn-sm"><i class="fa fa-search "></i>&nbsp;位置搜索</button>
+                                    </section>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col col-3">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-user"></i>
+                                            <input type="text" name="CRP2" ng-model="user" placeholder="创建用户">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-calendar"></i>
+                                            <input type="text" name="CRP2" id="createDate" im-datepicker ng-model="createDate"
+                                                placeholder="创建日期">
+                                        </label>
+                                    </section>
+
+                                </div>
+                            </fieldset>
+                            <footer>
+                                <button type="button" ng-click="quickSearch()" class="btn  btn-default">
+                                    <i class="fa fa-search"></i>&nbsp;查询
+                                </button>
+                                <button type="button" class="btn btn-default" ng-click="reset()">
+                                    <i class="fa fa-reply-all "></i>&nbsp;重置
+                                </button>
+                            </footer>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                  <section class="col col-4">
-                    <label class="input">
-                      <i class="icon-prepend fa fa-arrow-circle-up"></i>
-                      <input type="text" name="CRP2" ng-model="selectedCustomer.dep" placeholder="发货方代码">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <button class="btn btn-success btn-sm" ng-click="searchCustomer('dep')">
-                      <i
-                          class="fa fa-search "></i>&nbsp;发货方搜索
-                    </button>
-                  </section>
-                  <section class="col col-4">
-                    <label class="input">
-                      <i class="icon-prepend fa fa-map-marker"></i>
-                      <input type="text" name="CRP2" ng-model="selectedPosition.dep" placeholder="发货方位置">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <button class="btn btn-info btn-sm"><i class="fa fa-search "></i>&nbsp;位置搜索</button>
-                  </section>
+            </div>
+        </article>
+    </div>
+
+    <div class="row">
+        <article data-it-jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="jarviswidget jarviswidget-color-pink" id="wid-result" data-widget-editbutton="false"
+                data-widget-deletebutton="false" data-widget-collapsed="true">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+                    <h2>可分配需求</h2>
+
+                    <div class="widget-toolbar">
+                        <div class="btn-group">
+                            <button class="btn dropdown-toggle btn-xs btn-default " data-toggle="dropdown">
+                                操作 <i class="fa fa-caret-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li ng-class="{disabled:!isAnythingSelected()}">
+                                    <a href="" ng-click="create()"><i class="fa fa-resize-small"></i>&nbsp;合并至运单</a>
+                                </li>
+                                <li ng-class="{disabled:!isAnythingSelected()}">
+                                    <a href="" ng-click="adjust()"><i class="fa fa-truck"></i>&nbsp;运输方式调整</a>
+                                </li>
+                                <li ng-class="{disabled:!isAnythingSelected()}">
+                                    <a href="" ng-click="deleteEr()" id="smart-mod-delER"><i
+                                        class="fa fa-minus-circle "></i>&nbsp;删除项目</a>
+                                </li>
+                                <li ng-class="{disabled:!isAnythingSelected()}">
+                                    <a href="" ng-click="deleteEritm()" id="smart-mod-delERITN"><i
+                                        class="fa fa-times-circle "></i>&nbsp;删除需求</a>
+                                </li>
+                                <li>
+                                    <a href="" ng-click="quickSearch()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                <div>
+                    <div class="jarviswidget-editbox">
+                    </div>
+                    <div id="tableWidget" class="widget-body no-padding">
+                        <div class="widget-body-toolbar">
+                        </div>
+                        <div data-im-table header-titles="columns" detail-config="detailConfig"
+                            my-source="quickResult" selected-items="selectedItems" can-select>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                  <section class="col col-4">
-                    <label class="input">
-                      <i class="icon-prepend fa fa-arrow-circle-down"></i>
-                      <input type="text" name="CRP2" ng-model="selectedCustomer.rec" placeholder="收货方代码">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <button class="btn btn-success btn-sm" ng-click="searchCustomer('rec')">
-                      <i class="fa fa-search "></i>&nbsp;收货方搜索
-                    </button>
-                  </section>
-                  <section class="col col-4">
-                    <label class="input">
-                      <i class="icon-prepend fa fa-map-marker"></i>
-                      <input type="text" name="CRP2" ng-model="selectedPosition.rec" placeholder="收货方位置">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <button class="btn btn-info btn-sm"><i class="fa fa-search "></i>&nbsp;位置搜索</button>
-                  </section>
-                </div>
-              </fieldset>
-              <fieldset>
-                <div class="row">
-                  <section class="col col-3">
-                    <label class="input">
-                      <i class="icon-prepend fa fa-user"></i>
-                      <input type="text" name="CRP2" ng-model="user" placeholder="创建用户">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <label class="input">
-                      <i class="icon-prepend fa fa-calendar"></i>
-                      <input type="text" name="CRP2" id="createDate" im-datepicker ng-model="createDate"
-                             placeholder="创建日期">
-                    </label>
-                  </section>
-
-                </div>
-              </fieldset>
-              <footer>
-                <button type="button" ng-click="quickSearch()" class="btn  btn-default">
-                  <i class="fa fa-search"></i>&nbsp;查询
-                </button>
-                <button type="button" class="btn btn-default" ng-click="reset()">
-                  <i class="fa fa-reply-all "></i>&nbsp;重置
-                </button>
-              </footer>
             </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
-
-  <div class="row">
-    <article  data-it-Jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="jarviswidget jarviswidget-color-pink" id="wid-result" data-widget-editbutton="false"
-           data-widget-deletebutton="false" data-widget-collapsed="true">
-        <header>
-          <span class="widget-icon"><i class="fa fa-table"></i></span>
-
-          <h2>可分配需求</h2>
-
-          <div class="widget-toolbar">
-            <div class="btn-group">
-              <button class="btn dropdown-toggle btn-xs btn-default " data-toggle="dropdown">
-                操作 <i class="fa fa-caret-down"></i>
-              </button>
-              <ul class="dropdown-menu pull-right">
-                <li ng-class="{disabled:!isAnythingSelected()}">
-                  <a href="" ng-click="create()"><i class="fa fa-resize-small"></i>&nbsp;合并至运单</a>
-                </li>
-                <li ng-class="{disabled:!isAnythingSelected()}">
-                  <a href="" ng-click="adjust()"><i class="fa fa-truck"></i>&nbsp;运输方式调整</a>
-                </li>
-                <li ng-class="{disabled:!isAnythingSelected()}">
-                  <a href="" ng-click="deleteEr()" id="smart-mod-delER"><i
-                      class="fa fa-minus-circle "></i>&nbsp;删除项目</a>
-                </li>
-                <li ng-class="{disabled:!isAnythingSelected()}">
-                  <a href="" ng-click="deleteEritm()" id="smart-mod-delERITN"><i
-                      class="fa fa-times-circle "></i>&nbsp;删除需求</a>
-                </li>
-                <li>
-                  <a href="" ng-click="quickSearch()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </header>
-        <div>
-          <div class="jarviswidget-editbox">
-          </div>
-          <div id="tableWidget" class="widget-body no-padding">
-            <div class="widget-body-toolbar">
-            </div>
-            <div data-im-table header-titles="columns" detail-target="app/planning/assignment/eoDetail.tpl.html"
-                 my-source="quickResult" selected-items="selectedItems" can-select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
+        </article>
+    </div>
 
 </section>
 
