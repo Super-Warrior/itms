@@ -6,7 +6,7 @@ angular.module('itms.transport.event')
 function EventMaintenanceCtrl($scope, eolist) {
 
     $scope.module = '运输执行';
-    $scope.title = '事件管理';
+    $scope.title = '运单事件';
     $scope.orders = getPartialEoList(eolist.data);
 
     activate();

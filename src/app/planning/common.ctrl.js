@@ -47,7 +47,7 @@ function searchSiteCtrl($scope, $http, config, $modalInstance) {
                 $scope.items = result.data;
             });
     };
-};
+}
 
 function searchCustomerCtrl ($scope, $http, config, $modalInstance, customerService, type) {
     $scope.type = type;
@@ -70,7 +70,7 @@ function searchCustomerCtrl ($scope, $http, config, $modalInstance, customerServ
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-};
+}
 
 function searchLocationCtrl ($scope, $modalInstance, items) {
     $scope.items = items;
@@ -90,4 +90,4 @@ function searchLocationCtrl ($scope, $modalInstance, items) {
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-};
+}

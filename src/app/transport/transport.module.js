@@ -1,7 +1,6 @@
 angular
     .module('itms.transport', [
-        'itms.transport.event',
-        'itms.transport.network'
+        'itms.transport.event'
     ])
     .config(['$stateProvider',
         function($stateProvider) {
