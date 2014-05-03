@@ -1,0 +1,119 @@
+<section id="widget-grid">
+<div class="row">
+  <div ng-include src='"app/common/pageTitle.html"'></div>
+</div>
+<!-- row -->
+<div class="row">
+  <!-- NEW WIDGET START -->
+  <article data-it-Jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <div class="jarviswidget jarviswidget-color-teal" data-widget-editbutton="false"
+         data-widget-deletebutton="false">
+      <header>
+        <span class="widget-icon"> <i class="fa fa-search"></i> </span>
+        <h2>事件查询</h2>
+        <div data-tabset class="nav nav-tabs pull-right in">
+          <div data-tab data-select="searchByEvent()">
+            <div data-tab-heading>
+              <i class="fa fa-lg fa-fw fa-bolt"></i> <span class="hidden-mobile hidden-tablet"> 事件快速查询 </span>
+            </div>
+          </div>
+          <div data-tab data-select="searchByEr()">
+            <tab-heading>
+              <i class="fa fa-lg fa-fw fa-inbox"></i> <span class="hidden-mobile hidden-tablet"> ER需求事件查询 </span>
+            </tab-heading>
+          </div>
+          <div data-tab data-select="searchByEo()">
+            <div data-tab-heading>
+              <i class="fa fa-lg fa-fw fa-truck"></i> <span class="hidden-mobile hidden-tablet"> EO事件查询 </span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- widget div-->
+      <div>
+        <!-- widget content -->
+        <div class="widget-body">
+          <!-- this is what the user will see -->
+          <div class="tab-content">
+            <div class="tab-pane fade in active">
+              <div data-ui-view="search"></div>
+            </div>
+          </div>
+        </div>
+        <!-- end widget content -->
+      </div>
+    </div>
+    <!-- end widget div -->
+  </article>
+</div>
+<!-- end widget -->
+<div class="row" data-ng-controller="EventMaintenance.MyWorkSpace">
+  <!-- NEW WIDGET START -->
+  <article data-it-Jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div class="jarviswidget jarviswidget-color-teal" id="wid-id-2r" data-widget-editbutton="false"
+         data-widget-deletebutton="false">
+      <header>
+        <span class="widget-icon"> <i class="fa fa-search-plus"></i> </span>
+        <h2>我的EO作业区</h2>
+        <div class="widget-toolbar">
+          <div class="btn-group">
+            <button class="btn dropdown-toggle btn-xs btn-default">
+              <i class="fa fa-filter"></i> 事件类型 <i class="fa fa-caret-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right">
+              <li>
+                <a ng-click="filterEvent('N')"><i class="fa fa-check-circle  txt-color-green"></i> 正常</a>
+              </li>
+              <li>
+                <a ng-click="filterEvent('D')"><i class="fa fa-exclamation-circle  txt-color-red"></i> 延迟</a>
+              </li>
+              <li>
+                <a ng-click="filterEvent('E')"><i class="fa fa-question-circle  txt-color-orange"></i> 意外</a>
+              </li>
+              <li>
+                <a ng-click="filterEvent()"><i class="fa fa-square  txt-color-blue"></i> 全部</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="widget-toolbar">
+          <div class="btn-group">
+            <button class="btn dropdown-toggle btn-xs btn-warning">
+              执行动作 <i class="fa fa-caret-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right">
+              <li ng-class="{disabled:disableAction()}">
+                <a ng-click="handleEvent()"> <i class="fa fa-edit"></i> 事件处理</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <!-- widget div-->
+      <div>
+        <!-- widget edit box -->
+        <div class="jarviswidget-editbox">
+          <!-- This area used as dropdown edit box -->
+        </div>
+        <!-- end widget edit box -->
+        <!-- widget content -->
+        <div class="widget-body no-padding">
+          <div class="widget-body-toolbar"></div>
+          <div data-im-table can-select header-titles="columns" my-source="orders" selected-items="selectedItems"></div>
+        </div>
+        <!-- end widget content -->
+      </div>
+      <!-- end widget div -->
+    </div>
+    <!-- end widget -->
+  </article>
+  <!-- END COL -->
+  <!-- NEW COL START -->
+</div>
+<!-- END ROW -->
+<div class="row"></div>
+<!-- end row -->
+</section>
+<!-- end widget grid -->
