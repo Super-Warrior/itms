@@ -5,22 +5,22 @@ function configService($http, config) {
 
    var criteria = {
       "Code": null,
-      "ConType[]": null,
+      "ConType": [],
       "Group1": null,
       "Group2": null,
       "Group3": null,
-      "Language[]": "CN"
+      "Language": ["CN"]
    };
    var configType = {
       "transport": "TRPY",
-      "eo": "ERTP", 
-      "tag": "ERTG", 
+      "eo": "ERTP",
+      "tag": "ERTG",
       "特殊标识": "",
       "配送网络公司": ""
    };
 
    var getConfig = function (type) {
-      criteria.ConType = configType[type];
+      criteria.ConType = [configType[type]];
       return $http({
          method: "GET",
          url: config.baseUrl + "Config/ConSearch" + "?" + $.param(criteria),
