@@ -21,7 +21,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    customerService.searchCustomer("net").then(function (result) {
       $scope.nets = result.data;
    });
-
+   $scope.detailConfig = { "erDetail": true, "timeLine": true };
    $scope.columns = [
        { "mData": "requirementDetail.pk.erID", "sTitle": "ER" },
        { "mData": "requirementDetail.pk.erITN", "sTitle": "ERITN" },

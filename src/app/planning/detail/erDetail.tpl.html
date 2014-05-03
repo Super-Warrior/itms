@@ -1,0 +1,523 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-hidden="true" ng-click="cancel()">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="150" alt="iTMS">
+    </h4>
+</div>
+
+
+<div class="modal-body no-padding">
+    <div class="alert alert-info fade in">
+        <i class="fa-fw fa fa-list"></i><strong>需求ER:</strong>1231/2<br>
+        <i class="fa-fw fa fa-link"></i><strong>已分配EO:</strong>121111
+    </div>
+    <ul id="erTab" class="nav nav-tabs bordered">
+        <li class="active"><a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-tag "></i>基本信息</a> </li>
+        <li><a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-arrow-circle-up "></i>发货方</a> </li>
+        <li><a href="#s3" data-toggle="tab"><i class="fa fa-fw fa-lg fa-arrow-circle-down "></i>收货方</a> </li>
+        <li><a href="#s4" data-toggle="tab"><i class="fa fa-fw fa-lg fa-inbox"></i>资源</a> </li>
+        <li><a href="#s5" data-toggle="tab"><i class="fa fa-fw fa-lg fa-list-ol"></i>行项目</a> </li>
+        <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-edit"></i>操作<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-save"></i>保存</a> </li>
+                <li><a href="#" data-target="#myaction" data-toggle="modal"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a> </li>
+                <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-refresh"></i>刷新</a> </li>
+            </ul>
+        </li>
+    </ul>
+    <div id="myTabContent1" class="tab-content padding-10">
+        <div class="tab-pane fade in active" id="s1">
+            <form action="" id="checkout-form" class="smart-form" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>需求类型</label>
+                            <label class="select">
+                                <select name="prov">
+                                    <option value="0" selected disabled>紧急</option>
+                                    <option value="1">预付</option>
+                                    <option value="2">监控</option>
+                                    <option value="3">索赔</option>
+                                    <option value="4">统配</option>
+                                </select>
+                                <i class="fa fa-check-square"></i>
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label>运输方式</label>
+                            <label class="select">
+                                <select name="prov">
+                                    <option value="0" selected disabled>空运</option>
+                                    <option value="1">快运</option>
+                                    <option value="2">自有运输</option>
+                                </select>
+                                <i class="fa fa-check-square"></i>
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label>特殊运输标识</label>
+                            <label class="select">
+                                <select name="prov">
+                                    <option value="0" selected disabled>危险品</option>
+                                    <option value="1">冷藏</option>
+                                </select>
+                                <i class="fa fa-check-square"></i>
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>客户订单号</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-tag"></i>
+                                <input type="text" name="Cr" placeholder="客户订单号">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>客户运单号</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-tag"></i>
+                                <input type="text" name="Cr" placeholder="客户运单号">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label>客户出库号</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-tag"></i>
+                                <input type="text" name="Cr" placeholder="客户出库号">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-3">
+                            <label>总件数</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-list-ol "></i>
+                                <input type="text" name="Cr" placeholder="总件数">
+                            </label>
+                        </section>
+                        <section class="col col-3">
+                            <label>总重量</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-outdent "></i>
+                                <input type="text" name="Cr" placeholder="总重量">
+                            </label>
+                        </section>
+                        <section class="col col-3">
+                            <label>总体积</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-th "></i>
+                                <input type="text" name="Cr" placeholder="总体积">
+                            </label>
+                        </section>
+                        <section class="col col-3">
+                            <label>总体积/重</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-list"></i>
+                                <input type="text" name="Cr" placeholder="总体积/重">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>波次交接日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" name="startdate" id="startdate" placeholder="波次交接日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>波次交接时间</label>
+                                <div class="input-group">
+                                    <input class="form-control" id="timepicker" type="text" value="" placeholder="波次交接时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>要求接货日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" name="startdate" id="Text1" placeholder="要求接货日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>要求接货时间</label>
+                                <div class="input-group">
+                                    <input class="form-control" id="Text2" type="text" value="" placeholder="要求接货时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>要求发运日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" name="startdate" id="Text3" placeholder="要求发运日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>要求发运时间</label>
+                                <div class="input-group">
+                                    <input class="form-control" id="Text4" type="text" value="" placeholder="要求发运时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>要求到达日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" name="startdate" id="Text5" placeholder="要求到达日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>要求到达时间</label>
+                                <div class="input-group">
+                                    <input class="form-control" id="Text6" type="text" value="" placeholder="要求到达时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-9">
+                            <label class="textarea">
+                                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="s2">
+            <form action="" id="Form1" class="smart-form" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>发货方客户代码</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="Cr" placeholder="客户代码">
+                            </label>
+                        </section>
+                        <section class="col col-8">
+                            <label>发货方客户名称</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-info"></i>
+                                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>联系人</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="Cr" placeholder="联系人">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>电子邮件</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-envelope-o"></i>
+                                <input type="text" name="Cr" placeholder="电子邮件">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label>电话</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-phone"></i>
+                                <input type="text" name="Cr" placeholder="电话">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>位置代码</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-map-marker"></i>
+                                <input type="text" name="Cr" placeholder="位置代码">
+                            </label>
+                        </section>
+                        <section class="col col-8">
+                            <label>位置描述</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-info"></i>
+                                <input type="text" disabled="disabled" name="Cr" placeholder="位置描述">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-9">
+                            <label class="textarea">
+                                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="s3">
+            <form action="" id="Form2" class="smart-form" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>收货方客户代码</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="Cr" placeholder="客户代码">
+                            </label>
+                        </section>
+                        <section class="col col-8">
+                            <label>收货方客户名称</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-info"></i>
+                                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>联系人</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="Cr" placeholder="联系人">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>电子邮件</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-envelope-o"></i>
+                                <input type="text" name="Cr" placeholder="电子邮件">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label>电话</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-phone"></i>
+                                <input type="text" name="Cr" placeholder="电话">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>位置代码</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-map-marker"></i>
+                                <input type="text" name="Cr" placeholder="位置代码">
+                            </label>
+                        </section>
+                        <section class="col col-8">
+                            <label>位置描述</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-info"></i>
+                                <input type="text" disabled="disabled" name="Cr" placeholder="位置描述">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-9">
+                            <label class="textarea">
+                                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="s4">
+            <form action="" id="Form3" class="smart-form" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>资源类型1</label>
+                            <label class="select">
+                                <select name="city">
+                                    <option value="0" selected disabled>托盘</option>
+                                    <option value="244">包装木箱</option>
+                                </select>
+                                <i></i>
+                            </label>
+                        </section>
+                        <section class="col col-3">
+                            <label>数量</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-list-ol "></i>
+                                <input type="text" name="pc" placeholder="数量">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>资源类型2</label>
+                            <label class="select">
+                                <select name="city">
+                                    <option value="0" selected disabled>托盘</option>
+                                    <option value="244">包装木箱</option>
+                                </select>
+                                <i></i>
+                            </label>
+                        </section>
+                        <section class="col col-3">
+                            <label>数量</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-list-ol "></i>
+                                <input type="text" name="pc" placeholder="数量">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>资源类型3</label>
+                            <label class="select">
+                                <select name="city">
+                                    <option value="0" selected disabled>托盘</option>
+                                    <option value="244">包装木箱</option>
+                                </select>
+                                <i></i>
+                            </label>
+                        </section>
+                        <section class="col col-3">
+                            <label>数量</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-list-ol "></i>
+                                <input type="text" name="pc" placeholder="数量">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-9">
+                            <label class="textarea">
+                                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="s5">
+            <form action="" id="Form4" class="smart-form" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>物料编码</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-font"></i>
+                                <input type="text" name="lname" placeholder="物料编码">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label>物料描述</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-info"></i>
+                                <input type="text" name="lname" placeholder="物料描述发动机总成" disabled="disabled">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-3">
+                            <label>状态</label>
+                            <label class="select">
+                                <select name="city">
+                                    <option value="0" selected disabled>状态</option>
+                                    <option value="244">完好</option>
+                                    <option value="1">包装破损</option>
+                                </select>
+                                <i></i>
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>箱号</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-qrcode"></i>
+                                <input type="text" name="pc" placeholder="箱号">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label>数量</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-list-ol "></i>
+                                <input type="text" name="pc" placeholder="数量">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>长CM</label>
+                            <label class="input">
+                                <i class="icon-prepend fa  fa-resize-full "></i>
+                                <input type="text" name="pc" placeholder="长CM">
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label>宽CM</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-text-width"></i>
+                                <input type="text" name="pc" placeholder="宽CM">
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label>高CM</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-text-height "></i>
+                                <input type="text" name="pc" placeholder="高CM">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>体积CM</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-th"></i>
+                                <input type="text" name="pc" placeholder="体积M3">
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label>重量</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-tint  "></i>
+                                <input type="text" name="pc" placeholder="重量">
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label>体积重</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-th-large  "></i>
+                                <input type="text" name="pc" placeholder="体积重">
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
