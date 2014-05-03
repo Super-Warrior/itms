@@ -15,17 +15,20 @@
         <div data-tabset class="nav nav-tabs pull-right in">
           <div data-tab data-select="searchByEvent()">
             <div data-tab-heading>
-              <i class="fa fa-lg fa-fw fa-bolt"></i> <span class="hidden-mobile hidden-tablet"> 事件快速查询 </span>
+              <i class="fa fa-lg fa-fw fa-bolt"></i>
+              <span class="hidden-mobile hidden-tablet">事件快速查询</span>
             </div>
           </div>
           <div data-tab data-select="searchByEr()">
-            <tab-heading>
-              <i class="fa fa-lg fa-fw fa-inbox"></i> <span class="hidden-mobile hidden-tablet"> ER需求事件查询 </span>
-            </tab-heading>
+            <div data-tab-heading>
+              <i class="fa fa-lg fa-fw fa-inbox"></i>
+              <span class="hidden-mobile hidden-tablet">ER需求事件查询</span>
+            </div>
           </div>
           <div data-tab data-select="searchByEo()">
             <div data-tab-heading>
-              <i class="fa fa-lg fa-fw fa-truck"></i> <span class="hidden-mobile hidden-tablet"> EO事件查询 </span>
+              <i class="fa fa-lg fa-fw fa-truck"></i>
+              <span class="hidden-mobile hidden-tablet">EO事件查询</span>
             </div>
           </div>
         </div>
@@ -48,7 +51,7 @@
   </article>
 </div>
 <!-- end widget -->
-<div class="row" data-ng-controller="EventMaintenance.MyWorkSpace">
+<div class="row" data-ng-controller="EventSearchCtrl.MyWorkSpace">
   <!-- NEW WIDGET START -->
   <article data-it-Jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <!-- Widget ID (each widget will need unique ID)-->
@@ -101,7 +104,7 @@
         <!-- widget content -->
         <div class="widget-body no-padding">
           <div class="widget-body-toolbar"></div>
-          <div data-im-table can-select header-titles="columns" my-source="orders" selected-items="selectedItems"></div>
+          <div data-im-table can-select header-titles="columns" my-source="events" selected-items="selectedItems"></div>
         </div>
         <!-- end widget content -->
       </div>

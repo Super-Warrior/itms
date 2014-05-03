@@ -1,7 +1,7 @@
 <form action="" class="smart-form" novalidate>
   <fieldset>
     <div class="row">
-      <section class="col col-3">
+      <div class="col col-3">
         <label class="label"><i class="fa fa-eye-slash "></i> 事件类型</label>
         <label class="select select-multiple">
           <select multiple="" class="custom-scroll">
@@ -10,47 +10,56 @@
             <option value="3">意外事件</option>
           </select>
         </label>
-      </section>
-      <section class="col col-3">
-        <label class="input"> <i class="icon-prepend fa fa-search "></i>
-          <input type="text" name="Cr" placeholder="事件代码">
+      </div>
+      <div class="col col-3">
+        <label class="input"><i class="icon-prepend fa fa-search "></i>
+          <input type="text" data-ng-model="eventCode" placeholder="事件代码">
         </label>
-      </section>
-      <section class="col col-3">
+      </div>
+      <div class="col col-3">
         <label class="input"> <i class="icon-prepend fa fa-search "></i>
-          <input type="text" name="Cr" placeholder="EO运单号">
+          <input type="text" data-ng-model="eoNumber" placeholder="EO运单号">
         </label>
-      </section>
-      <section class="col col-3">
+      </div>
+      <div class="col col-3">
         <label class="input"> <i class="icon-prepend fa fa-search "></i>
-          <input type="text" name="Cr" placeholder="ER需求单号">
+          <input type="text" data-ng-model="erNumber" placeholder="ER需求单号">
         </label>
-      </section>
+      </div>
     </div>
   </fieldset>
   <fieldset>
     <div class="row">
       <section class="col col-3">
-        <label class="input"> <i class="icon-prepend fa fa-search "></i>
-          <input type="text" name="Cr" placeholder="事件受众1">
+        <label class="input">
+          <i class="icon-prepend fa fa-search "></i>
+          <input type="text" data-ng-model="eventListener1" placeholder="事件受众1">
         </label>
       </section>
       <section class="col col-3">
-        <label class="input"> <i class="icon-prepend fa fa-search "></i>
-          <input type="text" name="Cr" placeholder="事件受众2">
+        <label class="input">
+          <i class="icon-prepend fa fa-search "></i>
+          <input type="text" data-ng-model="eventListener2" placeholder="事件受众2">
         </label>
       </section>
       <section class="col col-3">
-        <label class="input"> <i class="icon-prepend fa fa-search "></i>
-          <input type="text" name="Cr" placeholder="事件受众3">
+        <label class="input">
+          <i class="icon-prepend fa fa-search "></i>
+          <input type="text" data-ng-model="eventListener3" placeholder="事件受众3">
         </label>
       </section>
       <section class="col col-3">
-        <label class="input"> <i class="icon-prepend fa fa-search "></i>
-          <input type="text" name="Cr" placeholder="事件受众4">
+        <label class="input">
+          <i class="icon-prepend fa fa-search "></i>
+          <input type="text" data-ng-model="eventListener4" placeholder="事件受众4">
         </label>
       </section>
     </div>
   </fieldset>
-  <footer> <a class="btn btn-default" href="javascript:void(0);"> <i class="fa fa-search"></i> 查询 </a></footer>
+  <footer>
+    <a class="btn btn-primary" ng-click="eventSearch()">
+      <i class="fa fa-search"></i>
+      查询
+    </a>
+  </footer>
 </form>

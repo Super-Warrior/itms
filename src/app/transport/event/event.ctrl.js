@@ -95,7 +95,7 @@ function MyWorkSpace($scope, $modal, eoService, common) {
                 }
             }
         });
-        modalInstance.result.then(function(selectedItem) {
+        modalInstance.result.then(function() {
             common.notifier.success("操作成功");
         });
     };

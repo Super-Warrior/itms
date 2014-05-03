@@ -4,7 +4,7 @@ angular.module('itms.transport.event')
 function eoService($http, config, configService) {
 
    var defaultQueryOption = {
-      SerType: 'AND',
+      SerType: 'OR',
       EOStatus: ['S001'],
       eventstatus: [''],
       EO: [''],
@@ -68,7 +68,7 @@ function eoService($http, config, configService) {
 
    function queryByEventType(type) {
       var data = defaultQueryOption;
-      data.eventstatus = [type || ''];
+       defaultQueryOption.eventstatus = [type || ''];
       return $http.postXSRF(searchUrl, data);
    }
 

@@ -52,7 +52,7 @@ angular
                     }
                 }
             })
-            .state('app.user.transport.event.search.searchByEo', {
+            .state('app.user.transport.eventSearch.search.searchByEo', {
                 views: {
                     'search@app.user.transport.eventSearch': {
                         templateUrl: 'app/transport/event/eoeventsearch.tpl.html'
