@@ -46,10 +46,6 @@ article.sortable-grid {
 .jarviswidget {
   margin: 0 0 30px 0;
   position: relative;
-  -moz-border-radius: 0px;
-  -khtml-border-radius: 0px;
-  -webkit-border-radius: 0px;
-  border-radius: 0px;
   padding: 0;
 }
 .widget-content-padding {
