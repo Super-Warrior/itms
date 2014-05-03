@@ -63,7 +63,7 @@ function searchCustomerCtrl ($scope, $http, config, $modalInstance, customerServ
         $modalInstance.close(keys);
     };
     $scope.search = function () {
-        customerService.searchCustomer().then(function (result) {
+       customerService.searchCustomer($scope.type).then(function (result) {
             $scope.items = result.data;
         });
     };
