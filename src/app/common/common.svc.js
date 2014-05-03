@@ -84,3 +84,39 @@ function common($q, notifier, fileHelper) {
 
 
 }
+
+
+angular.module("itms.common")
+   .factory("configService", ["$http", "config", configService]);
+
+function configService($http, config) {
+
+   var criteria = {
+      "Code": null,
+      "ConType": [],
+      "Group1": null,
+      "Group2": null,
+      "Group3": null,
+      "Language": ["CN"]
+   };
+   var configType = {
+      "transport": "TRPY",
+      "eo": "ERTP",
+      "tag": "ERTG",
+      "event": "EVNT",
+      "特殊标识": "",
+      "配送网络公司": ""
+   };
+
+   var getConfig = function (type, code) {
+      criteria.ConType = [configType[type]];
+      if (code) criteria.Code = code;
+      return $http({
+         method: "GET",
+         url: config.baseUrl + "Config/ConSearch" + "?" + $.param(criteria),
+         dataType: "json"
+      });
+
+   };
+   return { "getConfig": getConfig };
+}
