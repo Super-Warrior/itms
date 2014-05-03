@@ -80,7 +80,7 @@ module.exports = {
             'vendor/font-awesome/css/font-awesome.min.css',
             'src/assets/styles/smartadmin-production.css',
             'src/assets/styles/smartadmin-skins.css',
-            'src/assets/styles/demo.css',
+           /* 'src/assets/styles/demo.css',*/
             'src/assets/styles/style.css'
         ],
         assets: [
