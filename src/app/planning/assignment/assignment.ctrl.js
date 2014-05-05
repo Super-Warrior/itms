@@ -22,7 +22,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       $scope.nets = result.data;
    });
 
-   $scope.detailConfig = { erDetail: true, timeLine: true };
+   $scope.detailConfig = { erDetail: true, timeLine: true/*, data: $scope.quickResult */ };
    $scope.columns = [
         { "mData": "requirementDetail.pk.erID", "sTitle": "ER" },
         { "mData": "requirementDetail.pk.erITN", "sTitle": "ERITN" },

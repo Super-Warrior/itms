@@ -47,9 +47,9 @@
       if (scope.detailConfig) {
          var content = [];
          if (scope.detailConfig.erDetail)
-            content.push( '<a href="javascript:void(0)" template="erDetail.tpl.html"><i class="fa fa-truck"></i></a>');
+            content.push('<a href="javascript:void(0)" template="erDetail.tpl.html"><i class="fa fa-truck"></i></a>');
          if (scope.detailConfig.eoDetail)
-            content.push( '<a href="javascript:void(0)" template="eoDetail.tpl.html"><i class="fa fa-inbox"></i></a>');
+            content.push('<a href="javascript:void(0)" template="eoDetail.tpl.html"><i class="fa fa-inbox"></i></a>');
          if (scope.detailConfig.timeLine)
             content.push('<a href="javascript:void(0)" template="timeLine.tpl.html"><i class="fa fa-clock-o"></i></a>');
          settings.aoColumns.push({
@@ -90,9 +90,16 @@
 
       if (scope.detailConfig) {
          t.on('click', 'tbody tr a', function (e) {
-            var target = "app/planning/detail/" + $(e.target).parent().attr("template");
-            var modalInstance = $modal.open({
-               templateUrl: target
+            var rowData = t.fnGetData($(this).parent().parent()[0]);
+            var target = "app/planning/detail/" + $(this).attr("template");
+            $modal.open({
+               templateUrl: target,
+               controller: erDetailCtrl,
+               resolve: {
+                  data: function () {
+                     return rowData;
+                  }
+               }
             });
             e.preventDefault();
             return false;

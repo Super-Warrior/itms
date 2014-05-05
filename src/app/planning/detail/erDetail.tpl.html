@@ -9,8 +9,8 @@
 
 <div class="modal-body no-padding">
     <div class="alert alert-info fade in">
-        <i class="fa-fw fa fa-list"></i><strong>需求ER:</strong>&nbsp;1231/2<br>
-        <i class="fa-fw fa fa-link"></i><strong>已分配EO:</strong>&nbsp;121111
+        <i class="fa-fw fa fa-list"></i><strong>需求ER:</strong>&nbsp;{{basicData.requirement.erID}}/{{basicData.requirementDetail.pk.erITN}}<br>
+        <i class="fa-fw fa fa-link"></i><strong>已分配EO:</strong>&nbsp;{{basicData.requirementDetail.eoid}}
     </div>
     <ul id="erTab" class="nav nav-tabs bordered">
         <li class="active"><a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-tag "></i>基本信息</a> </li>
@@ -28,13 +28,13 @@
     </ul>
     <div id="myTabContent1" class="tab-content padding-10">
         <div class="tab-pane fade in active" id="s1">
-            <form action="" id="checkout-form" class="smart-form" novalidate>
+            <div class="smart-form">
                 <fieldset>
                     <div class="row">
                         <section class="col col-4">
                             <label>需求类型</label>
                             <label class="select">
-                                <select name="prov">
+                                <select name="prov" ng-model="basicData.requirement.erType">
                                     <option value="0" selected disabled>紧急</option>
                                     <option value="1">预付</option>
                                     <option value="2">监控</option>
@@ -47,7 +47,7 @@
                         <section class="col col-4">
                             <label>运输方式</label>
                             <label class="select">
-                                <select name="prov">
+                                <select name="prov" ng-model="basicData.requirement.erTRType">
                                     <option value="0" selected disabled>空运</option>
                                     <option value="1">快运</option>
                                     <option value="2">自有运输</option>
@@ -58,7 +58,7 @@
                         <section class="col col-4">
                             <label>特殊运输标识</label>
                             <label class="select">
-                                <select name="prov">
+                                <select name="prov" ng-model="basicData.requirement.erTag">
                                     <option value="0" selected disabled>危险品</option>
                                     <option value="1">冷藏</option>
                                 </select>
@@ -71,7 +71,7 @@
                             <label>客户订单号</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-tag"></i>
-                                <input type="text" name="Cr" placeholder="客户订单号">
+                                <input type="text" name="Cr" placeholder="客户订单号" ng-model="basicData.requirement.customerOrder1">
                             </label>
                         </section>
                     </div>
@@ -80,14 +80,14 @@
                             <label>客户运单号</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-tag"></i>
-                                <input type="text" name="Cr" placeholder="客户运单号">
+                                <input type="text" name="Cr" placeholder="客户运单号" ng-model="basicData.requirement.customerOrder2">
                             </label>
                         </section>
                         <section class="col col-6">
                             <label>客户出库号</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-tag"></i>
-                                <input type="text" name="Cr" placeholder="客户出库号">
+                                <input type="text" name="Cr" placeholder="客户出库号" ng-model="basicData.requirement.customerOrder3">
                             </label>
                         </section>
                     </div>
@@ -96,28 +96,28 @@
                             <label>总件数</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-list-ol "></i>
-                                <input type="text" name="Cr" placeholder="总件数">
+                                <input type="text" name="Cr" placeholder="总件数" ng-model="basicData.requirement.totalAmt">
                             </label>
                         </section>
                         <section class="col col-3">
                             <label>总重量</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-outdent "></i>
-                                <input type="text" name="Cr" placeholder="总重量">
+                                <input type="text" name="Cr" placeholder="总重量" ng-model="basicData.requirement.totalWgt">
                             </label>
                         </section>
                         <section class="col col-3">
                             <label>总体积</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-th "></i>
-                                <input type="text" name="Cr" placeholder="总体积">
+                                <input type="text" name="Cr" placeholder="总体积" ng-model="basicData.requirement.totalVol">
                             </label>
                         </section>
                         <section class="col col-3">
                             <label>总体积/重</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-list"></i>
-                                <input type="text" name="Cr" placeholder="总体积/重">
+                                <input type="text" name="Cr" placeholder="总体积/重" ng-model="basicData.requirement.totalVolWgt">
                             </label>
                         </section>
                     </div>
@@ -127,7 +127,8 @@
                                 <label>波次交接日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="startdate" placeholder="波次交接日期">
+                                    <input type="text" name="startdate" id="startdate"
+                                        placeholder="波次交接日期" ng-model="basicData.requirement.recERDate">
                                 </label>
                             </div>
                         </section>
@@ -135,7 +136,8 @@
                             <div class="form-group">
                                 <label>波次交接时间</label>
                                 <div class="input-group">
-                                    <input class="form-control" id="timepicker" type="text" value="" placeholder="波次交接时间">
+                                    <input class="form-control" id="timepicker" type="text" value=""
+                                        placeholder="波次交接时间" ng-model="basicData.requirement.recERTime">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
                             </div>
@@ -147,7 +149,8 @@
                                 <label>要求接货日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="Text1" placeholder="要求接货日期">
+                                    <input type="text" name="startdate" id="Text1"
+                                        placeholder="要求接货日期" ng-model="basicData.requirement.pickERDate">
                                 </label>
                             </div>
                         </section>
@@ -155,7 +158,8 @@
                             <div class="form-group">
                                 <label>要求接货时间</label>
                                 <div class="input-group">
-                                    <input class="form-control" id="Text2" type="text" value="" placeholder="要求接货时间">
+                                    <input class="form-control" id="Text2" type="text" value=""
+                                        placeholder="要求接货时间" ng-model="basicData.requirement.pickERStartTime">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
                             </div>
@@ -167,7 +171,8 @@
                                 <label>要求发运日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="Text3" placeholder="要求发运日期">
+                                    <input type="text" name="startdate" id="Text3"
+                                        placeholder="要求发运日期" ng-model="basicData.requirement.oprERDate">
                                 </label>
                             </div>
                         </section>
@@ -175,7 +180,8 @@
                             <div class="form-group">
                                 <label>要求发运时间</label>
                                 <div class="input-group">
-                                    <input class="form-control" id="Text4" type="text" value="" placeholder="要求发运时间">
+                                    <input class="form-control" id="Text4" type="text" value=""
+                                        placeholder="要求发运时间" ng-model="basicData.requirement.oprERFinishTime">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
                             </div>
@@ -187,7 +193,8 @@
                                 <label>要求到达日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="Text5" placeholder="要求到达日期">
+                                    <input type="text" name="startdate" id="Text5"
+                                        placeholder="要求到达日期" ng-model="basicData.requirement.reqDelDate">
                                 </label>
                             </div>
                         </section>
@@ -195,7 +202,8 @@
                             <div class="form-group">
                                 <label>要求到达时间</label>
                                 <div class="input-group">
-                                    <input class="form-control" id="Text6" type="text" value="" placeholder="要求到达时间">
+                                    <input class="form-control" id="Text6" type="text" value=""
+                                        placeholder="要求到达时间" ng-model="basicData.requirement.reqDelTimeE">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
                             </div>
@@ -204,13 +212,15 @@
                     <div class="row">
                         <section class="col col-9">
                             <label class="textarea">
-                                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                                <textarea rows="3" name="info" placeholder="附加信息"
+                                    ng-model="basicData.requirement.memo"></textarea>
                             </label>
                         </section>
                     </div>
                 </fieldset>
-            </form>
+            </div>
         </div>
+
         <div class="tab-pane fade" id="s2">
             <form action="" id="Form1" class="smart-form" novalidate>
                 <fieldset>
