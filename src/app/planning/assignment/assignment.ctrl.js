@@ -6,16 +6,16 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.module = "计划";
    $scope.title = "需求分配";
 
-   configService.getConfig("transport").then(function (result) {
+   configService.getConfig("TRPY").then(function (result) {
       $scope.transportTypes = result.data;
    });
    customerService.searchCustomer("car").then(function (result) {
       $scope.carriers = result.data;
    });
-   configService.getConfig("eo").then(function (result) {
+   configService.getConfig("ERTP").then(function (result) {
       $scope.eoTypes = result.data;
    });
-   configService.getConfig("tag").then(function (result) {
+   configService.getConfig("ERTG").then(function (result) {
       $scope.tags = result.data;
    });
    customerService.searchCustomer("net").then(function (result) {

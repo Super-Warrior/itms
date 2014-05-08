@@ -31,6 +31,30 @@
             <div class="smart-form">
                 <fieldset>
                     <div class="row">
+                        <section class="col col-6">
+                            <label>需求状态</label>
+                            <label class="select">
+                                <select name="prov" ng-model="basicData.requirement.erStatus">
+                                    <option value="0" selected disabled>开始</option>
+                                    <option value="1">完成</option>
+                                    <option value="2">理货</option>
+                                </select>
+                                <i class="fa fa-check-square"></i>
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label>行项目状态</label>
+                            <label class="select">
+                                <select name="prov" ng-model="basicData.requirementDetail.erITNStatus">
+                                    <option value="0" selected disabled>开始</option>
+                                    <option value="1">延迟</option>
+                                    <option value="2">派送</option>
+                                </select>
+                                <i class="fa fa-check-square"></i>
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
                         <section class="col col-4">
                             <label>需求类型</label>
                             <label class="select">
@@ -220,23 +244,22 @@
                 </fieldset>
             </div>
         </div>
-
         <div class="tab-pane fade" id="s2">
-            <form action="" id="Form1" class="smart-form" novalidate>
+            <div id="Form1" class="smart-form" novalidate>
                 <fieldset>
                     <div class="row">
                         <section class="col col-4">
                             <label>发货方客户代码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" name="Cr" placeholder="客户代码">
+                                <input type="text" name="Cr" placeholder="客户代码" ng-model="basicData.requirement.depCustomer">
                             </label>
                         </section>
                         <section class="col col-8">
                             <label>发货方客户名称</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-info"></i>
-                                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+                                <input type="text" disabled name="Cr" placeholder="客户名称">
                             </label>
                         </section>
                     </div>
@@ -245,7 +268,7 @@
                             <label>联系人</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" name="Cr" placeholder="联系人">
+                                <input type="text" name="Cr" placeholder="联系人" ng-model="basicData.requirement.depCustomerContact">
                             </label>
                         </section>
                     </div>
@@ -254,14 +277,14 @@
                             <label>电子邮件</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-envelope-o"></i>
-                                <input type="text" name="Cr" placeholder="电子邮件">
+                                <input type="text" name="Cr" placeholder="电子邮件" ng-model="basicData.requirement.depCustomerEmail">
                             </label>
                         </section>
                         <section class="col col-6">
                             <label>电话</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-phone"></i>
-                                <input type="text" name="Cr" placeholder="电话">
+                                <input type="text" name="Cr" placeholder="电话" ng-model="basicData.requirement.depCustomerPhone">
                             </label>
                         </section>
                     </div>
@@ -270,43 +293,43 @@
                             <label>位置代码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-map-marker"></i>
-                                <input type="text" name="Cr" placeholder="位置代码">
+                                <input type="text" name="Cr" placeholder="位置代码" ng-model="basicData.requirement.depLocCode">
                             </label>
                         </section>
                         <section class="col col-8">
                             <label>位置描述</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-info"></i>
-                                <input type="text" disabled="disabled" name="Cr" placeholder="位置描述">
+                                <input type="text" disabled name="Cr" placeholder="位置描述">
                             </label>
                         </section>
                     </div>
                     <div class="row">
                         <section class="col col-9">
                             <label class="textarea">
-                                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                                <textarea rows="3" name="info" placeholder="附加信息" ng-model="basicData.requirement.depMemo"></textarea>
                             </label>
                         </section>
                     </div>
                 </fieldset>
-            </form>
+            </div>
         </div>
         <div class="tab-pane fade" id="s3">
-            <form action="" id="Form2" class="smart-form" novalidate>
+            <div id="Form2" class="smart-form" novalidate>
                 <fieldset>
                     <div class="row">
                         <section class="col col-4">
                             <label>收货方客户代码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" name="Cr" placeholder="客户代码">
+                                <input type="text" name="Cr" placeholder="客户代码" ng-model="basicData.requirement.recCustomer">
                             </label>
                         </section>
                         <section class="col col-8">
                             <label>收货方客户名称</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-info"></i>
-                                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+                                <input type="text" disabled name="Cr" placeholder="客户名称">
                             </label>
                         </section>
                     </div>
@@ -315,7 +338,7 @@
                             <label>联系人</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" name="Cr" placeholder="联系人">
+                                <input type="text" name="Cr" placeholder="联系人" ng-model="basicData.requirement.recCustomerContact">
                             </label>
                         </section>
                     </div>
@@ -324,14 +347,14 @@
                             <label>电子邮件</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-envelope-o"></i>
-                                <input type="text" name="Cr" placeholder="电子邮件">
+                                <input type="text" name="Cr" placeholder="电子邮件" ng-model="basicData.requirement.recCustomerEmail">
                             </label>
                         </section>
                         <section class="col col-6">
                             <label>电话</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-phone"></i>
-                                <input type="text" name="Cr" placeholder="电话">
+                                <input type="text" name="Cr" placeholder="电话" ng-model="basicData.requirement.recCustomerPhone">
                             </label>
                         </section>
                     </div>
@@ -340,35 +363,35 @@
                             <label>位置代码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-map-marker"></i>
-                                <input type="text" name="Cr" placeholder="位置代码">
+                                <input type="text" name="Cr" placeholder="位置代码" ng-model="basicData.requirement.recLocCode">
                             </label>
                         </section>
                         <section class="col col-8">
                             <label>位置描述</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-info"></i>
-                                <input type="text" disabled="disabled" name="Cr" placeholder="位置描述">
+                                <input type="text" disabled name="Cr" placeholder="位置描述">
                             </label>
                         </section>
                     </div>
                     <div class="row">
                         <section class="col col-9">
                             <label class="textarea">
-                                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                                <textarea rows="3" name="info" placeholder="附加信息" ng-model="basicData.requirement.recMemo"></textarea>
                             </label>
                         </section>
                     </div>
                 </fieldset>
-            </form>
+            </div>
         </div>
         <div class="tab-pane fade" id="s4">
-            <form action="" id="Form3" class="smart-form" novalidate>
+            <div id="Form3" class="smart-form" novalidate>
                 <fieldset>
                     <div class="row">
                         <section class="col col-6">
                             <label>资源类型1</label>
                             <label class="select">
-                                <select name="city">
+                                <select name="city" ng-model="basicData.requirement.resType1">
                                     <option value="0" selected disabled>托盘</option>
                                     <option value="244">包装木箱</option>
                                 </select>
@@ -378,8 +401,8 @@
                         <section class="col col-3">
                             <label>数量</label>
                             <label class="input">
-                                <i class="icon-prepend fa fa-list-ol "></i>
-                                <input type="text" name="pc" placeholder="数量">
+                                <i class="icon-prepend fa fa-list-ol"></i>
+                                <input type="text" name="pc" placeholder="数量" ng-model="basicData.requirement.resAmt1">
                             </label>
                         </section>
                     </div>
@@ -387,7 +410,7 @@
                         <section class="col col-6">
                             <label>资源类型2</label>
                             <label class="select">
-                                <select name="city">
+                                <select name="city" ng-model="basicData.requirement.resType2">
                                     <option value="0" selected disabled>托盘</option>
                                     <option value="244">包装木箱</option>
                                 </select>
@@ -397,8 +420,8 @@
                         <section class="col col-3">
                             <label>数量</label>
                             <label class="input">
-                                <i class="icon-prepend fa fa-list-ol "></i>
-                                <input type="text" name="pc" placeholder="数量">
+                                <i class="icon-prepend fa fa-list-ol"></i>
+                                <input type="text" name="pc" placeholder="数量" ng-model="basicData.requirement.resAmt2">
                             </label>
                         </section>
                     </div>
@@ -406,7 +429,7 @@
                         <section class="col col-6">
                             <label>资源类型3</label>
                             <label class="select">
-                                <select name="city">
+                                <select name="city" ng-model="basicData.requirement.resType3">
                                     <option value="0" selected disabled>托盘</option>
                                     <option value="244">包装木箱</option>
                                 </select>
@@ -417,7 +440,7 @@
                             <label>数量</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-list-ol "></i>
-                                <input type="text" name="pc" placeholder="数量">
+                                <input type="text" name="pc" placeholder="数量" ng-model="basicData.requirement.resAmt3">
                             </label>
                         </section>
                     </div>
@@ -429,32 +452,39 @@
                         </section>
                     </div>
                 </fieldset>
-            </form>
+            </div>
         </div>
         <div class="tab-pane fade" id="s5">
-            <form action="" id="Form4" class="smart-form" novalidate>
+            <div id="Form4" class="smart-form" novalidate>
                 <fieldset>
                     <div class="row">
                         <section class="col col-4">
                             <label>物料编码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-font"></i>
-                                <input type="text" name="lname" placeholder="物料编码">
+                                <input type="text" name="lname" placeholder="物料编码" ng-model="basicData.requirementDetail.matIID">
                             </label>
                         </section>
                         <section class="col col-6">
                             <label>物料描述</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-info"></i>
-                                <input type="text" name="lname" placeholder="物料描述发动机总成" disabled="disabled">
+                                <input type="text" name="lname" placeholder="物料描述发动机总成" disabled>
                             </label>
                         </section>
                     </div>
                     <div class="row">
+                         <section class="col col-6">
+                            <label>已分配EO</label>
+                            <label class="input">
+                                 <i class="icon-prepend fa fa-font"></i>
+                                <input type="text" name="lname" placeholder="EO" ng-model="basicData.requirementDetail.eoid">
+                            </label>
+                        </section>
                         <section class="col col-3">
                             <label>状态</label>
                             <label class="select">
-                                <select name="city">
+                                <select name="city" ng-model="basicData.requirementDetail.status">
                                     <option value="0" selected disabled>状态</option>
                                     <option value="244">完好</option>
                                     <option value="1">包装破损</option>
@@ -468,14 +498,14 @@
                             <label>箱号</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-qrcode"></i>
-                                <input type="text" name="pc" placeholder="箱号">
+                                <input type="text" name="pc" placeholder="箱号" ng-model="basicData.requirementDetail.packNum">
                             </label>
                         </section>
                         <section class="col col-6">
                             <label>数量</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-list-ol "></i>
-                                <input type="text" name="pc" placeholder="数量">
+                                <input type="text" name="pc" placeholder="数量" ng-model="basicData.requirementDetail.amt">
                             </label>
                         </section>
                     </div>
@@ -484,21 +514,21 @@
                             <label>长CM</label>
                             <label class="input">
                                 <i class="icon-prepend fa  fa-resize-full "></i>
-                                <input type="text" name="pc" placeholder="长CM">
+                                <input type="text" name="pc" placeholder="长CM" ng-model="basicData.requirementDetail.longe">
                             </label>
                         </section>
                         <section class="col col-4">
                             <label>宽CM</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-text-width"></i>
-                                <input type="text" name="pc" placeholder="宽CM">
+                                <input type="text" name="pc" placeholder="宽CM" ng-model="basicData.requirementDetail.width">
                             </label>
                         </section>
                         <section class="col col-4">
                             <label>高CM</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-text-height "></i>
-                                <input type="text" name="pc" placeholder="高CM">
+                                <input type="text" name="pc" placeholder="高CM" ng-model="basicData.requirementDetail.height">
                             </label>
                         </section>
                     </div>
@@ -507,26 +537,26 @@
                             <label>体积CM</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-th"></i>
-                                <input type="text" name="pc" placeholder="体积M3">
+                                <input type="text" name="pc" placeholder="体积M3" ng-model="basicData.requirementDetail.vol">
                             </label>
                         </section>
                         <section class="col col-4">
                             <label>重量</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-tint  "></i>
-                                <input type="text" name="pc" placeholder="重量">
+                                <input type="text" name="pc" placeholder="重量" ng-model="basicData.requirementDetail.wgt">
                             </label>
                         </section>
                         <section class="col col-4">
                             <label>体积重</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-th-large  "></i>
-                                <input type="text" name="pc" placeholder="体积重">
+                                <input type="text" name="pc" placeholder="体积重" ng-model="basicData.requirementDetail.volWgt">
                             </label>
                         </section>
                     </div>
                 </fieldset>
-            </form>
+            </div>
         </div>
     </div>
 </div>

@@ -2,85 +2,85 @@ angular
     .module('itms.common', [])
     .factory('notifier', function () {
 
-        var defaultOption = {
-            timeout: 4000,
-            successIcon: "fa fa-check fa-2x fadeInRight animated",
-            successColor: "#659265",
-            successTitle: "操作成功",
-            cancelIcon: "fa fa-times fa-2x fadeInRight animated",
-            cancelColor: "#C46A69",
-            cancelTitle: "操作取消"
-        };
+       var defaultOption = {
+          timeout: 4000,
+          successIcon: "fa fa-check fa-2x fadeInRight animated",
+          successColor: "#659265",
+          successTitle: "操作成功",
+          cancelIcon: "fa fa-times fa-2x fadeInRight animated",
+          cancelColor: "#C46A69",
+          cancelTitle: "操作取消"
+       };
 
-        return {
-            success: success,
-            cancel: cancel
-        };
+       return {
+          success: success,
+          cancel: cancel
+       };
 
-        function success(message) {
-            $.smallBox({
-                title: defaultOption.successTitle,
-                content: "<i class='fa fa-clock-o'></i> <i> " + message + " </i>",
-                color: defaultOption.successColor,
-                iconSmall: defaultOption.successIcon,
-                timeout: defaultOption.timeout
-            });
-        }
+       function success(message) {
+          $.smallBox({
+             title: defaultOption.successTitle,
+             content: "<i class='fa fa-clock-o'></i> <i> " + message + " </i>",
+             color: defaultOption.successColor,
+             iconSmall: defaultOption.successIcon,
+             timeout: defaultOption.timeout
+          });
+       }
 
-        function cancel(message) {
-            message = message || "操作取消...";
-            $.smallBox({
-                title: defaultOption.cancelTitle,
-                content: "<i class='fa fa-clock-o'></i> <i> " + message + " </i>",
-                color: defaultOption.cancelColor,
-                iconSmall: defaultOption.cancelIcon,
-                timeout: defaultOption.timeout
-            });
-        }
+       function cancel(message) {
+          message = message || "操作取消...";
+          $.smallBox({
+             title: defaultOption.cancelTitle,
+             content: "<i class='fa fa-clock-o'></i> <i> " + message + " </i>",
+             color: defaultOption.cancelColor,
+             iconSmall: defaultOption.cancelIcon,
+             timeout: defaultOption.timeout
+          });
+       }
     })
     .factory('fileHelper', function () {
-        return {
-            getExtName: function (name) {
-                var index = name.lastIndexOf(".");
-                return index < 0 ? "" : name.substring(index + 1).toLowerCase();
-            }
-        };
+       return {
+          getExtName: function (name) {
+             var index = name.lastIndexOf(".");
+             return index < 0 ? "" : name.substring(index + 1).toLowerCase();
+          }
+       };
     })
     .factory('common', ['$q', 'notifier', 'fileHelper', common]);
 
 function common($q, notifier, fileHelper) {
 
-    return {
-        notifier: notifier,
-        fileHelper: fileHelper,
-        messageBox: messageBox
-    };
+   return {
+      notifier: notifier,
+      fileHelper: fileHelper,
+      messageBox: messageBox
+   };
 
-    function messageBox(option) {
-        var confirm = option.confirm,
-            cancel = option.cancel;
-        if (!confirm && !cancel) {
-            confirm = "是";
-            cancel = "否";
-        }
-        var formatButton = function (text) {
-            return text ? ("[" + text + "]") : "";
-        };
-        var defaultOption = {
-            buttons: formatButton(cancel) + formatButton(confirm)
-        };
-        angular.extend(option, defaultOption);
-        var deferred = $q.defer();
-        $.SmartMessageBox(option, function (selection, value) {
-            if (selection === confirm) {
-                deferred.resolve(value);
-            }
-            if (selection === cancel) {
-                deferred.reject(value);
-            }
-        });
-        return deferred.promise;
-    }
+   function messageBox(option) {
+      var confirm = option.confirm,
+          cancel = option.cancel;
+      if (!confirm && !cancel) {
+         confirm = "是";
+         cancel = "否";
+      }
+      var formatButton = function (text) {
+         return text ? ("[" + text + "]") : "";
+      };
+      var defaultOption = {
+         buttons: formatButton(cancel) + formatButton(confirm)
+      };
+      angular.extend(option, defaultOption);
+      var deferred = $q.defer();
+      $.SmartMessageBox(option, function (selection, value) {
+         if (selection === confirm) {
+            deferred.resolve(value);
+         }
+         if (selection === cancel) {
+            deferred.reject(value);
+         }
+      });
+      return deferred.promise;
+   }
 
 
 }
@@ -99,17 +99,17 @@ function configService($http, config) {
       "Group3": null,
       "Language": ["CN"]
    };
-   var configType = {
-      "transport": "TRPY",
-      "eo": "ERTP",
-      "tag": "ERTG",
-      "event": "EVNT",
-      "特殊标识": "",
-      "配送网络公司": ""
-   };
+   //var configType = {
+   //   "transport": "TRPY",
+   //   "eo": "ERTP",
+   //   "tag": "ERTG",
+   //   "event": "EVNT",
+   //   "特殊标识": "",
+   //   "配送网络公司": ""
+   //};
 
    var getConfig = function (type, code) {
-      criteria.ConType = [configType[type]];
+      criteria.ConType = [type];
       if (code) criteria.Code = code;
       return $http({
          method: "GET",
@@ -117,6 +117,21 @@ function configService($http, config) {
          dataType: "json"
       });
 
+   };
+
+   var getConfigs = function (types) {
+      var obj = {};
+      var queue = [];
+      for (var i in types) {
+         var type = types[i];
+         var task = getConfig(type).then(
+            function (result) {
+               obj[type] = result.data;
+            }
+         );
+         queue.push(task);
+      }
+      return $.when.apply(this, queue);
    };
    return { "getConfig": getConfig };
 }

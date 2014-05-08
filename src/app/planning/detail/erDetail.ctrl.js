@@ -4,6 +4,8 @@ angular.module("itms.planning")
 
 function erDetailCtrl($scope, $log, $http, config, common, configService, customerService, data) {
    $scope.basicData = data;
-  // alert(JSON.stringify($scope.basicInfo));
 
+   configService.getConfig("TRPY").then(function (result) {
+      $scope.transportTypes = result.data;
+   });
 }
