@@ -1,7 +1,7 @@
 angular.module('itms.transport.event')
-    .factory('eventService', ['$http', 'config', "configService", eventService]);
+    .factory('eventService', ['$http', '$q', 'config', 'configService', eventService]);
 
-function eventService($http, config, configService) {
+function eventService($http, $q, config, configService) {
     var
         defaultQueryOption = {
             serType: 'OR',
@@ -15,19 +15,21 @@ function eventService($http, config, configService) {
             EO: [''],
             ERID: [''],
             ERITN: [''],
+            eventStatus: [''],
+            resEventID: [''],
             memo: ''
         },
         defaultErQueryOption = {
             serType: 'OR',
-            EOTag:'',
-            ERID:[''],
-            ERStatus:['']
+            EOTag: '',
+            ERID: [''],
+            ERStatus: ['']
         },
         defaultEoQueryOption = {
             serType: 'OR',
-            EO:[''],
-            eventStatus:[''],
-            EOStatus:['']
+            EO: [''],
+            eventStatus: [''],
+            EOStatus: ['']
         },
         ersearchUrl = config.baseUrl + 'ER/EREventSearch',
         eosearchUrl = config.baseUrl + 'EO/EOEventSearch',
@@ -37,7 +39,29 @@ function eventService($http, config, configService) {
         queryByEvent: queryByEvent,
         queryByEr: queryByEr,
         queryByEo: queryByEo,
-        getEventPartial: getEventPartial
+        getEventPartial: getEventPartial,
+        getAllConfigData: getAllConfigData
+    };
+
+    function getAllConfigData() {
+        return $q.all([
+                configService.getConfig('EVTP'),
+                configService.getConfig('EPST'),
+                configService.getConfig('ERNT'),
+                configService.getConfig('EOST'),
+                configService.getConfig('EVST'),
+            ]).then(function (results) {
+                var result = {};
+                angular.forEach(results, function(res){
+                    var confType = getConfType(res.data);
+                    result[confType] = res.data;
+                });
+                return result;
+            });
+
+        function getConfType(configs) {
+            return configs[0].conType;
+        }
     }
 
     function queryByEvent(payload) {
@@ -46,12 +70,12 @@ function eventService($http, config, configService) {
         return $http.postXSRF(searchUrl, data);
     }
 
-    function queryByEr(){
+    function queryByEr() {
         var data = defaultErQueryOption;
         return $http.postXSRF(ersearchUrl, data);
     }
 
-    function queryByEo(){
+    function queryByEo() {
         var data = defaultEoQueryOption;
         return $http.postXSRF(eosearchUrl, data);
     }

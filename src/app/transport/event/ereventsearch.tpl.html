@@ -4,11 +4,7 @@
       <section class="col col-3">
         <label class="label"><i class="fa fa-question-circle "></i> 需求项目状态</label>
         <label class="select select-multiple">
-          <select multiple="" class="custom-scroll">
-            <option value="1">状态1</option>
-            <option value="2">状态2</option>
-            <option value="3">状态3</option>
-          </select>
+          <select class="custom-scroll" data-ng-model="erStatus" data-ng-options="config.description for config in configData.ERNT" multiple></select>
         </label>
       </section>
     </div>
