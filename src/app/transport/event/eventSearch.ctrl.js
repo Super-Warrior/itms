@@ -11,6 +11,16 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
 
     };
 
+    activate();
+
+    function activate() {
+        eventService.getAllConfigData().then(function (result) {
+            $log.debug(result);
+            $scope.configData = result;
+        });
+
+    }
+
     $scope.searchByEvent = function () {
         $state.go('app.user.transport.eventSearch.search.searchByEvent');
     };
@@ -53,22 +63,28 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
 }
 
 function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
-    $scope.columns = [{
-        "mData": "eventType",
-        "sTitle": "事件类型"
-    }, {
-        "mData": "eventCode",
-        "sTitle": "事件代码"
-    }, {
-        "mData": "eventDateTime",
-        "sTitle": "发生时间"
-    }, {
-        "mData": "createUser",
-        "sTitle": "执行帐号"
-    }, {
-        "mData": "eoNumber",
-        "sTitle": "EO/ER/ERITN"
-    }];
+    $scope.columns = [
+        {
+            "mData": "eventType",
+            "sTitle": "事件类型"
+        },
+        {
+            "mData": "eventCode",
+            "sTitle": "事件代码"
+        },
+        {
+            "mData": "eventDateTime",
+            "sTitle": "发生时间"
+        },
+        {
+            "mData": "createUser",
+            "sTitle": "执行帐号"
+        },
+        {
+            "mData": "eoNumber",
+            "sTitle": "EO/ER/ERITN"
+        }
+    ];
 
     $scope.selectedItems = [];
 }

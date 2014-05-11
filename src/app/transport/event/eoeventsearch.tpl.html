@@ -4,21 +4,13 @@
       <div class="col col-3">
         <label class="label"><i class="fa fa-question-circle "></i> EO运单状态</label>
         <label class="select select-multiple">
-          <select multiple="" class="custom-scroll">
-            <option value="1">状态1</option>
-            <option value="2">状态2</option>
-            <option value="3">状态3</option>
-          </select>
+          <select class="custom-scroll" data-ng-model="eoStatus" data-ng-options="config.description for config in configData.EOST" multiple></select>
         </label>
       </div>
       <div class="col col-3">
         <label class="label"><i class="fa fa-exclamation-triangle "></i> EO事件状态</label>
         <label class="select select-multiple">
-          <select multiple="" class="custom-scroll">
-            <option value="1">状态1</option>
-            <option value="2">状态2</option>
-            <option value="3">状态3</option>
-          </select>
+          <select class="custom-scroll" data-ng-model="eoEventStatus" data-ng-options="config.description for config in configData.EVST" multiple></select>
         </label>
       </div>
     </div>

@@ -4,13 +4,20 @@
       <div class="col col-3">
         <label class="label"><i class="fa fa-eye-slash "></i> 事件类型</label>
         <label class="select select-multiple">
-          <select multiple="" class="custom-scroll">
-            <option value="1">延迟事件</option>
-            <option value="2">异常事件</option>
-            <option value="3">意外事件</option>
-          </select>
+          <select data-ng-model="eventType" data-ng-options="config.description for config in configData.EVTP" multiple></select>
         </label>
       </div>
+      <div class="col col-3">
+        <label class="label"><i class="fa fa-eye-slash "></i> 事件处理状态</label>
+        <label class="select select-multiple">
+          <select data-ng-model="eventStatus" data-ng-options="config.description for config in configData.EPST" multiple></select>
+        </label>
+      </div>
+    </div>
+
+  </fieldset>
+  <fieldset>
+    <div class="row">
       <div class="col col-3">
         <label class="input"><i class="icon-prepend fa fa-search "></i>
           <input type="text" data-ng-model="eventCode" placeholder="事件代码">

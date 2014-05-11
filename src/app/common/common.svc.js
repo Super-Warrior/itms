@@ -87,9 +87,9 @@ function common($q, notifier, fileHelper) {
 
 
 angular.module("itms.common")
-   .factory("configService", ["$http", "config", configService]);
+   .factory("configService", ["$http", "$q", "config", configService]);
 
-function configService($http, config) {
+function configService($http, $q, config) {
 
    var criteria = {
       "Code": null,
@@ -99,14 +99,6 @@ function configService($http, config) {
       "Group3": null,
       "Language": ["CN"]
    };
-   //var configType = {
-   //   "transport": "TRPY",
-   //   "eo": "ERTP",
-   //   "tag": "ERTG",
-   //   "event": "EVNT",
-   //   "特殊标识": "",
-   //   "配送网络公司": ""
-   //};
 
    var getConfig = function (type, code) {
       criteria.ConType = [type];
@@ -119,19 +111,39 @@ function configService($http, config) {
 
    };
 
-   var getConfigs = function (types) {
-      var obj = {};
-      var queue = [];
-      for (var i in types) {
-         var type = types[i];
-         var task = getConfig(type).then(
-            function (result) {
-               obj[type] = result.data;
-            }
-         );
-         queue.push(task);
+   var getConfigs = function (configs) {
+      var promises = {};
+      for (var name in configs) {
+         promises[name] = getConfig(name);
       }
-      return $.when.apply(this, queue);
+      return $q.all(promises).then(
+         function (result) {
+            for (name in configs) {
+               configs[name] = result[name].data;
+            }
+         }).then(function () {
+
+         });
    };
-   return { "getConfig": getConfig };
+
+   var getMaterial = function (type) {
+      var param = {
+         "SerType": "OR",
+         "matnr": [""],
+         "type": [],
+         "cusmatnr": [""],
+         "tag": [""],
+         "customer": [""],
+         "description": [""]
+      };
+      if (type)
+         param.type.push(type);
+      
+      return $http({
+         method: "GET",
+         url: config.baseUrl + "search/Material" + "?" + $.param(param),
+         dataType: "json"
+      });
+   };
+   return { "getConfig": getConfig, "getConfigs": getConfigs, "getMaterial": getMaterial };
 }
