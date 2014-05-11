@@ -3,6 +3,7 @@ angular.module("itms.planning")
         "$http", "$q", "config", "common", "configService", "customerService", erDetailCtrl]);
 
 function erDetailCtrl($scope, $log, $http, $q, config, common, configService, customerService, data) {
+   data.requirement.resMemo = "";
    var formatDate = function (dt) {
       if (!dt) return dt;
       return moment(dt).format("YYYY-MM-DD");
@@ -60,56 +61,101 @@ function erDetailCtrl($scope, $log, $http, $q, config, common, configService, cu
 
    $scope.save = function () {
       var saveHead = function () {
+         var tempData = $scope.basicData.requirement;
+      
+         var param = {
+            ERID: tempData.erID,
+            ERStatus: tempData.erStatus,
+            lastChangeUser: tempData.lastChangeUser,
+            lastChangeDate: tempData.lastChangeDate,
+            lastChangeTime: tempData.lastChangeTime,
+            ERType: tempData.erType,
+            ERTRType: tempData.erTRType,
+            ERTRTypeSM: tempData.ertrtypeSM,
+            ERTag: tempData.erTag,
+            ERTRVendor: tempData.ertrvendor,
+            ERTRVendorSM: tempData.ertrvendorSM,
+            preERID: tempData.preERID,
+            preEOID: tempData.preEOID,
+            customerOrder1: tempData.customerOrder1,
+            customerOrder2: tempData.customerOrder2,
+            customerOrder3: tempData.customerOrder3,
+            preCustomerOrder1: tempData.preCustomerOrder1,
+            preCustomerOrder2: tempData.preCustomerOrder2,
+            preCustomerOrder3: tempData.preCustomerOrder3,
+            totalAmt: tempData.totalAmt,
+            totalWgt: tempData.totalWgt,
+            totalVol: tempData.totalVol,
+            totalVolWgt: tempData.totalVolWgt,
+            resType1: tempData.resType1,
+            ResAmt1: tempData.resAmt1,
+            resType2: tempData.resType2,
+            ResAmt2: tempData.resAmt2,
+            resType3: tempData.resType3,
+            ResAmt3: tempData.resAmt3,
+            memo: tempData.memo,
+            reqDelDate: tempData.reqDelDate,
+            reqDelTimeE: tempData.reqDelTimeE,
+            reqDelTimeL: tempData.reqDelTimeL,
+            recERDate: tempData.recERDate,
+            recERTime: tempData.recERTime,
+            pickERDate: tempData.pickERDate,
+            pickERTimeS: tempData.pickERStartTime,
+            pickERTimeF: tempData.pickERFinishTime,
+            LoadERTimeS: tempData.loadERStartTime,
+            LoadERTimeF: tempData.loadERFinishTime,
+            oprERDate: tempData.oprERDate,
+            oprERTimeULS: tempData.oprERStartUnloadTime,
+            oprERTimeULF: tempData.oprERFinishUnloadTime,
+            oprERTimeS: tempData.oprERStartTime,
+            oprERTimeF: tempData.oprERFinishTime,
+            depAreaCode: tempData.depAreaCode,
+            depCustomer: tempData.depCustomer,
+            depCustomerContact: tempData.depCustomerContact,
+            depCustomerEmail: tempData.depCustomerEmail,
+            depCustomerPhone: tempData.depCustomerPhone,
+            depLocCode: tempData.depLocCode,
+            depMemo: tempData.depMemo,
+            recCustomer: tempData.recCustomer,
+            recCustomerContact: tempData.recCustomerContact,
+            recCustomerEmail: tempData.recCustomerEmail,
+            recCustomerPhone: tempData.recCustomerPhone,
+            recLocCode: tempData.recLocCode,
+            recMemo: tempData.recMemo,
+            ResMemo: tempData.resMemo,
+         };
 
-         var param = {};
-         $.extend(param, $scope.basicData.requirement);
-         param.ERID = param.erID;
-         param.ERStatus = param.erStatus;
-         param.ERType = param.erType;
-         param.ERTRType = param.erTRType;
-         param.ERTRTypeSM = param.ertrtypeSM;
-         param.ERTag = param.erTag;
-         param.ERTRVendor = param.ertrvendor;
-         param.ERTRVendorSM = param.ertrvendorSM;
-         param.ResAmt1 = param.resAmt1;
-         param.ResAmt2 = param.resAmt2;
-         param.ResAmt3 = param.resAmt3;
-         param.ResMemo = "";
-         param.pickERTimeS = param.pickERStartTime;
-         param.pickERTimeF = param.pickERFinishTime;
-         param.LoadERTimeS = param.loadERStartTime;
-         param.LoadERTimeF = param.loadERFinishTime;
-         param.oprERTimeULS = param.oprERStartUnloadTime;
-         param.oprERTimeULF = param.oprERFinishUnloadTime;
-         param.oprERTimeS = param.oprERStartTime;
-         param.oprERTimeF = param.oprERFinishTime;
          return $http.post(config.baseUrl + "ER/ERChange" + "?" + $.param(param));
       };
       var saveItem = function () {
-         var param = {};
-         $.extend(param, $scope.basicData.requirementDetail);
-         param.ERID = param.pk.erID;
-         param.ERITN = param.pk.erITN;
-         param.ERITNStatus = param.ERITNStatus;
-         param.EOID = param.eoid;
-         param.lastChangeUser = param.lastChangeUser;
-         param.lastChangeDate = param.lastChangeDate;
-         param.lastChangeTime = param.lastChangeTime;
-         param.ERITNType = param.erITNType;
-         param.ERITNTag = param.erITNTag;
-         param.Status = param.status;
-         param.MatIID = param.matIID;
-         param.customerMatID = param.customerMatID;
-         param.customerOrder2 = param.customerOrder2;
-         param.Amt = param.amt;
-         param.Wgt = param.wgt;
-         param.Vol = param.vol;
-         param.VolWgt = param.volWgt;
-         param.long = param.longe;
-         param.width = param.width;
-         param.height = param.height;
-         param.PackNum = param.packNum;
-         param.Memo = param.memo;
+         var tempData = $scope.basicData.requirementDetail;
+         var param = {
+
+
+            ERID: tempData.pk.erID,
+            ERITN: tempData.pk.erITN,
+            ERITNStatus: tempData.ERITNStatus,
+            EOID: tempData.eoid,
+            lastChangeUser: tempData.lastChangeUser,
+            lastChangeDate: tempData.lastChangeDate,
+            lastChangeTime: tempData.lastChangeTime,
+            ERITNType: tempData.erITNType,
+            ERITNTag: tempData.erITNTag,
+            Status: tempData.status,
+            MatIID: tempData.matIID,
+            customerMatID: tempData.customerMatID,
+            customerOrder2: tempData.customerOrder2,
+            Amt: tempData.amt,
+            Wgt: tempData.wgt,
+            Vol: tempData.vol,
+            VolWgt: tempData.volWgt,
+            "long": tempData.longe,
+            width: tempData.width,
+            height: tempData.height,
+            PackNum: tempData.packNum,
+            Memo: tempData.memo
+         };
+
 
          return $http.post(config.baseUrl + "ER/ERItemChange" + "?" + $.param(param));
       };
