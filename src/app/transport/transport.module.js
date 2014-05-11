@@ -1,6 +1,7 @@
 angular
     .module('itms.transport', [
-        'itms.transport.event'
+        'itms.transport.event',
+        'itms.transport.eoMaintain'
     ])
     .config(['$stateProvider',
         function($stateProvider) {
