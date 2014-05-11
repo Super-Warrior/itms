@@ -86,6 +86,10 @@ function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
         }
     ];
 
-    $scope.detailConfig = { erDetail: true, timeLine: true/*, data: $scope.quickResult */ };
+    $scope.detailConfig = {
+        erDetail: true,
+        timeLine: true,
+        eoDetail: true
+    };
     $scope.selectedItems = [];
 }
