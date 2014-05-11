@@ -1,27 +1,11 @@
-<!-- widget grid -->
 <section id="widget-grid"> 
 <div class="row">
   <div ng-include src='"app/common/pageTitle.html"'></div>
 </div>
-  <!-- START ROW --搜索区域-->
+
   <div class="row"> 
-    <!-- NEW COL START -->
     <article class="col-sm-12 col-md-12 col-lg-12"> 
-      <!-- Widget ID (each widget will need unique ID)-->
       <div class="jarviswidget jarviswidget-color-blue jarviswidget-sortable" id="wid-eosearch" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-sortable="false" data-widget-deletebutton="false"> 
-        <!-- widget options:
-				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-				data-widget-colorbutton="false"
-				data-widget-editbutton="false"
-				data-widget-togglebutton="false"
-				data-widget-deletebutton="false"
-				data-widget-fullscreenbutton="false"
-				data-widget-custombutton="false"
-				data-widget-collapsed="true"
-				data-widget-sortable="false"
-
-				-->
         <header> <span class="widget-icon"> <i class="fa fa-search"></i> </span>
           <h2> EO查询条件</h2>
           <div class="widget-toolbar">
@@ -38,16 +22,11 @@
           </ul>
         </header>
         
-        <!-- widget div-->
         <div> 
-          <!-- widget edit box -->
+
           <div class="jarviswidget-editbox"> 
-            <!-- This area used as dropdown edit box --> 
-            
           </div>
-          <!-- end widget edit box --> 
-          
-          <!-- widget content -->
+
           <div class="widget-body">
             <div class="tab-content">
               <div class="tab-pane active" id="hr0">
@@ -57,7 +36,7 @@
                       <section class="col col-4">
                         <label class="label"><i class="fa fa-list"></i> 运单类型</label>
                         <label class="select select-multiple">
-                          <select multiple="" ng-multiple="true" class="custom-scroll" ng-model="queryOption.EOType" >
+                          <select multiple="" ng-multiple="true" class="custom-scroll" ng-model="queryOption.EOType" multiple>
                              <option value="1">SGM-紧急</option> 
                              <option value="2">SAIC-常规</option> 
                           </select>
@@ -67,7 +46,7 @@
                       <section class="col col-2">
                         <label class="label"><i class="fa fa-exclamation-triangle "></i> 运单状态</label>
                         <label class="select select-multiple">
-                          <select  class="custom-scroll" ng-multiple="true" ng-model="queryOption.EOStatus">
+                          <select  class="custom-scroll" multiple ng-model="queryOption.EOStatus">
                             <option value="1">未开始</option>
                             <option value="2">中转</option>
                             <option value="3">配送中</option>
@@ -77,7 +56,7 @@
                       <section class="col col-2">
                         <label class="label"><i class="fa fa-eye-slash "></i> 事件状态</label>
                         <label class="select select-multiple">
-                          <select class="custom-scroll" ng-multiple="true" ng-model="queryOption.eventstatus">
+                          <select class="custom-scroll" multiple ng-model="queryOption.eventstatus">
                             <option value="1">延迟事件</option>
                             <option value="2">异常事件</option>
                             <option value="3">意外事件</option>
@@ -87,7 +66,7 @@
                       <section class="col col-2">
                         <label class="label"><i class="fa fa-truck "></i> 运输方式</label>
                         <label class="select select-multiple">
-                          <select class="custom-scroll" ng-multiple="true" ng-model="queryOption.EOTRType">
+                          <select class="custom-scroll" multiple ng-model="queryOption.EOTRType">
                             <option value="1">公路</option>
                             <option value="2">航空</option>
                             <option value="3">自有</option>
@@ -97,7 +76,7 @@
                       <section class="col col-2">
                         <label class="label"><i class="fa fa-ambulance "></i> 运输特殊标识</label>
                         <label class="select select-multiple">
-                          <select class="custom-scroll" ng-multiple="true" ng-model="queryOption.EOTag">
+                          <select class="custom-scroll" multiple ng-model="queryOption.EOTag">
                             <option value="1">冷藏</option>
                             <option value="2">危险品</option>
                             <option value="3">自有</option>
@@ -218,36 +197,16 @@
                 </form>
               </div>
             </div>
-            <!-- end widget content --> 
           </div>
-          <!-- end widget div --> 
-          
+
         </div>
-        <!-- end widget --> 
-        
+
       </div>
     </article>
   </div>
-  <!-- END ROW --> 
-  <!-- row --搜索结果-->
   <div class="row"> 
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
-      
-      <!-- Widget ID (each widget will need unique ID)-->
       <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-eolist" data-widget-editbutton="false" data-widget-collapsed="true" data-widget-deletebutton="false"> 
-        <!-- widget options:
-				usage: <div class="jarviswidget" id="wid-id-2r" data-widget-editbutton="false">
-
-				data-widget-colorbutton="false"
-				data-widget-editbutton="false"
-				data-widget-togglebutton="false"
-				data-widget-deletebutton="false"
-				data-widget-fullscreenbutton="false"
-				data-widget-custombutton="false"
-				data-widget-collapsed="true"
-				data-widget-sortable="false"
-
-				-->
         <header> <span class="widget-icon"> <i class="fa fa-search-plus"></i> </span>
           <h2>EO查询结果清单</h2>
           <div class="widget-toolbar">
@@ -260,114 +219,17 @@
             </div>
           </div>
         </header>
-        
-        <!-- widget div-->
         <div> 
-          
-          <!-- widget edit box -->
           <div class="jarviswidget-editbox"> 
-            <!-- This area used as dropdown edit box --> 
-            
           </div>
-          <!-- end widget edit box --> 
-          
-          <!-- widget content -->
           <div class="widget-body no-padding">
             <div class="widget-body-toolbar"> </div>
-            <table id="datatable_col_reorder" class="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th> <label class="checkbox">
-                      <input type="checkbox" name="checkbox-inline">
-                      <i></i> </label>
-                  </th>
-                  <th>EO</th>
-                  <th>ER</th>
-                  <th>ERITN</th>
-                  <th>运单状态</th>
-                  <th>客户订单号</th>
-                  <th>类型</th>
-                  <th>特殊</th>
-                  <th>发货方</th>
-                  <th>收货方</th>
-                  <th>送达日期</th>
-                  <th>方式</th>
-                  <th>承运方</th>
-                  <th>承运方单号</th>
-                  <th>明细</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><label class="checkbox">
-                      <input type="checkbox" name="checkbox-inline">
-                      <i></i> </label></td>
-                  <td>EO001</td>
-                  <td>1</td>
-                  <td>001</td>
-                  <td>发运开始</td>
-                  <td>DMS11111</td>
-                  <td>预付</td>
-                  <td>普通</td>
-                  <td>上海通用</td>
-                  <td>南京4S</td>
-                  <td>2014-4-1</td>
-                  <td>空运</td>
-                  <td>顺丰</td>
-                  <td>12312313</td>
-                  <td><a href="#" data-target="#myeodetail" data-toggle="modal"> <i class="fa fa-truck "></i></a><a href="#" data-target="#myerdetail" data-toggle="modal"> <i class="fa fa-inbox "></i></a> <a href="#" data-target="#myTimeLine" data-toggle="modal"> <i class="fa fa-clock-o "></i></a></td>
-                </tr>
-                <tr>
-                  <td><label class="checkbox">
-                      <input type="checkbox" name="checkbox-inline">
-                      <i></i> </label></td>
-                  <td>EO002</td>
-                  <td>2</td>
-                  <td>001</td>
-                  <td>配送开始</td>
-                  <td>DMS11111</td>
-                  <td>加急</td>
-                  <td>危险品</td>
-                  <td>欧莱雅</td>
-                  <td>大洋经典</td>
-                  <td>2014-4-1</td>
-                  <td>空运</td>
-                  <td>顺丰</td>
-                  <td>12312ssssss313</td>
-                  <td><a href="#" data-target="#myeodetail" data-toggle="modal"> <i class="fa fa-truck "></i></a><a href="#" data-target="#myerdetail" data-toggle="modal"> <i class="fa fa-inbox "></i></a> <a href="#" data-target="#myTimeLine" data-toggle="modal"> <i class="fa fa-clock-o "></i></a></td>
-                </tr>
-                <tr>
-                  <td><label class="checkbox">
-                      <input type="checkbox" name="checkbox-inline">
-                      <i></i> </label></td>
-                  <td>EO004</td>
-                  <td>3</td>
-                  <td>001</td>
-                  <td>中转开始</td>
-                  <td>DMS11111</td>
-                  <td>统配</td>
-                  <td>普通</td>
-                  <td>上汽临港</td>
-                  <td>成都4S</td>
-                  <td>2014-4-1</td>
-                  <td>空运</td>
-                  <td>顺丰</td>
-                  <td>123128765544313</td>
-                  <td><a href="#" data-target="#myeodetail" data-toggle="modal"> <i class="fa fa-truck "></i></a><a href="#" data-target="#myerdetail" data-toggle="modal"> <i class="fa fa-inbox "></i></a> <a href="#" data-target="#myTimeLine" data-toggle="modal"> <i class="fa fa-clock-o "></i></a></td>
-                </tr>
-              </tbody>
-            </table>
+             <div data-im-table header-titles="columns" can-select my-source="results" selected-items="selectedItems"></div>
           </div>
-          <!-- end widget content --> 
-          
         </div>
-        <!-- end widget div --> 
-        
       </div>
-      <!-- end widget --> 
     </article>
   </div>
-  <!-- end row --> 
 </section>
-<!-- end widget grid --> 
+
 
