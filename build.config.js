@@ -17,7 +17,8 @@ module.exports = {
             'vendor/angular-loading-bar/src/loading-bar.js',
             'vendor/angular-animate/angular-animate.js',
             'vendor/angular-ui-router/release/angular-ui-router.js',
-
+			'vendor/moment/min/moment.min.js',
+			
             'src/legacyscripts/jarvismenu.js',
             'src/legacyscripts/legacyscript.js',
             'src/legacyscripts/notification/SmartNotification.js',
@@ -49,7 +50,10 @@ module.exports = {
             'vendor/angular-animate/angular-animate.js',
             'vendor/angular-cookies/angular-cookies.min.js',
             'vendor/angular-loading-bar/src/loading-bar.js',
-            'vendor/jquery-form/jquery.form.js'
+            'vendor/jquery-form/jquery.form.js',
+			'vendor/moment/min/moment.min.js'
+			
+			
         ],
         vendorjs_unmin: [
             'vendor/jqueryui/ui/minified/jquery-ui.min.js',
