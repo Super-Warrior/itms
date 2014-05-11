@@ -12,19 +12,13 @@
               <i class="fa fa-lg fa-clock-o"></i> 事件与动作
             </span>
             <ul>
-              <li>
-                <span><i class="fa fa-lg fa-check-circle"></i> 事件/动作类型
-                  <i class="fa fa-lg fa-info-circle "></i> 事件代码
-                  <i class="fa fa-lg fa-clock-o "></i> 2014-4-1 13:22PM
-                  <i class="fa fa-lg fa-user"></i> 用户
-                </span>
-              </li>
-              <li>
+              <li ng-repeat="item in timelines">
                 <span>
-                  <i class="fa fa-lg fa-check-circle"></i> 事件/动作类型2
-                  <i class="fa fa-lg fa-info-circle "></i> 事件代码2
-                  <i class="fa fa-lg fa-clock-o "></i> 2014-4-1 13:22PM
-                  <i class="fa fa-lg fa-user"></i> 用户2
+                  <i class="fa fa-lg fa-check-circle"></i>{{ item.eventType }}
+                  <i class="fa fa-lg fa-info-circle "></i> {{ item.eventCode }}
+                  <i class="fa fa-lg fa-info-circle "></i> {{ item.status }}
+                  <i class="fa fa-lg fa-clock-o "></i> {{ item.eventDateTime }}
+                  <i class="fa fa-lg fa-user"></i> {{ item.createUser }}
                 </span>
               </li>
             </ul>

@@ -95,6 +95,7 @@
                     $modal.open({
                         templateUrl: target,
                         controller: erDetailCtrl,
+                        windowClass: 'erDetail-window',
                         resolve: {
                             data: function () {
                                 return rowData;
@@ -112,12 +113,12 @@
                     $modal.open({
                         templateUrl: target,
                         controller: TimeLineCtrl,
-                        windowClass: 'timeline-window'
-                        /*resolve: {
+                        windowClass: 'timeline-window',
+                        resolve: {
                             data: function () {
                                 return rowData;
                             }
-                        }*/
+                        }
                     });
                     e.preventDefault();
                     return false;
