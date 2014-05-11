@@ -36,9 +36,7 @@
                       <section class="col col-4">
                         <label class="label"><i class="fa fa-list"></i> 运单类型</label>
                         <label class="select select-multiple">
-                          <select multiple="" ng-multiple="true" class="custom-scroll" ng-model="queryOption.EOType" multiple>
-                             <option value="1">SGM-紧急</option> 
-                             <option value="2">SAIC-常规</option> 
+                          <select multiple="" ng-multiple="true" class="custom-scroll" ng-model="queryOption.EOType" multiple data-ng-options="config.code as config.description for config in mutiOptionDataSource.ERTP">
                           </select>
                         </label>
                         <div class="note"> <strong>提示:</strong> 按ctrl键进行多选操作 </div>
@@ -46,40 +44,29 @@
                       <section class="col col-2">
                         <label class="label"><i class="fa fa-exclamation-triangle "></i> 运单状态</label>
                         <label class="select select-multiple">
-                          <select  class="custom-scroll" multiple ng-model="queryOption.EOStatus">
-                            <option value="1">未开始</option>
-                            <option value="2">中转</option>
-                            <option value="3">配送中</option>
+                          <select  class="custom-scroll" multiple ng-model="queryOption.EOStatus" data-ng-options="config.code as config.description for config in mutiOptionDataSource.EOST">
+                         
                           </select>
                         </label>
                       </section>
                       <section class="col col-2">
                         <label class="label"><i class="fa fa-eye-slash "></i> 事件状态</label>
                         <label class="select select-multiple">
-                          <select class="custom-scroll" multiple ng-model="queryOption.eventstatus">
-                            <option value="1">延迟事件</option>
-                            <option value="2">异常事件</option>
-                            <option value="3">意外事件</option>
+                          <select class="custom-scroll" multiple ng-model="queryOption.eventstatus" data-ng-options="config.code as config.description for config in mutiOptionDataSource.EVST">
                           </select>
                         </label>
                       </section>
                       <section class="col col-2">
                         <label class="label"><i class="fa fa-truck "></i> 运输方式</label>
                         <label class="select select-multiple">
-                          <select class="custom-scroll" multiple ng-model="queryOption.EOTRType">
-                            <option value="1">公路</option>
-                            <option value="2">航空</option>
-                            <option value="3">自有</option>
+                          <select class="custom-scroll" multiple ng-model="queryOption.EOTRType" data-ng-options="config.code as config.description for config in mutiOptionDataSource.TRPY">
                           </select>
                         </label>
                       </section>
                       <section class="col col-2">
                         <label class="label"><i class="fa fa-ambulance "></i> 运输特殊标识</label>
                         <label class="select select-multiple">
-                          <select class="custom-scroll" multiple ng-model="queryOption.EOTag">
-                            <option value="1">冷藏</option>
-                            <option value="2">危险品</option>
-                            <option value="3">自有</option>
+                          <select class="custom-scroll" multiple ng-model="queryOption.EOTag" data-ng-options="config.code as config.description for config in mutiOptionDataSource.ERTG">
                           </select>
                         </label>
                       </section>
@@ -224,7 +211,7 @@
           </div>
           <div class="widget-body no-padding">
             <div class="widget-body-toolbar"> </div>
-             <div data-im-table header-titles="columns" can-select my-source="results" selected-items="selectedItems"></div>
+             <div data-im-table header-titles="columns" can-select my-source="results" selected-items="selectedItems" detail-config="detailConfig"></div>
           </div>
         </div>
       </div>

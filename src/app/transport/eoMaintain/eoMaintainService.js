@@ -22,7 +22,16 @@ angular.module('itms.transport.eoMaintain')
                 eo: item.dn.eo, 
                 erID: item.erHead.erID, 
                 erITN: item.erItem.pk.erITN, 
-                eoStatus: item.dn.eoStatus
+                eoStatus: item.dn.eoStatus,
+                customerOrder:item.dn.customerOrder1,
+                eoType:item.dn.eotype,
+                eoTag:item.dn.eotag,
+                depCustomer:item.dn.depCustomer,
+                recCustomer:item.dn.recCustomer,
+                reDelDate:item.dn.reqDelDate1,
+                eoTrtype:item.dn.eotrtype,
+                eoTrvendor:item.dn.eotrvendor1,
+                vendorOrder:item.dn.vendorOrder1
             };
         }
     }
