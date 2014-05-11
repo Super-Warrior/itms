@@ -15,7 +15,6 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
 
     function activate() {
         eventService.getAllConfigData().then(function (result) {
-            $log.debug(result);
             $scope.configData = result;
         });
 

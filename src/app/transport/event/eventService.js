@@ -52,7 +52,7 @@ function eventService($http, $q, config, configService) {
                 configService.getConfig('EVST')
             ]).then(function (results) {
                 var result = {};
-                angular.forEach(results, function(res){
+                angular.forEach(results, function (res) {
                     var confType = getConfType(res.data);
                     result[confType] = res.data;
                 });
@@ -89,8 +89,10 @@ function eventService($http, $q, config, configService) {
                 eventCode: event.eventCode,
                 eventDateTime: event.eventDateTime,
                 createUser: event.createUser,
-                eoNumber: event.eo + '/' + event.erid + '/' + event.eritn
-
+                eoNumber: event.eo + '/' + event.erid + '/' + event.eritn,
+                eoid: event.eo,
+                erid: event.erid,
+                eritn: event.eritn
             };
         }
     }
