@@ -49,7 +49,7 @@ function eventService($http, $q, config, configService) {
                 configService.getConfig('EPST'),
                 configService.getConfig('ERNT'),
                 configService.getConfig('EOST'),
-                configService.getConfig('EVST'),
+                configService.getConfig('EVST')
             ]).then(function (results) {
                 var result = {};
                 angular.forEach(results, function(res){
