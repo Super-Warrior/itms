@@ -181,48 +181,6 @@ function timelineService($http, config) {
 
 function eoDetailService($http, $q, config) {
 
-    /*    EO[]	运单ID	eo
-     userID		系统当前用户
-     EOStatus	运单状态	eoStatus
-     EOType	运单类型	eotype
-     EOTRType	运单运输方式	eotrtype
-     EOTag	运单特殊标识	eotag
-     EOTRVendor1	第三方供应商1	eotrvendor1
-     EOTRVendor2	第三方供应商2	eotrvendor2
-     EOTRVendor3	第三方供应商3	eotrvendor3
-     customerOrder1	客户订单号1	customerOrder1
-     customerOrder2	客户订单号2	customerOrder2
-     customerOrder3	客户订单号3	customerOrder3
-     VendorOrder1	供应商订单号1	vendorOrder1
-     VendorOrder2	供应商订单号2	vendorOrder2
-     VendorOrder3	供应商订单号3	vendorOrder3
-     reqDelDate1	要求到达日期1	reqDelDate1
-     reqDelDate2	要求到达日期2	reqDelDate2
-     reqDelDate3	要求到达日期3	reqDelDate3
-     reqDelDate4	要求到达日期4	reqDelDate4
-     DeliverBP1	网络公司1	deliverBP1
-     DeliverBP2	网络公司2	deliverBP2
-     DeliverBP3	网络公司3	deliverBP3
-     ScheduleVendor1	定班供应商1	scheduleVendor1
-     ScheduleVendor2	定班供应商2	scheduleVendor2
-     ScheduleVendor3	定班供应商3	scheduleVendor3
-     ScheduleClass1	定班班次1	scheduleClass1
-     ScheduleClass2	定班班次2	scheduleClass2
-     ScheduleClass3	定班班次3	scheduleClass3
-     DepDate1	日期1	depDate1
-     DepDate2	日期2	depDate2
-     DepDate3	日期3	depDate3
-     ArrDate1	到达日期1	arrDate1
-     ArrDate2	到达日期2	arrDate2
-     ArrDate3	到达日期3	arrDate3
-     DepTime1	出发时间1	depTime1
-     DepTime2	出发时间2	depTime2
-     DepTime3	出发时间3	depTime3
-     Arrtime1	到达时间1	arrTime1
-     Arrtime2	到达时间2	arrTime2
-     Arrtime3	到达时间3	arrTime3
-     memo	memo	memo*/
-
     var searchUrl = config.baseUrl + 'EO/EOQuickSearch';
     var emoChangeUrl = config.baseUrl + 'EO/EOMChange';
     return {
@@ -307,9 +265,9 @@ function eoDetailService($http, $q, config) {
             ArrDate1: data.dn.arrDate1,
             ArrDate2: data.dn.arrDate2,
             ArrDate3: data.dn.arrDate3,
-            DepTime1: data.dn.depTime1,
-            DepTime2: data.dn.depTime2,
-            DepTime3: data.dn.depTime3,
+            DepTime1: '',
+            DepTime2: '',
+            DepTime3: '',
             Arrtime1: data.dn.arrTime1,
             Arrtime2: data.dn.arrTime2,
             Arrtime3: data.dn.arrTime3,

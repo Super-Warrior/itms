@@ -8,7 +8,9 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
     $scope.title = '事件查询';
     $scope.events = [];
     $scope.eventSearchCriteria = {
-
+        quickSearch: {},
+        erSearch:{},
+        eoSearch:{}
     };
 
     activate();
@@ -30,8 +32,8 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
         $state.go('app.user.transport.eventSearch.search.searchByEr');
     };
 
-    $scope.eventSearch = function () {
-        eventService.queryByEvent($scope.eventSearchCriteria)
+    $scope.eventSearch = function (queryOptions) {
+        eventService.queryByEvent(queryOptions)
             .success(function (data) {
                 $scope.events = eventService.getEventPartial(data);
             })
@@ -40,8 +42,8 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
             });
     };
 
-    $scope.erSearch = function () {
-        eventService.queryByEr($scope.eventSearchCriteria)
+    $scope.erSearch = function (queryOptions) {
+        eventService.queryByEr(queryOptions)
             .success(function (data) {
                 $scope.events = eventService.getEventPartial(data);
             })
@@ -50,8 +52,8 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
             });
     };
 
-    $scope.eoSearch = function () {
-        eventService.queryByEo($scope.eventSearchCriteria)
+    $scope.eoSearch = function (queryOptions) {
+        eventService.queryByEo(queryOptions)
             .success(function (data) {
                 $scope.events = eventService.getEventPartial(data);
             })
@@ -62,6 +64,7 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
 }
 
 function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
+
     $scope.columns = [
         {
             "mData": "eventType",
