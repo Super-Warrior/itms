@@ -49,7 +49,7 @@
                 if (scope.detailConfig.erDetail)
                     content.push('<a href="javascript:void(0)" id="showErDetail" template="erDetail.tpl.html"><i class="fa fa-truck"></i></a>');
                 if (scope.detailConfig.eoDetail)
-                    content.push('<a href="javascript:void(0)" template="eoDetail.tpl.html"><i class="fa fa-inbox"></i></a>');
+                    content.push('<a href="javascript:void(0)" id="showEoDetail" template="eoDetail.tpl.html"><i class="fa fa-inbox"></i></a>');
                 if (scope.detailConfig.timeLine)
                     content.push('<a href="javascript:void(0)" id="showTimeLine" template="timeLine.tpl.html"><i class="fa fa-clock-o"></i></a>');
                 settings.aoColumns.push({
@@ -114,6 +114,24 @@
                         templateUrl: target,
                         controller: TimeLineCtrl,
                         windowClass: 'timeline-window',
+                        resolve: {
+                            data: function () {
+                                return rowData;
+                            }
+                        }
+                    });
+                    e.preventDefault();
+                    return false;
+                });
+            }
+            if (scope.detailConfig.eoDetail) {
+                t.on('click', 'tbody tr #showEoDetail', function (e) {
+                    var rowData = t.fnGetData($(this).parent().parent()[0]);
+                    var target = "app/common/details/" + $(this).attr("template");
+                    $modal.open({
+                        templateUrl: target,
+//                        controller: TimeLineCtrl,
+                        windowClass: 'eoDetail-window',
                         resolve: {
                             data: function () {
                                 return rowData;

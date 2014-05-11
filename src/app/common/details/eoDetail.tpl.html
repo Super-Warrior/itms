@@ -1,0 +1,508 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-hidden="true" ng-click="$dismiss()">
+    &times;
+  </button>
+  <h4 class="modal-title">
+    <img src="img/banner.png" width="150" alt="iTMS">
+  </h4>
+</div>
+<div class="modal-body no-padding">
+  <div class="alert alert-info fade in"><i class="fa-fw fa fa-list"></i><strong>运单EO:</strong>11111</div>
+  <ul id="erTab" class="nav nav-tabs bordered">
+    <li class="active"><a href="#o1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-tag "></i>基本信息</a></li>
+    <li><a href="#o2" data-toggle="tab"><i class="fa fa-fw fa-lg  fa-clock-o "></i>时间信息</a></li>
+    <li><a href="#o3" data-toggle="tab"><i class="fa fa-fw fa-lg fa-group"></i>网络公司</a></li>
+    <li><a href="#o4" data-toggle="tab"><i class="fa fa-fw fa-lg fa-plane"></i>订班订舱</a></li>
+    <li><a href="#o5" data-toggle="tab"><i class="fa fa-fw fa-lg fa-truck"></i>订班订舱</a></li>
+    <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+      <i class="fa fa-fw fa-lg fa-edit"></i>操作<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-save"></i>保存</a></li>
+        <li><a href="#" data-target="#myaction" data-toggle="modal"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a></li>
+        <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-refresh"></i>刷新</a></li>
+      </ul>
+    </li>
+  </ul>
+  <div id="myTabContent1" class="tab-content padding-10">
+    <div class="tab-pane fade in active" id="o1">
+      <form action="" id="checkout-form" class="smart-form" novalidate>
+        <fieldset>
+          <div class="row">
+            <section class="col col-6">
+              <label>运单状态</label>
+              <label class="select">
+                <select name="prov">
+                  <option value="0" selected disabled>起运</option>
+                  <option value="1">航空中转</option>
+                  <option value="2">配送中</option>
+                  <option value="3">已完成</option>
+                </select>
+                <i class="fa fa-check-square"></i>
+              </label>
+            </section>
+            <section class="col col-6">
+              <label>事件状态</label>
+              <label class="select">
+                <select name="prov">
+                  <option value="0" selected disabled>延迟</option>
+                  <option value="1">正常</option>
+                  <option value="2">提前</option>
+                  <option value="3">异常</option>
+                </select>
+                <i class="fa fa-check-square"></i>
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <label>运单类型</label>
+              <label class="select">
+                <select name="prov">
+                  <option value="0" selected disabled>紧急</option>
+                  <option value="1">预付</option>
+                  <option value="2">监控</option>
+                  <option value="3">索赔</option>
+                  <option value="4">统配</option>
+                </select>
+                <i class="fa fa-check-square"></i>
+              </label>
+            </section>
+            <section class="col col-4">
+              <label>运输方式</label>
+              <label class="select">
+                <select name="prov">
+                  <option value="0" selected disabled>空运</option>
+                  <option value="1">快运</option>
+                  <option value="2">自有运输</option>
+                </select>
+                <i class="fa fa-check-square"></i>
+              </label>
+            </section>
+            <section class="col col-4">
+              <label>特殊运输标识</label>
+              <label class="select">
+                <select name="prov">
+                  <option value="0" selected disabled>危险品</option>
+                  <option value="1">冷藏</option>
+                </select>
+                <i class="fa fa-check-square"></i>
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-6">
+              <label>第三方物流1</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="Cr" placeholder="第三方物流">
+              </label>
+            </section>
+            <section class="col col-6">
+              <label>物流单号</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-qrcode "></i>
+                <input type="text" name="Cr" placeholder="单号">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-6">
+              <label>第三方物流2</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="Cr" placeholder="第三方物流">
+              </label>
+            </section>
+            <section class="col col-6">
+              <label>物流单号</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-qrcode "></i>
+                <input type="text" name="Cr" placeholder="单号">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-6">
+              <label>第三方物流3</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="Cr" placeholder="第三方物流">
+              </label>
+            </section>
+            <section class="col col-6">
+              <label>物流单号</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-qrcode "></i>
+                <input type="text" name="Cr" placeholder="单号">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-9">
+              <label class="textarea">
+                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+              </label>
+            </section>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="tab-pane fade" id="o2">
+      <form action="" id="Form1" class="smart-form" novalidate>
+        <fieldset>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>要求日期1</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="startdate" placeholder="要求日期1">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>要求时间1</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="timepicker" type="text" value="" placeholder="要求时间1">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际日期1</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text1" placeholder="实际日期1">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际时间1</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="Text2" type="text" value="" placeholder="实际时间1">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>要求日期2</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text3" placeholder="要求日期2">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>要求时间2</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="Text4" type="text" value="" placeholder="要求时间2">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际日期2</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text5" placeholder="实际日期2">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际时间2</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="Text6" type="text" value="" placeholder="实际时间2">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="tab-pane fade" id="o3">
+      <form action="" id="Form2" class="smart-form" novalidate>
+        <fieldset>
+          <div class="row">
+            <section class="col col-4">
+              <label>1级网络公司代码</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="Cr" placeholder="客户代码">
+              </label>
+            </section>
+            <section class="col col-8">
+              <label>1级网络公司名称</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-info"></i>
+                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <label>2级网络公司代码</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="Cr" placeholder="客户代码">
+              </label>
+            </section>
+            <section class="col col-8">
+              <label>2级网络公司名称</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-info"></i>
+                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+              </label>
+            </section>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="tab-pane fade" id="o4">
+      <form action="" id="Form3" class="smart-form" novalidate>
+        <fieldset>
+          <div class="row">
+            <section class="col col-4">
+              <label>订班供应商1</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="Cr" placeholder="客户代码">
+              </label>
+            </section>
+            <section class="col col-8">
+              <label>订班供应商1名称</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-info"></i>
+                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <label>班次</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="Cr" placeholder="班次">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>出发日期</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text7" placeholder="出发日期">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>出发时间</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="Text8" type="text" value="" placeholder="出发时间">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际出发日期</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text9" placeholder="实际出发日期">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际出发时间</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="Text10" type="text" value="" placeholder="实际出发时间">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>到达日期</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text11" placeholder="到达日期">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>到达时间</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="Text12" type="text" value="" placeholder="到达时间">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际到达日期</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text13" placeholder="实际到达日期">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际到达时间</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="Text14" type="text" value="" placeholder="实际到达时间">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="tab-pane fade" id="o5">
+      <form action="" id="Form4" class="smart-form" novalidate>
+        <fieldset>
+          <div class="row">
+            <section class="col col-4">
+              <label>订班供应商2</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="Cr" placeholder="客户代码">
+              </label>
+            </section>
+            <section class="col col-8">
+              <label>订班供应商2名称</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-info"></i>
+                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <label>班次</label>
+              <label class="input">
+                <i class="icon-prepend fa fa-user"></i>
+                <input type="text" name="Cr" placeholder="班次">
+              </label>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>出发日期</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text15" placeholder="出发日期">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>出发时间</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="Text16" type="text" value="" placeholder="出发时间">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际出发日期</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text17" placeholder="实际出发日期">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际出发时间</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="Text18" type="text" value="" placeholder="实际出发时间">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>到达日期</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text19" placeholder="到达日期">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>到达时间</label>
+
+                <div class="input-group">
+                  <input class="form-control" id="Text20" type="text" value="" placeholder="到达时间">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际到达日期</label>
+                <label class="input">
+                  <i class="icon-prepend fa fa-calendar"></i>
+                  <input type="text" name="startdate" id="Text21" placeholder="实际到达日期">
+                </label>
+              </div>
+            </section>
+            <section class="col col-4">
+              <div class="form-group">
+                <label>实际到达时间</label>
+                <div class="input-group">
+                  <input class="form-control" id="Text22" type="text" value="" placeholder="实际到达时间">
+                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
