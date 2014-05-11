@@ -89,7 +89,7 @@ function common($q, notifier, fileHelper) {
 angular.module("itms.common")
     .factory("configService", ["$http", "$q", "config", configService])
     .factory("timelineService", ['$http', 'config', timelineService])
-    .factory("eoDetailService", ['$http', '$q', 'config', eoDetailService]);
+    .factory("eoDetailService", ['$http', '$q', 'config', 'configService', eoDetailService]);
 
 function configService($http, $q, config) {
 
@@ -179,14 +179,37 @@ function timelineService($http, config) {
 
 }
 
-function eoDetailService($http, $q, config) {
+function eoDetailService($http, $q, config, configService) {
 
     var searchUrl = config.baseUrl + 'EO/EOQuickSearch';
     var emoChangeUrl = config.baseUrl + 'EO/EOMChange';
     return {
         getEoDetail: getEoDetail,
+        getAllConfigData: getAllConfigData,
         save: save
     };
+
+    function getAllConfigData() {
+        return $q.all([
+                configService.getConfig('ERTP'),
+                configService.getConfig('TRPY'),
+                configService.getConfig('ERTG'),
+                configService.getConfig('EOST'),
+                configService.getConfig('EVST')
+            ]).then(function (results) {
+                var result = {};
+                angular.forEach(results, function (res) {
+                    var confType = getConfType(res.data);
+                    result[confType] = res.data;
+                });
+                return result;
+            });
+
+        function getConfType(configs) {
+            return configs[0].conType;
+        }
+    }
+
 
     function getEoDetail(queryOptions) {
         var data = {

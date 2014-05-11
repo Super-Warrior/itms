@@ -13,6 +13,11 @@ function EODetailCtrl($scope, $modalInstance, eoDetailService, data) {
         } else if (data.requirementDetail) {
             queryOption['eoid'] = data.requirementDetail.pk.eoID;
         }
+
+        eoDetailService.getAllConfigData().then(function (result) {
+            $scope.configData = result;
+        });
+
         eoDetailService.getEoDetail(queryOption).then(function (result) {
             console.log(result.data);
             if (result.data.errorMessage) {
@@ -24,7 +29,7 @@ function EODetailCtrl($scope, $modalInstance, eoDetailService, data) {
     }
 
     $scope.save = function (data) {
-        eoDetailService.save(data).success(function(result){
+        eoDetailService.save(data).success(function (result) {
             $modalInstance.close(result);
         });
     };

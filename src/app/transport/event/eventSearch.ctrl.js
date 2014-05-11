@@ -7,10 +7,11 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
     $scope.module = '运输执行';
     $scope.title = '事件查询';
     $scope.events = [];
+    $scope.totalEvents = [];
     $scope.eventSearchCriteria = {
         quickSearch: {},
-        erSearch:{},
-        eoSearch:{}
+        erSearch: {},
+        eoSearch: {}
     };
 
     activate();
@@ -36,6 +37,7 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
         eventService.queryByEvent(queryOptions)
             .success(function (data) {
                 $scope.events = eventService.getEventPartial(data);
+                $scope.totalEvents = $scope.events;
             })
             .error(function () {
                 $log.error('EventSearchCtrl: eventSearch');
@@ -46,6 +48,7 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
         eventService.queryByEr(queryOptions)
             .success(function (data) {
                 $scope.events = eventService.getEventPartial(data);
+                $scope.totalEvents = $scope.events;
             })
             .error(function () {
                 $log.error('EventSearchCtrl: queryByEr');
@@ -56,6 +59,7 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
         eventService.queryByEo(queryOptions)
             .success(function (data) {
                 $scope.events = eventService.getEventPartial(data);
+                $scope.totalEvents = $scope.events;
             })
             .error(function () {
                 $log.error('EventSearchCtrl: queryByEr');
@@ -65,6 +69,7 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
 
 function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
 
+    $scope.selectedItems = [];
     $scope.columns = [
         {
             "mData": "eventType",
@@ -89,9 +94,39 @@ function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
     ];
 
     $scope.detailConfig = {
-        erDetail: true,
+        erDetail: false,
         timeLine: true,
         eoDetail: true
     };
-    $scope.selectedItems = [];
+
+    $scope.handleEvent = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'app/transport/event/handleEvent.tpl.html',
+            controller: 'HandleEventCtrl',
+            resolve: {
+                items: function () {
+                    return $scope.selectedItems;
+                }
+            }
+        });
+        modalInstance.result.then(function () {
+            common.notifier.success("操作成功");
+        });
+    };
+
+    $scope.disableAction = function () {
+        return $scope.selectedItems.length === 0;
+    };
+
+    $scope.filterEvent = function (eventType) {
+        if (eventType) {
+            $scope.events = $scope.totalEvents.filter(function (item) {
+                return item.eventType == eventType
+            });
+        }else{
+            $scope.events = $scope.totalEvents;
+        }
+    };
+
+
 }

@@ -31,19 +31,14 @@
             <section class="col col-6">
               <label>运单状态</label>
               <label class="select">
-                <select data-ng-model="data.dn.eoStatus">
-                  <!--<option value="0" selected disabled>起运</option>-->
-                  <!--<option value="1">航空中转</option>-->
-                  <!--<option value="2">配送中</option>-->
-                  <!--<option value="3">已完成</option>-->
-                </select>
+                <select data-ng-model="data.dn.eoStatus" data-ng-options="config.code as config.description for config in configData.EOST"></select>
                 <i class="fa fa-check-square"></i>
               </label>
             </section>
             <section class="col col-6">
               <label>事件状态</label>
               <label class="select">
-                <select data-ng-model="data.dn.eventstatus">
+                <select data-ng-model="data.dn.eventstatus" data-ng-options="config.code as config.description for config in configData.EVST">
                   <!--<option value="0" selected disabled>延迟</option>-->
                   <!--<option value="1">正常</option>-->
                   <!--<option value="2">提前</option>-->
@@ -57,7 +52,7 @@
             <section class="col col-4">
               <label>运单类型</label>
               <label class="select">
-                <select data-ng-model="data.dn.eotype">
+                <select data-ng-model="data.dn.eotype" data-ng-options="config.code as config.description for config in configData.ERTP">
                   <!--<option value="0" selected disabled>紧急</option>-->
                   <!--<option value="1">预付</option>-->
                   <!--<option value="2">监控</option>-->
@@ -70,7 +65,7 @@
             <section class="col col-4">
               <label>运输方式</label>
               <label class="select">
-                <select data-ng-model="data.dn.eotrtype">
+                <select data-ng-model="data.dn.eotrtype" data-ng-options="config.code as config.description for config in configData.TRPY">
                   <!--<option value="0" selected disabled>空运</option>-->
                   <!--<option value="1">快运</option>-->
                   <!--<option value="2">自有运输</option>-->
@@ -81,7 +76,7 @@
             <section class="col col-4">
               <label>特殊运输标识</label>
               <label class="select">
-                <select data-ng-model="data.dn.eotag">
+                <select data-ng-model="data.dn.eotag" data-ng-options="config.code as config.description for config in configData.ERTG">
                   <!--<option value="0" selected disabled>危险品</option>-->
                   <!--<option value="1">冷藏</option>-->
                 </select>
