@@ -1,11 +1,44 @@
 angular.module("itms.planning")
     .controller("erDetailCtrl", ["$scope", "$log",
-        "$http", "config", "common", "configService", "customerService", erDetailCtrl]);
+        "$http", "$q", "config", "common", "configService", "customerService", erDetailCtrl]);
 
-function erDetailCtrl($scope, $log, $http, config, common, configService, customerService, data) {
-   $scope.basicData = data;
+function erDetailCtrl($scope, $log, $http, $q, config, common, configService, customerService, data) {
 
-   configService.getConfig("TRPY").then(function (result) {
-      $scope.transportTypes = result.data;
-   });
+   var configData = {
+      "ERST": null,
+      "ERNT": null,
+      "ERTP": null,
+      "TRPY": null,
+      "ERTG": null,
+      "PKST": null,
+   };
+   $scope.configs = {};
+   configService.getConfigs(configData).then(
+         function () {
+            $.extend($scope.configs, configData);
+            $scope.basicData = data;
+         }
+      );
+   configService.getMaterial("TRES").then(
+         function (result) {
+            $scope.configs.material = result.data;
+         }
+   );
+
+   $scope.save = function() {
+      var saveHead = function() {
+         var param = {};
+         $.extend(param, $scope.basicData.requirement);
+
+
+      };
+
+   };
+
+   $scope.eventHandle = function() {
+   };
+   
+   $scope.refresh= function() {
+
+   }
 }

@@ -20,9 +20,9 @@
         <li><a href="#s5" data-toggle="tab"><i class="fa fa-fw fa-lg fa-list-ol"></i>行项目</a> </li>
         <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-edit"></i>操作<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-save"></i>保存</a> </li>
-                <li><a href="#" data-target="#myaction" data-toggle="modal"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a> </li>
-                <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-refresh"></i>刷新</a> </li>
+                <li><a href="#" data-toggle="tab" ng-click="save()"><i class="fa fa-fw fa-lg fa-save"></i>保存</a> </li>
+                <li><a href="#" data-target="#myaction"  ng-click="eventHandle()"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a> </li>
+                <li><a href="#" data-toggle="tab"  ng-click="refresh()"><i class="fa fa-fw fa-lg fa-refresh"></i>刷新</a> </li>
             </ul>
         </li>
     </ul>
@@ -35,9 +35,8 @@
                             <label>需求状态</label>
                             <label class="select">
                                 <select name="prov" ng-model="basicData.requirement.erStatus">
-                                    <option value="0" selected disabled>开始</option>
-                                    <option value="1">完成</option>
-                                    <option value="2">理货</option>
+                                    <option value="" selected disabled></option>
+                                    <option ng-repeat="value in configs.ERST" value="{{value.code}}">{{value.description}}</option>
                                 </select>
                                 <i class="fa fa-check-square"></i>
                             </label>
@@ -46,9 +45,9 @@
                             <label>行项目状态</label>
                             <label class="select">
                                 <select name="prov" ng-model="basicData.requirementDetail.erITNStatus">
-                                    <option value="0" selected disabled>开始</option>
-                                    <option value="1">延迟</option>
-                                    <option value="2">派送</option>
+                                    <option value="" selected disabled></option>
+                                    <option ng-repeat="value in configs.ERNT" value="{{value.code}}">{{value.description}}</option>
+
                                 </select>
                                 <i class="fa fa-check-square"></i>
                             </label>
@@ -59,11 +58,8 @@
                             <label>需求类型</label>
                             <label class="select">
                                 <select name="prov" ng-model="basicData.requirement.erType">
-                                    <option value="0" selected disabled>紧急</option>
-                                    <option value="1">预付</option>
-                                    <option value="2">监控</option>
-                                    <option value="3">索赔</option>
-                                    <option value="4">统配</option>
+                                    <option value="" selected disabled></option>
+                                    <option ng-repeat="value in configs.ERTP" value="{{value.code}}">{{value.description}}</option>
                                 </select>
                                 <i class="fa fa-check-square"></i>
                             </label>
@@ -72,9 +68,8 @@
                             <label>运输方式</label>
                             <label class="select">
                                 <select name="prov" ng-model="basicData.requirement.erTRType">
-                                    <option value="0" selected disabled>空运</option>
-                                    <option value="1">快运</option>
-                                    <option value="2">自有运输</option>
+                                    <option value="" selected disabled></option>
+                                    <option ng-repeat="value in configs.TRPY" value="{{value.code}}">{{value.description}}</option>
                                 </select>
                                 <i class="fa fa-check-square"></i>
                             </label>
@@ -83,8 +78,8 @@
                             <label>特殊运输标识</label>
                             <label class="select">
                                 <select name="prov" ng-model="basicData.requirement.erTag">
-                                    <option value="0" selected disabled>危险品</option>
-                                    <option value="1">冷藏</option>
+                                    <option value="" selected disabled></option>
+                                    <option ng-repeat="value in configs.ERTG" value="{{value.code}}">{{value.description}}</option>
                                 </select>
                                 <i class="fa fa-check-square"></i>
                             </label>
@@ -151,7 +146,7 @@
                                 <label>波次交接日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="startdate"
+                                    <input type="text" name="startdate" id="startdate" im-datepicker
                                         placeholder="波次交接日期" ng-model="basicData.requirement.recERDate">
                                 </label>
                             </div>
@@ -173,7 +168,7 @@
                                 <label>要求接货日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="Text1"
+                                    <input type="text" name="startdate" id="Text1" im-datepicker
                                         placeholder="要求接货日期" ng-model="basicData.requirement.pickERDate">
                                 </label>
                             </div>
@@ -195,7 +190,7 @@
                                 <label>要求发运日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="Text3"
+                                    <input type="text" name="startdate" id="Text3" im-datepicker
                                         placeholder="要求发运日期" ng-model="basicData.requirement.oprERDate">
                                 </label>
                             </div>
@@ -217,7 +212,7 @@
                                 <label>要求到达日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="Text5"
+                                    <input type="text" name="startdate" id="Text5" im-datepicker
                                         placeholder="要求到达日期" ng-model="basicData.requirement.reqDelDate">
                                 </label>
                             </div>
@@ -385,15 +380,16 @@
             </div>
         </div>
         <div class="tab-pane fade" id="s4">
-            <div id="Form3" class="smart-form" novalidate>
+            <div id="Form3" class="smart-form">
                 <fieldset>
                     <div class="row">
                         <section class="col col-6">
                             <label>资源类型1</label>
                             <label class="select">
                                 <select name="city" ng-model="basicData.requirement.resType1">
-                                    <option value="0" selected disabled>托盘</option>
-                                    <option value="244">包装木箱</option>
+                                    <option value="" selected disabled></option>
+                                    <option ng-repeat="value in configs.material" value="{{value.matnr}}">{{value.description}}</option>
+
                                 </select>
                                 <i></i>
                             </label>
@@ -411,8 +407,9 @@
                             <label>资源类型2</label>
                             <label class="select">
                                 <select name="city" ng-model="basicData.requirement.resType2">
-                                    <option value="0" selected disabled>托盘</option>
-                                    <option value="244">包装木箱</option>
+                                    <option value="" selected disabled></option>
+                                    <option ng-repeat="value in configs.material" value="{{value.matnr}}">{{value.description}}</option>
+
                                 </select>
                                 <i></i>
                             </label>
@@ -430,8 +427,9 @@
                             <label>资源类型3</label>
                             <label class="select">
                                 <select name="city" ng-model="basicData.requirement.resType3">
-                                    <option value="0" selected disabled>托盘</option>
-                                    <option value="244">包装木箱</option>
+                                    <option value="" selected disabled></option>
+                                    <option ng-repeat="value in configs.material" value="{{value.matnr}}">{{value.description}}</option>
+
                                 </select>
                                 <i></i>
                             </label>
@@ -474,10 +472,10 @@
                         </section>
                     </div>
                     <div class="row">
-                         <section class="col col-6">
+                        <section class="col col-6">
                             <label>已分配EO</label>
                             <label class="input">
-                                 <i class="icon-prepend fa fa-font"></i>
+                                <i class="icon-prepend fa fa-font"></i>
                                 <input type="text" name="lname" placeholder="EO" ng-model="basicData.requirementDetail.eoid">
                             </label>
                         </section>
@@ -485,9 +483,9 @@
                             <label>状态</label>
                             <label class="select">
                                 <select name="city" ng-model="basicData.requirementDetail.status">
-                                    <option value="0" selected disabled>状态</option>
-                                    <option value="244">完好</option>
-                                    <option value="1">包装破损</option>
+                                    <option value="" selected disabled>状态</option>
+                                    <option ng-repeat="value in configs.PKST" value="{{value.code}}">{{value.description}}</option>
+
                                 </select>
                                 <i></i>
                             </label>
