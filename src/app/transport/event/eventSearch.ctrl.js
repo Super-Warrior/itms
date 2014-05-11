@@ -105,7 +105,13 @@ function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
             controller: 'HandleEventCtrl',
             resolve: {
                 items: function () {
-                    return $scope.selectedItems;
+                    return $scope.selectedItems.map(function(item){
+                        return {
+                            eo: item.eoid,
+                            erid: item.erid,
+                            erITN: item.eritn
+                        };
+                    });
                 }
             }
         });
