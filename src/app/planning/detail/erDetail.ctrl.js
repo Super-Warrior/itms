@@ -1,41 +1,39 @@
-angular.module("itms.planning")
+﻿angular.module("itms.planning")
     .controller("erDetailCtrl", ["$scope", "$log",
         "$http", "$q", "config", "common", "configService", "customerService", erDetailCtrl]);
 
 function erDetailCtrl($scope, $log, $http, $q, config, common, configService, customerService, data) {
-   data.requirement.resMemo = "";
-   var formatDate = function (dt) {
-      if (!dt) return dt;
-      return moment(dt).format("YYYY-MM-DD");
-   };
-   var formatTime = function (dt) {
-      if (!dt) return dt;
-      return moment(dt).format("HH:mm:ss");
-   };
-   data.requirement.recERDate = formatDate(data.requirement.recERDate);
-   data.requirement.pickERDate = formatDate(data.requirement.pickERDate);
-   data.requirement.oprERDate = formatDate(data.requirement.oprERDate);
-   data.requirement.reqDelDate = formatDate(data.requirement.reqDelDate);
-   data.requirement.createDate = formatDate(data.requirement.createDate);
+   var queryOption = {};
 
-   data.requirement.recERTime = formatTime(data.requirement.recERTime);
-   data.requirement.pickERStartTime = formatTime(data.requirement.pickERStartTime);
-   data.requirement.oprERFinishTime = formatTime(data.requirement.oprERFinishTime);
-   data.requirement.reqDelTimeE = formatTime(data.requirement.reqDelTimeE);
 
-   data.requirement.LoadERTimeF = formatTime(data.requirement.LoadERTimeF);
-   data.requirement.LoadERTimeS = formatTime(data.requirement.LoadERTimeS);
-   data.requirement.createTime = formatTime(data.requirement.createTime);
-   data.requirement.loadERStartTime = formatTime(data.requirement.loadERStartTime);
-   data.requirement.oprERFinishUnloadTime = formatTime(data.requirement.oprERFinishUnloadTime);
-   data.requirement.oprERTimeULF = formatTime(data.requirement.oprERTimeULF);
-   data.requirement.oprERTimeULS = formatTime(data.requirement.oprERTimeULS);
-   data.requirement.oprERStartTime = formatTime(data.requirement.oprERStartTime);
-   data.requirement.oprERStartUnloadTime = formatTime(data.requirement.oprERStartUnloadTime);
-   data.requirement.oprERTimeS = formatTime(data.requirement.oprERTimeS);
-   data.requirement.pickERFinishTime = formatTime(data.requirement.pickERFinishTime);
-   data.requirement.pickERTimeF = formatTime(data.requirement.pickERTimeF);
-   data.requirement.loadERFinishTime = formatTime(data.requirement.loadERFinishTime);
+   //  ERID: tempData.pk.erID,
+   // ERITN: tempData.pk.erITN,
+   if (data && data.requirementDetail) {
+      queryOption = {
+         "erID": data.requirementDetail.pk.erID,
+         "erITN": data.requirementDetail.pk.erITN,
+      };
+   } else {
+      queryOption = {
+         "erID": data.erID,
+         "erITN": data.erITN,
+      };
+   }
+
+
+   var param = {
+      SerType: "AND",
+      userID: config.userID,
+      depAreaCode: "",
+      depCustomer: "",
+      depLocCode: "",
+      recCustomer: "",
+      recLocCode: "",
+      createDate: "",
+      ERITNStatus: ["UNAS"],
+      ERStatus: [""]
+   };
+
 
 
    var configData = {
@@ -48,21 +46,76 @@ function erDetailCtrl($scope, $log, $http, $q, config, common, configService, cu
    };
    $scope.configs = {};
    configService.getConfigs(configData).then(
-         function () {
-            $.extend($scope.configs, configData);
-            $scope.basicData = data;
-         }
-      );
+      function () {
+         $.extend($scope.configs, configData);
+         //
+      }
+   );
+
+   $http.post(config.baseUrl + "ER/ERQuickSearch" + "?" + $.param(param)).then(function (result) {
+      var item = result.data.filter(function (value) {
+         return value.requirementDetail.pk.erID == queryOption.erID
+            && value.requirementDetail.pk.erITN == queryOption.erITN;
+      })[0];
+      data = item;
+   })
+      .then(function () { formatData(data); })
+      .then(function () {
+         $scope.basicData = data;
+      });
+
    configService.getMaterial("TRES").then(
          function (result) {
             $scope.configs.material = result.data;
          }
    );
 
+
+   function formatData(data) {
+
+
+      data.requirement.resMemo = "";
+      var formatDate = function (dt) {
+         if (!dt) return dt;
+         return moment(dt).format("YYYY-MM-DD");
+      };
+      var formatTime = function (dt) {
+         if (!dt) return dt;
+         return moment(dt).format("HH:mm:ss");
+      };
+      data.requirement.recERDate = formatDate(data.requirement.recERDate);
+      data.requirement.pickERDate = formatDate(data.requirement.pickERDate);
+      data.requirement.oprERDate = formatDate(data.requirement.oprERDate);
+      data.requirement.reqDelDate = formatDate(data.requirement.reqDelDate);
+      data.requirement.createDate = formatDate(data.requirement.createDate);
+
+      data.requirement.recERTime = formatTime(data.requirement.recERTime);
+      data.requirement.pickERStartTime = formatTime(data.requirement.pickERStartTime);
+      data.requirement.oprERFinishTime = formatTime(data.requirement.oprERFinishTime);
+      data.requirement.reqDelTimeE = formatTime(data.requirement.reqDelTimeE);
+
+      data.requirement.LoadERTimeF = formatTime(data.requirement.LoadERTimeF);
+      data.requirement.LoadERTimeS = formatTime(data.requirement.LoadERTimeS);
+      data.requirement.createTime = formatTime(data.requirement.createTime);
+      data.requirement.loadERStartTime = formatTime(data.requirement.loadERStartTime);
+      data.requirement.oprERFinishUnloadTime = formatTime(data.requirement.oprERFinishUnloadTime);
+      data.requirement.oprERTimeULF = formatTime(data.requirement.oprERTimeULF);
+      data.requirement.oprERTimeULS = formatTime(data.requirement.oprERTimeULS);
+      data.requirement.oprERStartTime = formatTime(data.requirement.oprERStartTime);
+      data.requirement.oprERStartUnloadTime = formatTime(data.requirement.oprERStartUnloadTime);
+      data.requirement.oprERTimeS = formatTime(data.requirement.oprERTimeS);
+      data.requirement.pickERFinishTime = formatTime(data.requirement.pickERFinishTime);
+      data.requirement.pickERTimeF = formatTime(data.requirement.pickERTimeF);
+      data.requirement.loadERFinishTime = formatTime(data.requirement.loadERFinishTime);
+
+
+   }
+
+
    $scope.save = function () {
       var saveHead = function () {
          var tempData = $scope.basicData.requirement;
-      
+
          var param = {
             ERID: tempData.erID,
             ERStatus: tempData.erStatus,
@@ -160,11 +213,18 @@ function erDetailCtrl($scope, $log, $http, $q, config, common, configService, cu
          return $http.post(config.baseUrl + "ER/ERItemChange" + "?" + $.param(param));
       };
       $q.all([saveHead(), saveItem()]).then(
-         function (result) {
-            alert(result.length);
+         function (res) {
+            if (isSuccess(res[0].data) && isSuccess(res[1].data)) {
+               common.notifier.success("修改成功...");
+
+            }
          }
       );
    };
+
+   function isSuccess(data) {
+      return data && (!data.errorMessage || data.errorMessage == "OK");
+   }
 
    $scope.eventHandle = function () {
    };

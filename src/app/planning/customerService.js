@@ -31,7 +31,7 @@ function customerService($http, config) {
             this.type = [5];
             break;
          case "net":
-            this.type = [5];
+            this.type = [3];
             this.Group1 = ["TTP2"];
             break;
       }

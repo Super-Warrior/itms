@@ -21,8 +21,8 @@
         <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-edit"></i>操作<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="#" data-toggle="tab" ng-click="save()"><i class="fa fa-fw fa-lg fa-save"></i>保存</a> </li>
-                <li><a href="#" data-target="#myaction"  ng-click="eventHandle()"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a> </li>
-                <li><a href="#" data-toggle="tab"  ng-click="refresh()"><i class="fa fa-fw fa-lg fa-refresh"></i>刷新</a> </li>
+                <li><a href="#" data-target="#myaction" ng-click="eventHandle()"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a> </li>
+                <li><a href="#" data-toggle="tab" ng-click="refresh()"><i class="fa fa-fw fa-lg fa-refresh"></i>刷新</a> </li>
             </ul>
         </li>
     </ul>
@@ -386,7 +386,7 @@
                         <section class="col col-6">
                             <label>资源类型1</label>
                             <label class="select">
-                                <select name="city" ng-model="basicData.requirement.resType1">
+                                <select ng-model="basicData.requirement.resType1">
                                     <option value="" selected disabled></option>
                                     <option ng-repeat="value in configs.material" value="{{value.matnr}}">{{value.description}}</option>
 
@@ -406,7 +406,7 @@
                         <section class="col col-6">
                             <label>资源类型2</label>
                             <label class="select">
-                                <select name="city" ng-model="basicData.requirement.resType2">
+                                <select ng-model="basicData.requirement.resType2">
                                     <option value="" selected disabled></option>
                                     <option ng-repeat="value in configs.material" value="{{value.matnr}}">{{value.description}}</option>
 
@@ -426,7 +426,7 @@
                         <section class="col col-6">
                             <label>资源类型3</label>
                             <label class="select">
-                                <select name="city" ng-model="basicData.requirement.resType3">
+                                <select ng-model="basicData.requirement.resType3">
                                     <option value="" selected disabled></option>
                                     <option ng-repeat="value in configs.material" value="{{value.matnr}}">{{value.description}}</option>
 
@@ -445,7 +445,7 @@
                     <div class="row">
                         <section class="col col-9">
                             <label class="textarea">
-                                <textarea rows="3" name="info" ng-model="basicData.requirement.resMemo"  placeholder="附加信息"></textarea>
+                                <textarea rows="3" name="info" ng-model="basicData.requirement.resMemo" placeholder="附加信息"></textarea>
                             </label>
                         </section>
                     </div>
@@ -482,10 +482,15 @@
                         <section class="col col-3">
                             <label>状态</label>
                             <label class="select">
-                                <select name="city" ng-model="basicData.requirementDetail.status">
-                                    <option value="" selected disabled>状态</option>
-                                    <option ng-repeat="value in configs.PKST" value="{{value.code}}">{{value.description}}</option>
 
+                                <select ng-model="basicData.requirementDetail.status">
+                                    <option value="" selected disabled>状态</option>
+                                    <option value="PKS1">完好</option>
+                                    <option value="PKS2">损坏</option>
+                                    <option value="PKS3">挤压变形</option>
+                                    <option value="PKS4">短少</option>
+                                    <!--todo: the ng binding will break out the selected value-->
+                                    <!--<option ng-repeat="value in configs.PKST" value="{{value.code}}">{{value.description}}</option>-->
                                 </select>
                                 <i></i>
                             </label>
