@@ -1,6 +1,6 @@
 angular
     .module('itms.common')
-    .controller('TimeLineCtrl', ['$scope', 'timelineService', 'queryOption', TimeLineCtrl]);
+    .controller('TimeLineCtrl', ['$scope', 'timelineService', 'data', TimeLineCtrl]);
 
 function TimeLineCtrl($scope, timelineService, data) {
 

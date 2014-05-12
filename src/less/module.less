@@ -1,17 +1,11 @@
 @action-window-width: 700px;
 @action-window-height: 600px;
 
-.timeline-window .modal-content {
-  width: @action-window-width;
-  min-height: @action-window-height;
-}
-
-.erDetail-window .modal-content {
-  width: @action-window-width;
-  min-height: @action-window-height;
-}
-
-.eoDetail-window .modal-content {
-  width: @action-window-width;
-  min-height: @action-window-height;
+.timeline-window,
+.erDetail-window,
+.eoDetail-window,{
+  .modal-content {
+    width: @action-window-width;
+    min-height: @action-window-height;
+  }
 }

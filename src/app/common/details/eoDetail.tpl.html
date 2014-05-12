@@ -7,17 +7,17 @@
   </h4>
 </div>
 <div class="modal-body no-padding">
-  <div class="alert alert-info fade in"><i class="fa-fw fa fa-list"></i><strong>运单EO:</strong>11111</div>
+  <div class="alert alert-info fade in"><i class="fa-fw fa fa-list"></i><strong>运单EO:</strong>{{ data.dn.eo }}</div>
   <ul id="erTab" class="nav nav-tabs bordered">
     <li class="active"><a href="#o1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-tag "></i>基本信息</a></li>
-    <li><a href="#o2" data-toggle="tab"><i class="fa fa-fw fa-lg  fa-clock-o "></i>时间信息</a></li>
+    <li><a href="#o2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-clock-o"></i>时间信息</a></li>
     <li><a href="#o3" data-toggle="tab"><i class="fa fa-fw fa-lg fa-group"></i>网络公司</a></li>
     <li><a href="#o4" data-toggle="tab"><i class="fa fa-fw fa-lg fa-plane"></i>订班订舱</a></li>
     <li><a href="#o5" data-toggle="tab"><i class="fa fa-fw fa-lg fa-truck"></i>订班订舱</a></li>
-    <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
       <i class="fa fa-fw fa-lg fa-edit"></i>操作<b class="caret"></b></a>
       <ul class="dropdown-menu">
-        <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-save"></i>保存</a></li>
+        <li><a href="#" data-toggle="tab" ng-click="save(data)"><i class="fa fa-fw fa-lg fa-save"></i>保存</a></li>
         <li><a href="#" data-target="#myaction" data-toggle="modal"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a></li>
         <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-refresh"></i>刷新</a></li>
       </ul>
@@ -31,23 +31,18 @@
             <section class="col col-6">
               <label>运单状态</label>
               <label class="select">
-                <select name="prov">
-                  <option value="0" selected disabled>起运</option>
-                  <option value="1">航空中转</option>
-                  <option value="2">配送中</option>
-                  <option value="3">已完成</option>
-                </select>
+                <select data-ng-model="data.dn.eoStatus" data-ng-options="config.code as config.description for config in configData.EOST"></select>
                 <i class="fa fa-check-square"></i>
               </label>
             </section>
             <section class="col col-6">
               <label>事件状态</label>
               <label class="select">
-                <select name="prov">
-                  <option value="0" selected disabled>延迟</option>
-                  <option value="1">正常</option>
-                  <option value="2">提前</option>
-                  <option value="3">异常</option>
+                <select data-ng-model="data.dn.eventstatus" data-ng-options="config.code as config.description for config in configData.EVST">
+                  <!--<option value="0" selected disabled>延迟</option>-->
+                  <!--<option value="1">正常</option>-->
+                  <!--<option value="2">提前</option>-->
+                  <!--<option value="3">异常</option>-->
                 </select>
                 <i class="fa fa-check-square"></i>
               </label>
@@ -57,12 +52,12 @@
             <section class="col col-4">
               <label>运单类型</label>
               <label class="select">
-                <select name="prov">
-                  <option value="0" selected disabled>紧急</option>
-                  <option value="1">预付</option>
-                  <option value="2">监控</option>
-                  <option value="3">索赔</option>
-                  <option value="4">统配</option>
+                <select data-ng-model="data.dn.eotype" data-ng-options="config.code as config.description for config in configData.ERTP">
+                  <!--<option value="0" selected disabled>紧急</option>-->
+                  <!--<option value="1">预付</option>-->
+                  <!--<option value="2">监控</option>-->
+                  <!--<option value="3">索赔</option>-->
+                  <!--<option value="4">统配</option>-->
                 </select>
                 <i class="fa fa-check-square"></i>
               </label>
@@ -70,10 +65,10 @@
             <section class="col col-4">
               <label>运输方式</label>
               <label class="select">
-                <select name="prov">
-                  <option value="0" selected disabled>空运</option>
-                  <option value="1">快运</option>
-                  <option value="2">自有运输</option>
+                <select data-ng-model="data.dn.eotrtype" data-ng-options="config.code as config.description for config in configData.TRPY">
+                  <!--<option value="0" selected disabled>空运</option>-->
+                  <!--<option value="1">快运</option>-->
+                  <!--<option value="2">自有运输</option>-->
                 </select>
                 <i class="fa fa-check-square"></i>
               </label>
@@ -81,9 +76,9 @@
             <section class="col col-4">
               <label>特殊运输标识</label>
               <label class="select">
-                <select name="prov">
-                  <option value="0" selected disabled>危险品</option>
-                  <option value="1">冷藏</option>
+                <select data-ng-model="data.dn.eotag" data-ng-options="config.code as config.description for config in configData.ERTG">
+                  <!--<option value="0" selected disabled>危险品</option>-->
+                  <!--<option value="1">冷藏</option>-->
                 </select>
                 <i class="fa fa-check-square"></i>
               </label>
@@ -94,14 +89,14 @@
               <label>第三方物流1</label>
               <label class="input">
                 <i class="icon-prepend fa fa-user"></i>
-                <input type="text" name="Cr" placeholder="第三方物流">
+                <input type="text" data-ng-model="data.dn.eotrvendor1" placeholder="第三方物流">
               </label>
             </section>
             <section class="col col-6">
               <label>物流单号</label>
               <label class="input">
                 <i class="icon-prepend fa fa-qrcode "></i>
-                <input type="text" name="Cr" placeholder="单号">
+                <input type="text" data-ng-model="data.dn.vendorOrder1" placeholder="单号">
               </label>
             </section>
           </div>
@@ -110,14 +105,14 @@
               <label>第三方物流2</label>
               <label class="input">
                 <i class="icon-prepend fa fa-user"></i>
-                <input type="text" name="Cr" placeholder="第三方物流">
+                <input type="text" data-ng-model="data.dn.eotrvendor2" placeholder="第三方物流">
               </label>
             </section>
             <section class="col col-6">
               <label>物流单号</label>
               <label class="input">
                 <i class="icon-prepend fa fa-qrcode "></i>
-                <input type="text" name="Cr" placeholder="单号">
+                <input type="text" data-ng-model="data.dn.vendorOrder2" placeholder="单号">
               </label>
             </section>
           </div>
@@ -126,21 +121,21 @@
               <label>第三方物流3</label>
               <label class="input">
                 <i class="icon-prepend fa fa-user"></i>
-                <input type="text" name="Cr" placeholder="第三方物流">
+                <input type="text" data-ng-model="data.dn.eotrvendor3" placeholder="第三方物流">
               </label>
             </section>
             <section class="col col-6">
               <label>物流单号</label>
               <label class="input">
                 <i class="icon-prepend fa fa-qrcode "></i>
-                <input type="text" name="Cr" placeholder="单号">
+                <input type="text" data-ng-model="data.dn.vendorOrder3" placeholder="单号">
               </label>
             </section>
           </div>
           <div class="row">
             <section class="col col-9">
               <label class="textarea">
-                <textarea rows="3" name="info" placeholder="附加信息"></textarea>
+                <textarea rows="3" data-ng-model="data.dn.memo" placeholder="附加信息"></textarea>
               </label>
             </section>
           </div>
@@ -156,16 +151,15 @@
                 <label>要求日期1</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="startdate" placeholder="要求日期1">
+                  <input type="text" data-ng-model="data.dn.reqDelDate1" placeholder="要求日期1">
                 </label>
               </div>
             </section>
             <section class="col col-4">
               <div class="form-group">
                 <label>要求时间1</label>
-
                 <div class="input-group">
-                  <input class="form-control" id="timepicker" type="text" value="" placeholder="要求时间1">
+                  <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime1" placeholder="要求时间1">
                   <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                 </div>
               </div>
@@ -177,7 +171,7 @@
                 <label>实际日期1</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text1" placeholder="实际日期1">
+                  <input type="text" data-ng-model="data.dn.reqDelDate2" placeholder="实际日期1">
                 </label>
               </div>
             </section>
@@ -186,7 +180,7 @@
                 <label>实际时间1</label>
 
                 <div class="input-group">
-                  <input class="form-control" id="Text2" type="text" value="" placeholder="实际时间1">
+                  <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime2" placeholder="实际时间1">
                   <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                 </div>
               </div>
@@ -198,16 +192,15 @@
                 <label>要求日期2</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text3" placeholder="要求日期2">
+                  <input type="text" data-ng-model="data.dn.reqDelDate3" placeholder="要求日期2">
                 </label>
               </div>
             </section>
             <section class="col col-4">
               <div class="form-group">
                 <label>要求时间2</label>
-
                 <div class="input-group">
-                  <input class="form-control" id="Text4" type="text" value="" placeholder="要求时间2">
+                  <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime3" placeholder="要求时间2">
                   <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                 </div>
               </div>
@@ -219,7 +212,7 @@
                 <label>实际日期2</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text5" placeholder="实际日期2">
+                  <input type="text" data-ng-model="data.dn.reqDelDate4" placeholder="实际日期2">
                 </label>
               </div>
             </section>
@@ -228,7 +221,7 @@
                 <label>实际时间2</label>
 
                 <div class="input-group">
-                  <input class="form-control" id="Text6" type="text" value="" placeholder="实际时间2">
+                  <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime4" placeholder="实际时间2">
                   <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                 </div>
               </div>
@@ -245,7 +238,7 @@
               <label>1级网络公司代码</label>
               <label class="input">
                 <i class="icon-prepend fa fa-user"></i>
-                <input type="text" name="Cr" placeholder="客户代码">
+                <input type="text" data-ng-model="data.dn.deliverBP1" placeholder="客户代码">
               </label>
             </section>
             <section class="col col-8">
@@ -261,7 +254,7 @@
               <label>2级网络公司代码</label>
               <label class="input">
                 <i class="icon-prepend fa fa-user"></i>
-                <input type="text" name="Cr" placeholder="客户代码">
+                <input type="text" data-ng-model="data.dn.deliverBP2" placeholder="客户代码">
               </label>
             </section>
             <section class="col col-8">
@@ -283,7 +276,7 @@
               <label>订班供应商1</label>
               <label class="input">
                 <i class="icon-prepend fa fa-user"></i>
-                <input type="text" name="Cr" placeholder="客户代码">
+                <input type="text" data-ng-model="data.dn.scheduleVendor1" placeholder="客户代码">
               </label>
             </section>
             <section class="col col-8">
@@ -299,7 +292,7 @@
               <label>班次</label>
               <label class="input">
                 <i class="icon-prepend fa fa-user"></i>
-                <input type="text" name="Cr" placeholder="班次">
+                <input type="text" data-ng-model="data.dn.scheduleClass1" placeholder="班次">
               </label>
             </section>
           </div>
@@ -309,7 +302,7 @@
                 <label>出发日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text7" placeholder="出发日期">
+                  <input type="text" data-ng-model="data.dn.depDate1" placeholder="出发日期">
                 </label>
               </div>
             </section>
@@ -318,7 +311,7 @@
                 <label>出发时间</label>
 
                 <div class="input-group">
-                  <input class="form-control" id="Text8" type="text" value="" placeholder="出发时间">
+                  <input class="form-control" type="text" data-ng-model="data.dn.depTime1" placeholder="出发时间">
                   <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                 </div>
               </div>
@@ -330,7 +323,7 @@
                 <label>实际出发日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text9" placeholder="实际出发日期">
+                  <input type="text" data-ng-model="data.dn.depDate1act"  placeholder="实际出发日期">
                 </label>
               </div>
             </section>
@@ -339,7 +332,7 @@
                 <label>实际出发时间</label>
 
                 <div class="input-group">
-                  <input class="form-control" id="Text10" type="text" value="" placeholder="实际出发时间">
+                  <input class="form-control" type="text" data-ng-model="data.dn.detTime1act" placeholder="实际出发时间">
                   <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                 </div>
               </div>
@@ -351,7 +344,7 @@
                 <label>到达日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text11" placeholder="到达日期">
+                  <input type="text" data-ng-model="data.dn.arrDate1" placeholder="到达日期">
                 </label>
               </div>
             </section>
@@ -360,7 +353,7 @@
                 <label>到达时间</label>
 
                 <div class="input-group">
-                  <input class="form-control" id="Text12" type="text" value="" placeholder="到达时间">
+                  <input class="form-control" type="text" data-ng-model="data.dn.arrtime1" placeholder="到达时间">
                   <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                 </div>
               </div>
@@ -372,7 +365,7 @@
                 <label>实际到达日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text13" placeholder="实际到达日期">
+                  <input type="text" data-ng-model="data.dn.arrDate1act" placeholder="实际到达日期">
                 </label>
               </div>
             </section>
@@ -381,7 +374,7 @@
                 <label>实际到达时间</label>
 
                 <div class="input-group">
-                  <input class="form-control" id="Text14" type="text" value="" placeholder="实际到达时间">
+                  <input class="form-control" type="text" data-ng-model="data.dn.arrtime1act" placeholder="实际到达时间">
                   <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                 </div>
               </div>

@@ -7,15 +7,17 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
     $scope.module = '运输执行';
     $scope.title = '事件查询';
     $scope.events = [];
+    $scope.totalEvents = [];
     $scope.eventSearchCriteria = {
-
+        quickSearch: {},
+        erSearch: {},
+        eoSearch: {}
     };
 
     activate();
 
     function activate() {
         eventService.getAllConfigData().then(function (result) {
-            $log.debug(result);
             $scope.configData = result;
         });
 
@@ -31,30 +33,33 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
         $state.go('app.user.transport.eventSearch.search.searchByEr');
     };
 
-    $scope.eventSearch = function () {
-        eventService.queryByEvent($scope.eventSearchCriteria)
+    $scope.eventSearch = function (queryOptions) {
+        eventService.queryByEvent(queryOptions)
             .success(function (data) {
                 $scope.events = eventService.getEventPartial(data);
+                $scope.totalEvents = $scope.events;
             })
             .error(function () {
                 $log.error('EventSearchCtrl: eventSearch');
             });
     };
 
-    $scope.erSearch = function () {
-        eventService.queryByEr($scope.eventSearchCriteria)
+    $scope.erSearch = function (queryOptions) {
+        eventService.queryByEr(queryOptions)
             .success(function (data) {
                 $scope.events = eventService.getEventPartial(data);
+                $scope.totalEvents = $scope.events;
             })
             .error(function () {
                 $log.error('EventSearchCtrl: queryByEr');
             });
     };
 
-    $scope.eoSearch = function () {
-        eventService.queryByEo($scope.eventSearchCriteria)
+    $scope.eoSearch = function (queryOptions) {
+        eventService.queryByEo(queryOptions)
             .success(function (data) {
                 $scope.events = eventService.getEventPartial(data);
+                $scope.totalEvents = $scope.events;
             })
             .error(function () {
                 $log.error('EventSearchCtrl: queryByEr');
@@ -63,6 +68,8 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
 }
 
 function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
+
+    $scope.selectedItems = [];
     $scope.columns = [
         {
             "mData": "eventType",
@@ -87,9 +94,45 @@ function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
     ];
 
     $scope.detailConfig = {
-        erDetail: true,
+        erDetail: false,
         timeLine: true,
         eoDetail: true
     };
-    $scope.selectedItems = [];
+
+    $scope.handleEvent = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'app/transport/event/handleEvent.tpl.html',
+            controller: 'HandleEventCtrl',
+            resolve: {
+                items: function () {
+                    return $scope.selectedItems.map(function(item){
+                        return {
+                            eo: item.eoid,
+                            erid: item.erid,
+                            erITN: item.eritn
+                        };
+                    });
+                }
+            }
+        });
+        modalInstance.result.then(function () {
+            common.notifier.success("操作成功");
+        });
+    };
+
+    $scope.disableAction = function () {
+        return $scope.selectedItems.length === 0;
+    };
+
+    $scope.filterEvent = function (eventType) {
+        if (eventType) {
+            $scope.events = $scope.totalEvents.filter(function (item) {
+                return item.eventType == eventType
+            });
+        }else{
+            $scope.events = $scope.totalEvents;
+        }
+    };
+
+
 }

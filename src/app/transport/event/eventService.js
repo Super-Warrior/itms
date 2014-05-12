@@ -4,7 +4,7 @@ angular.module('itms.transport.event')
 function eventService($http, $q, config, configService) {
     var
         defaultQueryOption = {
-            serType: 'OR',
+            serType: 'AND',
             createUser: '',
             eventType: [''],
             eventCode: '',
@@ -20,7 +20,7 @@ function eventService($http, $q, config, configService) {
             memo: ''
         },
         defaultErQueryOption = {
-            serType: 'OR',
+            serType: 'AND',
             EOTag: '',
             ERID: [''],
             ERStatus: ['']
@@ -52,7 +52,7 @@ function eventService($http, $q, config, configService) {
                 configService.getConfig('EVST')
             ]).then(function (results) {
                 var result = {};
-                angular.forEach(results, function(res){
+                angular.forEach(results, function (res) {
                     var confType = getConfType(res.data);
                     result[confType] = res.data;
                 });
@@ -64,15 +64,38 @@ function eventService($http, $q, config, configService) {
         }
     }
 
-    function queryByEvent(payload) {
+    function queryByEvent(queryOptions) {
         //todo: extend from payload
-        var data = defaultQueryOption;
+        var data = angular.extend({}, defaultQueryOption);
+        if (queryOptions.eventType && queryOptions.eventType.length > 0) {
+            data.eventType = queryOptions.eventType.map(function (item) {
+                return item.code;
+            });
+        }
+        if (queryOptions.eventStatus && queryOptions.eventStatus.length > 0) {
+            data.eventStatus = queryOptions.eventStatus.map(function (item) {
+                return item.code;
+            });
+        }
+        if (queryOptions.eventCode) data.eventCode = queryOptions.eventCode;
+        if (queryOptions.eventListener1) data.eventListener1 = queryOptions.eventListener1;
+        if (queryOptions.eventListener2) data.eventListener2 = queryOptions.eventListener2;
+        if (queryOptions.eventListener3) data.eventListener3 = queryOptions.eventListener3;
+        if (queryOptions.eventListener4) data.eventListener4 = queryOptions.eventListener4;
+        if (queryOptions.eoNumber) data.EO = [queryOptions.eoNumber];
+        if (queryOptions.erNumber) data.ERID = [queryOptions.erNumber];
+
         return $http.postXSRF(searchUrl, data);
     }
 
-    function queryByEr() {
-        var data = defaultErQueryOption;
-        return $http.postXSRF(ersearchUrl, data);
+    function queryByEr(queryOptions) {
+        var data = angular.extend({}, defaultErQueryOption);
+        if (queryOptions.ERStatus && queryOptions.ERStatus.length > 0) {
+            data.ERStatus = queryOptions.ERStatus.map(function (item) {
+                return item.code;
+            });
+        }
+        return $http.postXSRF(ersearchUrl, defaultErQueryOption);
     }
 
     function queryByEo() {
@@ -81,6 +104,7 @@ function eventService($http, $q, config, configService) {
     }
 
     function getEventPartial(events) {
+        if (!events) return [];
         return events.map(mapEvent);
 
         function mapEvent(event) {
@@ -89,8 +113,10 @@ function eventService($http, $q, config, configService) {
                 eventCode: event.eventCode,
                 eventDateTime: event.eventDateTime,
                 createUser: event.createUser,
-                eoNumber: event.eo + '/' + event.erid + '/' + event.eritn
-
+                eoNumber: event.eo + '/' + event.erid + '/' + event.eritn,
+                eoid: event.eo,
+                erid: event.erid,
+                eritn: event.eritn
             };
         }
     }

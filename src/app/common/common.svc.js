@@ -88,7 +88,8 @@ function common($q, notifier, fileHelper) {
 
 angular.module("itms.common")
     .factory("configService", ["$http", "$q", "config", configService])
-    .factory("timelineService", ["$http", "config", timelineService]);
+    .factory("timelineService", ['$http', 'config', timelineService])
+    .factory("eoDetailService", ['$http', '$q', 'config', 'configService', eoDetailService]);
 
 function configService($http, $q, config) {
 
@@ -153,10 +154,10 @@ function timelineService($http, config) {
     var searchUrl = config.baseUrl + 'EO/EventSearch';
 
     return {
-        getEventTimeLine : getEventTimeLine
+        getEventTimeLine: getEventTimeLine
     };
 
-    function getEventTimeLine(options){
+    function getEventTimeLine(options) {
         var queryOption = {
             serType: 'AND',
             createUser: '',
@@ -176,4 +177,124 @@ function timelineService($http, config) {
         return $http.postXSRF(searchUrl, queryOption);
     }
 
+}
+
+function eoDetailService($http, $q, config, configService) {
+
+    var searchUrl = config.baseUrl + 'EO/EOQuickSearch';
+    var emoChangeUrl = config.baseUrl + 'EO/EOMChange';
+    return {
+        getEoDetail: getEoDetail,
+        getAllConfigData: getAllConfigData,
+        save: save
+    };
+
+    function getAllConfigData() {
+        return $q.all([
+                configService.getConfig('ERTP'),
+                configService.getConfig('TRPY'),
+                configService.getConfig('ERTG'),
+                configService.getConfig('EOST'),
+                configService.getConfig('EVST')
+            ]).then(function (results) {
+                var result = {};
+                angular.forEach(results, function (res) {
+                    var confType = getConfType(res.data);
+                    result[confType] = res.data;
+                });
+                return result;
+            });
+
+        function getConfType(configs) {
+            return configs[0].conType;
+        }
+    }
+
+
+    function getEoDetail(queryOptions) {
+        var data = {
+            SerType: 'OR',
+            EOStatus: [''],
+            eventstatus: [''],
+            EO: [queryOptions['eoid']],
+            EOType: [''],
+            EOTRType: [''],
+            EOTag: [''],
+            EOTRVendor1: '',
+            EOTRVendor2: '',
+            EOTRVendor3: '',
+            customerOrder1: '',
+            customerOrder2: '',
+            customerOrder3: '',
+            VendorOrder1: '',
+            VendorOrder2: '',
+            VendorOrder3: '',
+            reqDelDate1: '',
+            reqDelDate2: '',
+            reqDelDate3: '',
+            reqDelDate4: '',
+            ScheduleVendor1: '',
+            ScheduleClass1: '',
+            DepDate1: '',
+            ArrDate1: '',
+            DepTime1: '',
+            Arrtime1: '',
+            DeliverBP1: '',
+            DeliverBP2: '',
+            depCustomer: '',
+            depLocCode: ''
+        };
+        return $http.postXSRF(searchUrl, data);
+    }
+
+    function save(data) {
+        var eodetail = eoDataMapping(data);
+        return $http.postXSRF(emoChangeUrl, eodetail);
+    }
+
+    function eoDataMapping(data) {
+        return {
+            EO: [data.dn.eo],
+            userID: 10000,
+            EOStatus: data.dn.eoStatus,
+            EOType: data.dn.eotype,
+            EOTRType: data.dn.eotrtype,
+            EOTag: data.dn.eotag,
+            EOTRVendor1: data.dn.eotrvendor1,
+            EOTRVendor2: data.dn.eotrvendor2,
+            EOTRVendor3: data.dn.eotrvendor3,
+            customerOrder1: data.dn.customerOrder1,
+            customerOrder2: data.dn.customerOrder2,
+            customerOrder3: data.dn.customerOrder3,
+            VendorOrder1: data.dn.vendorOrder1,
+            VendorOrder2: data.dn.vendorOrder2,
+            VendorOrder3: data.dn.vendorOrder3,
+            reqDelDate1: data.dn.reqDelDate1,
+            reqDelDate2: data.dn.reqDelDate2,
+            reqDelDate3: data.dn.reqDelDate3,
+            reqDelDate4: data.dn.reqDelDate4,
+            DeliverBP1: data.dn.deliverBP1,
+            DeliverBP2: data.dn.deliverBP2,
+            DeliverBP3: data.dn.deliverBP3,
+            ScheduleVendor1: data.dn.scheduleVendor1,
+            ScheduleVendor2: data.dn.scheduleVendor2,
+            ScheduleVendor3: data.dn.scheduleVendor3,
+            ScheduleClass1: data.dn.scheduleClass1,
+            ScheduleClass2: data.dn.scheduleClass2,
+            ScheduleClass3: data.dn.scheduleClass3,
+            DepDate1: data.dn.depDate1,
+            DepDate2: data.dn.depDate2,
+            DepDate3: data.dn.depDate3,
+            ArrDate1: data.dn.arrDate1,
+            ArrDate2: data.dn.arrDate2,
+            ArrDate3: data.dn.arrDate3,
+            DepTime1: '',
+            DepTime2: '',
+            DepTime3: '',
+            Arrtime1: data.dn.arrTime1,
+            Arrtime2: data.dn.arrTime2,
+            Arrtime3: data.dn.arrTime3,
+            memo: data.dn.memo
+        };
+    }
 }

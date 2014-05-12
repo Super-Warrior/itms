@@ -4,7 +4,7 @@
      optional attributes:can-select
      optional attributes: detailConfig
      * */
-    .directive('imTable', function ($modal) {
+    .directive('imTable', ['$modal','common',function ($modal,common) {
 
         var settings = {},
             table;
@@ -128,15 +128,18 @@
                 t.on('click', 'tbody tr #showEoDetail', function (e) {
                     var rowData = t.fnGetData($(this).parent().parent()[0]);
                     var target = "app/common/details/" + $(this).attr("template");
-                    $modal.open({
+                    var modalInstance = $modal.open({
                         templateUrl: target,
-//                        controller: TimeLineCtrl,
+                        controller: EODetailCtrl,
                         windowClass: 'eoDetail-window',
                         resolve: {
                             data: function () {
                                 return rowData;
                             }
                         }
+                    });
+                    modalInstance.result.then(function() {
+                        common.notifier.success("操作成功");
                     });
                     e.preventDefault();
                     return false;
@@ -195,4 +198,4 @@
             source && table.fnAddData(source);
             table.fnDraw();
         }
-    });
+    }]);
