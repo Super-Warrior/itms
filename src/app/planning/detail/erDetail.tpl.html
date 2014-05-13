@@ -147,7 +147,7 @@
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
                                     <input type="text" name="startdate" id="startdate" im-datepicker
-                                        placeholder="波次交接日期" ng-model="basicData.requirement.recERDate">
+                                           placeholder="波次交接日期" ng-model="basicData.requirement.recERDate">
                                 </label>
                             </div>
                         </section>
@@ -156,12 +156,16 @@
                                 <label>波次交接时间</label>
                                 <div class="input-group">
                                     <input class="form-control" id="timepicker" type="text" value=""
-                                        placeholder="波次交接时间" ng-model="basicData.requirement.recERTime">
+                                           placeholder="波次交接时间" ng-model="basicData.requirement.recERTime">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
                             </div>
                         </section>
                     </div>
+                    <script>
+                       // $("#timepicker").timepicker();
+
+                    </script>
                     <div class="row">
                         <section class="col col-4">
                             <div class="form-group">
