@@ -36,9 +36,11 @@ angular
                 }
             })
             .state('app.user.transport.eventSearch.search', {
-                abstract: true
+                abstract: true,
+                url:''
             })
             .state('app.user.transport.eventSearch.search.searchByEvent', {
+                url:'',
                 views: {
                     'search@app.user.transport.eventSearch': {
                         templateUrl: 'app/transport/event/eventquicksearch.tpl.html'

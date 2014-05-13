@@ -88,7 +88,7 @@
                 });
             });
 
-            if (scope.detailConfig&&scope.detailConfig.erDetail) {
+            if (scope.detailConfig && scope.detailConfig.erDetail) {
                 t.on('click', 'tbody tr #showErDetail', function (e) {
                     var rowData = t.fnGetData($(this).parent().parent()[0]);
                     var target = "app/planning/detail/" + $(this).attr("template");
@@ -106,7 +106,7 @@
                     return false;
                 });
             }
-            if (scope.detailConfig.timeLine) {
+            if (scope.detailConfig && scope.detailConfig.timeLine) {
                 t.on('click', 'tbody tr #showTimeLine', function (e) {
                     var rowData = t.fnGetData($(this).parent().parent()[0]);
                     var target = "app/common/details/" + $(this).attr("template");
@@ -124,7 +124,7 @@
                     return false;
                 });
             }
-            if (scope.detailConfig.eoDetail) {
+            if (scope.detailConfig && scope.detailConfig.eoDetail) {
                 t.on('click', 'tbody tr #showEoDetail', function (e) {
                     var rowData = t.fnGetData($(this).parent().parent()[0]);
                     var target = "app/common/details/" + $(this).attr("template");
