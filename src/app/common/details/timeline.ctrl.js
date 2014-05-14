@@ -17,6 +17,10 @@ function TimeLineCtrl($scope, timelineService, data) {
         } else if (data.requirementDetail) {
             queryOption['er'] = data.requirementDetail.pk.erID;
             queryOption['eritn'] = data.requirementDetail.pk.erITN;
+        } else if (data.eoID) {
+            queryOption['eo'] = data.eoID;
+            queryOption['er'] = data.erID;
+            queryOption['eritn'] = data.erITN;
         }
         timelineService.getEventTimeLine(queryOption).then(function (result) {
             if (result.data.errorMessage) {

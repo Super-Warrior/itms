@@ -12,6 +12,8 @@ function EODetailCtrl($scope, $modalInstance, eoDetailService, data) {
             queryOption['eoid'] = data.eoid;
         } else if (data.requirementDetail) {
             queryOption['eoid'] = data.requirementDetail.pk.eoID;
+        } else if (data.eoID) {
+            queryOption['eoid'] = data.eoID;
         }
 
         eoDetailService.getAllConfigData().then(function (result) {
