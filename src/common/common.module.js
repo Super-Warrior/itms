@@ -3,5 +3,6 @@ angular.module('common', [
     'common.directives.table',
     'common.directives.widget',
     'common.directives.breadcrumb',
-    'common.directives.menu'
+    'common.directives.menu',
+    'common.directives.timepicker'
 ]);

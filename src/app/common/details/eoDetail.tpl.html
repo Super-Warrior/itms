@@ -39,10 +39,6 @@
               <label>事件状态</label>
               <label class="select">
                 <select data-ng-model="data.dn.eventstatus" data-ng-options="config.code as config.description for config in configData.EVST">
-                  <!--<option value="0" selected disabled>延迟</option>-->
-                  <!--<option value="1">正常</option>-->
-                  <!--<option value="2">提前</option>-->
-                  <!--<option value="3">异常</option>-->
                 </select>
                 <i class="fa fa-check-square"></i>
               </label>
@@ -53,11 +49,6 @@
               <label>运单类型</label>
               <label class="select">
                 <select data-ng-model="data.dn.eotype" data-ng-options="config.code as config.description for config in configData.ERTP">
-                  <!--<option value="0" selected disabled>紧急</option>-->
-                  <!--<option value="1">预付</option>-->
-                  <!--<option value="2">监控</option>-->
-                  <!--<option value="3">索赔</option>-->
-                  <!--<option value="4">统配</option>-->
                 </select>
                 <i class="fa fa-check-square"></i>
               </label>
@@ -66,9 +57,6 @@
               <label>运输方式</label>
               <label class="select">
                 <select data-ng-model="data.dn.eotrtype" data-ng-options="config.code as config.description for config in configData.TRPY">
-                  <!--<option value="0" selected disabled>空运</option>-->
-                  <!--<option value="1">快运</option>-->
-                  <!--<option value="2">自有运输</option>-->
                 </select>
                 <i class="fa fa-check-square"></i>
               </label>
@@ -77,8 +65,6 @@
               <label>特殊运输标识</label>
               <label class="select">
                 <select data-ng-model="data.dn.eotag" data-ng-options="config.code as config.description for config in configData.ERTG">
-                  <!--<option value="0" selected disabled>危险品</option>-->
-                  <!--<option value="1">冷藏</option>-->
                 </select>
                 <i class="fa fa-check-square"></i>
               </label>
@@ -151,7 +137,7 @@
                 <label>要求日期1</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.reqDelDate1" placeholder="要求日期1">
+                  <input type="text" data-ng-model="data.dn.reqDelDate1" data-im-datepicker placeholder="要求日期1">
                 </label>
               </div>
             </section>
@@ -171,7 +157,7 @@
                 <label>实际日期1</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.reqDelDate2" placeholder="实际日期1">
+                  <input type="text" data-ng-model="data.dn.reqDelDate2" data-im-datepicker placeholder="实际日期1">
                 </label>
               </div>
             </section>
@@ -192,7 +178,7 @@
                 <label>要求日期2</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.reqDelDate3" placeholder="要求日期2">
+                  <input type="text" data-ng-model="data.dn.reqDelDate3" data-im-datepicker placeholder="要求日期2">
                 </label>
               </div>
             </section>
@@ -212,7 +198,7 @@
                 <label>实际日期2</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.reqDelDate4" placeholder="实际日期2">
+                  <input type="text" data-ng-model="data.dn.reqDelDate4" data-im-datepicker placeholder="实际日期2">
                 </label>
               </div>
             </section>
@@ -302,7 +288,7 @@
                 <label>出发日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.depDate1" placeholder="出发日期">
+                  <input type="text" data-ng-model="data.dn.depDate1" data-im-datepicker placeholder="出发日期">
                 </label>
               </div>
             </section>
@@ -323,7 +309,7 @@
                 <label>实际出发日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.depDate1act"  placeholder="实际出发日期">
+                  <input type="text" data-ng-model="data.dn.depDate1act" data-im-datepicker placeholder="实际出发日期">
                 </label>
               </div>
             </section>
@@ -344,7 +330,7 @@
                 <label>到达日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.arrDate1" placeholder="到达日期">
+                  <input type="text" data-ng-model="data.dn.arrDate1" data-im-datepicker placeholder="到达日期">
                 </label>
               </div>
             </section>
@@ -365,7 +351,7 @@
                 <label>实际到达日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.arrDate1act" placeholder="实际到达日期">
+                  <input type="text" data-ng-model="data.dn.arrDate1act" data-im-datepicker placeholder="实际到达日期">
                 </label>
               </div>
             </section>
@@ -417,7 +403,7 @@
                 <label>出发日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text15" placeholder="出发日期">
+                  <input type="text" name="startdate" id="Text15" data-im-datepicker placeholder="出发日期">
                 </label>
               </div>
             </section>
@@ -438,7 +424,7 @@
                 <label>实际出发日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text17" placeholder="实际出发日期">
+                  <input type="text" name="startdate" id="Text17" data-im-datepicker placeholder="实际出发日期">
                 </label>
               </div>
             </section>
@@ -459,7 +445,7 @@
                 <label>到达日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text19" placeholder="到达日期">
+                  <input type="text" name="startdate" id="Text19" data-im-datepicker placeholder="到达日期">
                 </label>
               </div>
             </section>
@@ -480,7 +466,7 @@
                 <label>实际到达日期</label>
                 <label class="input">
                   <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text21" placeholder="实际到达日期">
+                  <input type="text" name="startdate" id="Text21" data-im-datepicker placeholder="实际到达日期">
                 </label>
               </div>
             </section>

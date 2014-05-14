@@ -11,12 +11,12 @@ function erDetailCtrl($scope, $log, $http, $q, config, common, configService, cu
    if (data && data.requirementDetail) {
       queryOption = {
          "erID": data.requirementDetail.pk.erID,
-         "erITN": data.requirementDetail.pk.erITN,
+         "erITN": data.requirementDetail.pk.erITN
       };
    } else {
       queryOption = {
-         "erID": data.erID,
-         "erITN": data.erITN,
+         "erID": data.erID || data['erid'],
+         "erITN": data.erITN || data['eritn']
       };
    }
 
@@ -30,7 +30,7 @@ function erDetailCtrl($scope, $log, $http, $q, config, common, configService, cu
       recCustomer: "",
       recLocCode: "",
       createDate: "",
-      ERITNStatus: ["UNAS"],
+      ERITNStatus: [""],
       ERStatus: [""]
    };
 
@@ -42,7 +42,7 @@ function erDetailCtrl($scope, $log, $http, $q, config, common, configService, cu
       "ERTP": null,
       "TRPY": null,
       "ERTG": null,
-      "PKST": null,
+      "PKST": null
    };
    $scope.configs = {};
    configService.getConfigs(configData).then(
@@ -175,7 +175,7 @@ function erDetailCtrl($scope, $log, $http, $q, config, common, configService, cu
             recCustomerPhone: tempData.recCustomerPhone,
             recLocCode: tempData.recLocCode,
             recMemo: tempData.recMemo,
-            ResMemo: tempData.resMemo,
+            ResMemo: tempData.resMemo
          };
 
          return $http.post(config.baseUrl + "ER/ERChange" + "?" + $.param(param));

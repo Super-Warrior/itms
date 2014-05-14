@@ -24,7 +24,10 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
 
     $scope.searchAssignableRequest = function () {
         orderService.queryAll().success(function (data) {
+            var icon = $("#wid-result");
             $scope.orders = orderService.getRequirementPartial(data);
+            if (icon.hasClass("jarviswidget-collapsed"))
+                icon.find(".jarviswidget-toggle-btn").click();
         });
     };
 

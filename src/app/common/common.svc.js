@@ -213,7 +213,7 @@ function eoDetailService($http, $q, config, configService) {
 
     function getEoDetail(queryOptions) {
         var data = {
-            SerType: 'OR',
+            SerType: 'AND',
             EOStatus: [''],
             eventstatus: [''],
             EO: [queryOptions['eoid']],
