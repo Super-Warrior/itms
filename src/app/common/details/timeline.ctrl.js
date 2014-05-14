@@ -17,8 +17,8 @@ function TimeLineCtrl($scope, timelineService, data) {
         } else if (data.requirementDetail) {
             queryOption['er'] = data.requirementDetail.pk.erID;
             queryOption['eritn'] = data.requirementDetail.pk.erITN;
-        } else if (data.eoID) {
-            queryOption['eo'] = data.eoID;
+        } else if (data.eoID || data.eo) {
+            queryOption['eo'] = data.eoID || data.eo;
             queryOption['er'] = data.erID;
             queryOption['eritn'] = data.erITN;
         }

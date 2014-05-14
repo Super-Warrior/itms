@@ -38,7 +38,6 @@ function eoService($http, config, configService) {
 
    var searchUrl = config.baseUrl + 'EO/EOQuickSearch';
    var createEventUrl = config.baseUrl + 'EO/EventCreate';
-   var configUrl = config.baseUrl + 'Config/ConSearch';
 
    var service = {
       queryByEventType: queryByEventType,
