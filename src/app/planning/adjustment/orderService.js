@@ -20,7 +20,9 @@ function orderService($http, config) {
             recLocCode: '',
             createDate: '',
             ERITNStatus: ['ASGN'],
-            ERStatus: ['']
+            ERStatus: [''],
+            ERID:[''],
+            ERITN:['']
         };
         return $http.postXSRF(searchUrl, data);
     }

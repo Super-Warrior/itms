@@ -9,7 +9,8 @@ function erDetailCtrl($scope, $http, $q, config, common, configService, eoServic
     if (data && data.requirementDetail) {
         queryOption = {
             "erID": data.requirementDetail.pk.erID,
-            "erITN": data.requirementDetail.pk.erITN
+            "erITN": data.requirementDetail.pk.erITN,
+            "eoID": data.requirementDetail.eoid
         };
     } else {
         queryOption = {
@@ -21,7 +22,6 @@ function erDetailCtrl($scope, $http, $q, config, common, configService, eoServic
         queryOption['eoID'] = data.eoID || data.eoid || data.eo;
     }
 
-
     var param = {
         SerType: "AND",
         userID: config.userID,
@@ -32,9 +32,10 @@ function erDetailCtrl($scope, $http, $q, config, common, configService, eoServic
         recLocCode: "",
         createDate: "",
         ERITNStatus: [""],
-        ERStatus: [""]
+        ERStatus: [""],
+        ERID:[queryOption['erID']],
+        ERITN:[queryOption['erITN']]
     };
-
 
     var configData = {
         "ERST": null,
@@ -48,18 +49,13 @@ function erDetailCtrl($scope, $http, $q, config, common, configService, eoServic
     configService.getConfigs(configData).then(
         function () {
             $.extend($scope.configs, configData);
-            //
         }
     );
 
     $http
         .post(config.baseUrl + "ER/ERQuickSearch" + "?" + $.param(param))
         .then(function (result) {
-            var item = result.data.filter(function (value) {
-                return value.requirementDetail.pk.erID == queryOption.erID
-                    && value.requirementDetail.pk.erITN == queryOption.erITN;
-            })[0];
-            data = item;
+            data = result.data[0];
         })
         .then(function () {
             if(data){
