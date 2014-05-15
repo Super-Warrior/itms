@@ -45,9 +45,13 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.selectedCustomer = { "dep": [], "rec": [] };
    $scope.quickResult = [];
    $scope.createDate = "";
+   $scope.ERID=[""];
+   $scope.ERITN=[""];
    $scope.quickSearch = function () {
       var data = {
          SerType: "AND",
+         ERID: $scope.ERID,
+         ERITN:$scope.ERITN,
          userID: config.userID,
          depAreaCode: $scope.selectedSite.toString(),
          depCustomer: $scope.selectedCustomer.dep.toString(),
