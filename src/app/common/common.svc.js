@@ -53,9 +53,7 @@ function common($q, notifier, fileHelper) {
     return {
         notifier: notifier,
         fileHelper: fileHelper,
-        messageBox: messageBox,
-        DATEFORMAT: 'YYYY-MM-DD',
-        TIMEFORMAT: 'HH:mm:ss'
+        messageBox: messageBox
     };
 
     function messageBox(option) {
@@ -290,9 +288,9 @@ function eoDetailService($http, $q, config, configService) {
             ArrDate1: data.dn.arrDate1,
             ArrDate2: data.dn.arrDate2,
             ArrDate3: data.dn.arrDate3,
-            DepTime1: data.dn.depTime1,
-            DepTime2: data.dn.depTime2,
-            DepTime3: data.dn.depTime3,
+            DepTime1: '',
+            DepTime2: '',
+            DepTime3: '',
             Arrtime1: data.dn.arrTime1,
             Arrtime2: data.dn.arrTime2,
             Arrtime3: data.dn.arrTime3,

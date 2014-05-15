@@ -1,4 +1,4 @@
-﻿angular.module("itms.planning")
+﻿angular.module("itms.common")
     .controller("erDetailCtrl", ["$scope",
         "$http", "$q", "config", "common", "configService", "eoService", erDetailCtrl]);
 

@@ -3,6 +3,9 @@ angular.module('common.directives.timepicker', [])
        return {
           restrict: 'A',
           require: '?ngModel',
+          scope: {
+
+          },
           link: postLink
        };
 
