@@ -5,7 +5,7 @@ function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configSer
     $scope.module = "运输执行";
     $scope.title = "运单维护/查询";
     $scope.queryOption = {
-        SerType: 'ALL',
+        SerType: 'AND',
         EO: [''],
         EOStatus: ['S001'],
         eventstatus: [''],
