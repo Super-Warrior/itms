@@ -270,7 +270,7 @@ function erDetailCtrl($scope, $http, $q, config, common, configService, eoServic
                 eventType: $scope.event.eventType,
                 eventCode: $scope.event.eventCode,
                 memo: $scope.event.memo,
-                EO: [queryOption['eoID'] || ''],
+                EO: [queryOption['eoID'] || '-1'],
                 ERID: [queryOption['erID']],
                 ERITN: [queryOption['erITN']]
             })

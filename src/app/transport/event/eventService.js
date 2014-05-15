@@ -23,7 +23,8 @@ function eventService($http, $q, config, configService) {
             serType: 'AND',
             EOTag: '',
             ERID: [''],
-            ERStatus: ['']
+            ERITN: [''],
+            ERITNStatus: ['']
         },
         defaultEoQueryOption = {
             serType: 'OR',
@@ -31,7 +32,7 @@ function eventService($http, $q, config, configService) {
             eventStatus: [''],
             EOStatus: ['']
         },
-        ersearchUrl = config.baseUrl + 'ER/EREventSearch',
+        ersearchUrl = config.baseUrl + 'ER/ERITNEventSearch',
         eosearchUrl = config.baseUrl + 'EO/EOEventSearch',
         searchUrl = config.baseUrl + 'EO/EventSearch';
 
@@ -91,15 +92,28 @@ function eventService($http, $q, config, configService) {
     function queryByEr(queryOptions) {
         var data = angular.extend({}, defaultErQueryOption);
         if (queryOptions.ERStatus && queryOptions.ERStatus.length > 0) {
-            data.ERStatus = queryOptions.ERStatus.map(function (item) {
+            data.ERITNStatus = queryOptions.ERStatus.map(function (item) {
                 return item.code;
             });
         }
-        return $http.postXSRF(ersearchUrl, defaultErQueryOption);
+        data.ERID=[queryOptions.ERID || ''];
+        data.ERITN=[queryOptions.ERITN || ''];
+        return $http.postXSRF(ersearchUrl, data);
     }
 
-    function queryByEo() {
-        var data = defaultEoQueryOption;
+    function queryByEo(queryOptions) {
+        var data = angular.extend({}, defaultEoQueryOption);
+        if (queryOptions.eoStatus && queryOptions.eoStatus.length > 0) {
+            data.EOStatus = queryOptions.eoStatus.map(function (item) {
+                return item.code;
+            });
+        }
+        if (queryOptions.eoEventStatus && queryOptions.eoEventStatus.length > 0) {
+            data.eventStatus = queryOptions.eoEventStatus.map(function (item) {
+                return item.code;
+            });
+        }
+        data.EO = [queryOptions.eoID || ''];
         return $http.postXSRF(eosearchUrl, data);
     }
 

@@ -36,7 +36,7 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
     $scope.eventSearch = function (queryOptions) {
         eventService.queryByEvent(queryOptions)
             .success(function (data) {
-                $scope.events = eventService.getEventPartial(data);
+                $scope.events = data ? eventService.getEventPartial(data) : [];
                 $scope.totalEvents = $scope.events;
             })
             .error(function () {
@@ -47,7 +47,7 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
     $scope.erSearch = function (queryOptions) {
         eventService.queryByEr(queryOptions)
             .success(function (data) {
-                $scope.events = eventService.getEventPartial(data);
+                $scope.events = data ? eventService.getEventPartial(data) : [];
                 $scope.totalEvents = $scope.events;
             })
             .error(function () {
@@ -58,7 +58,7 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
     $scope.eoSearch = function (queryOptions) {
         eventService.queryByEo(queryOptions)
             .success(function (data) {
-                $scope.events = eventService.getEventPartial(data);
+                $scope.events = data ? eventService.getEventPartial(data) : [];
                 $scope.totalEvents = $scope.events;
             })
             .error(function () {
@@ -105,7 +105,7 @@ function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
             controller: 'HandleEventCtrl',
             resolve: {
                 items: function () {
-                    return $scope.selectedItems.map(function(item){
+                    return $scope.selectedItems.map(function (item) {
                         return {
                             eo: item.eoid,
                             erid: item.erid,
@@ -129,7 +129,7 @@ function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
             $scope.events = $scope.totalEvents.filter(function (item) {
                 return item.eventType == eventType
             });
-        }else{
+        } else {
             $scope.events = $scope.totalEvents;
         }
     };
