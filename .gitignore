@@ -14,3 +14,7 @@ compile
 /src/Web.config
 *.swp
 .DS_Store
+
+src/app/common/details/erDetail.tpl.html
+
+src/app/common/details/erDetail.tpl.html
