@@ -17,9 +17,8 @@ module.exports = {
             'vendor/angular-loading-bar/src/loading-bar.js',
             'vendor/angular-animate/angular-animate.js',
             'vendor/angular-ui-router/release/angular-ui-router.js',
-			'vendor/moment/min/moment.min.js',
-			//'vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
-			'src/legacyscripts/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js',
+            'vendor/moment/min/moment.min.js',
+            'vendor/bootstrap-timepicker/js/bootstrap-timepicker.min.js',
             'src/legacyscripts/jarvismenu.js',
             'src/legacyscripts/legacyscript.js',
             'src/legacyscripts/notification/SmartNotification.js',
@@ -52,10 +51,8 @@ module.exports = {
             'vendor/angular-cookies/angular-cookies.min.js',
             'vendor/angular-loading-bar/src/loading-bar.js',
             'vendor/jquery-form/jquery.form.js',
-			   'vendor/moment/min/moment.min.js',
-			   	'src/legacyscripts/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js'
-          
-			  // 'vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+            'vendor/moment/min/moment.min.js',
+            'vendor/bootstrap-timepicker/js/bootstrap-timepicker.min.js'
         ],
         vendorjs_unmin: [
             'vendor/jqueryui/ui/minified/jquery-ui.min.js',
@@ -82,12 +79,11 @@ module.exports = {
         ],
         css: [
             'vendor/bootstrap/dist/css/bootstrap.min.css',
-			//   'vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+            'vendor/bootstrap-timepicker/css/bootstrap-timepicker.min.css',
             'vendor/angular-loading-bar/build/loading-bar.min.css',
             'vendor/font-awesome/css/font-awesome.min.css',
             'src/assets/styles/smartadmin-production.css',
             'src/assets/styles/smartadmin-skins.css',
-           /* 'src/assets/styles/demo.css',*/
             'src/assets/styles/style.css'
         ],
         assets: [
