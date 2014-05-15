@@ -7,7 +7,7 @@ function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configSer
     $scope.queryOption = {
         SerType: 'AND',
         EO: [''],
-        EOStatus: ['S001'],
+        EOStatus: [''],
         eventstatus: [''],
         EOType: [''],
         EOTRType: [''],
