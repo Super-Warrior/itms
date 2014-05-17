@@ -157,13 +157,11 @@
                                 <label>波次交接时间</label>
 
                                 <div class="input-group">
-                                    <input class="form-control" id="timepicker" type="text" value=""
+                                    <input class="form-control" id="timepicker" data-im-timepicker type="text" value=""
                                         placeholder="波次交接时间" ng-model="basicData.requirement.recERTime">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
-                                <script>
-                                    $("#timepicker").timepicker();
-                                </script>
+                              
                             </div>
                         </section>
                     </div>
@@ -183,7 +181,7 @@
                                 <label>要求接货时间</label>
 
                                 <div class="input-group">
-                                    <input class="form-control" id="Text2" type="text" value=""
+                                    <input class="form-control" id="Text2" type="text" value=""  data-im-timepicker 
                                         placeholder="要求接货时间" ng-model="basicData.requirement.pickERStartTime">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
@@ -206,7 +204,7 @@
                                 <label>要求发运时间</label>
 
                                 <div class="input-group">
-                                    <input class="form-control" id="Text4" type="text" value=""
+                                    <input class="form-control" id="Text4" type="text" value=""  data-im-timepicker 
                                         placeholder="要求发运时间" ng-model="basicData.requirement.oprERFinishTime">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
@@ -229,7 +227,7 @@
                                 <label>要求到达时间</label>
 
                                 <div class="input-group">
-                                    <input class="form-control" id="Text6" type="text" value=""
+                                    <input class="form-control" id="Text6" type="text" value=""  data-im-timepicker 
                                         placeholder="要求到达时间" ng-model="basicData.requirement.reqDelTimeE">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
