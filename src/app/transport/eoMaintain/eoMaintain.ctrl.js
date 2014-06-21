@@ -37,22 +37,51 @@ function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configSer
         depLocCode: ''
     };
     $scope.results = [];
-    $scope.detailConfig = { erDetail: true, timeLine: true, eoDetail: true };
-    $scope.columns = [
-        { "mData": "eo", "sTitle": "EO" },
-        { "mData": "erID", "sTitle": "ER" },
-        { "mData": "erITN", "sTitle": "ERITN" },
-        { "mData": "eoStatus", "sTitle": "运单状态" },
-        { "mData": "customerOrder", "sTitle": "客户订单号" },
-        { "mData": "eoType", "sTitle": "类型" },
-        { "mData": "eoTag", "sTitle": "特殊" },
-        { "mData": "depCustomer", "sTitle": "发货方" },
-        { "mData": "recCustomer", "sTitle": "收货方" },
-        { "mData": "reDelDate", "sTitle": "发达日期" },
-        { "mData": "eoTrtype", "sTitle": "方式" },
-        { "mData": "eoTrvendor", "sTitle": "承运方" },
-        { "mData": "vendorOrder", "sTitle": "承运方单号" }
-    ];
+    $scope.detailConfig = {
+        erDetail: true,
+        timeLine: true,
+        eoDetail: true
+    };
+    $scope.columns = [{
+        "mData": "eo",
+        "sTitle": "EO"
+    }, {
+        "mData": "erID",
+        "sTitle": "ER"
+    }, {
+        "mData": "erITN",
+        "sTitle": "ERITN"
+    }, {
+        "mData": "eoStatus",
+        "sTitle": "运单状态"
+    }, {
+        "mData": "customerOrder",
+        "sTitle": "客户订单号"
+    }, {
+        "mData": "eoType",
+        "sTitle": "类型"
+    }, {
+        "mData": "eoTag",
+        "sTitle": "特殊"
+    }, {
+        "mData": "depCustomer",
+        "sTitle": "发货方"
+    }, {
+        "mData": "recCustomer",
+        "sTitle": "收货方"
+    }, {
+        "mData": "reDelDate",
+        "sTitle": "发达日期"
+    }, {
+        "mData": "eoTrtype",
+        "sTitle": "方式"
+    }, {
+        "mData": "eoTrvendor",
+        "sTitle": "承运方"
+    }, {
+        "mData": "vendorOrder",
+        "sTitle": "承运方单号"
+    }];
 
     var configData = {
         "ERTP": null,
@@ -63,26 +92,24 @@ function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configSer
     };
     $scope.mutiOptionDataSource = {};
     configService.getConfigs(configData).then(
-        function () {
+        function() {
             $.extend($scope.mutiOptionDataSource, configData);
         }
     );
-    $scope.eoMaintainSearch = function () {
+    $scope.eoMaintainSearch = function() {
         var data = $scope.queryOption;
         $scope.selectedItems = [];
         eoMaintainService.quickSearch(data)
-            .success(function (res) {
-                $scope.results = eoMaintainService.getResultPartial(res);
+            .success(function(res) {
+                if (!res || res.errorMessage)
+                    $scope.results = [];
+                else
+                    $scope.results = eoMaintainService.getResultPartial(res);
             })
-            .error(function () {
+            .error(function() {
                 $log.error('EOMaintainSearchCtrl: quickSearch');
             });
 
     };
 
 }
-
-
-
-
-
