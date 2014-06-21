@@ -23,6 +23,7 @@ function EODetailCtrl($scope, $modalInstance, eoDetailService, data) {
             $scope.configData = result;
         });
 
+        $scope.data = {};
         eoDetailService.getEoDetail(queryOption).then(function(result) {
             console.log(result);
             if (result.data.errorMessage) {
