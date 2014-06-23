@@ -1,8 +1,8 @@
 ﻿angular.module("itms.common")
     .controller("erDetailCtrl", ["$scope",
-        "$http", "$q", "config", "common", "configService", "eoService", erDetailCtrl]);
+        "$http", "$q","$modalInstance", "config", "common", "configService", "eoService", erDetailCtrl]);
 
-function erDetailCtrl($scope, $http, $q, config, common, configService, eoService, data) {
+function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configService, eoService, data) {
     var queryOption = {};
     //  ERID: tempData.pk.erID,
     // ERITN: tempData.pk.erITN,
@@ -212,7 +212,7 @@ function erDetailCtrl($scope, $http, $q, config, common, configService, eoServic
             function (res) {
                 if (isSuccess(res[0].data) && isSuccess(res[1].data)) {
                     common.notifier.success("修改成功...");
-
+                    $modalInstance.close();
                 }
             }
         );
