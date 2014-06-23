@@ -1,6 +1,7 @@
 ﻿angular.module("itms.common")
     .controller("erDetailCtrl", ["$scope",
         "$http", "$q","$modalInstance", "config", "common", "configService", "eoService", erDetailCtrl]);
+    ]);
 
 function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configService, eoService, data) {
     var queryOption = {};
@@ -33,8 +34,8 @@ function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configSe
         createDate: "",
         ERITNStatus: [""],
         ERStatus: [""],
-        ERID:[queryOption['erID']],
-        ERITN:[queryOption['erITN']]
+        ERID: [queryOption['erID']],
+        ERITN: [queryOption['erITN']]
     };
 
     var configData = {
@@ -47,25 +48,27 @@ function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configSe
     };
     $scope.configs = {};
     configService.getConfigs(configData).then(
-        function () {
+        function() {
             $.extend($scope.configs, configData);
         }
     );
 
+
+    $scope.basicData = {};
     $http
         .post(config.baseUrl + "ER/ERQuickSearch" + "?" + $.param(param))
-        .then(function (result) {
+        .then(function(result) {
             data = result.data[0];
         })
-        .then(function () {
-            if(data){
+        .then(function() {
+            if (data) {
                 formatData(data);
                 $scope.basicData = data;
             }
         });
 
     configService.getMaterial("TRES").then(
-        function (result) {
+        function(result) {
             $scope.configs.material = result.data;
         }
     );
@@ -73,11 +76,11 @@ function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configSe
 
     function formatData(data) {
         data.requirement.resMemo = "";
-        var formatDate = function (dt) {
+        var formatDate = function(dt) {
             if (!dt) return dt;
             return moment(dt).format("YYYY-MM-DD");
         };
-        var formatTime = function (dt) {
+        var formatTime = function(dt) {
             if (!dt) return dt;
             return moment(dt).format("HH:mm:ss");
         };
@@ -108,8 +111,8 @@ function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configSe
     }
 
 
-    $scope.save = function () {
-        var saveHead = function () {
+    $scope.save = function() {
+        var saveHead = function() {
             var tempData = $scope.basicData.requirement;
 
             var param = {
@@ -176,7 +179,7 @@ function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configSe
 
             return $http.post(config.baseUrl + "ER/ERChange" + "?" + $.param(param));
         };
-        var saveItem = function () {
+        var saveItem = function() {
             var tempData = $scope.basicData.requirementDetail;
             var param = {
 
@@ -209,7 +212,7 @@ function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configSe
             return $http.post(config.baseUrl + "ER/ERItemChange" + "?" + $.param(param));
         };
         $q.all([saveHead(), saveItem()]).then(
-            function (res) {
+            function(res) {
                 if (isSuccess(res[0].data) && isSuccess(res[1].data)) {
                     common.notifier.success("修改成功...");
                     $modalInstance.close();
@@ -226,36 +229,31 @@ function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configSe
         eventType: '',
         eventCode: '',
         memo: '',
-        reset: function () {
+        reset: function() {
             this.eventCode = '';
             this.eventType = '';
             this.memo = '';
         }
     };
 
-    $scope.types = [
-        {
-            value: 'DELY',
-            text: '延迟事件'
-        },
-        {
-            value: 'NORM',
-            text: '正常事件'
-        },
-        {
-            value: 'UNRP',
-            text: '未报告事件'
-        },
-        {
-            value: 'UNXP',
-            text: '未期事件'
-        }
-    ];
+    $scope.types = [{
+        value: 'DELY',
+        text: '延迟事件'
+    }, {
+        value: 'NORM',
+        text: '正常事件'
+    }, {
+        value: 'UNRP',
+        text: '未报告事件'
+    }, {
+        value: 'UNXP',
+        text: '未期事件'
+    }];
 
-    $scope.getEventCode = function (eventType) {
+    $scope.getEventCode = function(eventType) {
         eoService.getEventCode(eventType)
-            .success(function (data) {
-                $scope.codes = _.map(data, function (item) {
+            .success(function(data) {
+                $scope.codes = _.map(data, function(item) {
                     return {
                         value: item.group2,
                         text: item.description
@@ -264,7 +262,7 @@ function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configSe
             });
     };
 
-    $scope.ok = function () {
+    $scope.ok = function() {
         eoService
             .createEvent({
                 eventType: $scope.event.eventType,
@@ -274,7 +272,7 @@ function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configSe
                 ERID: [queryOption['erID']],
                 ERITN: [queryOption['erITN']]
             })
-            .success(function () {
+            .success(function() {
                 common.notifier.success("创建成功...");
                 $scope.event.reset();
             });
