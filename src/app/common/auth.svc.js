@@ -1,8 +1,10 @@
 angular
     .module('itms.auth', [])
-    .factory('auth', ['$rootScope', '$cookieStore', auth]);
+    .factory('auth', ['$rootScope', '$cookieStore','$http','config', auth]);
 
-function auth($rootScope, $cookieStore) {
+function auth($rootScope, $cookieStore,$http,config) {
+
+    var url = config.baseUrl+'login';
 
     return {
         isLoginRequired: isLoginRequired,
@@ -14,8 +16,15 @@ function auth($rootScope, $cookieStore) {
     }
 
     function logon(username, password){
-        //for now, just simply put indentity into cookies
-        $cookieStore.put('identity',username);
+        var payload = {
+            username : username,
+            password: password
+        };
+        $http.postXSRF(url, payload)
+            .success(function(userInfo){
+                $cookieStore.put('identity',userInfo);
+            });
+
         return true;
     }
 }

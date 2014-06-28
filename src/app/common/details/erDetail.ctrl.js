@@ -1,7 +1,6 @@
 ﻿angular.module("itms.common")
     .controller("erDetailCtrl", ["$scope",
         "$http", "$q","$modalInstance", "config", "common", "configService", "eoService", erDetailCtrl]);
-    ]);
 
 function erDetailCtrl($scope, $http, $q,$modalInstance, config, common, configService, eoService, data) {
     var queryOption = {};
