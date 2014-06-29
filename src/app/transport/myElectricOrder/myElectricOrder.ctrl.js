@@ -1,9 +1,9 @@
 angular.module('itms.transport.eoMaintain')
-    .controller('EOMaintainCtrl', ['$scope', '$state', '$log', 'eoMaintainService', EOMaintainSearchCtrl]);
+    .controller('MyElectricOrderCtrl', ['$scope', '$state', '$log', 'myElectricOrderService','configService', MyElectricOrderCtrl]);
 
-function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configService) {
+function MyElectricOrderCtrl($scope, $state, $log, myElectricOrderService, configService) {
     $scope.module = "运输执行";
-    $scope.title = "运单维护/查询";
+    $scope.title = "我的运单";
     $scope.queryOption = {
         SerType: 'AND',
         EO: [''],
@@ -34,7 +34,9 @@ function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configSer
         DeliverBP1: '',
         DeliverBP2: '',
         depCustomer: '',
-        depLocCode: ''
+        depLocCode: '',
+        recCustomer: '',
+        recLocCode: ''
     };
     $scope.results = [];
     $scope.detailConfig = {
@@ -99,12 +101,12 @@ function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configSer
     $scope.eoMaintainSearch = function() {
         var data = $scope.queryOption;
         $scope.selectedItems = [];
-        eoMaintainService.quickSearch(data)
+        myElectricOrderService.quickSearch(data)
             .success(function(res) {
                 if (!res || res.errorMessage)
                     $scope.results = [];
                 else
-                    $scope.results = eoMaintainService.getResultPartial(res);
+                    $scope.results = myElectricOrderService.getResultPartial(res);
             })
             .error(function() {
                 $log.error('EOMaintainSearchCtrl: quickSearch');

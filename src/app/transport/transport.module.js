@@ -1,7 +1,8 @@
 angular
     .module('itms.transport', [
         'itms.transport.event',
-        'itms.transport.eoMaintain'
+        'itms.transport.eoMaintain',
+        'itms.transport.myElectricOrder'
     ])
     .config(['$stateProvider',
         function($stateProvider) {

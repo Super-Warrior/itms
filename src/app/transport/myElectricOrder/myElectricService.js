@@ -1,8 +1,8 @@
 angular.module('itms.transport.eoMaintain')
-    .factory('eoMaintainService', ['$http', 'config', "configService", function ($http, config, configService) {
+    .factory('myElectricOrderService', ['$http', 'config', "configService", function ($http, config, configService) {
         // body...
 
-        var searchUrl = config.baseUrl + 'EO/EOQuickSearch';
+        var searchUrl = config.baseUrl + 'EO/MyEOQuickSearch';
 
         return {
             quickSearch: quickSearch,

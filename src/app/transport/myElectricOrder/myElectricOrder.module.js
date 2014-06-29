@@ -1,19 +1,16 @@
 angular
-    .module('itms.transport.eoMaintain', [
-        'ui.router',
-        'ui.bootstrap'
-    ])
+    .module('itms.transport.myElectricOrder', [])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
-            .state('app.user.transport.eoMaintain', {
-                url: '/eoMaintain',
+            .state('app.user.transport.myElectricOrder', {
+                url: '/myElectricOrder',
                 data: {
-                    displayName: '运单查询/维护'
+                    displayName: '运单查询/我的运单'
                 },
                 views: {
                     '@app.user': {
-                        templateUrl: 'app/transport/eoMaintain/eoMaintainSearch.tpl.html',
-                        controller: 'EOMaintainSearchCtrl'
+                        templateUrl: 'app/transport/myElectricOrder/myElectric.tpl.html',
+                        controller: 'MyElectricOrderCtrl'
                     }
                 }
             });

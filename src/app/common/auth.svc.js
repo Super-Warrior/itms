@@ -12,7 +12,8 @@ function auth($rootScope, $cookieStore,$http,config) {
     };
 
     function isLoginRequired() {
-        return !(!!$cookieStore.get('identity'));
+        return false;
+//        return !(!!$cookieStore.get('identity'));
     }
 
     function logon(username, password){
@@ -20,10 +21,10 @@ function auth($rootScope, $cookieStore,$http,config) {
             username : username,
             password: password
         };
-        $http.postXSRF(url, payload)
-            .success(function(userInfo){
-                $cookieStore.put('identity',userInfo);
-            });
+//        $http.postXSRF(url, payload)
+//            .success(function(userInfo){
+//                $cookieStore.put('identity',userInfo);
+//            });
 
         return true;
     }
