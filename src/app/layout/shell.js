@@ -1,8 +1,10 @@
 angular.module('itms')
-    .controller('shellCtrl', ['$rootScope', '$state', 'auth',
-        function ($rootScope, $state, auth) {
+    .controller('shellCtrl', ['$rootScope', '$state', 'auth','identity',
+        function ($rootScope, $state, auth,identity) {
 
             $rootScope.isLoginRequired = auth.isLoginRequired;
+            $rootScope.currentUser = identity.currentUser;
+            $rootScope.currentUser.displayName = identity.currentUser.fisrtName+', '+ identity.currentUser.lastName;
 
             $rootScope.$on('$stateChangeSuccess',
                 function (event, toState, toParams, fromState, fromParams) {

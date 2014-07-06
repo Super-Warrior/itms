@@ -1,10 +1,10 @@
 angular
     .module('itms.auth', [])
-    .factory('auth', ['$rootScope', '$cookieStore','$http','config', auth]);
+    .factory('auth', ['$http','$q','config','identity', auth]);
 
-function auth($rootScope, $cookieStore,$http,config) {
+function auth($http,$q,config,identity) {
 
-    var url = config.baseUrl+'login';
+    var url = config.baseUrl+'auth/login';
 
     return {
         isLoginRequired: isLoginRequired,
@@ -12,20 +12,19 @@ function auth($rootScope, $cookieStore,$http,config) {
     };
 
     function isLoginRequired() {
-        return false;
-//        return !(!!$cookieStore.get('identity'));
+        return identity.currentUser === undefined;
     }
 
     function logon(username, password){
-        var payload = {
-            username : username,
-            password: password
-        };
-//        $http.postXSRF(url, payload)
-//            .success(function(userInfo){
-//                $cookieStore.put('identity',userInfo);
-//            });
-
-        return true;
+        var dfd = $q.defer();
+        $http.postXSRF(url, {username:username, password:password})
+            .success(function(userInfo){
+                identity.currentUser = userInfo;
+                dfd.resolve(true);
+            })
+            .error(function(){
+                dfd.resolve(false);
+            });
+        return dfd.promise;
     }
 }

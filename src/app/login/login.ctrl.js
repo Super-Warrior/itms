@@ -3,14 +3,19 @@ angular
     .controller('LoginCtrl'['$scope', '$state', 'auth', LoginCtrl]);
 
 function LoginCtrl($scope, $state, auth) {
-    $scope.username='';
-    $scope.password='';
+    $scope.username = '';
+    $scope.password = '';
 
 
     $scope.logon = function (username, password) {
-        if (auth.logon(username, password)) {
-            $state.go('app.user.dashboard');
-        }
+        auth
+            .logon(username, password)
+            .then(function (isLogedin) {
+                if(isLogedin) {
+                    $state.go('app.user.dashboard');
+                }
+            });
+
     }
 
 }
