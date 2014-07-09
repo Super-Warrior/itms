@@ -1,7 +1,8 @@
 angular.module('itms.transport.eoMaintain')
-    .controller('MyElectricOrderCtrl', ['$scope', '$state', '$log', 'myElectricOrderService','configService', MyElectricOrderCtrl]);
+    .controller('MyElectricOrderCtrl', ['$scope', '$modal', '$log', 'myElectricOrderService', MyElectricOrderCtrl]);
 
-function MyElectricOrderCtrl($scope, $state, $log, myElectricOrderService, configService) {
+function MyElectricOrderCtrl($scope, $modal, $log, myElectricOrderService) {
+
     $scope.module = "运输执行";
     $scope.title = "我的运单";
     $scope.queryOption = {
@@ -33,7 +34,7 @@ function MyElectricOrderCtrl($scope, $state, $log, myElectricOrderService, confi
         Arrtime1: '',
         DeliverBP1: '',
         DeliverBP2: '',
-        depCustomer: '',
+        depCustomer: $scope.currentUser.auth.salesArea,
         depLocCode: '',
         recCustomer: '',
         recLocCode: ''
@@ -85,22 +86,29 @@ function MyElectricOrderCtrl($scope, $state, $log, myElectricOrderService, confi
         "sTitle": "承运方单号"
     }];
 
-    var configData = {
-        "ERTP": null,
-        "EOST": null,
-        "EVST": null,
-        "TRPY": null,
-        "ERTG": null
+    $scope.searchCustomer = function (type) {
+        var modalInstance = $modal.open({
+            templateUrl: "app/planning/searchCustomer.tpl.html",
+            controller: searchCustomerCtrl,
+            resolve: {
+                type: function () {
+                    return type;
+                }
+            }
+        });
+        modalInstance.result.then(function (selectedItem) {
+            if(type === 'dep') {
+               $scope.queryOption.depCustomer = selectedItem[0];
+            }else{
+               $scope.queryOption.recCustomer = selectedItem[0];
+            }
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
     };
-    $scope.mutiOptionDataSource = {};
-    configService.getConfigs(configData).then(
-        function() {
-            $.extend($scope.mutiOptionDataSource, configData);
-        }
-    );
+
     $scope.eoMaintainSearch = function() {
         var data = $scope.queryOption;
-        $scope.selectedItems = [];
         myElectricOrderService.quickSearch(data)
             .success(function(res) {
                 if (!res || res.errorMessage)

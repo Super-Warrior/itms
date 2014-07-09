@@ -4,11 +4,13 @@ angular
 
 function auth($http, $q, config, identity) {
 
-    var url = config.baseUrl + 'auth/login';
+    var url = config.baseUrl + 'auth/login',
+        authUrl = config.baseUrl + 'auth/getAuth';
 
     return {
         isLoginRequired: isLoginRequired,
-        logon: logon
+        logon: logon,
+        getAuth: getAuth
     };
 
     function isLoginRequired() {
@@ -23,9 +25,22 @@ function auth($http, $q, config, identity) {
                     dfd.resolve({success: false, message: userInfo.errorMessage});
                 } else {
                     identity.currentUser = userInfo;
+                    dfd.resolve({success: true, result: userInfo});
+                }
+            });
+        return dfd.promise;
+    }
+
+    function getAuth(userId) {
+        var dfd = $q.defer();
+        $http.postXSRF(authUrl, {userID: userId})
+            .success(function (authInfo) {
+                if (authInfo.errorMessage) {
+                    dfd.resolve({success: false, message: authInfo.errorMessage});
+                } else {
+                    identity.currentUser.auth = authInfo[0];
                     dfd.resolve({success: true});
                 }
-
             });
         return dfd.promise;
     }
