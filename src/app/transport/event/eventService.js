@@ -118,19 +118,20 @@ function eventService($http, $q, config, configService) {
     }
 
     function getEventPartial(events) {
-        if (!events) return [];
+        if (!events || events.errorMessage === 'NO_RESULT') return [];
         return events.map(mapEvent);
 
-        function mapEvent(event) {
+        function mapEvent(item) {
             return {
-                eventType: event.eventType,
-                eventCode: event.eventCode,
-                eventDateTime: event.eventDateTime,
-                createUser: event.createUser,
-                eoNumber: event.eo + '/' + event.erid + '/' + event.eritn,
-                eoid: event.eo,
-                erid: event.erid,
-                eritn: event.eritn
+                eventType: item.event.eventType,
+                eventCode: item.event.eventCode,
+                eventDesc: event.eventDesc || '',
+                eventDateTime: item.event.eventDateTime,
+                createUser: item.event.createUser,
+                eoNumber: item.event.eo + '/' + item.event.erid + '/' + item.event.eritn,
+                eoid: item.event.eo,
+                erid: item.event.erid,
+                eritn: item.event.eritn
             };
         }
     }

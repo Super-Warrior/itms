@@ -60,9 +60,12 @@ function orderService($http, config) {
                 erID: item.requirementDetail && item.requirementDetail.pk.erID,
                 erITN: item.requirementDetail && item.requirementDetail.pk.erITN,
                 erType: item.requirement.erType,
+                erTypeDesc: item.ertypeDesc,
                 erTag: item.requirement.erTag,
                 depCustomer: item.requirement.depCustomer,
-                recCustomer: item.requirement.recCustomer,
+                depCustomerDesc: item.depCustomerDesc,
+                recCustomer: item.recCustomer,
+                recCustomerDesc: item.recCustomerDesc,
                 customerOrder1: item.requirement.customerOrder1,
                 customerOrder2: item.requirement.customerOrder2,
                 customerOrder3: item.requirement.customerOrder3,
@@ -71,7 +74,9 @@ function orderService($http, config) {
                 amt: item.requirementDetail && item.requirementDetail.amt,
                 reqDelDate: item.requirement.reqDelDate,
                 ertrType: item.requirement.erTRType,
-                ertrVendor: item.requirement.ertrvendor
+                ertrTypeDesc: item.ertrtypeDesc,
+                ertrVendor: item.requirement.ertrvendor,
+                ertrVendorDesc: item.ertrvendorDesc
             };
         }
     }

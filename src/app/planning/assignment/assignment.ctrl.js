@@ -26,10 +26,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.columns = [
         { "mData": "requirementDetail.pk.erID", "sTitle": "ER" },
         { "mData": "requirementDetail.pk.erITN", "sTitle": "ERITN" },
-        { "mData": "requirement.erType", "sTitle": "类型" },
+        { "mData": "ertypeDesc", "sTitle": "类型" },
         { "mData": "requirement.erTag", "sTitle": "特殊" },
-        { "mData": "requirement.depCustomer", "sTitle": "发货方" },
-        { "mData": "requirement.recCustomer", "sTitle": "收货方" },
+        { "mData": "depCustomerDesc", "sTitle": "发货方" },
+        { "mData": "recCustomerDesc", "sTitle": "收货方" },
         { "mData": "requirement.customerOrder1", "sTitle": "客户订单号" },
         { "mData": "requirement.customerOrder2", "sTitle": "客户运单号" },
         { "mData": "requirement.customerOrder3", "sTitle": "客户出库号" },
@@ -37,8 +37,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
         { "mData": "requirementDetail.packNum", "sTitle": "箱号" },
         { "mData": "requirementDetail.amt", "sTitle": "件数" },
         { "mData": "requirement.reqDelDate", "sTitle": "送达日期" },
-        { "mData": "requirement.erTRType", "sTitle": "方式" },
-        { "mData": "requirement.ertrvendor", "sTitle": "第三方" }
+        { "mData": "ertrtypeDesc", "sTitle": "方式" },
+        { "mData": "ertrvendorDesc", "sTitle": "第三方" }
    ];
    $scope.selectedSite = [];
    $scope.selectedPosition = { "dep": [], "rec": [] };
@@ -77,8 +77,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          }
       });
    };
-   $scope.reset = function () {
 
+   $scope.reset = function () {
       $scope.selectedCustomer = { "dep": [], "rec": [] };
       $scope.selectedSite = [];
       $scope.selectedPosition = { "dep": [], "rec": [] };
@@ -92,12 +92,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       var modalInstance = $modal.open({
          templateUrl: "app/planning/searchSite.tpl.html",
          controller: searchSiteCtrl
-         //resolve: {
-         //   items: function () {
-         //      return $scope.selectedItems();
-         //   }
-         //}
       });
+
       modalInstance.result.then(function (keys) {
          $scope.selectedSite = keys;
       }, function () {
@@ -138,12 +134,14 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          $log.info('Modal dismissed at: ' + new Date());
       });
    };
+
    var AdjustData = function () {
       this.userID = config.userID;
       this.ERID = [];
       this.ERTRType = "";
       this.ERTRVendor = "";
    };
+
    $scope.adjustData = new AdjustData();
    var CreateData = function () {
       this.EOType = "";
@@ -160,6 +158,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       this.ERITN = [];
       this.memo = "";
    };
+
    $scope.createData = CreateData();
 
    $scope.isAnythingSelected = function () {
@@ -189,10 +188,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
              common.notifier.cancel("分配已取消...");
           });
    };
+
    $scope.doCreate = function () {
 
-      if (!$scope.isAnythingSelected())
-         return;
+      if (!$scope.isAnythingSelected()) return;
 
       $scope.createData.reqDelDate1 = $("#arriveDate").val();
       $scope.createData.reqDelDate2 = $("#sendDate").val();
@@ -203,7 +202,9 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       $scope.createData.ERITN = $scope.selectedItems.map(function (i) {
          return i.requirementDetail.pk.erITN;
       });
-      $http.post(config.baseUrl + "EO/EOQuickCreate" + "?" + $.param($scope.createData)).then(function (result) {
+      $http
+          .post(config.baseUrl + "EO/EOQuickCreate" + "?" + $.param($scope.createData))
+          .then(function (result) {
          $scope.modalInstance.dismiss();
          if (!result.errorMessage || result.errorMessage === "OK") {
             common.notifier.success("运单已成功创建...");
@@ -221,10 +222,9 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          scope: $scope
       });
    };
-   $scope.confirmAdjust = function () {
 
-      if (!$scope.isAnythingSelected())
-         return;
+   $scope.confirmAdjust = function () {
+      if (!$scope.isAnythingSelected()) return;
       common.messageBox({
          title: "提示信息:",
          content: "是否修改运输方式及承运商?"
@@ -234,15 +234,16 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
              common.notifier.cancel("已取消...");
           });
    };
-   $scope.doAdjust = function () {
 
-      if (!$scope.isAnythingSelected())
-         return;
+   $scope.doAdjust = function () {
+      if (!$scope.isAnythingSelected()) return;
       $scope.adjustData.ERID = $scope.selectedItems.map(function (i) {
          return i.requirementDetail.pk.erID;
       });
 
-      $http.post(config.baseUrl + "ER/ERTRChange" + "?" + $.param($scope.adjustData)).then(function (result) {
+      $http
+          .post(config.baseUrl + "ER/ERTRChange" + "?" + $.param($scope.adjustData))
+          .then(function (result) {
          $scope.modalInstance.dismiss();
          if (!result.errorMessage || result.errorMessage === "OK") {
             common.notifier.success("数据更新成功...");
@@ -253,8 +254,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
    $scope.deleteEr = function () {
-      if (!$scope.isAnythingSelected())
-         return;
+      if (!$scope.isAnythingSelected()) return;
       common.messageBox({
          title: "提示信息:",
          content: "是否删除所选择ER需求?"
@@ -262,8 +262,6 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
           .error(function () {
              common.notifier.cancel("已取消...");
           });
-
-
    };
 
    $scope.doDeleteEr = function () {
@@ -292,8 +290,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
              common.notifier.cancel("已取消...");
           });
    };
+
    $scope.doDeleteEritm = function () {
-      $http.post(
+      $http
+          .post(
               config.baseUrl + "ER/ERDelItem" + "?" + $.param({
                  "ERID": $scope.selectedItems.map(function (i) {
                     return i.requirementDetail.pk.erID;

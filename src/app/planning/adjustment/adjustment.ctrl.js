@@ -93,10 +93,10 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
         { "mData": "eoID", "sTitle": "EO" },
         { "mData": "erID", "sTitle": "ER" },
         { "mData": "erITN", "sTitle": "ERITN" },
-        { "mData": "erType", "sTitle": "类型" },
+        { "mData": "erTypeDesc", "sTitle": "类型" },
         { "mData": "erTag", "sTitle": "特殊" },
-        { "mData": "depCustomer", "sTitle": "发货方" },
-        { "mData": "recCustomer", "sTitle": "收货方" },
+        { "mData": "depCustomerDesc", "sTitle": "发货方" },
+        { "mData": "recCustomerDesc", "sTitle": "收货方" },
         { "mData": "customerOrder1", "sTitle": "客户订单号" },
         { "mData": "customerOrder2", "sTitle": "客户运单号" },
         { "mData": "customerOrder3", "sTitle": "客户出库号" },
@@ -104,8 +104,8 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
         { "mData": "packNum", "sTitle": "箱号" },
         { "mData": "amt", "sTitle": "件数" },
         { "mData": "reqDelDate", "sTitle": "送达日期" },
-        { "mData": "ertrType", "sTitle": "方式" },
-        { "mData": "ertrVendor", "sTitle": "第三方" }
+        { "mData": "ertrTypeDesc", "sTitle": "方式" },
+        { "mData": "ertrVendorDesc", "sTitle": "第三方" }
     ];
 
     $scope.searchCriteria = {

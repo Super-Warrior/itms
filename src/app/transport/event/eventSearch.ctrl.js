@@ -1,6 +1,6 @@
 angular.module('itms.transport.event')
     .controller('EventSearchCtrl', ['$scope', '$state', '$log', 'eventService', EventSearchCtrl])
-    .controller('EventSearchCtrl.MyWorkSpace', ['$scope', '$modal', 'eventService', 'common', EventWorkSpaceCtrl]);
+    .controller('EventSearchCtrl.MyWorkSpace', ['$scope', '$modal', 'common', EventWorkSpaceCtrl]);
 
 function EventSearchCtrl($scope, $state, $log, eventService) {
 
@@ -67,7 +67,7 @@ function EventSearchCtrl($scope, $state, $log, eventService) {
     };
 }
 
-function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
+function EventWorkSpaceCtrl($scope, $modal, common) {
 
     $scope.selectedItems = [];
     $scope.columns = [
@@ -78,6 +78,10 @@ function EventWorkSpaceCtrl($scope, $modal, eventService, common) {
         {
             "mData": "eventCode",
             "sTitle": "事件代码"
+        },
+        {
+            "mData": "eventDesc",
+            "sTitle": "事件代码描述"
         },
         {
             "mData": "eventDateTime",
