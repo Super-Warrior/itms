@@ -14,11 +14,11 @@
             <ul>
               <li ng-repeat="item in timelines">
                 <span>
-                  <i class="fa fa-lg fa-check-circle"></i>{{ item.eventType }}
-                  <i class="fa fa-lg fa-info-circle "></i> {{ item.eventCode }}
-                  <i class="fa fa-lg fa-info-circle "></i> {{ item.status }}
-                  <i class="fa fa-lg fa-clock-o "></i> {{ item.eventDateTime }}
-                  <i class="fa fa-lg fa-user"></i> {{ item.createUser }}
+                  <i class="fa fa-lg fa-check-circle"></i>{{ item.event.eventType }}
+                  <i class="fa fa-lg fa-info-circle "></i> {{ item.event.eventCode }}
+                  <i class="fa fa-lg fa-info-circle "></i> {{ item.event.status }}
+                  <i class="fa fa-lg fa-clock-o "></i> {{ item.event.eventDateTime }}
+                  <i class="fa fa-lg fa-user"></i> {{ item.event.createUser }}
                 </span>
               </li>
             </ul>
