@@ -151,6 +151,11 @@
                                     <a href="" ng-click="deleteEritm()" id="smart-mod-delERITN"><i
                                         class="fa fa-times-circle "></i>&nbsp;删除需求</a>
                                 </li>
+                                <li ng-class="{disabled:!isAnythingSelected()}">
+                                    <a href="" ng-click="handleEvent()" id="smart-mod-createEvent"><i
+                                            class="fa fa-edit"></i>&nbsp;事件处理</a>
+                                </li>
+
                                 <li>
                                     <a href="" ng-click="quickSearch()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
                                 </li>

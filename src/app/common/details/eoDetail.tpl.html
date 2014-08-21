@@ -14,11 +14,13 @@
     <li><a href="#o3" data-toggle="tab"><i class="fa fa-fw fa-lg fa-group"></i>网络公司</a></li>
     <li><a href="#o4" data-toggle="tab"><i class="fa fa-fw fa-lg fa-plane"></i>订班订舱</a></li>
     <li><a href="#o5" data-toggle="tab"><i class="fa fa-fw fa-lg fa-truck"></i>订班订舱</a></li>
-    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
+      <li><a href="#o6" data-toggle="tab"><i class="fa fa-fw fa-lg fa-truck"></i>事件处理</a></li>
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
       <i class="fa fa-fw fa-lg fa-edit"></i>操作<b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a href="#" data-toggle="tab" ng-click="save(data)"><i class="fa fa-fw fa-lg fa-save"></i>保存</a></li>
-        <li><a href="#" data-target="#myaction" data-toggle="modal"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a></li>
+        <!--<li><a href="#" data-target="#myaction" data-toggle="modal"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a></li>-->
         <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-refresh"></i>刷新</a></li>
       </ul>
     </li>
@@ -483,5 +485,70 @@
         </fieldset>
       </form>
     </div>
+
+    <div class="tab-pane fade" id="o6">
+        <div class="smart-form">
+            <fieldset>
+                <div class="row">
+                    <section class="col col-4">
+                        <label class="select">
+                            <select ng-model="event.eventType" ng-change="getEventCode(event.eventType)"
+                                    ng-options="type.value as type.text for type in types">
+                                <option value="" ng-hide="eventType">事件类型</option>
+                            </select>
+                            <i></i>
+                        </label>
+                    </section>
+                    <section class="col col-4">
+                        <label class="select">
+                            <select ng-model="event.eventCode" ng-options="code.value as code.text for code in codes">
+                                <option value="" ng-hide="eventCode">事件代码</option>
+                            </select>
+                            <i></i>
+                        </label>
+                    </section>
+                </div>
+                <div class="row">
+
+                    <section class="col col-4">
+                        <div class="form-group">
+                            <label>事件日期</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-calendar"></i>
+                                <input type="text" name="startdate" im-datepicker
+                                       placeholder="事件日期" ng-model="event.eventDate">
+                            </label>
+                        </div>
+                    </section>
+                    <section class="col col-4">
+                        <div class="form-group">
+                            <label>事件时间</label>
+                            <div class="input-group">
+                                <input class="form-control" data-im-timepicker type="text" value=""
+                                       placeholder="事件时间" ng-model="event.eventTime">
+                                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+                <div class="row">
+                    <section class="col col-8">
+                        <label class="textarea">
+                            <textarea rows="2" name="info" placeholder="附加信息" ng-model="event.memo"></textarea>
+                        </label>
+                    </section>
+                </div>
+            </fieldset>
+            <footer>
+                <button class="btn btn-success" ng-click="ok()">
+                    确认
+                </button>
+            </footer>
+        </div>
+    </div>
+
+
+
   </div>
 </div>

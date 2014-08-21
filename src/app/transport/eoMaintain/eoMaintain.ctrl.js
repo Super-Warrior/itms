@@ -105,6 +105,13 @@ function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configSer
                     $scope.results = [];
                 else
                     $scope.results = eoMaintainService.getResultPartial(res);
+
+                if( $scope.results.length)
+                {
+                    var icon = $("#wid-result");
+                    if (icon.hasClass("jarviswidget-collapsed"))
+                        icon.find(".jarviswidget-toggle-btn").click();
+                }
             })
             .error(function() {
                 $log.error('EOMaintainSearchCtrl: quickSearch');

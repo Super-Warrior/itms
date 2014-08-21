@@ -37,7 +37,8 @@ function eoService($http, config, configService) {
    };
 
    var searchUrl = config.baseUrl + 'EO/EOQuickSearch';
-   var createEventUrl = config.baseUrl + 'EO/EventCreate';
+   var createEventUrl = config.baseUrl + 'EO/EventCreateANY';
+   //var createEventUrl = config.baseUrl + 'EO/EventCreate';
 
    var service = {
       queryByEventType: queryByEventType,

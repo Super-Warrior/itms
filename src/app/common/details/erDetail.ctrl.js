@@ -88,12 +88,10 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
         data.requirement.oprERDate = formatDate(data.requirement.oprERDate);
         data.requirement.reqDelDate = formatDate(data.requirement.reqDelDate);
         data.requirement.createDate = formatDate(data.requirement.createDate);
-
         data.requirement.recERTime = formatTime(data.requirement.recERTime);
         data.requirement.pickERStartTime = formatTime(data.requirement.pickERStartTime);
         data.requirement.oprERFinishTime = formatTime(data.requirement.oprERFinishTime);
         data.requirement.reqDelTimeE = formatTime(data.requirement.reqDelTimeE);
-
         data.requirement.LoadERTimeF = formatTime(data.requirement.LoadERTimeF);
         data.requirement.LoadERTimeS = formatTime(data.requirement.LoadERTimeS);
         data.requirement.createTime = formatTime(data.requirement.createTime);
@@ -227,8 +225,8 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
 
     $scope.event = {
         eventType: '',
-        eventDate:  moment().format("YYYY-MM-DD"),
-        eventTime:moment().format("HH:mm:ss"),
+        eventDate: moment().format("YYYY-MM-DD"),
+        eventTime: moment().format("HH:mm:ss"),
         eventCode: "",
         memo: '',
         reset: function () {
@@ -275,10 +273,32 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
     };
 
     $scope.ok = function () {
+        var dt = null;
+        var inputDate = $scope.event.eventDate;
+        var inputTime = $scope.event.eventTime;
+        if (inputDate && inputTime) {
+            var section = inputTime.substring(inputTime.length - 3, inputTime.length);
+            section = $.trim(section);
+
+            inputTime = inputTime.substring(0, inputTime.length - 3);
+            var index = inputTime.indexOf(":");
+
+            var hour = parseInt(inputTime.substring(0, index));
+            if (section.toUpperCase() == "PM" && hour != 12)
+                hour += 12;
+            inputTime = hour + inputTime.substring(index);
+            dt = inputDate + " " + inputTime;
+            dt = moment(dt).format("YYYY-MM-DD hh:mm:ss");
+
+        }
+
         eoService
             .createEvent({
                 eventType: $scope.event.eventType,
                 eventCode: $scope.event.eventCode,
+                eventDateTime: dt,
+                //eventDate:$scope.event.eventDate,
+                //eventTime:$scope.event.eventTime,
                 memo: $scope.event.memo,
                 EO: [queryOption['eoID'] || '-1'],
                 ERID: [queryOption['erID']],
