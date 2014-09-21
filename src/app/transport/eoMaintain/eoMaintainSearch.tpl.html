@@ -4,7 +4,7 @@
 </div>
 
 <div class="row">
-  <article class="col-sm-12 col-md-12 col-lg-12">
+  <article data-it-Jarvis class="col-sm-12 col-md-12 col-lg-12">
     <div class="jarviswidget jarviswidget-color-blue jarviswidget-sortable" id="wid-eosearch"
          data-widget-editbutton="false" data-widget-custombutton="false" data-widget-sortable="false"
          data-widget-deletebutton="false">
@@ -213,16 +213,22 @@
         <span class="widget-icon">
           <i class="fa fa-search-plus"></i>
         </span>
+
         <h2>EO查询结果清单</h2>
+
         <div class="widget-toolbar">
           <div class="btn-group">
             <button class="btn dropdown-toggle btn-xs btn-success" data-toggle="dropdown"> 操作
               <i class="fa fa-caret-down"></i>
             </button>
             <ul class="dropdown-menu pull-right">
-              <li>
+              <li ng-class="{disabled:!isAnythingSelected()}">
                 <a href="javascript:void(0)" data-target="#myEOModify" data-toggle="modal"> <i class="fa fa-edit"></i>
                   批量修改</a>
+              </li>
+              <li ng-class="{disabled:!isAnythingSelected()}">
+                <a href="" ng-click="handleEvent()" id="smart-mod-createEvent"><i
+                    class="fa fa-edit"></i>&nbsp;事件处理</a>
               </li>
               <li>
                 <a href="javascript:void(0)"> <i class="fa fa-cloud-download "></i> 导出</a>

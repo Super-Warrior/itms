@@ -1,7 +1,7 @@
 angular.module('itms.transport.eoMaintain')
-    .controller('EOMaintainCtrl', ['$scope', '$state', '$log', 'eoMaintainService', EOMaintainSearchCtrl]);
+    .controller('EOMaintainCtrl', ['$scope', '$modal', '$log', 'eoMaintainService', EOMaintainSearchCtrl]);
 
-function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configService) {
+function EOMaintainSearchCtrl($scope, $modal, $log, eoMaintainService, configService) {
     $scope.module = "运输执行";
     $scope.title = "运单维护/查询";
     $scope.queryOption = {
@@ -82,6 +82,7 @@ function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configSer
         "mData": "vendorOrder",
         "sTitle": "承运方单号"
     }];
+    $scope.selectedItems = [];
 
     var configData = {
         "ERTP": null,
@@ -117,6 +118,24 @@ function EOMaintainSearchCtrl($scope, $state, $log, eoMaintainService, configSer
                 $log.error('EOMaintainSearchCtrl: quickSearch');
             });
 
+    };
+    $scope.handleEvent = function() {
+        var modalInstance = $modal.open({
+            templateUrl: 'app/transport/event/handleEvent.tpl.html',
+            controller: 'HandleEventCtrl',
+            resolve: {
+                items: function() {
+                    return $scope.selectedItems;
+                }
+            }
+        });
+        modalInstance.result.then(function() {
+            common.notifier.success("操作成功");
+        });
+    };
+
+    $scope.isAnythingSelected = function () {
+        return ($scope.selectedItems.length > 0);
     };
 
 }

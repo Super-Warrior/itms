@@ -22,17 +22,17 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
         $scope.user = "";
     };
 
-    $scope.handleEvent = function() {
+    $scope.handleEvent = function () {
         var modalInstance = $modal.open({
             templateUrl: 'app/transport/event/handleEvent.tpl.html',
             controller: 'HandleEventCtrl',
             resolve: {
-                items: function() {
+                items: function () {
                     return $scope.selectedItems;
                 }
             }
         });
-        modalInstance.result.then(function() {
+        modalInstance.result.then(function () {
             common.notifier.success("操作成功");
         });
     };
