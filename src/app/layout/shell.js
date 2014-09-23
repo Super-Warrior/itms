@@ -4,7 +4,9 @@ angular.module('itms')
 
             $rootScope.isLoginRequired = auth.isLoginRequired;
             $rootScope.currentUser = identity.currentUser;
-            $rootScope.currentUser.displayName = identity.currentUser.fisrtName+', '+ identity.currentUser.lastName;
+
+            if( identity.currentUser)
+                $rootScope.currentUser.displayName = identity.currentUser.fisrtName+', '+ identity.currentUser.lastName;
 
             $rootScope.$on('$stateChangeSuccess',
                 function (event, toState, toParams, fromState, fromParams) {

@@ -92,17 +92,22 @@ angular.module("itms.common")
     .factory("eoDetailService", ['$http', '$q', 'config', 'configService', eoDetailService]);
 
 function configService($http, $q, config) {
+    var getEmptyCriteria = function () {
 
-    var criteria = {
-        "Code": null,
-        "ConType": [],
-        "Group1": null,
-        "Group2": null,
-        "Group3": null,
-        "Language": ["CN"]
-    };
+        return  {
+            "Code": null,
+            "ConType": [],
+            "Group1": null,
+            "Group2": null,
+            "Group3": null,
+            "Language": ["CN"]
+        };
+
+    }
+    var criteria = getEmptyCriteria();
 
     var getConfig = function (type, code) {
+        criteria = getEmptyCriteria();
         criteria.ConType = [type];
         if (code) criteria.Code = code;
         return $http({
@@ -191,19 +196,19 @@ function eoDetailService($http, $q, config, configService) {
 
     function getAllConfigData() {
         return $q.all([
-                configService.getConfig('ERTP'),
-                configService.getConfig('TRPY'),
-                configService.getConfig('ERTG'),
-                configService.getConfig('EOST'),
-                configService.getConfig('EVST')
-            ]).then(function (results) {
-                var result = {};
-                angular.forEach(results, function (res) {
-                    var confType = getConfType(res.data);
-                    result[confType] = res.data;
-                });
-                return result;
+            configService.getConfig('ERTP'),
+            configService.getConfig('TRPY'),
+            configService.getConfig('ERTG'),
+            configService.getConfig('EOST'),
+            configService.getConfig('EVST')
+        ]).then(function (results) {
+            var result = {};
+            angular.forEach(results, function (res) {
+                var confType = getConfType(res.data);
+                result[confType] = res.data;
             });
+            return result;
+        });
 
         function getConfType(configs) {
             return configs[0].conType;
