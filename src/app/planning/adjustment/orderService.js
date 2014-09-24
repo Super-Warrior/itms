@@ -21,8 +21,8 @@ function orderService($http, config) {
             createDate: '',
             ERITNStatus: ['ASGN'],
             ERStatus: [''],
-            ERID:[''],
-            ERITN:['']
+            ERID: [''],
+            ERITN: ['']
         };
         return $http.postXSRF(searchUrl, data);
     }
@@ -52,6 +52,7 @@ function orderService($http, config) {
     }
 
     function getRequirementPartial(items) {
+        if (!items.map)return [];
         return items.map(mapRequirement);
 
         function mapRequirement(item) {
@@ -88,9 +89,9 @@ function orderService($http, config) {
     };
 
     if (config.mode === 'development') {
-       orderService.queryAll = queryAllLocal;
+        orderService.queryAll = queryAllLocal;
     } else {
-       orderService.queryAll = queryAllRemote;
+        orderService.queryAll = queryAllRemote;
     }
 
     return orderService;

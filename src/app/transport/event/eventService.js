@@ -125,7 +125,7 @@ function eventService($http, $q, config, configService) {
             return {
                 eventType: item.event.eventType,
                 eventCode: item.event.eventCode,
-                eventDesc: event.eventDesc || '',
+                eventDesc: item.event.eventDesc|| item.eventDesc || '',
                 eventDateTime: item.event.eventDateTime,
                 createUser: item.event.createUser,
                 eoNumber: item.event.eo + '/' + item.event.erid + '/' + item.event.eritn,

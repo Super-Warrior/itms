@@ -1,7 +1,7 @@
 angular.module('itms.planning.adjustment')
-    .controller('EOAssignAdjustCtrl', ['$scope', '$modal', '$log', 'orderService', 'common', EOAssignAdjustCtrl]);
+    .controller('EOAssignAdjustCtrl', ['$scope', '$modal', '$log', 'orderService', 'common', '$http', EOAssignAdjustCtrl]);
 
-function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
+function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http) {
     var notifier = common.notifier;
 
     $scope.module = '计划';
@@ -46,7 +46,24 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
         });
     };
 
-    $scope.reallocate = function reallocate() {
+
+    $scope.reallocate = function () {
+        var reallocate = function (value) {
+            orderService
+                .erAssignChange({
+                    selectedItems: $scope.selectedItems,
+                    eoid: value
+                })
+                .success(function () {
+                    notifier.success("已成功分配至订单" + value);
+                    $scope.searchAssignableRequest();
+                });
+        };
+
+        var cancel = function () {
+            notifier.cancel("操作取消...");
+        };
+
         if ($scope.selectedItems.length > 0) {
             common
                 .messageBox({
@@ -58,46 +75,58 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common) {
                 .success(reallocate)
                 .error(cancel);
 
-            function reallocate(value) {
-                orderService
-                    .erAssignChange({
-                        selectedItems: $scope.selectedItems,
-                        eoid: value
-                    })
-                    .success(function () {
-                        notifier.success("已成功分配至订单" + value);
-                        $scope.searchAssignableRequest();
-                    });
-            }
 
-            function cancel() {
-                notifier.cancel("操作取消...");
-            }
         }
     };
 
-    $scope.cancelAssignment = function cancelAssignment() {
+    $scope.cancelAssignment = function () {
+        var doCancelAssignment = function () {
+            orderService
+                .erDeleteAssignment({
+                    selectedItems: $scope.selectedItems
+                })
+                .success(function () {
+                    notifier.success("已成功取消运单分配...");
+                    $scope.searchAssignableRequest();
+                });
+        }
         if ($scope.selectedItems.length > 0) {
             common.messageBox({
                 title: "提示信息!",
                 content: "是否取消所选择记录的运单分配?"
             })
-                .success(cancelAssignment)
+                .success(doCancelAssignment)
                 .error(function () {
                     notifier.cancel();
                 });
-
-            function cancelAssignment() {
-                orderService
-                    .erDeleteAssignment({
-                        selectedItems: $scope.selectedItems
-                    })
-                    .success(function () {
-                        notifier.success("已成功取消运单分配...");
-                        $scope.searchAssignableRequest();
-                    });
-            }
         }
+    };
+
+
+    $scope.deleteEr = function () {
+        if ($scope.disableAction()) return;
+        common.messageBox({
+            title: "提示信息:",
+            content: "是否删除所选择ER需求?"
+        }).success($scope.doDeleteEr)
+            .error(function () {
+                common.notifier.cancel("已取消...");
+            });
+    };
+
+    $scope.doDeleteEr = function () {
+        $http.post(config.baseUrl + "ER/ERDel" + "?" + $.param({
+            "ERID": $scope.selectedItems.map(function (i) {
+                return i.erID;
+            })
+        })).then(
+            function (result) {
+                if (!result.errorMessage || result.errorMessage === "OK") {
+                    common.notifier.success("删除操作成功...");
+                }
+            }).then(function () {
+                $scope.searchAssignableRequest();
+            });
     };
 
     $scope.disableAction = function () {
