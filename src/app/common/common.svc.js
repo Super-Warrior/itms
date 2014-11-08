@@ -1,12 +1,11 @@
 angular
     .module('itms.common', [])
     .factory('notifier', function () {
-
         var defaultOption = {
             timeout: 4000,
             successIcon: "fa fa-check fa-2x fadeInRight animated",
             successColor: "#659265",
-            successTitle: "操作成功",
+            successTitle: "操作成功 ",
             cancelIcon: "fa fa-times fa-2x fadeInRight animated",
             cancelColor: "#C46A69",
             cancelTitle: "操作取消"
@@ -147,7 +146,7 @@ function configService($http, $q, config) {
             dataType: "json"
         });
     };
-    return { "getConfig": getConfig, "getConfigs": getConfigs, "getMaterial": getMaterial };
+    return {"getConfig": getConfig, "getConfigs": getConfigs, "getMaterial": getMaterial};
 }
 
 function timelineService($http, config) {
@@ -191,19 +190,19 @@ function eoDetailService($http, $q, config, configService) {
 
     function getAllConfigData() {
         return $q.all([
-                configService.getConfig('ERTP'),
-                configService.getConfig('TRPY'),
-                configService.getConfig('ERTG'),
-                configService.getConfig('EOST'),
-                configService.getConfig('EVST')
-            ]).then(function (results) {
-                var result = {};
-                angular.forEach(results, function (res) {
-                    var confType = getConfType(res.data);
-                    result[confType] = res.data;
-                });
-                return result;
+            configService.getConfig('ERTP'),
+            configService.getConfig('TRPY'),
+            configService.getConfig('ERTG'),
+            configService.getConfig('EOST'),
+            configService.getConfig('EVST')
+        ]).then(function (results) {
+            var result = {};
+            angular.forEach(results, function (res) {
+                var confType = getConfType(res.data);
+                result[confType] = res.data;
             });
+            return result;
+        });
 
         function getConfType(configs) {
             return configs[0].conType;

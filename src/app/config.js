@@ -16,11 +16,12 @@ angular
 
 
 function configProvider($provide) {
-    $provide.decorator('$exceptionHandler', function ($log) {
+    $provide.decorator('$exceptionHandler', function ($delegate, $log) {
         return function (exception, cause) {
-            var error = { exception: exception, cause: cause };
+            $delegate(exception, cause);
+            var error = {exception: exception, cause: cause};
             $log.debug(error.exception);
-            throw error;
+//            throw error;
         };
     });
 
@@ -52,7 +53,7 @@ function configProvider($provide) {
                 method: 'POST',
                 url: url,
                 data: $.param(data),
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             });
         };
         return $delegate;
