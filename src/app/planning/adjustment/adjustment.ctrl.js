@@ -271,3 +271,4 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http) {
         timeLine: true,
         eoDetail: true
     };
+}
