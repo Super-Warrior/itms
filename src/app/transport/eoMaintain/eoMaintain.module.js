@@ -13,7 +13,7 @@ angular
         views: {
           '@app.user': {
             templateUrl: 'app/transport/eoMaintain/eoMaintainSearch.tpl.html',
-            controller: 'EOMaintainSearchCtrl'
+            controller: 'EOMaintainCtrl'
           }
         }
       });

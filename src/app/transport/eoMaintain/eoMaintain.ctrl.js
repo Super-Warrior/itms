@@ -1,7 +1,8 @@
 angular.module('itms.transport.eoMaintain')
-  .controller('EOMaintainCtrl', ['$scope', '$modal', '$log', 'eoMaintainService', EOMaintainSearchCtrl]);
+  .controller('EOMaintainCtrl', ['$scope', '$modal', '$log', 'eoMaintainService','configService', EOMaintainSearchCtrl]);
 
 function EOMaintainSearchCtrl($scope, $modal, $log, eoMaintainService, configService) {
+
   $scope.module = "运输执行";
   $scope.title = "运单维护/查询";
   $scope.queryOption = {
