@@ -10,7 +10,9 @@
            data-widget-deletebutton="false">
 
         <header><span class="widget-icon"> <i class="fa fa-search"></i> </span>
+
           <h2> EO查询条件</h2>
+
           <div class="widget-toolbar">
             <div class="btn-group">
               <button class="btn dropdown-toggle btn-xs btn-success" data-toggle="dropdown"> 操作 <i
@@ -126,21 +128,25 @@
                     <div class="row">
                       <section class="col col-3">
                         <label class="input"> <i class="icon-prepend fa fa-arrow-circle-up "></i>
-                          <input ng-disabled="currentUser.userType==1" ng-model="queryOption.depCustomer" type="text" placeholder="发货客户代码">
+                          <input ng-disabled="currentUser.userType==1" ng-model="queryOption.depCustomer" type="text"
+                                 placeholder="发货客户代码">
                         </label>
                       </section>
                       <section class="col col-3">
-                        <button class="btn btn-info btn-sm" ng-disabled="currentUser.userType==1" ng-click="searchCustomer('dep')">
+                        <button class="btn btn-info btn-sm" ng-disabled="currentUser.userType==1"
+                                ng-click="searchCustomer('dep')">
                           <i class="fa fa-search "></i> 客户搜索
                         </button>
                       </section>
                       <section class="col col-3">
                         <label class="input"> <i class="icon-prepend fa fa-arrow-circle-down"></i>
-                          <input ng-disabled="currentUser.userType==2" ng-model="queryOption.recCustomer" type="text" placeholder="目的地客户代码">
+                          <input ng-disabled="currentUser.userType==2" ng-model="queryOption.recCustomer" type="text"
+                                 placeholder="目的地客户代码">
                         </label>
                       </section>
                       <section class="col col-3">
-                        <button class="btn btn-info btn-sm" ng-disabled="currentUser.userType==2" ng-click="searchCustomer('rec')">
+                        <button class="btn btn-info btn-sm" ng-disabled="currentUser.userType==2"
+                                ng-click="searchCustomer('rec')">
                           <i class="fa fa-search "></i> 客户搜索
                         </button>
                       </section>
@@ -166,7 +172,9 @@
            data-widget-deletebutton="false">
 
         <header><span class="widget-icon"> <i class="fa fa-search-plus"></i> </span>
+
           <h2>EO查询结果清单</h2>
+
           <div class="widget-toolbar">
             <div class="btn-group">
               <button class="btn dropdown-toggle btn-xs btn-success" data-toggle="dropdown"> 操作 <i

@@ -4,13 +4,15 @@
       <div class="col col-3">
         <label class="label"><i class="fa fa-eye-slash "></i> 事件类型</label>
         <label class="select select-multiple">
-          <select data-ng-model="eventSearchCriteria.quickSearch.eventType" data-ng-options="config.description for config in configData.EVTP" multiple></select>
+          <select data-ng-model="eventSearchCriteria.quickSearch.eventType"
+                  data-ng-options="config.description for config in configData.EVTP" multiple></select>
         </label>
       </div>
       <div class="col col-3">
         <label class="label"><i class="fa fa-eye-slash "></i> 事件处理状态</label>
         <label class="select select-multiple">
-          <select data-ng-model="eventSearchCriteria.quickSearch.eventStatus" data-ng-options="config.description for config in configData.EPST" multiple></select>
+          <select data-ng-model="eventSearchCriteria.quickSearch.eventStatus"
+                  data-ng-options="config.description for config in configData.EPST" multiple></select>
         </label>
       </div>
     </div>

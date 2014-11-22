@@ -22,11 +22,11 @@ function httpConfig($httpProvider) {
 }
 
 angular.module('itms')
-  .factory('authInterceptor', ['$rootScope',function($rootScope) {
+  .factory('authInterceptor', ['$rootScope', function ($rootScope) {
     return {
-      request: function(config) {
+      request: function (config) {
         config.headers = config.headers || {};
-        if($rootScope.currentUser) {
+        if ($rootScope.currentUser) {
           config.headers.Authorization = $rootScope.currentUser;
         }
         return config;
