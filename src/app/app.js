@@ -14,19 +14,19 @@ angular
     'itms.login'
   ])
   .run(['$rootScope', '$state', '$stateParams', '$log', '$location', 'auth', bootstrap])
-  .config(['$urlRouterProvider', '$stateProvider', routerConfig])
-  .config(['$httpProvider', httpConfig]);
+  .config(['$urlRouterProvider', '$stateProvider', routerConfig]);
+  //.config(['$httpProvider', httpConfig]);
 
 function httpConfig($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
 }
 
 angular.module('itms')
-  .factory('authInterceptor', ['$rootScope', function ($rootScope) {
+  .factory('authInterceptor', ['$rootScope',function($rootScope) {
     return {
-      request: function (config) {
+      request: function(config) {
         config.headers = config.headers || {};
-        if ($rootScope.currentUser) {
+        if($rootScope.currentUser) {
           config.headers.Authorization = $rootScope.currentUser;
         }
         return config;

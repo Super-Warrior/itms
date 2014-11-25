@@ -104,9 +104,93 @@
                              placeholder="创建日期">
                     </label>
                   </section>
-
                 </div>
               </fieldset>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label class="label"><i class="fa fa-list"></i> 运单类型</label>
+                            <label class="select select-multiple">
+                                <select multiple="" class="custom-scroll" data-ng-model="ERType">
+                                    <option value="1">SGM-紧急</option>
+                                    <option value="2">SAIC-常规</option>
+                                </select>
+                            </label>
+                            <div class="note"> <strong>提示:</strong> 按ctrl键进行多选操作 </div>
+                        </section>
+                        <section class="col col-2">
+                            <label class="label"><i class="fa fa-truck "></i> 运输方式</label>
+                            <label class="select select-multiple">
+                                <select multiple="" class="custom-scroll" data-ng-model="ERTRType">
+                                    <option value="1">公路</option>
+                                    <option value="2">航空</option>
+                                    <option value="3">自有</option>
+                                </select>
+                            </label>
+                        </section>
+                        <section class="col col-2">
+                            <label class="label"><i class="fa fa-ambulance "></i> 运输特殊标识</label>
+                            <label class="select select-multiple">
+                                <select multiple="" class="custom-scroll" data-ng-model="ERTag">
+                                    <option value="1">冷藏</option>
+                                    <option value="2">危险品</option>
+                                    <option value="3">自有</option>
+                                </select>
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+
+                        <section class="col col-3">
+                            <label class="input"> <i class="icon-prepend fa fa-inbox"></i>
+                                <input type="text" ng-model="ERID[0]" name="CRP3" placeholder="ER需求编号">
+                            </label>
+                        </section>
+                        <section class="col col-3">
+                            <label class="input"> <i class="icon-prepend fa fa-search"></i>
+                                <input type="text" placeholder="订单编号D/N" data-ng-model="customerOrder1">
+                            </label>
+                        </section>
+                        <section class="col col-3">
+                            <label class="input"> <i class="icon-prepend fa fa-search"></i>
+                                <input type="text" placeholder="发运单／仓库出库号" data-ng-model="customerOrder2">
+                            </label>
+                        </section>
+                        <section class="col col-2">
+                            <label class="input"> <i class="icon-prepend fa fa-search"></i>
+                                <input type="text"  placeholder="计费重量分界" data-ng-model="customerOrder3">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-2">
+                            <label class="input"> <i class="icon-prepend fa fa-sitemap "></i>
+                                <input type="text"  placeholder="运输区域组别" data-ng-model="dep_Group1">
+                            </label>
+                        </section>
+                        <section class="col col-2">
+                            <label class="input"> <i class="icon-prepend fa fa-map-marker  "></i>
+                                <input type="text"  placeholder="出发地省" data-ng-model="dep_State">
+                            </label>
+                        </section>
+                        <section class="col col-2">
+                            <label class="input"> <i class="icon-prepend fa fa-map-marker "></i>
+                                <input type="text"  placeholder="出发地城市" data-ng-model="dep_City">
+                            </label>
+                        </section>
+                        <section class="col col-2">
+                            <label class="input"> <i class="icon-prepend fa fa-location-arrow "></i>
+                                <input type="text"  placeholder="目的地省" data-ng-model="rec_State">
+                            </label>
+                        </section>
+                        <section class="col col-2">
+                            <label class="input"> <i class="icon-prepend fa fa-location-arrow"></i>
+                                <input type="text"  placeholder="目的地城市" data-ng-model="rec_City">
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+
               <footer>
                 <button type="button" ng-click="quickSearch()" class="btn  btn-default">
                   <i class="fa fa-search"></i>&nbsp;查询
@@ -137,6 +221,15 @@
                 操作 <i class="fa fa-caret-down"></i>
               </button>
               <ul class="dropdown-menu pull-right">
+                  <li ng-class="{disabled:!isAnythingSelected()}">
+                      <a href="" ng-click="exportExcel()"><i class="fa fa-resize-small"></i>&nbsp;导出为EXCEL</a>
+                  </li>
+                  <li ng-class="{disabled:!isAnythingSelected()}">
+                      <a href="" ng-click="createEOByER()"><i class="fa fa-resize-small"></i>&nbsp;按需求创建订单</a>
+                  </li>
+                  <li ng-class="{disabled:!isAnythingSelected()}">
+                      <a href="" ng-click="createEOByERITN()"><i class="fa fa-resize-small"></i>&nbsp;按需求项目创建订单</a>
+                  </li>
                 <li ng-class="{disabled:!isAnythingSelected()}">
                   <a href="" ng-click="create()"><i class="fa fa-resize-small"></i>&nbsp;合并至运单</a>
                 </li>
