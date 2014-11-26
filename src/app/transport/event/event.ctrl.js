@@ -205,7 +205,7 @@ function HandleEventCtrl($scope, $modalInstance, eoService, items) {
             if (typeof (temp) == "undefined") {
                temp = item.requirementDetail && item.requirementDetail.eoid;
             }
-            return temp;
+            return temp || '-1';
          }),
          ERID: $scope.items.map(function (item) {
             var temp = item.erid || item.erID;
