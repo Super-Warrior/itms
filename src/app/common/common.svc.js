@@ -89,7 +89,33 @@ function common($q, notifier, fileHelper) {
 angular.module("itms.common")
     .factory("configService", ["$http", "$q", "config", configService])
     .factory("timelineService", ['$http', 'config', timelineService])
-    .factory("eoDetailService", ['$http', '$q', 'config', 'configService', eoDetailService]);
+    .factory("eoDetailService", ['$http', '$q', 'config', 'configService', eoDetailService])
+    .factory("exportService", [exportService]);
+
+function exportService(){
+    var exportToExcel = function(columns,result){
+        var dataobj = result;
+        $("#btnExport").battatech_excelexport({
+            containerid: "btnExport"
+            , datatype: 'json'
+            , dataset: dataobj
+            , columns:convertToExportedColumn(columns)
+        });
+    };
+    return{
+      export:exportToExcel
+    }
+}
+
+function convertToExportedColumn(columns){
+    var result=[];
+    columns.forEach(function(value,index){
+        if(index==0)return false;
+        var newItem= { headertext: value.sTitle, datatype: "string", datafield: value.mData, ishidden: false };
+        result.push(newItem);
+    });
+    return result;
+}
 
 function configService($http, $q, config) {
     var getEmptyCriteria = function () {

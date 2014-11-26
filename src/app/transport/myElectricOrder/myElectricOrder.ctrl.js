@@ -143,4 +143,9 @@ function MyElectricOrderCtrl($scope, $modal, $log, myElectricOrderService) {
 
     };
 
+    $scope.export = function () {
+        exportService.export($scope.columns,$scope.results)
+
+    };
+
 }
