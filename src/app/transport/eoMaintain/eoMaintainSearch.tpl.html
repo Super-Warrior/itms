@@ -406,6 +406,9 @@
                 <a href="" ng-click="handleEvent()" id="smart-mod-createEvent"><i
                     class="fa fa-edit"></i>&nbsp;事件处理</a>
               </li>
+                <li ng-class="{disabled:!isOnlyOneSelected()}">
+                    <a href="" ng-click="leftQtyEvent()" id="smart-mod-leftQtyEvent"><i class="fa fa-edit"></i>&nbsp;剩余数量更新</a>
+                </li>
               <li>
                 <a href="javascript:void(0)"> <i class="fa fa-cloud-download "></i> 导出</a>
               </li>

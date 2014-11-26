@@ -34,10 +34,12 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
         { "mData": "requirement.customerOrder2", "sTitle": "客户运单号" },
         { "mData": "requirement.customerOrder3", "sTitle": "客户出库号" },
         { "mData": "requirementDetail.matIID", "sTitle": "物料" },
+        { "mData": "requirementDetail.resAmt1", "sTitle": "包装数量" },
         { "mData": "requirementDetail.packNum", "sTitle": "箱号" },
         { "mData": "requirementDetail.amt", "sTitle": "件数" },
         { "mData": "requirement.reqDelDate", "sTitle": "送达日期" },
         { "mData": "ertrtypeDesc", "sTitle": "方式" },
+        { "mData": "eritnstatusDesc", "sTitle": "状态" },
         { "mData": "ertrvendorDesc", "sTitle": "第三方" }
    ];
    $scope.selectedSite = [];
@@ -374,6 +376,26 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
             function (result) {
                 if (!result.errorMessage || result.errorMessage === "OK") {
                     common.notifier.success("创建EO运单操作成功...");
+                }
+            }).then(function () {
+                $scope.quickSearch();
+            });
+    }
+
+    /* Added by T.C. 2014.11.26*/
+    $scope.autoSplitERITN = function() {
+        $http.post(config.baseUrl + "ER/ERItnAutoSplit" + "?" + $.param({
+            "ERID": $scope.selectedItems.map(function (i) {
+                return i.requirementDetail.pk.erID;
+            }),
+            "ERITN": $scope.selectedItems.map(function (i) {
+                return i.requirementDetail.pk.erITN;
+            }),
+            user : config.userID
+        })).then(
+            function (result) {
+                if (!result.errorMessage || result.errorMessage === "OK") {
+                    common.notifier.success("包装数量调整完毕...");
                 }
             }).then(function () {
                 $scope.quickSearch();
