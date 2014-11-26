@@ -1,7 +1,7 @@
 angular.module('itms.transport.eoMaintain')
-    .controller('EOMaintainCtrl', ['$scope', "$http", "config", "common", '$modal', '$log', 'eoMaintainService', EOMaintainSearchCtrl]);
+    .controller('EOMaintainCtrl', ['$scope', "$http", "config", "common", '$modal', '$log', 'eoMaintainService','exportService', EOMaintainSearchCtrl]);
 
-function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMaintainService, configService) {
+function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMaintainService, configService,exportService) {
     $scope.module = "运输执行";
     $scope.title = "运单维护/查询";
     $scope.queryOption = {
@@ -239,6 +239,11 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
             if (icon.hasClass("jarviswidget-collapsed"))
                 icon.find(".jarviswidget-toggle-btn").click();
         });
+    };
+
+    $scope.export = function () {
+        exportService.export($scope.columns,$scope.results)
+
     };
 
 }

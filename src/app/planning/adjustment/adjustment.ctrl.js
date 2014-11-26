@@ -1,7 +1,7 @@
 angular.module('itms.planning.adjustment')
-    .controller('EOAssignAdjustCtrl', ['$scope', '$modal', '$log', 'orderService', 'common', '$http', EOAssignAdjustCtrl]);
+    .controller('EOAssignAdjustCtrl', ['$scope', '$modal', '$log', 'orderService', 'common', '$http','exportService', EOAssignAdjustCtrl]);
 
-function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http) {
+function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http,exportService) {
     var notifier = common.notifier;
 
     $scope.module = '计划';
@@ -217,5 +217,10 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http) {
     };
 
     $scope.detailConfig = { erDetail: true, timeLine: true, eoDetail: true };
+
+    $scope.export = function () {
+        exportService.export($scope.columns,$scope.orders)
+
+    };
 
 }

@@ -1,8 +1,8 @@
 angular.module("itms.planning.assignment")
     .controller("EOAssignCtrl", ["$scope", "$modal", "$log",
-        "$http", "config", "common", "configService", "customerService", EOAssignCtrl]);
+        "$http", "config", "common", "configService", "customerService","exportService", EOAssignCtrl]);
 
-function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService) {
+function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService,exportService) {
    $scope.module = "计划";
    $scope.title = "需求分配";
 
@@ -434,10 +434,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
           });
    };
 
-    /* Added by T.C. 2014.11.05*/
-    $scope.exportExcel = function() {
-        $('#tableWidget').btechco_excelexport({
-            containerid: "DataTables_Table_0", datatype: $datatype.Table
-        });
+    $scope.export = function () {
+        exportService.export($scope.columns,$scope.quickResult)
+
     };
 }
