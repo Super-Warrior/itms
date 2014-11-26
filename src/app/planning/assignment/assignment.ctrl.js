@@ -334,7 +334,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
 
     /* Added by T.C. 2014.11.05*/
    $scope.doCreateEOByER = function() {
-       $http.post(config.baseUrl + "ER/EOERQuickCreate" + "?" + $.param({
+       $http.post(config.baseUrl + "ER/EOERQuickCreateWOValidation" + "?" + $.param({
            "ERID": $scope.selectedItems.map(function (i) {
                return i.requirementDetail.pk.erID;
            }),
@@ -364,7 +364,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
 
     /* Added by T.C. 2014.11.05*/
     $scope.doCreateEOByERITN = function() {
-        $http.post(config.baseUrl + "ER/EOERITNQuickCreate" + "?" + $.param({
+        $http.post(config.baseUrl + "ER/EOERItnQuickCreateWOValidation" + "?" + $.param({
             "ERID": $scope.selectedItems.map(function (i) {
                 return i.requirementDetail.pk.erID;
             }),
