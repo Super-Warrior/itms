@@ -40,9 +40,14 @@ function customerService($http, config) {
         }
     }
 
-    function searchCustomer(type) {
-        var criteria = new Criteria(type);
-        return $http({
+    function searchCustomer(type,param) {
+       var criteria = new Criteria(type);
+       if (param) {
+          for (var i in param) {
+             criteria[i] = param[i];
+          }
+       }
+       return $http({
             method: "GET",
             url: config.baseUrl + "search/Customer" + "?" + $.param(criteria),
             dataType: "json"

@@ -3,328 +3,331 @@
         "$http", "$q", "$modalInstance", "config", "common", "configService", "eoService", erDetailCtrl]);
 
 function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configService, eoService, data) {
-    var queryOption = {};
-    //  ERID: tempData.pk.erID,
-    // ERITN: tempData.pk.erITN,
-    if (data && data.requirementDetail) {
-        queryOption = {
-            "erID": data.requirementDetail.pk.erID,
-            "erITN": data.requirementDetail.pk.erITN,
-            "eoID": data.requirementDetail.eoid
-        };
-    } else {
-        queryOption = {
-            "erID": data.erID || data['erid'],
-            "erITN": data.erITN || data['eritn']
-        };
-    }
-    if (data && (data.eoID || data.eoid || data.eo)) {
-        queryOption['eoID'] = data.eoID || data.eoid || data.eo;
-    }
+   var queryOption = {};
+   //  ERID: tempData.pk.erID,
+   // ERITN: tempData.pk.erITN,
+   if (data && data.requirementDetail) {
+      queryOption = {
+         "erID": data.requirementDetail.pk.erID,
+         "erITN": data.requirementDetail.pk.erITN,
+         "eoID": data.requirementDetail.eoid
+      };
+   } else {
+      queryOption = {
+         "erID": data.erID || data['erid'],
+         "erITN": data.erITN || data['eritn']
+      };
+   }
+   if (data && (data.eoID || data.eoid || data.eo)) {
+      queryOption['eoID'] = data.eoID || data.eoid || data.eo;
+   }
 
-    var param = {
-        SerType: "AND",
-        userID: config.userID,
-        depAreaCode: '',
-        depCustomer: '',
-        depLocCode: '',
-        recCustomer: '',
-        recLocCode: '',
-        createDate: '',
-        ERType: [''],
-        customerOrder1: '',
-        customerOrder2: '',
-        customerOrder3: '',
-        ERTag: '',
-        MesUnit1: '',
-        reqDelDate: '',
-        dep_Country: '',
-        dep_State: '',
-        dep_City: '',
-        dep_Disc: '',
-        dep_Group1: '',
-        dep_Group2: '',
-        rec_Country: '',
-        rec_State: '',
-        rec_City: '',
-        rec_Disc: '',
-        rec_Group1: '',
-        rec_Group2: '',
-        ERID: [queryOption['erID']],
-        ERITN: [queryOption['erITN']]
-    };
+   var param = {
+      SerType: "AND",
+      userID: config.userID,
+      depAreaCode: '',
+      depCustomer: '',
+      depLocCode: '',
+      recCustomer: '',
+      recLocCode: '',
+      createDate: '',
+      ERType: [''],
+      ERITNStatus: [""],
+      customerOrder1: '',
+      customerOrder2: '',
+      customerOrder3: '',
+      ERTag: [''],
+      MesUnit1: '',
+      reqDelDate: '',
+      dep_Country: '',
+      dep_State: '',
+      dep_City: '',
+      dep_Disc: '',
+      dep_Group1: '',
+      dep_Group2: '',
+      rec_Country: '',
+      rec_State: '',
+      rec_City: '',
+      rec_Disc: '',
+      rec_Group1: '',
+      rec_Group2: '',
+      ERID: [queryOption['erID']],
+      ERITN: [queryOption['erITN']],
+      ERTRType: [""],
+      ERStatus: [""]
+   };
 
-    var configData = {
-        "ERST": null,
-        "ERNT": null,
-        "ERTP": null,
-        "TRPY": null,
-        "ERTG": null,
-        "PKST": null
-    };
-    $scope.configs = {};
-    configService.getConfigs(configData).then(
-        function () {
-            $.extend($scope.configs, configData);
-        }
-    );
-
-
-    $scope.basicData = {};
-    $http
-        .post(config.baseUrl + "ER/ERQuickSearch" + "?" + $.param(param))
-        .then(function (result) {
-            data = result.data[0];
-        })
-        .then(function () {
-            if (data) {
-                formatData(data);
-                $scope.basicData = data;
-            }
-        });
-
-    configService.getMaterial("TRES").then(
-        function (result) {
-            $scope.configs.material = result.data;
-        }
-    );
+   var configData = {
+      "ERST": null,
+      "ERNT": null,
+      "ERTP": null,
+      "TRPY": null,
+      "ERTG": null,
+      "PKST": null
+   };
+   $scope.configs = {};
+   configService.getConfigs(configData).then(
+       function () {
+          $.extend($scope.configs, configData);
+       }
+   );
 
 
-    function formatData(data) {
-        data.requirement.resMemo = "";
-        var formatDate = function (dt) {
-            if (!dt) return dt;
-            return moment(dt).format("YYYY-MM-DD");
-        };
-        var formatTime = function (dt) {
-            if (!dt) return dt;
-            return moment(dt).format("HH:mm:ss");
-        };
-        data.requirement.recERDate = formatDate(data.requirement.recERDate);
-        data.requirement.pickERDate = formatDate(data.requirement.pickERDate);
-        data.requirement.oprERDate = formatDate(data.requirement.oprERDate);
-        data.requirement.reqDelDate = formatDate(data.requirement.reqDelDate);
-        data.requirement.createDate = formatDate(data.requirement.createDate);
-        data.requirement.recERTime = formatTime(data.requirement.recERTime);
-        data.requirement.pickERStartTime = formatTime(data.requirement.pickERStartTime);
-        data.requirement.oprERFinishTime = formatTime(data.requirement.oprERFinishTime);
-        data.requirement.reqDelTimeE = formatTime(data.requirement.reqDelTimeE);
-        data.requirement.LoadERTimeF = formatTime(data.requirement.LoadERTimeF);
-        data.requirement.LoadERTimeS = formatTime(data.requirement.LoadERTimeS);
-        data.requirement.createTime = formatTime(data.requirement.createTime);
-        data.requirement.loadERStartTime = formatTime(data.requirement.loadERStartTime);
-        data.requirement.oprERFinishUnloadTime = formatTime(data.requirement.oprERFinishUnloadTime);
-        data.requirement.oprERTimeULF = formatTime(data.requirement.oprERTimeULF);
-        data.requirement.oprERTimeULS = formatTime(data.requirement.oprERTimeULS);
-        data.requirement.oprERStartTime = formatTime(data.requirement.oprERStartTime);
-        data.requirement.oprERStartUnloadTime = formatTime(data.requirement.oprERStartUnloadTime);
-        data.requirement.oprERTimeS = formatTime(data.requirement.oprERTimeS);
-        data.requirement.pickERFinishTime = formatTime(data.requirement.pickERFinishTime);
-        data.requirement.pickERTimeF = formatTime(data.requirement.pickERTimeF);
-        data.requirement.loadERFinishTime = formatTime(data.requirement.loadERFinishTime);
-    }
+   $scope.basicData = {};
+   $http
+       .post(config.baseUrl + "ER/ERQuickSearch" + "?" + $.param(param))
+       .then(function (result) {
+          data = result.data[0];
+       })
+       .then(function () {
+          if (data) {
+             formatData(data);
+             $scope.basicData = data;
+          }
+       });
+
+   configService.getMaterial("TRES").then(
+       function (result) {
+          $scope.configs.material = result.data;
+       }
+   );
 
 
-    $scope.save = function () {
-        var saveHead = function () {
-            var tempData = $scope.basicData.requirement;
-
-            var param = {
-                ERID: tempData.erID,
-                ERStatus: tempData.erStatus,
-                lastChangeUser: tempData.lastChangeUser,
-                lastChangeDate: tempData.lastChangeDate,
-                lastChangeTime: tempData.lastChangeTime,
-                ERType: tempData.erType,
-                ERTRType: tempData.erTRType,
-                ERTRTypeSM: tempData.ertrtypeSM,
-                ERTag: tempData.erTag,
-                ERTRVendor: tempData.ertrvendor,
-                ERTRVendorSM: tempData.ertrvendorSM,
-                preERID: tempData.preERID,
-                preEOID: tempData.preEOID,
-                customerOrder1: tempData.customerOrder1,
-                customerOrder2: tempData.customerOrder2,
-                customerOrder3: tempData.customerOrder3,
-                preCustomerOrder1: tempData.preCustomerOrder1,
-                preCustomerOrder2: tempData.preCustomerOrder2,
-                preCustomerOrder3: tempData.preCustomerOrder3,
-                totalAmt: tempData.totalAmt,
-                totalWgt: tempData.totalWgt,
-                totalVol: tempData.totalVol,
-                totalVolWgt: tempData.totalVolWgt,
-                resType1: tempData.resType1,
-                ResAmt1: tempData.resAmt1,
-                resType2: tempData.resType2,
-                ResAmt2: tempData.resAmt2,
-                resType3: tempData.resType3,
-                ResAmt3: tempData.resAmt3,
-                memo: tempData.memo,
-                reqDelDate: tempData.reqDelDate,
-                reqDelTimeE: tempData.reqDelTimeE,
-                reqDelTimeL: tempData.reqDelTimeL,
-                recERDate: tempData.recERDate,
-                recERTime: tempData.recERTime,
-                pickERDate: tempData.pickERDate,
-                pickERTimeS: tempData.pickERStartTime,
-                pickERTimeF: tempData.pickERFinishTime,
-                LoadERTimeS: tempData.loadERStartTime,
-                LoadERTimeF: tempData.loadERFinishTime,
-                oprERDate: tempData.oprERDate,
-                oprERTimeULS: tempData.oprERStartUnloadTime,
-                oprERTimeULF: tempData.oprERFinishUnloadTime,
-                oprERTimeS: tempData.oprERStartTime,
-                oprERTimeF: tempData.oprERFinishTime,
-                depAreaCode: tempData.depAreaCode,
-                depCustomer: tempData.depCustomer,
-                depCustomerContact: tempData.depCustomerContact,
-                depCustomerEmail: tempData.depCustomerEmail,
-                depCustomerPhone: tempData.depCustomerPhone,
-                depLocCode: tempData.depLocCode,
-                depMemo: tempData.depMemo,
-                recCustomer: tempData.recCustomer,
-                recCustomerContact: tempData.recCustomerContact,
-                recCustomerEmail: tempData.recCustomerEmail,
-                recCustomerPhone: tempData.recCustomerPhone,
-                recLocCode: tempData.recLocCode,
-                recMemo: tempData.recMemo,
-                ResMemo: tempData.resMemo
-            };
-
-            return $http.post(config.baseUrl + "ER/ERChange" + "?" + $.param(param));
-        };
-        var saveItem = function () {
-            var tempData = $scope.basicData.requirementDetail;
-            var param = {
+   function formatData(data) {
+      data.requirement.resMemo = "";
+      var formatDate = function (dt) {
+         if (!dt) return dt;
+         return moment(dt).format("YYYY-MM-DD");
+      };
+      var formatTime = function (dt) {
+         if (!dt) return dt;
+         return moment(dt).format("HH:mm:ss");
+      };
+      data.requirement.recERDate = formatDate(data.requirement.recERDate);
+      data.requirement.pickERDate = formatDate(data.requirement.pickERDate);
+      data.requirement.oprERDate = formatDate(data.requirement.oprERDate);
+      data.requirement.reqDelDate = formatDate(data.requirement.reqDelDate);
+      data.requirement.createDate = formatDate(data.requirement.createDate);
+      data.requirement.recERTime = formatTime(data.requirement.recERTime);
+      data.requirement.pickERStartTime = formatTime(data.requirement.pickERStartTime);
+      data.requirement.oprERFinishTime = formatTime(data.requirement.oprERFinishTime);
+      data.requirement.reqDelTimeE = formatTime(data.requirement.reqDelTimeE);
+      data.requirement.LoadERTimeF = formatTime(data.requirement.LoadERTimeF);
+      data.requirement.LoadERTimeS = formatTime(data.requirement.LoadERTimeS);
+      data.requirement.createTime = formatTime(data.requirement.createTime);
+      data.requirement.loadERStartTime = formatTime(data.requirement.loadERStartTime);
+      data.requirement.oprERFinishUnloadTime = formatTime(data.requirement.oprERFinishUnloadTime);
+      data.requirement.oprERTimeULF = formatTime(data.requirement.oprERTimeULF);
+      data.requirement.oprERTimeULS = formatTime(data.requirement.oprERTimeULS);
+      data.requirement.oprERStartTime = formatTime(data.requirement.oprERStartTime);
+      data.requirement.oprERStartUnloadTime = formatTime(data.requirement.oprERStartUnloadTime);
+      data.requirement.oprERTimeS = formatTime(data.requirement.oprERTimeS);
+      data.requirement.pickERFinishTime = formatTime(data.requirement.pickERFinishTime);
+      data.requirement.pickERTimeF = formatTime(data.requirement.pickERTimeF);
+      data.requirement.loadERFinishTime = formatTime(data.requirement.loadERFinishTime);
+   }
 
 
-                ERID: tempData.pk.erID,
-                ERITN: tempData.pk.erITN,
-                ERITNStatus: tempData.ERITNStatus,
-                EOID: tempData.eoid,
-                lastChangeUser: tempData.lastChangeUser,
-                lastChangeDate: tempData.lastChangeDate,
-                lastChangeTime: tempData.lastChangeTime,
-                ERITNType: tempData.erITNType,
-                ERITNTag: tempData.erITNTag,
-                Status: tempData.status,
-                MatIID: tempData.matIID,
-                customerMatID: tempData.customerMatID,
-                customerOrder2: tempData.customerOrder2,
-                Amt: tempData.amt,
-                Wgt: tempData.wgt,
-                Vol: tempData.vol,
-                VolWgt: tempData.volWgt,
-                "long": tempData.longe,
-                width: tempData.width,
-                height: tempData.height,
-                PackNum: tempData.packNum,
-                Memo: tempData.memo
-            };
+   $scope.save = function () {
+      var saveHead = function () {
+         var tempData = $scope.basicData.requirement;
+
+         var param = {
+            ERID: tempData.erID,
+            ERStatus: tempData.erStatus,
+            lastChangeUser: tempData.lastChangeUser,
+            lastChangeDate: tempData.lastChangeDate,
+            lastChangeTime: tempData.lastChangeTime,
+            ERType: tempData.erType,
+            ERTRType: tempData.erTRType,
+            ERTRTypeSM: tempData.ertrtypeSM,
+            ERTag: tempData.erTag,
+            ERTRVendor: tempData.ertrvendor,
+            ERTRVendorSM: tempData.ertrvendorSM,
+            preERID: tempData.preERID,
+            preEOID: tempData.preEOID,
+            customerOrder1: tempData.customerOrder1,
+            customerOrder2: tempData.customerOrder2,
+            customerOrder3: tempData.customerOrder3,
+            preCustomerOrder1: tempData.preCustomerOrder1,
+            preCustomerOrder2: tempData.preCustomerOrder2,
+            preCustomerOrder3: tempData.preCustomerOrder3,
+            totalAmt: tempData.totalAmt,
+            totalWgt: tempData.totalWgt,
+            totalVol: tempData.totalVol,
+            totalVolWgt: tempData.totalVolWgt,
+            resType1: tempData.resType1,
+            ResAmt1: tempData.resAmt1,
+            resType2: tempData.resType2,
+            ResAmt2: tempData.resAmt2,
+            resType3: tempData.resType3,
+            ResAmt3: tempData.resAmt3,
+            memo: tempData.memo,
+            reqDelDate: tempData.reqDelDate,
+            reqDelTimeE: tempData.reqDelTimeE,
+            reqDelTimeL: tempData.reqDelTimeL,
+            recERDate: tempData.recERDate,
+            recERTime: tempData.recERTime,
+            pickERDate: tempData.pickERDate,
+            pickERTimeS: tempData.pickERStartTime,
+            pickERTimeF: tempData.pickERFinishTime,
+            LoadERTimeS: tempData.loadERStartTime,
+            LoadERTimeF: tempData.loadERFinishTime,
+            oprERDate: tempData.oprERDate,
+            oprERTimeULS: tempData.oprERStartUnloadTime,
+            oprERTimeULF: tempData.oprERFinishUnloadTime,
+            oprERTimeS: tempData.oprERStartTime,
+            oprERTimeF: tempData.oprERFinishTime,
+            depAreaCode: tempData.depAreaCode,
+            depCustomer: tempData.depCustomer,
+            depCustomerContact: tempData.depCustomerContact,
+            depCustomerEmail: tempData.depCustomerEmail,
+            depCustomerPhone: tempData.depCustomerPhone,
+            depLocCode: tempData.depLocCode,
+            depMemo: tempData.depMemo,
+            recCustomer: tempData.recCustomer,
+            recCustomerContact: tempData.recCustomerContact,
+            recCustomerEmail: tempData.recCustomerEmail,
+            recCustomerPhone: tempData.recCustomerPhone,
+            recLocCode: tempData.recLocCode,
+            recMemo: tempData.recMemo,
+            ResMemo: tempData.resMemo
+         };
+
+         return $http.post(config.baseUrl + "ER/ERChange" + "?" + $.param(param));
+      };
+      var saveItem = function () {
+         var tempData = $scope.basicData.requirementDetail;
+         var param = {
 
 
-            return $http.post(config.baseUrl + "ER/ERItemChange" + "?" + $.param(param));
-        };
-        $q.all([saveHead(), saveItem()]).then(
-            function (res) {
-                if (isSuccess(res[0].data) && isSuccess(res[1].data)) {
-                    common.notifier.success("修改成功...");
-                    $modalInstance.close();
-                }
-            }
-        );
-    };
-
-    function isSuccess(data) {
-        return data && (!data.errorMessage || data.errorMessage == "OK");
-    }
-
-
-    $scope.event = {
-        eventType: '',
-        eventDate: moment().format("YYYY-MM-DD"),
-        eventTime: moment().format("HH:mm:ss"),
-        eventCode: "",
-        memo: '',
-        reset: function () {
-            var date = moment().format("YYYY-MM-DD");
-            var time = moment().format("HH:mm:ss");
-            this.eventDate = date;
-            this.eventTime = time;
-            this.eventCode = '';
-            this.eventType = '';
-            this.memo = '';
-        }
-    };
+            ERID: tempData.pk.erID,
+            ERITN: tempData.pk.erITN,
+            ERITNStatus: tempData.ERITNStatus,
+            EOID: tempData.eoid,
+            lastChangeUser: tempData.lastChangeUser,
+            lastChangeDate: tempData.lastChangeDate,
+            lastChangeTime: tempData.lastChangeTime,
+            ERITNType: tempData.erITNType,
+            ERITNTag: tempData.erITNTag,
+            Status: tempData.status,
+            MatIID: tempData.matIID,
+            customerMatID: tempData.customerMatID,
+            customerOrder2: tempData.customerOrder2,
+            Amt: tempData.amt,
+            Wgt: tempData.wgt,
+            Vol: tempData.vol,
+            VolWgt: tempData.volWgt,
+            "long": tempData.longe,
+            width: tempData.width,
+            height: tempData.height,
+            PackNum: tempData.packNum,
+            Memo: tempData.memo
+         };
 
 
-    $scope.types = [
-        {
-            value: 'DELY',
-            text: '延迟事件'
-        },
-        {
-            value: 'NORM',
-            text: '正常事件'
-        },
-        {
-            value: 'UNRP',
-            text: '未报告事件'
-        },
-        {
-            value: 'UNXP',
-            text: '未期事件'
-        }
-    ];
+         return $http.post(config.baseUrl + "ER/ERItemChange" + "?" + $.param(param));
+      };
+      $q.all([saveHead(), saveItem()]).then(
+          function (res) {
+             if (isSuccess(res[0].data) && isSuccess(res[1].data)) {
+                common.notifier.success("修改成功...");
+                $modalInstance.close();
+             }
+          }
+      );
+   };
 
-    $scope.getEventCode = function (eventType) {
-        eoService.getEventCode(eventType)
-            .success(function (data) {
-                $scope.codes = _.map(data, function (item) {
-                    return {
-                        value: item.group2,
-                        text: item.description
-                    };
-                });
-            });
-    };
+   function isSuccess(data) {
+      return data && (!data.errorMessage || data.errorMessage == "OK");
+   }
 
-    $scope.ok = function () {
-        var dt = null;
-        var inputDate = $scope.event.eventDate;
-        var inputTime = $scope.event.eventTime;
-        if (inputDate && inputTime) {
-            var section = inputTime.substring(inputTime.length - 3, inputTime.length);
-            section = $.trim(section);
 
-            inputTime = inputTime.substring(0, inputTime.length - 3);
-            var index = inputTime.indexOf(":");
+   $scope.event = {
+      eventType: '',
+      eventDate: moment().format("YYYY-MM-DD"),
+      eventTime: moment().format("HH:mm:ss"),
+      eventCode: "",
+      memo: '',
+      reset: function () {
+         var date = moment().format("YYYY-MM-DD");
+         var time = moment().format("HH:mm:ss");
+         this.eventDate = date;
+         this.eventTime = time;
+         this.eventCode = '';
+         this.eventType = '';
+         this.memo = '';
+      }
+   };
 
-            var hour = parseInt(inputTime.substring(0, index));
-            if (section.toUpperCase() == "PM" && hour != 12)
-                hour += 12;
-            inputTime = hour + inputTime.substring(index);
-            dt = inputDate + " " + inputTime;
-            dt = moment(dt).format("YYYY-MM-DD hh:mm:ss");
 
-        }
+   $scope.types = [
+       {
+          value: 'DELY',
+          text: '延迟事件'
+       },
+       {
+          value: 'NORM',
+          text: '正常事件'
+       },
+       {
+          value: 'UNRP',
+          text: '未报告事件'
+       },
+       {
+          value: 'UNXP',
+          text: '未期事件'
+       }
+   ];
 
-        eoService
-            .createEvent({
-                eventType: $scope.event.eventType,
-                eventCode: $scope.event.eventCode,
-                eventDateTime: dt,
-                //eventDate:$scope.event.eventDate,
-                //eventTime:$scope.event.eventTime,
-                memo: $scope.event.memo,
-                EO: [queryOption['eoID'] || '-1'],
-                ERID: [queryOption['erID']],
-                ERITN: [queryOption['erITN']]
-            })
-            .success(function () {
-                common.notifier.success("创建成功...");
-                $scope.event.reset();
-            });
-    };
+   $scope.getEventCode = function (eventType) {
+      eoService.getEventCode(eventType)
+          .success(function (data) {
+             $scope.codes = _.map(data, function (item) {
+                return {
+                   value: item.group2,
+                   text: item.description
+                };
+             });
+          });
+   };
+
+   $scope.ok = function () {
+      var dt = null;
+      var inputDate = $scope.event.eventDate;
+      var inputTime = $scope.event.eventTime;
+      if (inputDate && inputTime) {
+         var section = inputTime.substring(inputTime.length - 3, inputTime.length);
+         section = $.trim(section);
+
+         inputTime = inputTime.substring(0, inputTime.length - 3);
+         var index = inputTime.indexOf(":");
+
+         var hour = parseInt(inputTime.substring(0, index));
+         if (section.toUpperCase() == "PM" && hour != 12)
+            hour += 12;
+         inputTime = hour + inputTime.substring(index);
+         dt = inputDate + " " + inputTime;
+         dt = moment(dt).format("YYYY-MM-DD hh:mm:ss");
+
+      }
+
+      eoService
+          .createEvent({
+             eventType: $scope.event.eventType,
+             eventCode: $scope.event.eventCode,
+             eventDateTime: dt,
+             //eventDate:$scope.event.eventDate,
+             //eventTime:$scope.event.eventTime,
+             memo: $scope.event.memo,
+             EO: [queryOption['eoID'] || '-1'],
+             ERID: [queryOption['erID']],
+             ERITN: [queryOption['erITN']]
+          })
+          .success(function () {
+             common.notifier.success("创建成功...");
+             $scope.event.reset();
+          });
+   };
 
 }

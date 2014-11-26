@@ -29,9 +29,10 @@ angular.module('itms.transport.eoMaintain')
                     depCustomer: item.erHead.depCustomer,
                     recCustomer: item.erHead.recCustomer,
                     reDelDate: item.dn.reqDelDate1,
-                    eoTrtype: item.dn.eotrtype,
-                    eoTrvendor: item.dn.eotrvendor1,
+                    eoTrtype: item.eotrtypeDesc,
+                    eoTrvendor: item.eotrvendor1Desc,
                     vendorOrder: item.dn.vendorOrder1
+                    
 
                 };
             }
