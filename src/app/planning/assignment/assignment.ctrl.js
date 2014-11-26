@@ -34,10 +34,12 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
         { "mData": "requirement.customerOrder2", "sTitle": "客户运单号" },
         { "mData": "requirement.customerOrder3", "sTitle": "客户出库号" },
         { "mData": "requirementDetail.matIID", "sTitle": "物料" },
+        { "mData": "requirementDetail.resAmt1", "sTitle": "包装数量" },
         { "mData": "requirementDetail.packNum", "sTitle": "箱号" },
         { "mData": "requirementDetail.amt", "sTitle": "件数" },
         { "mData": "requirement.reqDelDate", "sTitle": "送达日期" },
         { "mData": "ertrtypeDesc", "sTitle": "方式" },
+        { "mData": "eritnstatusDesc", "sTitle": "状态" },
         { "mData": "ertrvendorDesc", "sTitle": "第三方" }
    ];
    $scope.selectedSite = [];

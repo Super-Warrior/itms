@@ -76,6 +76,24 @@ function EOMaintainSearchCtrl($scope, $modal, $log, eoMaintainService, configSer
         "mData": "eoType",
         "sTitle": "类型"
     }, {
+        "mData": "eventstatus",
+        "sTitle": "事件状态"
+    }, {
+        "mData": "routeClassID",
+        "sTitle": "路单号"
+    }, {
+        "mData": "tranResLicense",
+        "sTitle": "车牌"
+    }, {
+        "mData": "transDriverID",
+        "sTitle": "司机"
+    }, {
+        "mData": "resAmt1",
+        "sTitle": "包装数量"
+    }, {
+        "mData": "matIIDDesc",
+        "sTitle": "物料名称"
+    }, {
         "mData": "eoTag",
         "sTitle": "特殊"
     }, {

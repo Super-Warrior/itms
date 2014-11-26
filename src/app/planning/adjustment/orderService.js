@@ -93,9 +93,11 @@ function orderService($http, config) {
                 matIID: item.requirementDetail && item.requirementDetail.matIID,
                 packNum: item.requirementDetail && item.requirementDetail.packNum,
                 amt: item.requirementDetail && item.requirementDetail.amt,
+                resAmt1:item.requirementDetail&& item.requirementDetail.resAmt1,
                 reqDelDate: item.requirement.reqDelDate,
                 ertrType: item.requirement.erTRType,
                 ertrTypeDesc: item.ertrtypeDesc,
+                eritnstatusDesc:item.eritnstatusDesc,
                 ertrVendor: item.requirement.ertrvendor,
                 ertrVendorDesc: item.ertrvendorDesc
             };

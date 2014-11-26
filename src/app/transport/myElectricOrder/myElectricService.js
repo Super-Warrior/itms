@@ -31,7 +31,16 @@ angular.module('itms.transport.eoMaintain')
                     reDelDate: item.dn.reqDelDate1,
                     eoTrtype: item.eotrtypeDesc,
                     eoTrvendor: item.eotrvendor1Desc,
-                    vendorOrder: item.dn.vendorOrder1
+                    vendorOrder: item.dn.vendorOrder1,
+                    eventstatus:item.dn.eventstatus,
+                    vendorOrder1:item.dn.vendorOrder1,
+                    routeClassID:item.erItem.routeClassID,
+                    tranResLicense:item.erItem.tranResLicense,
+                    transDriverID:item.erItem.transDriverID,
+                    resAmt1:item.erItem.resAmt1,
+                    matIIDDesc:item.matIIDDesc
+
+
                 };
             }
         }
