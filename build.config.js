@@ -15,6 +15,7 @@ module.exports = {
             'vendor/jqueryui/ui/jquery-ui.js',
             'vendor/jquery-form/jquery.form.js',
             'vendor/angular-loading-bar/src/loading-bar.js',
+            'vendor/battatech_excelexport/dist/jquery.battatech.excelexport.min.js',
             'vendor/angular-animate/angular-animate.js',
             'vendor/angular-ui-router/release/angular-ui-router.js',
 			'vendor/moment/min/moment.min.js',
@@ -52,6 +53,7 @@ module.exports = {
             'vendor/angular-loading-bar/src/loading-bar.js',
             'vendor/jquery-form/jquery.form.js',
 			   'vendor/moment/min/moment.min.js',
+            'vendor/battatech_excelexport/dist/jquery.battatech.excelexport.min.js',
 			   	'src/legacyscripts/plugin/bootstrap-timepicker/bootstrap-timepicker.js'
           
 			  // 'vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'

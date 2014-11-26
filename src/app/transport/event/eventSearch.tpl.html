@@ -90,6 +90,9 @@
               <li ng-class="{disabled:disableAction()}">
                 <a ng-click="handleEvent()"> <i class="fa fa-edit"></i> 事件处理</a>
               </li>
+              <li>
+                <a ng-click="export()"> <i class="fa fa-edit"></i> 导出</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -104,7 +107,7 @@
         <!-- widget content -->
         <div class="widget-body no-padding">
           <div class="widget-body-toolbar"></div>
-          <div data-im-table can-select header-titles="columns" detail-config="detailConfig" my-source="events" selected-items="selectedItems"></div>
+          <div id="excelexport" data-im-table can-select header-titles="columns" detail-config="detailConfig" my-source="events" selected-items="selectedItems"></div>
         </div>
         <!-- end widget content -->
       </div>

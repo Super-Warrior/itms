@@ -124,6 +124,40 @@ function EventWorkSpaceCtrl($scope, $modal, common) {
         });
     };
 
+    $scope.export = function () {
+           
+            var dataobj = $scope.totalEvents.map(function(event) {
+                return {
+                  'eventType': event['eventType'],
+                  'eventCode': event['eventCode'],
+                  'eventDesc': event['eventDesc'],
+                  'eventDateTime': event['eventDateTime'],
+                  'createUser': event['createUser'],
+                  'eoNumber': event['eoNumber'],
+                };
+            });
+            $("#btnExport").battatech_excelexport({
+                containerid: "btnExport"
+                , datatype: 'json'
+                , dataset: dataobj
+                , columns: [
+                    { headertext: "事件类型", datatype: "string", datafield: "eventType", ishidden: false }
+                    , { headertext: "事件代码", datatype: "string", datafield: "eventCode", width: "100px" }
+                    , { headertext: "事件描述", datatype: "string", datafield: "eventDesc", ishidden: false, width: "100px" }
+                    , { headertext: "发生时间", datatype: "string", datafield: "eventDateTime", ishidden: false }
+                    , { headertext: "执行账号", datatype: "string",  datafield: "createUser", ishidden: false, width: "150px" }
+                    , { headertext: "EO/ER/ERITN", datatype: "string",  datafield: "eoNumber", ishidden: false, width: "150px" }
+                ]
+            });
+
+    };
+
+    $scope.getHeader = function() {
+      return $scope.columns.map(function(header) {
+        return header.sTitle;
+      });
+    };
+
     $scope.disableAction = function () {
         return $scope.selectedItems.length === 0;
     };
