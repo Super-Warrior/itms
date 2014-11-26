@@ -1,7 +1,7 @@
 angular.module('itms.transport.eoMaintain')
-    .controller('EOMaintainCtrl', ['$scope', '$modal', '$log', 'eoMaintainService', EOMaintainSearchCtrl]);
+    .controller('EOMaintainCtrl', ['$scope', "$http", "config", "common", '$modal', '$log', 'eoMaintainService', EOMaintainSearchCtrl]);
 
-function EOMaintainSearchCtrl($scope, $modal, $log, eoMaintainService, configService) {
+function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMaintainService, configService) {
     $scope.module = "运输执行";
     $scope.title = "运单维护/查询";
     $scope.queryOption = {
@@ -124,6 +124,14 @@ function EOMaintainSearchCtrl($scope, $modal, $log, eoMaintainService, configSer
         "TRPY": null,
         "ERTG": null
     };
+
+    var leftQty = function() {
+        this.realQty = "";
+        this.leftQty = "";
+    }
+
+    $scope.leftQty = new leftQty();
+
     $scope.mutiOptionDataSource = {};
     configService.getConfigs(configData).then(
         function() {
@@ -170,6 +178,59 @@ function EOMaintainSearchCtrl($scope, $modal, $log, eoMaintainService, configSer
     $scope.isAnythingSelected = function () {
         return ($scope.selectedItems.length > 0);
     };
+
+    /* Added by T.C. 2014/11/26 */
+    $scope.isOnlyOneSelected = function () {
+        return ($scope.selectedItems.length == 1);
+    };
+
+    /* Added by T.C. 2014/11/26 */
+    $scope.leftQtyEvent = function() {
+        $scope.modalInstance = $modal.open({
+            templateUrl: "app/transport/eoMaintain/eoMaintainLeftQuantity.tpl.html",
+            scope: $scope
+        });
+        /*
+        modalInstance.result.then(function() {
+            common.notifier.success("操作成功");
+        });
+        */
+    };
+
+    /* Added by T.C. 2014/11/26 */
+    $scope.confirmLeftQtyEvent = function() {
+        common.messageBox({
+            title: "提示信息:",
+            content: "是否更新剩余数量?"
+        }).success($scope.doConfirmLeftQtyEvent)
+            .error(function () {
+                common.notifier.cancel("已取消...");
+            });
+    };
+
+    /* Added by T.C. 2014/11/26 */
+    $scope.doConfirmLeftQtyEvent = function() {
+        $http.post(config.baseUrl + "ER/ItemLeftQtyCreate" + "?" + $.param({
+            "ERID": $scope.selectedItems.map(function (i) {
+                return i.erID;
+            }),
+            "ERITN": $scope.selectedItems.map(function (i) {
+                return i.erITN;
+            }),
+            "ActQty[]": $scope.leftQty.realQty,
+            "LeftQty[]": $scope.leftQty.leftQty,
+            "userID" : config.userID
+        })).then(
+            function (result) {
+                $scope.modalInstance.dismiss();
+                if (!result.errorMessage || result.errorMessage === "OK") {
+                    common.notifier.success("操作成功...");
+                }
+            }).then(function () {
+                $scope.eoMaintainSearch();
+            });
+    };
+
 
     $scope.searchAssignableRequest = function () {
         eoMaintainService.queryER().success(function (data) {
