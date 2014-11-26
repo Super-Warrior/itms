@@ -7,7 +7,7 @@ function customerService($http, config) {
 
     function Criteria(type) {
         this.type = [];
-        this.SerType = "OR";
+        this.SerType = "AND";
         this.customer = [""];
         this.name = [""];
         this.contact = [""];

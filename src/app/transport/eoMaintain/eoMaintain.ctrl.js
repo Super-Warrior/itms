@@ -87,7 +87,10 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
     }, {
         "mData": "transDriverID",
         "sTitle": "司机"
-    }, {
+    },{
+        "mData": "amt", "sTitle": "件数"
+    },
+      {
         "mData": "resAmt1",
         "sTitle": "包装数量"
     }, {

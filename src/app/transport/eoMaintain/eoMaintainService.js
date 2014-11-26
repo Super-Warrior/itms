@@ -22,12 +22,12 @@ angular.module('itms.transport.eoMaintain')
                     eo: item.dn.eo,
                     erID: item.erHead.erID,
                     erITN: item.erItem.pk.erITN,
-                    eoStatus: item.dn.eoStatus,
+                    eoStatus: item.eostatusDesc,
                     customerOrder: item.dn.customerOrder1,
-                    eoType: item.dn.eotype,
+                    eoType: item.eotypeDesc,
                     eoTag: item.dn.eotag,
-                    depCustomer: item.erHead.depCustomer,
-                    recCustomer: item.erHead.recCustomer,
+                    depCustomer: item.depCustomerDesc,
+                    recCustomer: item.recCustomerDesc,
                     reDelDate: item.dn.reqDelDate1,
                     eoTrtype: item.eotrtypeDesc,
                     eoTrvendor: item.eotrvendor1Desc,
@@ -37,8 +37,8 @@ angular.module('itms.transport.eoMaintain')
                     tranResLicense:item.erItem.tranResLicense,
                     transDriverID:item.erItem.transDriverID,
                     resAmt1:item.erItem.resAmt1,
-                    matIIDDesc:item.matIIDDesc
-                    
+                    matIIDDesc:item.matIIDDesc,
+                    amt:item.erItem.amt
 
                 };
             }
