@@ -141,13 +141,19 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http,ex
         { "mData": "erTag", "sTitle": "特殊" },
         { "mData": "depCustomerDesc", "sTitle": "发货方" },
         { "mData": "recCustomerDesc", "sTitle": "收货方" },
+        { "mData": "project", "sTitle": "项目简称" },//new
+        { "mData": "plannedID", "sTitle": "周计划" },//new
         { "mData": "customerOrder1", "sTitle": "客户订单号" },
         { "mData": "customerOrder2", "sTitle": "客户运单号" },
         { "mData": "customerOrder3", "sTitle": "客户出库号" },
         { "mData": "matIID", "sTitle": "物料" },
+        { "mData": "resAmtCS1", "sTitle": "箱型" },//new
+        { "mData": "subPackNumner", "sTitle": "封号" },//new
         { "mData": "packNum", "sTitle": "箱号" },
         { "mData": "amt", "sTitle": "件数" },
+        { "mData": "resID1", "sTitle": "包装编码" },//new
         { "mData": "resAmt1", "sTitle": "包装数量" },
+        { "mData": "pickERDate", "sTitle": "预计装箱日期" },//new
         { "mData": "reqDelDate", "sTitle": "送达日期" },
         { "mData": "ertrTypeDesc", "sTitle": "方式" },
         { "mData": "eritnstatusDesc", "sTitle": "状态" },

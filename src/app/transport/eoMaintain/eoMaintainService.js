@@ -38,7 +38,17 @@ angular.module('itms.transport.eoMaintain')
                     transDriverID:item.erItem.transDriverID,
                     resAmt1:item.erItem.resAmt1,
                     matIIDDesc:item.matIIDDesc,
-                    amt:item.erItem.amt
+                    amt:item.erItem.amt,
+                    deliverBP1:item.dn.deliverBP1,
+                    project:item.erHead.project,
+                    plannedID:item.erHead.plannedID,
+                    pickERDate:item.erHead.pickERDate,
+                    resID1:item.erItem.resID1,
+                    subPackNumner:item.erItem.subPackNumner,
+                    resAmtCS1:item.erItem.resAmtCS1
+
+
+
 
                 };
             }

@@ -30,13 +30,19 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
         { "mData": "requirement.erTag", "sTitle": "特殊" },
         { "mData": "depCustomerDesc", "sTitle": "发货方" },
         { "mData": "recCustomerDesc", "sTitle": "收货方" },
+        { "mData": "requirement.project", "sTitle": "项目简称" },//new
+        { "mData": "requirement.plannedID", "sTitle": "周计划" },//new
         { "mData": "requirement.customerOrder1", "sTitle": "客户订单号" },
         { "mData": "requirement.customerOrder2", "sTitle": "客户运单号" },
         { "mData": "requirement.customerOrder3", "sTitle": "客户出库号" },
         { "mData": "requirementDetail.matIID", "sTitle": "物料" },
+        { "mData": "requirementDetail.resID1", "sTitle": "包装编码" },//new
         { "mData": "requirementDetail.resAmt1", "sTitle": "包装数量" },
+        { "mData": "requirementDetail.resAmtCS1", "sTitle": "箱型" },//new
+        { "mData": "requirementDetail.subPackNumner", "sTitle": "封号" },//new
         { "mData": "requirementDetail.packNum", "sTitle": "箱号" },
         { "mData": "requirementDetail.amt", "sTitle": "件数" },
+        { "mData": "requirement.pickERDate", "sTitle": "预计装箱日期" },//new
         { "mData": "requirement.reqDelDate", "sTitle": "送达日期" },
         { "mData": "ertrtypeDesc", "sTitle": "方式" },
         { "mData": "eritnstatusDesc", "sTitle": "状态" },

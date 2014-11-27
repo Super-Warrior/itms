@@ -70,6 +70,12 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
         "mData": "eoStatus",
         "sTitle": "运单状态"
     }, {
+        "mData": "project",
+        "sTitle": "项目简称"
+    }, {
+        "mData": "plannedID",
+        "sTitle": "周计划"
+    }, {
         "mData": "customerOrder",
         "sTitle": "客户订单号"
     }, {
@@ -88,9 +94,18 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
         "mData": "transDriverID",
         "sTitle": "司机"
     },{
-        "mData": "amt", "sTitle": "件数"
-    },
-      {
+        "mData": "resAmtCS1",
+        "sTitle": "箱型"
+    },{
+        "mData": "subPackNumner",
+        "sTitle": "封号"
+    },{
+        "mData": "amt",
+        "sTitle": "件数"
+    },{
+        "mData": "resID1",
+        "sTitle": "包装编码"
+    },{
         "mData": "resAmt1",
         "sTitle": "包装数量"
     }, {
@@ -106,6 +121,9 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
         "mData": "recCustomer",
         "sTitle": "收货方"
     }, {
+        "mData": "pickERDate",
+        "sTitle": "预计装箱日期"
+    }, {
         "mData": "reDelDate",
         "sTitle": "送达日期"
     }, {
@@ -115,8 +133,11 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
         "mData": "eoTrvendor",
         "sTitle": "承运方"
     }, {
-        "mData": "vendorOrder",
-        "sTitle": "承运方路单"
+         "mData": "vendorOrder",
+          "sTitle": "承运方路单"
+    }, {
+        "mData": "deliverBP1",
+        "sTitle": "司机ID"
     }];
     $scope.selectedItems = [];
 
