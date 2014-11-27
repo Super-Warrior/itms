@@ -69,13 +69,13 @@
         <section class="col col-6">
           <label class="input">
             <i class="icon-prepend fa fa-barcode "></i>
-            <input type="text" name="Cr" ng-model="createData.VendorOrder1" placeholder="承运商运单编号">
+            <input type="text" name="Cr" ng-model="createData.VendorOrder1" placeholder="承运商路单号">
           </label>
         </section>
         <section class="col col-6">
           <label class="select">
             <select ng-model="createData.DeliverBP1">
-              <option value="" selected disabled>配送网络公司</option>
+              <option value="" selected disabled>司机ID</option>
               <option ng-repeat="value in nets" value="{{value.customer}}">{{value.name}}</option>
 
             </select>
@@ -85,7 +85,7 @@
         <section class="col col-6">
           <label class="select">
             <select>
-              <option value="0" selected disabled>网络公司位置代码</option>
+              <option value="0" selected disabled>承运商位置代码</option>
               <option value="1">LOC001-上海徐汇</option>
               <option value="2">LOC002-苏州昆山</option>
             </select>

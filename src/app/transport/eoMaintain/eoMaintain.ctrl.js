@@ -107,7 +107,7 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
         "sTitle": "收货方"
     }, {
         "mData": "reDelDate",
-        "sTitle": "发达日期"
+        "sTitle": "送达日期"
     }, {
         "mData": "eoTrtype",
         "sTitle": "方式"
@@ -116,7 +116,7 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
         "sTitle": "承运方"
     }, {
         "mData": "vendorOrder",
-        "sTitle": "承运方单号"
+        "sTitle": "承运方路单"
     }];
     $scope.selectedItems = [];
 
