@@ -147,8 +147,10 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http) {
         { "mData": "matIID", "sTitle": "物料" },
         { "mData": "packNum", "sTitle": "箱号" },
         { "mData": "amt", "sTitle": "件数" },
+        { "mData": "resAmt1", "sTitle": "包装数量" },
         { "mData": "reqDelDate", "sTitle": "送达日期" },
         { "mData": "ertrTypeDesc", "sTitle": "方式" },
+        { "mData": "eritnstatusDesc", "sTitle": "状态" },
         { "mData": "ertrVendorDesc", "sTitle": "第三方" }
     ];
 
