@@ -1,0 +1,110 @@
+﻿<section data-it-jarvis>
+  <div class="row">
+    <div ng-include src='"app/common/pageTitle.html"'></div>
+  </div>
+  <div class="row">
+
+    <!-- NEW WIDGET START -->
+    <article class="col-sm-12">
+      <div class="jarviswidget jarviswidget-color-orange" id="widgetUpload" data-widget-editbutton="false"
+           data-widget-deletebutton="false">
+        <header>
+          <span class="widget-icon"><i class="fa fa-cloud-upload "></i></span>
+
+          <h2>站点需求上载 </h2>
+
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+          <!-- widget edit box -->
+          <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+          </div>
+          <!-- end widget edit box -->
+
+          <!-- widget content -->
+          <div class="widget-body" id="formContainer">
+            <form action="" method="POST" id="checkout-form" enctype="multipart/form-data" class="smart-form"
+                  novalidate="novalidate">
+              <div class="row">
+                <section class="col col-9">
+                  <label for="fileUpload" class="input input-file">
+                                        <span class="button">
+                                            <input type="file" id="fileUpload"
+                                                   onchange="angular.element(this).scope().selectFile(this)"
+                                                   name="excel">文件
+                                        </span>
+                    <input type="text" id="fileDisplay" placeholder="插入附件" readonly="readonly"/>
+                    <input type="hidden" id="type" name="type"/>
+
+                  </label>
+                </section>
+              </div>
+              <footer>
+                <button id="preview" ng-click="handleUpload()" class="btn btn-warning">
+                  <i class="glyphicon glyphicon-eye-close"></i>提交预览
+                </button>
+              </footer>
+            </form>
+
+          </div>
+          <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+      </div>
+      <!-- end widget -->
+
+    </article>
+    <!-- WIDGET END -->
+
+  </div>
+
+  <div class="row">
+    <article class="col-sm-12">
+      <div class="jarviswidget jarviswidget-color-orange" id="widgetPreview" data-widget-editbutton="false"
+           data-widget-deletebutton="false" data-widget-collapsed="true">
+        <header>
+          <span class="widget-icon"><i class="fa fa-search"></i></span>
+
+          <h2>上载预览</h2>
+
+          <div class="widget-toolbar">
+            <div class="btn-group">
+              <button class="btn dropdown-toggle btn-xs btn-info " data-toggle="dropdown">
+                操作 <i class="fa fa-caret-down"></i>
+              </button>
+              <ul class="dropdown-menu pull-right">
+                <li ng-class="{disabled:!hasUploaded}">
+                  <a href="javascript:void(0);" ng-click="cancel()" id="smart-mod-eg2">
+                    <i class="fa fa-chain-broken "></i>&nbsp;删除上载记录
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </header>
+        <div>
+          <!-- widget edit box -->
+          <div class="jarviswidget-editbox">
+          </div>
+          <div id="tableWidget" class="widget-body no-padding">
+            <div class="widget-body-toolbar"></div>
+            <div data-im-table header-titles="columns" my-source="previewData.list"></div>
+              <!--detail-target="app/planning/searchSite.tpl.html"-->
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+  <p align="center">
+    <a class="btn btn-default btn-circle btn-xl" ng-class="{disabled:!hasUploaded}" href="javascript:void(0);"
+       ng-click="confirm()" id="smart-mod-eg1">
+      <i class="glyphicon glyphicon-cloud-upload"></i>
+    </a>
+  </p>
+</section>
