@@ -380,6 +380,26 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
             });
     }
 
+    /* Added by T.C. 2014.11.26*/
+    $scope.autoSplitERITN = function() {
+        $http.post(config.baseUrl + "ER/ERItnAutoSplit" + "?" + $.param({
+            "ERID": $scope.selectedItems.map(function (i) {
+                return i.requirementDetail.pk.erID;
+            }),
+            "ERITN": $scope.selectedItems.map(function (i) {
+                return i.requirementDetail.pk.erITN;
+            }),
+            user : config.userID
+        })).then(
+            function (result) {
+                if (!result.errorMessage || result.errorMessage === "OK") {
+                    common.notifier.success("包装数量调整完毕...");
+                }
+            }).then(function () {
+                $scope.quickSearch();
+            });
+    }
+
    $scope.deleteEritm = function () {
       if (!$scope.isAnythingSelected())
          return;
