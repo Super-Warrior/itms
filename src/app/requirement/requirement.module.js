@@ -1,6 +1,7 @@
 angular
     .module('itms.requirement', [
         'itms.requirement.upload',
+        'itms.requirement.uploadibm',
         'itms.requirement.create'
     ])
     .config(['$stateProvider',
