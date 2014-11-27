@@ -213,7 +213,7 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
 
     /* Added by T.C. 2014/11/26 */
     $scope.doConfirmLeftQtyEvent = function() {
-        $http.post(config.baseUrl + "ER/ItemLeftQtyCreate" + "?" + $.param({
+       $http.postXSRF(config.baseUrl + "ER/ItemLeftQtyCreate", {
             "ERID": $scope.selectedItems.map(function (i) {
                 return i.erID;
             }),
@@ -223,7 +223,7 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
             "ActQty[]": $scope.leftQty.realQty,
             "LeftQty[]": $scope.leftQty.leftQty,
             "userID" : config.userID
-        })).then(
+        }).then(
             function (result) {
                 $scope.modalInstance.dismiss();
                 if (!result.errorMessage || result.errorMessage === "OK") {

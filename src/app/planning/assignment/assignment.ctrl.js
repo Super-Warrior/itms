@@ -1,8 +1,8 @@
 angular.module("itms.planning.assignment")
     .controller("EOAssignCtrl", ["$scope", "$modal", "$log",
-        "$http", "config", "common", "configService", "customerService","exportService", EOAssignCtrl]);
+        "$http", "config", "common", "configService", "customerService", "exportService", EOAssignCtrl]);
 
-function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService,exportService) {
+function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService, exportService) {
    $scope.module = "计划";
    $scope.title = "需求分配";
 
@@ -47,16 +47,16 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.selectedCustomer = { "dep": [], "rec": [] };
    $scope.quickResult = [];
    $scope.createDate = "";
-   $scope.ERID=[""];
-   $scope.ERITN=[""];
-   $scope.ERTag=[""];
-   $scope.ERTRType=[""];
-   $scope.ERType=[""];
+   $scope.ERID = [""];
+   $scope.ERITN = [""];
+   $scope.ERTag = [""];
+   $scope.ERTRType = [""];
+   $scope.ERType = [""];
    $scope.quickSearch = function () {
       var data = {
          SerType: "AND",
          ERID: $scope.ERID,
-         ERITN:$scope.ERITN,
+         ERITN: $scope.ERITN,
          userID: config.userID,
          depAreaCode: $scope.selectedSite.toString(),
          depCustomer: $scope.selectedCustomer.dep.toString(),
@@ -87,7 +87,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          ERITNStatus: ["UNAS"],
          ERStatus: [""]
       };
-      $http.post(config.baseUrl + "ER/ERQuickSearch" + "?" + $.param(data)).then(function (result) {
+      $http.postXSRF(config.baseUrl + "ER/ERQuickSearch", data).then(function (result) {
          $scope.adjustData = new AdjustData();
          $scope.createData = new CreateData();
          if (result.data.errorMessage)
@@ -111,22 +111,22 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       $scope.user = "";
    };
 
-    $scope.handleEvent = function() {
-        var modalInstance = $modal.open({
-            templateUrl: 'app/transport/event/handleEvent.tpl.html',
-            controller: 'HandleEventCtrl',
-            resolve: {
-                items: function() {
-                    return $scope.selectedItems;
-                }
+   $scope.handleEvent = function () {
+      var modalInstance = $modal.open({
+         templateUrl: 'app/transport/event/handleEvent.tpl.html',
+         controller: 'HandleEventCtrl',
+         resolve: {
+            items: function () {
+               return $scope.selectedItems;
             }
-        });
-        modalInstance.result.then(function() {
-            common.notifier.success("操作成功");
-        });
-    };
+         }
+      });
+      modalInstance.result.then(function () {
+         common.notifier.success("操作成功");
+      });
+   };
 
-    $scope.selectedItems = [];
+   $scope.selectedItems = [];
 
    $scope.searchSite = function () {
       var modalInstance = $modal.open({
@@ -243,15 +243,15 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          return i.requirementDetail.pk.erITN;
       });
       $http
-          .post(config.baseUrl + "EO/EOQuickCreate" + "?" + $.param($scope.createData))
+          .postXSRF(config.baseUrl + "EO/EOQuickCreate" , $scope.createData)
           .then(function (result) {
-         $scope.modalInstance.dismiss();
-         if (!result.errorMessage || result.errorMessage === "OK") {
-            common.notifier.success("运单已成功创建...");
-         }
-      }).then(function () {
-         $scope.quickSearch();
-      });
+             $scope.modalInstance.dismiss();
+             if (!result.errorMessage || result.errorMessage === "OK") {
+                common.notifier.success("运单已成功创建...");
+             }
+          }).then(function () {
+             $scope.quickSearch();
+          });
    };
 
    $scope.adjust = function () {
@@ -282,15 +282,15 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       });
 
       $http
-          .post(config.baseUrl + "ER/ERTRChange" + "?" + $.param($scope.adjustData))
+          .postXSRF(config.baseUrl + "ER/ERTRChange",$scope.adjustData)
           .then(function (result) {
-         $scope.modalInstance.dismiss();
-         if (!result.errorMessage || result.errorMessage === "OK") {
-            common.notifier.success("数据更新成功...");
-         }
-      }).then(function () {
-         $scope.quickSearch();
-      });
+             $scope.modalInstance.dismiss();
+             if (!result.errorMessage || result.errorMessage === "OK") {
+                common.notifier.success("数据更新成功...");
+             }
+          }).then(function () {
+             $scope.quickSearch();
+          });
    };
 
    $scope.deleteEr = function () {
@@ -305,11 +305,11 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
    $scope.doDeleteEr = function () {
-      $http.post(config.baseUrl + "ER/ERDel" + "?" + $.param({
+      $http.postXSRF(config.baseUrl + "ER/ERDel" ,{
          "ERID": $scope.selectedItems.map(function (i) {
             return i.requirementDetail.pk.erID;
          })
-      })).then(
+      }).then(
           function (result) {
              if (!result.errorMessage || result.errorMessage === "OK") {
                 common.notifier.success("删除操作成功...");
@@ -320,87 +320,87 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
    /* Added by T.C. 2014.11.05*/
-   $scope.createEOByER = function() {
+   $scope.createEOByER = function () {
       if (!$scope.isAnythingSelected())
          return;
       common.messageBox({
-           title: "提示信息:",
-           content: "是否根据所选择ER需求创建EO运单?"
+         title: "提示信息:",
+         content: "是否根据所选择ER需求创建EO运单?"
       }).success($scope.doCreateEOByER)
            .error(function () {
-               common.notifier.cancel("已取消...");
+              common.notifier.cancel("已取消...");
            });
    };
 
-    /* Added by T.C. 2014.11.05*/
+   /* Added by T.C. 2014.11.05*/
    $scope.doCreateEOByER = function() {
-       $http.post(config.baseUrl + "ER/EOERQuickCreateWOValidation" + "?" + $.param({
-           "ERID": $scope.selectedItems.map(function (i) {
-               return i.requirementDetail.pk.erID;
-           }),
-           user : config.userID
-       })).then(
-           function (result) {
-               if (!result.errorMessage || result.errorMessage === "OK") {
-                   common.notifier.success("创建EO运单操作成功...");
-               }
-           }).then(function () {
-               $scope.quickSearch();
-           });
-   }
+      $http.postXSRF(config.baseUrl + "ER/EOERQuickCreateWOValidation", {
+         "ERID": $scope.selectedItems.map(function(i) {
+            return i.requirementDetail.pk.erID;
+         }),
+         user: config.userID
+      }).then(
+         function(result) {
+            if (!result.errorMessage || result.errorMessage === "OK") {
+               common.notifier.success("创建EO运单操作成功...");
+            }
+         }).then(function() {
+            $scope.quickSearch();
+         });
+   };
 
-    /* Added by T.C. 2014.11.05*/
-    $scope.createEOByERITN = function() {
-        if (!$scope.isAnythingSelected())
-            return;
-        common.messageBox({
-            title: "提示信息:",
-            content: "是否根据所选择ER需求项目创建EO运单?"
-        }).success($scope.doCreateEOByERITN)
-            .error(function () {
-                common.notifier.cancel("已取消...");
-            });
-    };
+   /* Added by T.C. 2014.11.05*/
+   $scope.createEOByERITN = function () {
+      if (!$scope.isAnythingSelected())
+         return;
+      common.messageBox({
+         title: "提示信息:",
+         content: "是否根据所选择ER需求项目创建EO运单?"
+      }).success($scope.doCreateEOByERITN)
+          .error(function () {
+             common.notifier.cancel("已取消...");
+          });
+   };
 
-    /* Added by T.C. 2014.11.05*/
-    $scope.doCreateEOByERITN = function() {
-        $http.post(config.baseUrl + "ER/EOERItnQuickCreateWOValidation" + "?" + $.param({
-            "ERID": $scope.selectedItems.map(function (i) {
-                return i.requirementDetail.pk.erID;
-            }),
-            "ERITN": $scope.selectedItems.map(function (i) {
-                return i.requirementDetail.pk.erITN;
-            }),
-            user : config.userID
-        })).then(
-            function (result) {
-                if (!result.errorMessage || result.errorMessage === "OK") {
-                    common.notifier.success("创建EO运单操作成功...");
-                }
-            }).then(function () {
-                $scope.quickSearch();
-            });
-    }
+   /* Added by T.C. 2014.11.05*/
+   $scope.doCreateEOByERITN = function() {
+      $http.postXSRF(config.baseUrl + "ER/EOERItnQuickCreateWOValidation", {
+         "ERID": $scope.selectedItems.map(function(i) {
+            return i.requirementDetail.pk.erID;
+         }),
+         "ERITN": $scope.selectedItems.map(function(i) {
+            return i.requirementDetail.pk.erITN;
+         }),
+         user: config.userID
+      }).then(
+         function(result) {
+            if (!result.errorMessage || result.errorMessage === "OK") {
+               common.notifier.success("创建EO运单操作成功...");
+            }
+         }).then(function() {
+            $scope.quickSearch();
+         });
+   };
 
-    /* Added by T.C. 2014.11.26*/
-    $scope.autoSplitERITN = function() {
-        $http.post(config.baseUrl + "ER/ERItnAutoSplit" + "?" + $.param({
-            "ERID": $scope.selectedItems.map(function (i) {
-                return i.requirementDetail.pk.erID;
-            }),
-            "ERITN": $scope.selectedItems.map(function (i) {
-                return i.requirementDetail.pk.erITN;
-            }),
-            user : config.userID
-        })).then(
-            function (result) {
-                if (!result.errorMessage || result.errorMessage === "OK") {
-                    common.notifier.success("包装数量调整完毕...");
-                }
-            }).then(function () {
-                $scope.quickSearch();
-            });
-    }
+   /* Added by T.C. 2014.11.26*/
+   $scope.autoSplitERITN = function() {
+      $http.postXSRF(config.baseUrl + "ER/ERItnAutoSplit", {
+         "ERID": $scope.selectedItems.map(function(i) {
+            return i.requirementDetail.pk.erID;
+         }),
+         "ERITN": $scope.selectedItems.map(function(i) {
+            return i.requirementDetail.pk.erITN;
+         }),
+         user: config.userID
+      }).then(
+         function(result) {
+            if (!result.errorMessage || result.errorMessage === "OK") {
+               common.notifier.success("包装数量调整完毕...");
+            }
+         }).then(function() {
+            $scope.quickSearch();
+         });
+   };
 
    $scope.deleteEritm = function () {
       if (!$scope.isAnythingSelected())
@@ -416,15 +416,15 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
 
    $scope.doDeleteEritm = function () {
       $http
-          .post(
-              config.baseUrl + "ER/ERDelItem" + "?" + $.param({
+          .postXSRF(
+              config.baseUrl + "ER/ERDelItem" ,{
                  "ERID": $scope.selectedItems.map(function (i) {
                     return i.requirementDetail.pk.erID;
                  }),
                  "ERITN": $scope.selectedItems.map(function (i) {
                     return i.requirementDetail.pk.erITN;
                  })
-              })
+              }
           ).then(function (result) {
              if (!result.errorMessage || result.errorMessage === "OK") {
                 common.notifier.success("删除操作成功...");
@@ -434,8 +434,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
           });
    };
 
-    $scope.export = function () {
-        exportService.export($scope.columns,$scope.quickResult)
+   $scope.export = function () {
+      exportService.export($scope.columns, $scope.quickResult);
 
-    };
+   };
 }

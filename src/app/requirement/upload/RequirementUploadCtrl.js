@@ -89,7 +89,7 @@ function controller($scope, $http, config, common, cfpLoadingBar, uploadSvc, Bas
             "userID": config.userID,
             "KEY": $scope.previewData.key
         };
-        $http.post(config.baseUrl + "ER/UploadConfirm" + "?" + $.param(data))
+       $http.postXSRF(config.baseUrl + "ER/UploadConfirm" ,data)
             //$.post(config.baseUrl + "ER/UploadConfirm", data)
             .success(function (result) {
                 if (result.errorMessage)
@@ -105,7 +105,7 @@ function controller($scope, $http, config, common, cfpLoadingBar, uploadSvc, Bas
             "userID": config.userID,
             "KEY": $scope.previewData.key
         };
-        $http.post(config.baseUrl + "ER/UploadCancel" + "?" + $.param(data))
+       $http.postXSRF(config.baseUrl + "ER/UploadCancel",data)
             //$.post(config.baseUrl + "ER/UploadCancel", data)
             .success(function (result) {
                 if (result.errorMessage && result.errorMessage == "OK")

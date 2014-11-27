@@ -115,11 +115,11 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http,ex
     };
 
     $scope.doDeleteEr = function () {
-        $http.post(config.baseUrl + "ER/ERDel" + "?" + $.param({
+       $http.postXSRF(config.baseUrl + "ER/ERDel" ,{
             "ERID": $scope.selectedItems.map(function (i) {
                 return i.erID;
             })
-        })).then(
+        }).then(
             function (result) {
                 if (!result.errorMessage || result.errorMessage === "OK") {
                     common.notifier.success("删除操作成功...");

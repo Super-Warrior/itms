@@ -74,8 +74,7 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
 
 
    $scope.basicData = {};
-   $http
-       .post(config.baseUrl + "ER/ERQuickSearch" + "?" + $.param(param))
+   $http.postXSRF(config.baseUrl + "ER/ERQuickSearch", param)
        .then(function (result) {
           data = result.data[0];
        })
@@ -194,7 +193,7 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
             ResMemo: tempData.resMemo
          };
 
-         return $http.post(config.baseUrl + "ER/ERChange" + "?" + $.param(param));
+         return $http.postXSRF(config.baseUrl + "ER/ERChange" ,param);
       };
       var saveItem = function () {
          var tempData = $scope.basicData.requirementDetail;
@@ -226,7 +225,7 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
          };
 
 
-         return $http.post(config.baseUrl + "ER/ERItemChange" + "?" + $.param(param));
+         return $http.postXSRF(config.baseUrl + "ER/ERItemChange",param);
       };
       $q.all([saveHead(), saveItem()]).then(
           function (res) {
