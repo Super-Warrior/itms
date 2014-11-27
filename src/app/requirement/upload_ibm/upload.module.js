@@ -9,7 +9,7 @@ angular
                 },
                 views: {
                     '@app.user': {
-                        templateUrl: 'app/requirement/upload_ibm/requirementUpload.tpl.html',
+                        templateUrl: 'app/requirement/upload_ibm/requirementUpload2.tpl.html',
                         controller: 'requirementUploadIbmCtrl'
 
                     }
