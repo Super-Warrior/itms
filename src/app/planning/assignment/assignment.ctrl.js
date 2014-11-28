@@ -1,11 +1,11 @@
 angular.module("itms.planning.assignment")
     .controller("EOAssignCtrl", ["$scope", "$modal", "$log",
-        "$http", "config", "common", "configService", "customerService", "exportService", EOAssignCtrl]);
+        "$http", "config", "common", "configService", "customerService", "exportService","orderService", EOAssignCtrl]);
 
-function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService, exportService) {
+function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService, exportService,orderService) {
    $scope.module = "计划";
    $scope.title = "需求分配";
-
+   $scope.result=[];
    configService.getConfig("TRPY").then(function (result) {
       $scope.transportTypes = result.data;
    });
@@ -24,20 +24,26 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
 
    $scope.detailConfig = { erDetail: true, timeLine: true/*, data: $scope.quickResult */ };
    $scope.columns = [
-        { "mData": "requirementDetail.pk.erID", "sTitle": "ER" },
-        { "mData": "requirementDetail.pk.erITN", "sTitle": "ERITN" },
+        { "mData": "erID", "sTitle": "ER" },
+        { "mData": "erITN", "sTitle": "ERITN" },
         { "mData": "ertypeDesc", "sTitle": "类型" },
-        { "mData": "requirement.erTag", "sTitle": "特殊" },
+        { "mData": "erTag", "sTitle": "特殊" },
         { "mData": "depCustomerDesc", "sTitle": "发货方" },
         { "mData": "recCustomerDesc", "sTitle": "收货方" },
-        { "mData": "requirement.customerOrder1", "sTitle": "客户订单号" },
-        { "mData": "requirement.customerOrder2", "sTitle": "客户运单号" },
-        { "mData": "requirement.customerOrder3", "sTitle": "客户出库号" },
-        { "mData": "requirementDetail.matIID", "sTitle": "物料" },
-        { "mData": "requirementDetail.resAmt1", "sTitle": "包装数量" },
-        { "mData": "requirementDetail.packNum", "sTitle": "箱号" },
-        { "mData": "requirementDetail.amt", "sTitle": "件数" },
-        { "mData": "requirement.reqDelDate", "sTitle": "送达日期" },
+        { "mData": "project", "sTitle": "项目简称" },//new
+        { "mData": "plannedID", "sTitle": "周计划" },//new
+        { "mData": "customerOrder1", "sTitle": "客户订单号" },
+        { "mData": "customerOrder2", "sTitle": "客户运单号" },
+        { "mData": "customerOrder3", "sTitle": "客户出库号" },
+        { "mData": "matIID", "sTitle": "物料" },
+        { "mData": "resID1", "sTitle": "包装编码" },//new
+        { "mData": "resAmt1", "sTitle": "包装数量" },
+        { "mData": "resAmtCS1", "sTitle": "箱型" },//new
+        { "mData": "subPackNumner", "sTitle": "封号" },//new
+        { "mData": "packNum", "sTitle": "箱号" },
+        { "mData": "amt", "sTitle": "件数" },
+        { "mData": "pickERDate", "sTitle": "预计装箱日期" },//new
+        { "mData": "reqDelDate", "sTitle": "送达日期" },
         { "mData": "ertrtypeDesc", "sTitle": "方式" },
         { "mData": "eritnstatusDesc", "sTitle": "状态" },
         { "mData": "ertrvendorDesc", "sTitle": "第三方" }
@@ -93,7 +99,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          if (result.data.errorMessage)
             $scope.quickResult = [];
          else
-            $scope.quickResult = result.data;
+            $scope.quickResult = orderService.getRequirementPartialForAssigment(result.data);
          $scope.selectedItems = [];
          if ($scope.quickResult.length) {
             var icon = $("#wid-result");
@@ -237,10 +243,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       $scope.createData.reqDelDate2 = $("#sendDate").val();
 
       $scope.createData.ERID = $scope.selectedItems.map(function (i) {
-         return i.requirementDetail.pk.erID;
+         return i.erID;
       });
       $scope.createData.ERITN = $scope.selectedItems.map(function (i) {
-         return i.requirementDetail.pk.erITN;
+         return i.erITN;
       });
       $http
           .postXSRF(config.baseUrl + "EO/EOQuickCreate" , $scope.createData)
@@ -278,7 +284,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.doAdjust = function () {
       if (!$scope.isAnythingSelected()) return;
       $scope.adjustData.ERID = $scope.selectedItems.map(function (i) {
-         return i.requirementDetail.pk.erID;
+         return i.erID;
       });
 
       $http
@@ -307,7 +313,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.doDeleteEr = function () {
       $http.postXSRF(config.baseUrl + "ER/ERDel" ,{
          "ERID": $scope.selectedItems.map(function (i) {
-            return i.requirementDetail.pk.erID;
+            return i.erID;
          })
       }).then(
           function (result) {
@@ -336,7 +342,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.doCreateEOByER = function() {
       $http.postXSRF(config.baseUrl + "ER/EOERQuickCreateWOValidation", {
          "ERID": $scope.selectedItems.map(function(i) {
-            return i.requirementDetail.pk.erID;
+            return i.erID;
          }),
          user: config.userID
       }).then(
@@ -366,10 +372,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.doCreateEOByERITN = function() {
       $http.postXSRF(config.baseUrl + "ER/EOERItnQuickCreateWOValidation", {
          "ERID": $scope.selectedItems.map(function(i) {
-            return i.requirementDetail.pk.erID;
+            return i.erID;
          }),
          "ERITN": $scope.selectedItems.map(function(i) {
-            return i.requirementDetail.pk.erITN;
+            return i.erITN;
          }),
          user: config.userID
       }).then(
@@ -386,10 +392,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.autoSplitERITN = function() {
       $http.postXSRF(config.baseUrl + "ER/ERItnAutoSplit", {
          "ERID": $scope.selectedItems.map(function(i) {
-            return i.requirementDetail.pk.erID;
+            return i.erID;
          }),
          "ERITN": $scope.selectedItems.map(function(i) {
-            return i.requirementDetail.pk.erITN;
+            return i.erITN;
          }),
          user: config.userID
       }).then(
@@ -419,10 +425,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
           .postXSRF(
               config.baseUrl + "ER/ERDelItem" ,{
                  "ERID": $scope.selectedItems.map(function (i) {
-                    return i.requirementDetail.pk.erID;
+                    return i.erID;
                  }),
                  "ERITN": $scope.selectedItems.map(function (i) {
-                    return i.requirementDetail.pk.erITN;
+                    return i.erITN;
                  })
               }
           ).then(function (result) {

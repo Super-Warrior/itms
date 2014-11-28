@@ -1,11 +1,12 @@
 angular
-    .module('itms.requirement.uploadibm', [])
+    .module('itms.requirement.uploadibm', [
+])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
             .state('app.user.requirement.uploadibm', {
                 url: '/upload2',
                 data: {
-                    displayName: '需求上载 (for ibm)'
+                    displayName: '海通需求上载'
                 },
                 views: {
                     '@app.user': {
