@@ -111,6 +111,7 @@ function convertToExportedColumn(columns){
     var result=[];
     columns.forEach(function(value,index){
         if(index==0)return false;
+        if(value.sTitle=='&nbsp;明细&nbsp;')return false;
         var newItem= { headertext: value.sTitle, datatype: "string", datafield: value.mData, ishidden: false };
         result.push(newItem);
     });
