@@ -243,10 +243,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       $scope.createData.reqDelDate2 = $("#sendDate").val();
 
       $scope.createData.ERID = $scope.selectedItems.map(function (i) {
-         return i.requirementDetail.pk.erID;
+         return i.erID;
       });
       $scope.createData.ERITN = $scope.selectedItems.map(function (i) {
-         return i.requirementDetail.pk.erITN;
+         return i.erITN;
       });
       $http
           .postXSRF(config.baseUrl + "EO/EOQuickCreate" , $scope.createData)
@@ -284,7 +284,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.doAdjust = function () {
       if (!$scope.isAnythingSelected()) return;
       $scope.adjustData.ERID = $scope.selectedItems.map(function (i) {
-         return i.requirementDetail.pk.erID;
+         return i.erID;
       });
 
       $http
@@ -313,7 +313,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.doDeleteEr = function () {
       $http.postXSRF(config.baseUrl + "ER/ERDel" ,{
          "ERID": $scope.selectedItems.map(function (i) {
-            return i.requirementDetail.pk.erID;
+            return i.erID;
          })
       }).then(
           function (result) {
@@ -342,7 +342,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.doCreateEOByER = function() {
       $http.postXSRF(config.baseUrl + "ER/EOERQuickCreateWOValidation", {
          "ERID": $scope.selectedItems.map(function(i) {
-            return i.requirementDetail.pk.erID;
+            return i.erID;
          }),
          user: config.userID
       }).then(
@@ -372,10 +372,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.doCreateEOByERITN = function() {
       $http.postXSRF(config.baseUrl + "ER/EOERItnQuickCreateWOValidation", {
          "ERID": $scope.selectedItems.map(function(i) {
-            return i.requirementDetail.pk.erID;
+            return i.erID;
          }),
          "ERITN": $scope.selectedItems.map(function(i) {
-            return i.requirementDetail.pk.erITN;
+            return i.erITN;
          }),
          user: config.userID
       }).then(
@@ -392,10 +392,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.autoSplitERITN = function() {
       $http.postXSRF(config.baseUrl + "ER/ERItnAutoSplit", {
          "ERID": $scope.selectedItems.map(function(i) {
-            return i.requirementDetail.pk.erID;
+            return i.erID;
          }),
          "ERITN": $scope.selectedItems.map(function(i) {
-            return i.requirementDetail.pk.erITN;
+            return i.erITN;
          }),
          user: config.userID
       }).then(
@@ -425,10 +425,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
           .postXSRF(
               config.baseUrl + "ER/ERDelItem" ,{
                  "ERID": $scope.selectedItems.map(function (i) {
-                    return i.requirementDetail.pk.erID;
+                    return i.erID;
                  }),
                  "ERITN": $scope.selectedItems.map(function (i) {
-                    return i.requirementDetail.pk.erITN;
+                    return i.erITN;
                  })
               }
           ).then(function (result) {
