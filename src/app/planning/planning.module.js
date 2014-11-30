@@ -1,7 +1,8 @@
 angular
     .module('itms.planning', [
         'itms.planning.adjustment',
-        'itms.planning.assignment'
+        'itms.planning.assignment',
+        'itms.planning.erPlanibm'
     ])
     .config(['$stateProvider',
         function($stateProvider) {

@@ -1,5 +1,5 @@
 angular.module('itms.transport.eoMaintain')
-    .controller('EOMaintainCtrl', ['$scope', "$http", "config", "common", '$modal', '$log', 'eoMaintainService','exportService', EOMaintainSearchCtrl]);
+    .controller('EOMaintainCtrl', ['$scope', "$http", "config", "common", '$modal', '$log', 'eoMaintainService', 'configService', 'exportService', EOMaintainSearchCtrl]);
 
 function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMaintainService, configService,exportService) {
     $scope.module = "运输执行";
