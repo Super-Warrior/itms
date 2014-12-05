@@ -47,7 +47,11 @@ function orderService($http, config) {
         return $http.postXSRF(searchUrl, data);
     }
 
-    // data: {selectedItems:[], eoid:''}
+    function query(data) {
+       return $http.postXSRF(searchUrl, data);
+   }
+
+   // data: {selectedItems:[], eoid:''}
     function erAssignChange(data) {
         var erid = data.selectedItems.map(function (item) {
             return item.erID;
@@ -155,6 +159,6 @@ function orderService($http, config) {
     } else {
         orderService.queryAll = queryAllRemote;
     }
-
+   orderService.query = query;
     return orderService;
 }
