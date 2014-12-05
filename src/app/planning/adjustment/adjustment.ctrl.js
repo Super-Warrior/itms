@@ -8,33 +8,34 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http) {
 
   $scope.module = '计划';
   $scope.title = '分配调整';
-
+  $scope.ERType = [""];
   $scope.orders = [];
+ $scope.selectedItems = [];
+   $scope.selectedSite = [];
+   $scope.selectedPosition = { "dep": [], "rec": [] };
+   $scope.selectedCustomer = { "dep": [], "rec": [] };
+   $scope.customerOrder1 = "";
+   $scope.customerOrder2 = "";
+   $scope.customerOrder3 = "";
+   $scope.ERTag = [''];
+   $scope.ERTRType = [''];
+   $scope.ERID = [''];
+   $scope.ERITN = [''];
+ $scope.reset = function () {
+      $scope.selectedCustomer = { "dep": [], "rec": [] };
+      $scope.selectedSite = [];
+      $scope.selectedPosition = { "dep": [], "rec": [] };
+      $scope.createDate = "";
+      $scope.user = "";
+      $scope.ERType = [""];
+      $scope.customerOrder1 = "";
+      $scope.customerOrder2 = "";
+      $scope.customerOrder3 = "";
+      $scope.ERTag = [''];
+      $scope.ERTRType = [''];
 
-  $scope.selectedItems = [];
-  $scope.selectedSite = [];
-  $scope.selectedPosition = {
-    'dep': [],
-    'rec': []
-  };
-  $scope.selectedCustomer = {
-    'dep': [],
-    'rec': []
-  };
+   };
 
-  $scope.reset = function () {
-    $scope.selectedCustomer = {
-      'dep': [],
-      'rec': []
-    };
-    $scope.selectedSite = [];
-    $scope.selectedPosition = {
-      'dep': [],
-      'rec': []
-    };
-    $scope.createDate = '';
-    $scope.user = '';
-  };
 
   $scope.handleEvent = function () {
     var modalInstance = $modal.open({
@@ -52,14 +53,47 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http) {
   };
 
   $scope.searchAssignableRequest = function () {
-    orderService.queryAll().success(function (data) {
-      var icon = $('#wid-result');
-      $scope.orders = orderService.getRequirementPartial(data);
-      if (icon.hasClass('jarviswidget-collapsed'))
-        icon.find('.jarviswidget-toggle-btn').click();
-    });
-  };
-
+ var param = {
+         SerType: 'AND',
+         userID: config.userID,
+         depAreaCode: $scope.selectedSite.toString(),
+         depCustomer: $scope.selectedCustomer.dep.toString(),
+         depLocCode: $scope.selectedPosition.dep.toString(),
+         recCustomer: $scope.selectedCustomer.rec.toString(),
+         recLocCode: $scope.selectedPosition.rec.toString(),
+         createDate: $scope.createDate,
+         ERType: $scope.ERType,
+         customerOrder1: $scope.customerOrder1,
+         customerOrder2: $scope.customerOrder2,
+         customerOrder3: $scope.customerOrder3,
+         ERTag: $scope.ERTag,
+         ERTRType: $scope.ERTRType,
+         MesUnit1: '',
+         reqDelDate: '',
+         dep_Country: '',
+         dep_State: $scope.dep_State,
+         dep_City: $scope.dep_City,
+         dep_Disc: '',
+         dep_Group1: $scope.dep_Group1,
+         dep_Group2: '',
+         rec_Country: '',
+         rec_State: $scope.rec_State,
+         rec_City: $scope.rec_City,
+         rec_Disc: '',
+         rec_Group1: '',
+         rec_Group2: '',
+         ERITNStatus: ['ASGN'],
+         ERStatus: [''],
+         ERID: $scope.ERID,
+         ERITN: $scope.ERITN,
+      };
+      orderService.query(param).success(function (data) {
+         var icon = $("#wid-result");
+         $scope.orders = orderService.getRequirementPartial(data);
+         if (icon.hasClass("jarviswidget-collapsed"))
+            icon.find(".jarviswidget-toggle-btn").click();
+      });
+   };
 
   $scope.reallocate = function () {
     var reallocate = function (value) {

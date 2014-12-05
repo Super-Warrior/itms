@@ -24,6 +24,9 @@ function orderService($http, config) {
       ERID: [''],
       ERITN: ['']
     };
+ function query(data) {
+       return $http.postXSRF(searchUrl, data);
+   }
     return $http.postXSRF(searchUrl, data);
   }
 
@@ -93,6 +96,6 @@ function orderService($http, config) {
   } else {
     orderService.queryAll = queryAllRemote;
   }
-
+ orderService.query = query;
   return orderService;
 }
