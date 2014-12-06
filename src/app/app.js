@@ -58,8 +58,12 @@ function bootstrap($rootScope, $state, $stateParams, $log, $location, auth) {
    $log.info('app start');
 
    if (auth.isLoginRequired()) {
-      $state.go('app.login');
-   } else if ($location.$$path === '') {
+      if ($state.current && $state.current.name && $state.current.name === 'app.login')
+         return;
+      else
+         $state.go('app.login');
+   }
+   else if ($location.$$path === '') {
       $state.go('app.user.dashboard');
    }
 }

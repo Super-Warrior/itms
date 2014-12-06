@@ -1,11 +1,11 @@
 angular.module("itms.planning.assignment")
     .controller("EOAssignCtrl", ["$scope", "$modal", "$log",
-        "$http", "config", "common", "configService", "customerService", "exportService","orderService", EOAssignCtrl]);
+        "$http", "config", "common", "configService", "customerService", "exportService", "orderService", EOAssignCtrl]);
 
-function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService, exportService,orderService) {
+function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService, exportService, orderService) {
    $scope.module = "计划";
    $scope.title = "需求分配";
-   $scope.result=[];
+   $scope.result = [];
    configService.getConfig("TRPY").then(function (result) {
       $scope.transportTypes = result.data;
    });
@@ -58,6 +58,27 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.ERTag = [""];
    $scope.ERTRType = [""];
    $scope.ERType = [""];
+   $scope.resourceData = {
+      ERID: [],
+      ERITN: [],
+      TranResType: "",
+      TranResID: "",
+      TranResLicense: "",
+      TransDriverID: ""
+   };
+   $scope.routeData = {
+      ERID: [],
+      ERITN: [],
+      routeID: "",
+      routeClassID: "",
+      dateS: "",
+      timeS: "",
+      dateE: "",
+      timeE: "",
+      routeClassTimeS: "",
+      routeClassTimeE: "",
+      TRVendor: ""
+   };
    $scope.quickSearch = function () {
       var data = {
          SerType: "AND",
@@ -249,7 +270,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          return i.erITN;
       });
       $http
-          .postXSRF(config.baseUrl + "EO/EOQuickCreate" , $scope.createData)
+          .postXSRF(config.baseUrl + "EO/EOQuickCreate", $scope.createData)
           .then(function (result) {
              $scope.modalInstance.dismiss();
              if (!result.errorMessage || result.errorMessage === "OK") {
@@ -288,7 +309,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       });
 
       $http
-          .postXSRF(config.baseUrl + "ER/ERTRChange",$scope.adjustData)
+          .postXSRF(config.baseUrl + "ER/ERTRChange", $scope.adjustData)
           .then(function (result) {
              $scope.modalInstance.dismiss();
              if (!result.errorMessage || result.errorMessage === "OK") {
@@ -311,7 +332,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
    $scope.doDeleteEr = function () {
-      $http.postXSRF(config.baseUrl + "ER/ERDel" ,{
+      $http.postXSRF(config.baseUrl + "ER/ERDel", {
          "ERID": $scope.selectedItems.map(function (i) {
             return i.erID;
          })
@@ -339,18 +360,18 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
    /* Added by T.C. 2014.11.05*/
-   $scope.doCreateEOByER = function() {
+   $scope.doCreateEOByER = function () {
       $http.postXSRF(config.baseUrl + "ER/EOERQuickCreateWOValidation", {
-         "ERID": $scope.selectedItems.map(function(i) {
+         "ERID": $scope.selectedItems.map(function (i) {
             return i.erID;
          }),
          user: config.userID
       }).then(
-         function(result) {
+         function (result) {
             if (!result.errorMessage || result.errorMessage === "OK") {
                common.notifier.success("创建EO运单操作成功...");
             }
-         }).then(function() {
+         }).then(function () {
             $scope.quickSearch();
          });
    };
@@ -369,43 +390,135 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
    /* Added by T.C. 2014.11.05*/
-   $scope.doCreateEOByERITN = function() {
+   $scope.doCreateEOByERITN = function () {
       $http.postXSRF(config.baseUrl + "ER/EOERItnQuickCreateWOValidation", {
-         "ERID": $scope.selectedItems.map(function(i) {
+         "ERID": $scope.selectedItems.map(function (i) {
             return i.erID;
          }),
-         "ERITN": $scope.selectedItems.map(function(i) {
+         "ERITN": $scope.selectedItems.map(function (i) {
             return i.erITN;
          }),
          user: config.userID
       }).then(
-         function(result) {
+         function (result) {
             if (!result.errorMessage || result.errorMessage === "OK") {
                common.notifier.success("创建EO运单操作成功...");
             }
-         }).then(function() {
+         }).then(function () {
             $scope.quickSearch();
          });
    };
 
    /* Added by T.C. 2014.11.26*/
-   $scope.autoSplitERITN = function() {
+   $scope.autoSplitERITN = function () {
       $http.postXSRF(config.baseUrl + "ER/ERItnAutoSplit", {
-         "ERID": $scope.selectedItems.map(function(i) {
+         "ERID": $scope.selectedItems.map(function (i) {
             return i.erID;
          }),
-         "ERITN": $scope.selectedItems.map(function(i) {
+         "ERITN": $scope.selectedItems.map(function (i) {
             return i.erITN;
          }),
          user: config.userID
       }).then(
-         function(result) {
+         function (result) {
             if (!result.errorMessage || result.errorMessage === "OK") {
                common.notifier.success("包装数量调整完毕...");
             }
-         }).then(function() {
+         }).then(function () {
             $scope.quickSearch();
          });
+   };
+
+   $scope.assignResource = function () {
+
+      if (!$scope.isAnythingSelected())
+         return;
+      $scope.resourceData.ERID = $scope.selectedItems.map(function (i) {
+         return i.erID;
+      });
+      $scope.resourceData.ERITN = $scope.selectedItems.map(function (i) {
+         return i.erITN;
+      });
+      $scope.resourceData.TranResType = "";
+      $scope.resourceData.TranResID = "";
+      $scope.resourceData.TranResLicense = "";
+      $scope.resourceData.TransDriverID = "";
+
+      $scope.modalInstance = $modal.open({
+         templateUrl: "app/planning/assignment/assignResource.tpl.html",
+         scope: $scope
+      });
+   };
+
+   $scope.assignRoute = function () {
+
+      if (!$scope.isAnythingSelected())
+         return;
+
+      $scope.routeData.ERID = $scope.selectedItems.map(function (i) {
+         return i.erID;
+      });
+      $scope.routeData.ERITN = $scope.selectedItems.map(function (i) {
+         return i.erITN;
+      });
+      $scope.routeData.routeID = "";
+      $scope.routeData.routeClassID = "";
+      $scope.routeData.routeClassTimeS = "";
+      $scope.routeData.routeClassTimeE = "";
+      $scope.routeData.dateS = "";
+      $scope.routeData.timeS = "";
+      $scope.routeData.dateE = "";
+      $scope.routeData.timeE = "";
+      $scope.routeData.TRVendor = "";
+      $scope.modalInstance = $modal.open({
+         templateUrl: "app/planning/assignment/assignRoute.tpl.html",
+         scope: $scope
+      });
+   };
+
+
+   $scope.doAssignRoute = function (isDraft) {
+      var data = {
+         ERID: $scope.routeData.ERID,
+         ERITN: $scope.routeData.ERITN,
+         RouteID: $scope.routeData.routeID,
+         RouteClassID: $scope.routeData.routeClassID,
+         TRVendor: $scope.routeData.TRVendor,
+         RouteClassTimeS: "",
+         RouteClassTimeE: ""
+      };
+      if ($scope.routeData.dateS && $scope.routeData.timeS) {
+         data.routeClassTimeS = $scope.routeData.dateS + " " + $scope.routeData.timeS;
+      }
+
+      if ($scope.routeData.dateE && $scope.routeData.timeE) {
+         data.routeClassTimeE = $scope.routeData.dateE + " " + $scope.routeData.timeE;
+      }
+
+      var method = isDraft ? "ERItemRouteAssignDraft" : "ERItemRouteAssignConfirm";
+      $http.postXSRF(config.baseUrl + "ER/" + method, data).then(function (result) {
+         if (result.data &&
+            (!result.data.errorMessage || result.data.errorMessage == "OK")) {
+            $scope.modalInstance.close();
+            common.notifier.success("已成功分配并保存为草稿...");
+            $scope.quickSearch();
+         }
+      });
+
+   };
+
+   $scope.doAssignResource = function (isDraft) {
+      var data = $scope.resourceData;
+      var method = isDraft ? "ERItemResAssignDraft" : "ERItemResAssignConfirm";
+      $http.postXSRF(config.baseUrl + "ER/" + method, data).then(function (result) {
+         if (result.data &&
+            (!result.data.errorMessage || result.data.errorMessage == "OK")) {
+            $scope.modalInstance.close();
+            common.notifier.success("已成功分配并保存为草稿...");
+            $scope.quickSearch();
+         }
+      });
+
    };
 
    $scope.deleteEritm = function () {
@@ -423,7 +536,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.doDeleteEritm = function () {
       $http
           .postXSRF(
-              config.baseUrl + "ER/ERDelItem" ,{
+              config.baseUrl + "ER/ERDelItem", {
                  "ERID": $scope.selectedItems.map(function (i) {
                     return i.erID;
                  }),

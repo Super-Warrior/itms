@@ -1,0 +1,176 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="100" alt="iTMS">
+    </h4>
+</div>
+
+
+
+<div class="modal-body no-padding">
+    <div class="panel-group smart-accordion-default" id="accordionres">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordionres" href="#collapseresOne"><i class="fa fa-lg fa-angle-down pull-left"></i><i class="fa fa-lg fa-angle-up pull-left"></i>资源搜索 </a></h4>
+            </div>
+            <div id="collapseresOne" class="panel-collapse collapse in">
+                <div class="panel-body no-padding">
+                    <div class="smart-form">
+                        <fieldset>
+                            <div class="row">
+                                <section class="col col-4">
+                                    <label class="label"><i class="fa fa-folder-open "></i>资源类型</label>
+                                    <label class="select select-multiple">
+                                        <select multiple="multiple" class="custom-scroll">
+                                            <option value="1">VEHI-车头</option>
+                                            <option value="2">FOLK-叉车</option>
+                                            <option value="3">PLAT-托盘</option>
+                                        </select>
+                                    </label>
+                                    <div class="note"><strong>提示:</strong> 按ctrl键进行多选操作 </div>
+                                </section>
+                                <section class="col col-4">
+                                    <label class="label"><i class="fa fa-unlock-o "></i>资源归属</label>
+                                    <label class="select select-multiple">
+                                        <select multiple="multiple" class="custom-scroll">
+                                            <option value="1">OWNS-自有资源</option>
+                                            <option value="2">OUTS-外包资源</option>
+                                            <option value="3">RENT-租赁</option>
+                                        </select>
+                                    </label>
+                                </section>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="row">
+                                <section class="col col-6">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" placeholder="资源代码">
+                                    </label>
+                                </section>
+                                <section class="col col-6">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" placeholder="资源描述">
+                                    </label>
+                                </section>
+                                <section class="col col-3">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-tachometer "></i>
+                                        <input type="text" name="code" placeholder="规格参数1">
+                                    </label>
+                                </section>
+                                <section class="col col-3">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-tachometer"></i>
+                                        <input type="text" name="code" placeholder="规格参数2">
+                                    </label>
+                                </section>
+                                <section class="col col-3">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-tachometer "></i>
+                                        <input type="text" name="code" placeholder="规格参数3">
+                                    </label>
+                                </section>
+                                <section class="col col-3">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-tachometer "></i>
+                                        <input type="text" name="code" placeholder="规格参数4">
+                                    </label>
+                                </section>
+                            </div>
+                            <div class="row">
+                                <section class="col col-12">
+                                    <button type="button" class="btn btn-sm btn-success"><i class="fa fa-search"></i>资源搜索</button>
+                                </section>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <table class="table table-bordered table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>资源代码</th>
+                                        <th>资源名称</th>
+                                        <th>资源类型</th>
+                                        <th>资源归属</th>
+                                        <th>资源位置</th>
+                                        <th>资源规格1</th>
+                                        <th>资源规格2</th>
+                                        <th>资源规格3</th>
+                                        <th>资源规格4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="radio">
+                                                <input type="radio" name="radio">
+                                                </input>
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>19111</td>
+                                        <td>40</td>
+                                        <td>B123131</td>
+                                        <td>3</td>
+                                        <td>B123131</td>
+                                        <td>3</td>
+                                        <td>111</td>
+                                        <td>11</td>
+                                        <td>11</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="radio">
+                                                <input type="radio" name="radio">
+                                                </input>
+                                                <i></i>
+                                            </label>
+                                        </td>
+                                        <td>19111</td>
+                                        <td>40</td>
+                                        <td>B123131</td>
+                                        <td>3</td>
+                                        <td>B123131</td>
+                                        <td>3</td>
+                                        <td>111</td>
+                                        <td>11</td>
+                                        <td>11</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="smart-form">
+        <fieldset>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" ng-model="resourceData.TranResLicense" placeholder="资源编号">
+                        <b class="tooltip tooltip-right"><i class="fa fa-warning txt-color-teal"></i>例如车牌号等 </b>
+                    </label>
+                </section>
+                <section class="col col-6">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code"  ng-model="resourceData.TransDriverID" placeholder="司机手机号">
+                    </label>
+                </section>
+            </div>
+        </fieldset>
+        <footer>
+            <button class="btn btn-success" ng-click="doAssignResource()">分配并确认</button>
+            <button class="btn btn-warning" ng-click="doAssignResource(true)">分配并保存为草稿</button>
+            <button class="btn btn-default" ng-click="$dismiss()">返回</button>
+        </footer>
+    </div>
+</div>
