@@ -477,6 +477,18 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
 
+   $scope.routeData.checked = false;
+   $scope.routeData.resetRouteID = function () {
+      if ($scope.routeData.checked)
+         $scope.routeData.routeID = "";
+   };
+
+   $scope.routeData.resetChecked = function () {
+      if ($scope.routeData.routeID.length > 0) {
+         $scope.routeData.checked = false;
+      }
+   };
+
    $scope.doAssignRoute = function (isDraft) {
       var data = {
          ERID: $scope.routeData.ERID,
