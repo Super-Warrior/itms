@@ -465,9 +465,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       $scope.routeData.routeClassID = "";
       $scope.routeData.routeClassTimeS = "";
       $scope.routeData.routeClassTimeE = "";
-      $scope.routeData.dateS = "";
+      var initDate = moment().format("YYYY-MM-DD");
+      $scope.routeData.dateS = initDate;
       $scope.routeData.timeS = "";
-      $scope.routeData.dateE = "";
+      $scope.routeData.dateE = initDate;
       $scope.routeData.timeE = "";
       $scope.routeData.TRVendor = "";
       $scope.modalInstance = $modal.open({
@@ -499,20 +500,24 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          RouteClassTimeS: "",
          RouteClassTimeE: ""
       };
-      if ($scope.routeData.dateS && $scope.routeData.timeS) {
-         data.routeClassTimeS = $scope.routeData.dateS + " " + $scope.routeData.timeS;
-      }
 
-      if ($scope.routeData.dateE && $scope.routeData.timeE) {
-         data.routeClassTimeE = $scope.routeData.dateE + " " + $scope.routeData.timeE;
-      }
+      var formatDateTime = function (date, time) {
+         if (!date) return "";
+         if (!time) time = "12:00 AM";
+         var dt = date + " " + time;
+         return moment(dt, "YYYY-MM-DD HH:mm A").format("YYYY-MM-DD HH:mm:ss");
+      };
 
+
+      data.RouteClassTimeS = formatDateTime($scope.routeData.dateS, $scope.routeData.timeS);
+      data.RouteClassTimeE = formatDateTime($scope.routeData.dateE, $scope.routeData.timeE);
       var method = isDraft ? "ERItemRouteAssignDraft" : "ERItemRouteAssignConfirm";
+      var message = isDraft ? "已成功分配并保存为草稿" : "已成功分配并确认";
       $http.postXSRF(config.baseUrl + "ER/" + method, data).then(function (result) {
          if (result.data &&
             (!result.data.errorMessage || result.data.errorMessage == "OK")) {
             $scope.modalInstance.close();
-            common.notifier.success("已成功分配并保存为草稿...");
+            common.notifier.success(message + "...");
             $scope.quickSearch();
          }
       });
@@ -521,12 +526,14 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
 
    $scope.doAssignResource = function (isDraft) {
       var data = $scope.resourceData;
+      var message = isDraft ? "已成功分配并保存为草稿" : "已成功分配并确认";
+
       var method = isDraft ? "ERItemResAssignDraft" : "ERItemResAssignConfirm";
       $http.postXSRF(config.baseUrl + "ER/" + method, data).then(function (result) {
          if (result.data &&
             (!result.data.errorMessage || result.data.errorMessage == "OK")) {
             $scope.modalInstance.close();
-            common.notifier.success("已成功分配并保存为草稿...");
+            common.notifier.success(message + "...");
             $scope.quickSearch();
          }
       });
