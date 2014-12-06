@@ -33,8 +33,8 @@ function erPlanibmCtrl($scope, $modal, $log, $http, config, common, configServic
         { "mData": "project", "sTitle": "项目简称" },//new
         { "mData": "plannedID", "sTitle": "周计划" },//new
         { "mData": "customerOrder1", "sTitle": "客户订单号" },
-        { "mData": "customerOrder2", "sTitle": "客户运单号" },
-        { "mData": "customerOrder3", "sTitle": "客户出库号" },
+        { "mData": "customerOrder2", "sTitle": "海通运单号" },
+        { "mData": "customerOrder3", "sTitle": "海通委托单号" },
         { "mData": "matIID", "sTitle": "物料" },
         { "mData": "resID1", "sTitle": "包装编码" },//new
         { "mData": "resAmt1", "sTitle": "包装数量" },

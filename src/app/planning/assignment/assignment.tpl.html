@@ -111,7 +111,7 @@
                         <section class="col col-4">
                             <label class="label"><i class="fa fa-list"></i> 运单类型</label>
                             <label class="select select-multiple">
-                                <select multiple="" class="custom-scroll" data-ng-model="ERType">
+                                <select class="custom-scroll" data-ng-model="ERType" multiple="multiple">
                                     <option value="1">SGM-紧急</option>
                                     <option value="2">SAIC-常规</option>
                                 </select>
@@ -121,7 +121,7 @@
                         <section class="col col-2">
                             <label class="label"><i class="fa fa-truck "></i> 运输方式</label>
                             <label class="select select-multiple">
-                                <select multiple="" class="custom-scroll" data-ng-model="ERTRType">
+                                <select class="custom-scroll" data-ng-model="ERTRType" multiple="multiple">
                                     <option value="1">公路</option>
                                     <option value="2">航空</option>
                                     <option value="3">自有</option>
@@ -131,7 +131,7 @@
                         <section class="col col-2">
                             <label class="label"><i class="fa fa-ambulance "></i> 运输特殊标识</label>
                             <label class="select select-multiple">
-                                <select multiple="" class="custom-scroll" data-ng-model="ERTag">
+                                <select class="custom-scroll" data-ng-model="ERTag" multiple="multiple">
                                     <option value="1">冷藏</option>
                                     <option value="2">危险品</option>
                                     <option value="3">自有</option>
@@ -224,19 +224,24 @@
                   <li>
                       <a href="" ng-click="export()"> <i class="fa fa-cloud-download "></i> 导出</a>
                   </li>
+                  
+
                   <li ng-class="{disabled:!isAnythingSelected()}">
-                      <a href="" ng-click="createEOByER()"><i class="fa fa-resize-small"></i>&nbsp;按需求创建订单</a>
+                      <a href="" ng-click="createEOByER()"><i class="fa fa-edit"></i>&nbsp;按需求创建订单</a>
                   </li>
                   <li ng-class="{disabled:!isAnythingSelected()}">
-                      <a href="" ng-click="createEOByERITN()"><i class="fa fa-resize-small"></i>&nbsp;按需求项目创建订单</a>
+                      <a href="" ng-click="createEOByERITN()"><i class="fa fa-edit"></i>&nbsp;按需求项目创建订单</a>
                   </li>
                   <li ng-class="{disabled:!isAnythingSelected()}">
-                      <a href="" ng-click="autoSplitERITN()"><i class="fa fa-resize-small"></i>&nbsp;自动调整包装数量</a>
+                      <a href="" ng-click="autoSplitERITN()"><i class="fa fa-edit"></i>&nbsp;自动调整包装数量</a>
                   </li>
-                <li ng-class="{disabled:!isAnythingSelected()}">
-                  <a href="" ng-click="create()"><i class="fa fa-resize-small"></i>&nbsp;合并至运单</a>
-                </li>
-                <li ng-class="{disabled:!isAnythingSelected()}">
+                  <li ng-class="{disabled:!isAnythingSelected()}">
+                      <a href="" ng-click="create()"><i class="fa fa-edit"></i>&nbsp;合并至运单</a>
+                  </li>
+                  
+                  
+
+                  <li ng-class="{disabled:!isAnythingSelected()}">
                   <a href="" ng-click="adjust()"><i class="fa fa-truck"></i>&nbsp;运输方式调整</a>
                 </li>
                 <li ng-class="{disabled:!isAnythingSelected()}">

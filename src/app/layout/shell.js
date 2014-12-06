@@ -62,6 +62,8 @@ angular.module('itms')
 
 
             var lastState = getLastState();
+           
+
             if (auth.isLoginRequired()) {
                 $state.go('app.login');
             }
