@@ -14,8 +14,9 @@ angular
     'itms.login'
   ])
   .run(['$rootScope', '$state', '$stateParams', '$log', '$location', 'auth', bootstrap])
-  .config(['$urlRouterProvider', '$stateProvider', routerConfig]);
+  .config(['$urlRouterProvider', '$stateProvider', '$locationProvider', routerConfig]);
 //.config(['$httpProvider', httpConfig]);
+
 
 function httpConfig($httpProvider) {
    $httpProvider.interceptors.push('authInterceptor');
@@ -34,7 +35,8 @@ angular.module('itms')
      };
   }]);
 
-function routerConfig($urlRouterProvider, $stateProvider) {
+function routerConfig($urlRouterProvider, $stateProvider, $locationProvider) {
+   //$locationProvider.html5Mode(true);
    //    $urlRouterProvider
    //
    //        //        .when('/c?id', '/transportation/eventmaintenance')

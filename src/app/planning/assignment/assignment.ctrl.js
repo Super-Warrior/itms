@@ -479,13 +479,13 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
 
 
    $scope.routeData.checked = false;
-   $scope.routeData.resetRouteID = function () {
+   $scope.routeData.resetRouteClassID = function () {
       if ($scope.routeData.checked)
-         $scope.routeData.routeID = "";
+         $scope.routeData.routeClassID = "";
    };
 
    $scope.routeData.resetChecked = function () {
-      if ($scope.routeData.routeID.length > 0) {
+      if ($scope.routeData.routeClassID.length > 0) {
          $scope.routeData.checked = false;
       }
    };
