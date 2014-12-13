@@ -1,554 +1,578 @@
 <div class="modal-header">
-  <button type="button" class="close" aria-hidden="true" ng-click="$dismiss()">
-    &times;
-  </button>
-  <h4 class="modal-title">
-    <img src="img/banner.png" width="150" alt="iTMS">
-  </h4>
+    <button type="button" class="close" aria-hidden="true" ng-click="$dismiss()">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="150" alt="iTMS">
+    </h4>
 </div>
 <div class="modal-body no-padding">
-  <div class="alert alert-info fade in"><i class="fa-fw fa fa-list"></i><strong>运单EO:</strong>{{ data.dn.eo }}</div>
-  <ul id="erTab" class="nav nav-tabs bordered">
-    <li class="active"><a href="#o1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-tag "></i>基本信息</a></li>
-    <li><a href="#o2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-clock-o"></i>时间信息</a></li>
-    <li><a href="#o3" data-toggle="tab"><i class="fa fa-fw fa-lg fa-group"></i>网络公司</a></li>
-    <li><a href="#o4" data-toggle="tab"><i class="fa fa-fw fa-lg fa-plane"></i>订班订舱</a></li>
-    <li><a href="#o5" data-toggle="tab"><i class="fa fa-fw fa-lg fa-truck"></i>订班订舱</a></li>
-      <li><a href="#o6" data-toggle="tab"><i class="fa fa-fw fa-lg fa-truck"></i>事件处理</a></li>
+    <div class="alert alert-info fade in"><i class="fa-fw fa fa-list"></i><strong>运单EO:</strong>{{ data.dn.eo }}</div>
+    <ul id="erTab" class="nav nav-tabs bordered">
+        <li class="active"><a href="#o1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-tag "></i>基本信息</a></li>
+        <li><a href="#o2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-clock-o"></i>时间信息</a></li>
+        <li><a href="#o3" data-toggle="tab"><i class="fa fa-fw fa-lg fa-group"></i>网络公司</a></li>
+        <li><a href="#o4" data-toggle="tab"><i class="fa fa-fw fa-lg fa-plane"></i>订班订舱</a></li>
+        <li><a href="#o5" data-toggle="tab"><i class="fa fa-fw fa-lg fa-truck"></i>订班订舱</a></li>
+        <li><a href="#o6" data-toggle="tab"><i class="fa fa-fw fa-lg fa-truck"></i>事件处理</a></li>
 
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
-      <i class="fa fa-fw fa-lg fa-edit"></i>操作<b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a href="#" data-toggle="tab" ng-click="save(data)"><i class="fa fa-fw fa-lg fa-save"></i>保存</a></li>
-        <!--<li><a href="#" data-target="#myaction" data-toggle="modal"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a></li>-->
-        <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-refresh"></i>刷新</a></li>
-      </ul>
-    </li>
-  </ul>
-  <div id="myTabContent1" class="tab-content padding-10">
-    <div class="tab-pane fade in active" id="o1">
-      <form action="" id="checkout-form" class="smart-form" novalidate>
-        <fieldset>
-          <div class="row">
-            <section class="col col-6">
-              <label>运单状态</label>
-              <label class="select">
-                <select data-ng-model="data.dn.eoStatus" data-ng-options="config.code as config.description for config in configData.EOST"></select>
-                <i class="fa fa-check-square"></i>
-              </label>
-            </section>
-            <section class="col col-6">
-              <label>事件状态</label>
-              <label class="select">
-                <select data-ng-model="data.dn.eventstatus" data-ng-options="config.code as config.description for config in configData.EVST">
-                </select>
-                <i class="fa fa-check-square"></i>
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <label>运单类型</label>
-              <label class="select">
-                <select data-ng-model="data.dn.eotype" data-ng-options="config.code as config.description for config in configData.ERTP">
-                </select>
-                <i class="fa fa-check-square"></i>
-              </label>
-            </section>
-            <section class="col col-4">
-              <label>运输方式</label>
-              <label class="select">
-                <select data-ng-model="data.dn.eotrtype" data-ng-options="config.code as config.description for config in configData.TRPY">
-                </select>
-                <i class="fa fa-check-square"></i>
-              </label>
-            </section>
-            <section class="col col-4">
-              <label>特殊运输标识</label>
-              <label class="select">
-                <select data-ng-model="data.dn.eotag" data-ng-options="config.code as config.description for config in configData.ERTG">
-                </select>
-                <i class="fa fa-check-square"></i>
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-6">
-              <label>第三方物流1</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-user"></i>
-                <input type="text" data-ng-model="data.dn.eotrvendor1" placeholder="第三方物流">
-              </label>
-            </section>
-            <section class="col col-6">
-              <label>物流单号</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-qrcode "></i>
-                <input type="text" data-ng-model="data.dn.vendorOrder1" placeholder="单号">
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-6">
-              <label>第三方物流2</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-user"></i>
-                <input type="text" data-ng-model="data.dn.eotrvendor2" placeholder="第三方物流">
-              </label>
-            </section>
-            <section class="col col-6">
-              <label>物流单号</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-qrcode "></i>
-                <input type="text" data-ng-model="data.dn.vendorOrder2" placeholder="单号">
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-6">
-              <label>第三方物流3</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-user"></i>
-                <input type="text" data-ng-model="data.dn.eotrvendor3" placeholder="第三方物流">
-              </label>
-            </section>
-            <section class="col col-6">
-              <label>物流单号</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-qrcode "></i>
-                <input type="text" data-ng-model="data.dn.vendorOrder3" placeholder="单号">
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-9">
-              <label class="textarea">
-                <textarea rows="3" data-ng-model="data.dn.memo" placeholder="附加信息"></textarea>
-              </label>
-            </section>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-    <div class="tab-pane fade" id="o2">
-      <form action="" id="Form1" class="smart-form" novalidate>
-        <fieldset>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>要求日期1</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.reqDelDate1" data-im-datepicker placeholder="要求日期1">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>要求时间1</label>
-                <div class="input-group">
-                  <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime1" placeholder="要求时间1">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际日期1</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.reqDelDate2" data-im-datepicker placeholder="实际日期1">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际时间1</label>
-
-                <div class="input-group">
-                  <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime2" placeholder="实际时间1">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>要求日期2</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.reqDelDate3" data-im-datepicker placeholder="要求日期2">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>要求时间2</label>
-                <div class="input-group">
-                  <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime3" placeholder="要求时间2">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际日期2</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.reqDelDate4" data-im-datepicker placeholder="实际日期2">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际时间2</label>
-
-                <div class="input-group">
-                  <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime4" placeholder="实际时间2">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-    <div class="tab-pane fade" id="o3">
-      <form action="" id="Form2" class="smart-form" novalidate>
-        <fieldset>
-          <div class="row">
-            <section class="col col-4">
-              <label>1级网络公司代码</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-user"></i>
-                <input type="text" data-ng-model="data.dn.deliverBP1" placeholder="客户代码">
-              </label>
-            </section>
-            <section class="col col-8">
-              <label>1级网络公司名称</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-info"></i>
-                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <label>2级网络公司代码</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-user"></i>
-                <input type="text" data-ng-model="data.dn.deliverBP2" placeholder="客户代码">
-              </label>
-            </section>
-            <section class="col col-8">
-              <label>2级网络公司名称</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-info"></i>
-                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
-              </label>
-            </section>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-    <div class="tab-pane fade" id="o4">
-      <form action="" id="Form3" class="smart-form" novalidate>
-        <fieldset>
-          <div class="row">
-            <section class="col col-4">
-              <label>订班供应商1</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-user"></i>
-                <input type="text" data-ng-model="data.dn.scheduleVendor1" placeholder="客户代码">
-              </label>
-            </section>
-            <section class="col col-8">
-              <label>订班供应商1名称</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-info"></i>
-                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <label>班次</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-user"></i>
-                <input type="text" data-ng-model="data.dn.scheduleClass1" placeholder="班次">
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>出发日期</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.depDate1" data-im-datepicker placeholder="出发日期">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>出发时间</label>
-
-                <div class="input-group">
-                  <input class="form-control" type="text" data-ng-model="data.dn.depTime1" placeholder="出发时间">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际出发日期</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.depDate1act" data-im-datepicker placeholder="实际出发日期">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际出发时间</label>
-
-                <div class="input-group">
-                  <input class="form-control" type="text" data-ng-model="data.dn.detTime1act" placeholder="实际出发时间">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>到达日期</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.arrDate1" data-im-datepicker placeholder="到达日期">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>到达时间</label>
-
-                <div class="input-group">
-                  <input class="form-control" type="text" data-ng-model="data.dn.arrtime1" placeholder="到达时间">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际到达日期</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" data-ng-model="data.dn.arrDate1act" data-im-datepicker placeholder="实际到达日期">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际到达时间</label>
-
-                <div class="input-group">
-                  <input class="form-control" type="text" data-ng-model="data.dn.arrtime1act" placeholder="实际到达时间">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-    <div class="tab-pane fade" id="o5">
-      <form action="" id="Form4" class="smart-form" novalidate>
-        <fieldset>
-          <div class="row">
-            <section class="col col-4">
-              <label>订班供应商2</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-user"></i>
-                <input type="text" name="Cr" placeholder="客户代码">
-              </label>
-            </section>
-            <section class="col col-8">
-              <label>订班供应商2名称</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-info"></i>
-                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <label>班次</label>
-              <label class="input">
-                <i class="icon-prepend fa fa-user"></i>
-                <input type="text" name="Cr" placeholder="班次">
-              </label>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>出发日期</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text15" data-im-datepicker placeholder="出发日期">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>出发时间</label>
-
-                <div class="input-group">
-                  <input class="form-control" id="Text16" type="text" value="" placeholder="出发时间">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际出发日期</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text17" data-im-datepicker placeholder="实际出发日期">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际出发时间</label>
-
-                <div class="input-group">
-                  <input class="form-control" id="Text18" type="text" value="" placeholder="实际出发时间">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>到达日期</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text19" data-im-datepicker placeholder="到达日期">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>到达时间</label>
-
-                <div class="input-group">
-                  <input class="form-control" id="Text20" type="text" value="" placeholder="到达时间">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="row">
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际到达日期</label>
-                <label class="input">
-                  <i class="icon-prepend fa fa-calendar"></i>
-                  <input type="text" name="startdate" id="Text21" data-im-datepicker placeholder="实际到达日期">
-                </label>
-              </div>
-            </section>
-            <section class="col col-4">
-              <div class="form-group">
-                <label>实际到达时间</label>
-                <div class="input-group">
-                  <input class="form-control" id="Text22" type="text" value="" placeholder="实际到达时间">
-                  <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                </div>
-              </div>
-            </section>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-
-    <div class="tab-pane fade" id="o6">
-        <div class="smart-form">
-            <fieldset>
-                <div class="row">
-                    <section class="col col-4">
-                        <label class="select">
-                            <select ng-model="event.eventType" ng-change="getEventCode(event.eventType)"
-                                    ng-options="type.value as type.text for type in types">
-                                <option value="" ng-hide="eventType">事件类型</option>
-                            </select>
-                            <i></i>
-                        </label>
-                    </section>
-                    <section class="col col-4">
-                        <label class="select">
-                            <select ng-model="event.eventCode" ng-options="code.value as code.text for code in codes">
-                                <option value="" ng-hide="eventCode">事件代码</option>
-                            </select>
-                            <i></i>
-                        </label>
-                    </section>
-                </div>
-                <div class="row">
-
-                    <section class="col col-4">
-                        <div class="form-group">
-                            <label>事件日期</label>
-                            <label class="input">
-                                <i class="icon-prepend fa fa-calendar"></i>
-                                <input type="text" name="startdate" im-datepicker
-                                       placeholder="事件日期" ng-model="event.eventDate">
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-fw fa-lg fa-edit"></i>操作<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#" data-toggle="tab" ng-click="save(data)"><i class="fa fa-fw fa-lg fa-save"></i>保存</a></li>
+                <!--<li><a href="#" data-target="#myaction" data-toggle="modal"><i class="fa fa-fw fa-lg fa-eye"></i>事件处理</a></li>-->
+                <li><a href="#" data-toggle="tab"><i class="fa fa-fw fa-lg fa-refresh"></i>刷新</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div id="myTabContent1" class="tab-content padding-10">
+        <div class="tab-pane fade in active" id="o1">
+            <form action="" id="checkout-form" class="smart-form" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>运单状态</label>
+                            <label class="select">
+                                <select data-ng-model="data.dn.eoStatus" data-ng-options="config.code as config.description for config in configData.EOST"></select>
+                                <i class="fa fa-check-square"></i>
                             </label>
-                        </div>
-                    </section>
-                    <section class="col col-4">
-                        <div class="form-group">
-                            <label>事件时间</label>
-                            <div class="input-group">
-                                <input class="form-control" data-im-timepicker type="text" value=""
-                                       placeholder="事件时间" ng-model="event.eventTime">
-                                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                            </div>
+                        </section>
+                        <section class="col col-6">
+                            <label>事件状态</label>
+                            <label class="select">
+                                <select data-ng-model="data.dn.eventstatus" data-ng-options="config.code as config.description for config in configData.EVST">
+                                </select>
+                                <i class="fa fa-check-square"></i>
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>运单类型</label>
+                            <label class="select">
+                                <select data-ng-model="data.dn.eotype" data-ng-options="config.code as config.description for config in configData.ERTP">
+                                </select>
+                                <i class="fa fa-check-square"></i>
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label>运输方式</label>
+                            <label class="select">
+                                <select data-ng-model="data.dn.eotrtype" data-ng-options="config.code as config.description for config in configData.TRPY">
+                                </select>
+                                <i class="fa fa-check-square"></i>
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label>特殊运输标识</label>
+                            <label class="select">
+                                <select data-ng-model="data.dn.eotag" data-ng-options="config.code as config.description for config in configData.ERTG">
+                                </select>
+                                <i class="fa fa-check-square"></i>
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>第三方物流1</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" data-ng-model="data.dn.eotrvendor1" placeholder="第三方物流">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label>物流单号</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-qrcode "></i>
+                                <input type="text" data-ng-model="data.dn.vendorOrder1" placeholder="单号">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>第三方物流2</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" data-ng-model="data.dn.eotrvendor2" placeholder="第三方物流">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label>物流单号</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-qrcode "></i>
+                                <input type="text" data-ng-model="data.dn.vendorOrder2" placeholder="单号">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label>第三方物流3</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" data-ng-model="data.dn.eotrvendor3" placeholder="第三方物流">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label>物流单号</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-qrcode "></i>
+                                <input type="text" data-ng-model="data.dn.vendorOrder3" placeholder="单号">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>客户1</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-search "></i>
+                                <input type="text" name="Cr" data-ng-model="data.eobp1Desc" placeholder="客户1">
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label>客户2</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-search "></i>
+                                <input type="text" name="Cr"  data-ng-model="data.eobp2Desc" placeholder="客户2">
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label>客户3</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-search "></i>
+                                <input type="text" name="Cr"  data-ng-model="data.eobp3Desc" placeholder="客户3">
+                            </label>
+                        </section>
+                    </div>
 
-                        </div>
-                    </section>
-                </div>
-                <div class="row">
-                    <section class="col col-8">
-                        <label class="textarea">
-                            <textarea rows="2" name="info" placeholder="附加信息" ng-model="event.memo"></textarea>
-                        </label>
-                    </section>
-                </div>
-            </fieldset>
-            <footer>
-                <button class="btn btn-success" ng-click="ok()">
-                    确认
-                </button>
-            </footer>
+                    <div class="row">
+                        <section class="col col-9">
+                            <label class="textarea">
+                                <textarea rows="3" data-ng-model="data.dn.memo" placeholder="附加信息"></textarea>
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
         </div>
+        <div class="tab-pane fade" id="o2">
+            <form action="" id="Form1" class="smart-form" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>要求日期1</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" data-ng-model="data.dn.reqDelDate1" data-im-datepicker placeholder="要求日期1">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>要求时间1</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime1" placeholder="要求时间1">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际日期1</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" data-ng-model="data.dn.reqDelDate2" data-im-datepicker placeholder="实际日期1">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际时间1</label>
+
+                                <div class="input-group">
+                                    <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime2" placeholder="实际时间1">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>要求日期2</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" data-ng-model="data.dn.reqDelDate3" data-im-datepicker placeholder="要求日期2">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>要求时间2</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime3" placeholder="要求时间2">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际日期2</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" data-ng-model="data.dn.reqDelDate4" data-im-datepicker placeholder="实际日期2">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际时间2</label>
+
+                                <div class="input-group">
+                                    <input class="form-control" type="text" data-ng-model="data.dn.reqDelTime4" placeholder="实际时间2">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="o3">
+            <form action="" id="Form2" class="smart-form" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>1级网络公司代码</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" data-ng-model="data.dn.deliverBP1" placeholder="客户代码">
+                            </label>
+                        </section>
+                        <section class="col col-8">
+                            <label>1级网络公司名称</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-info"></i>
+                                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>2级网络公司代码</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" data-ng-model="data.dn.deliverBP2" placeholder="客户代码">
+                            </label>
+                        </section>
+                        <section class="col col-8">
+                            <label>2级网络公司名称</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-info"></i>
+                                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="o4">
+            <form action="" id="Form3" class="smart-form" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>订班供应商1</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" data-ng-model="data.dn.scheduleVendor1" placeholder="客户代码">
+                            </label>
+                        </section>
+                        <section class="col col-8">
+                            <label>订班供应商1名称</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-info"></i>
+                                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>班次</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" data-ng-model="data.dn.scheduleClass1" placeholder="班次">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>出发日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" data-ng-model="data.dn.depDate1" data-im-datepicker placeholder="出发日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>出发时间</label>
+
+                                <div class="input-group">
+                                    <input class="form-control" type="text" data-ng-model="data.dn.depTime1" placeholder="出发时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际出发日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" data-ng-model="data.dn.depDate1act" data-im-datepicker placeholder="实际出发日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际出发时间</label>
+
+                                <div class="input-group">
+                                    <input class="form-control" type="text" data-ng-model="data.dn.detTime1act" placeholder="实际出发时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>到达日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" data-ng-model="data.dn.arrDate1" data-im-datepicker placeholder="到达日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>到达时间</label>
+
+                                <div class="input-group">
+                                    <input class="form-control" type="text" data-ng-model="data.dn.arrtime1" placeholder="到达时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际到达日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" data-ng-model="data.dn.arrDate1act" data-im-datepicker placeholder="实际到达日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际到达时间</label>
+
+                                <div class="input-group">
+                                    <input class="form-control" type="text" data-ng-model="data.dn.arrtime1act" placeholder="实际到达时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="o5">
+            <form action="" id="Form4" class="smart-form" novalidate>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>订班供应商2</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="Cr" placeholder="客户代码">
+                            </label>
+                        </section>
+                        <section class="col col-8">
+                            <label>订班供应商2名称</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-info"></i>
+                                <input type="text" disabled="disabled" name="Cr" placeholder="客户名称">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label>班次</label>
+                            <label class="input">
+                                <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="Cr" placeholder="班次">
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>出发日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" name="startdate" id="Text15" data-im-datepicker placeholder="出发日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>出发时间</label>
+
+                                <div class="input-group">
+                                    <input class="form-control" id="Text16" type="text" value="" placeholder="出发时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际出发日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" name="startdate" id="Text17" data-im-datepicker placeholder="实际出发日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际出发时间</label>
+
+                                <div class="input-group">
+                                    <input class="form-control" id="Text18" type="text" value="" placeholder="实际出发时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>到达日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" name="startdate" id="Text19" data-im-datepicker placeholder="到达日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>到达时间</label>
+
+                                <div class="input-group">
+                                    <input class="form-control" id="Text20" type="text" value="" placeholder="到达时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际到达日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" name="startdate" id="Text21" data-im-datepicker placeholder="实际到达日期">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>实际到达时间</label>
+                                <div class="input-group">
+                                    <input class="form-control" id="Text22" type="text" value="" placeholder="实际到达时间">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="o6">
+            <div class="smart-form">
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-4">
+                            <label class="select">
+                                <select ng-model="event.eventType" ng-change="getEventCode(event.eventType)"
+                                    ng-options="type.value as type.text for type in types">
+                                    <option value="" ng-hide="eventType">事件类型</option>
+                                </select>
+                                <i></i>
+                            </label>
+                        </section>
+                        <section class="col col-4">
+                            <label class="select">
+                                <select ng-model="event.eventCode" ng-options="code.value as code.text for code in codes">
+                                    <option value="" ng-hide="eventCode">事件代码</option>
+                                </select>
+                                <i></i>
+                            </label>
+                        </section>
+                    </div>
+                    <div class="row">
+
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>事件日期</label>
+                                <label class="input">
+                                    <i class="icon-prepend fa fa-calendar"></i>
+                                    <input type="text" name="startdate" im-datepicker
+                                        placeholder="事件日期" ng-model="event.eventDate">
+                                </label>
+                            </div>
+                        </section>
+                        <section class="col col-4">
+                            <div class="form-group">
+                                <label>事件时间</label>
+                                <div class="input-group">
+                                    <input class="form-control" data-im-timepicker type="text" value=""
+                                        placeholder="事件时间" ng-model="event.eventTime">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col col-8">
+                            <label class="textarea">
+                                <textarea rows="2" name="info" placeholder="附加信息" ng-model="event.memo"></textarea>
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+                <footer>
+                    <button class="btn btn-success" ng-click="ok()">
+                        确认
+                    </button>
+                </footer>
+            </div>
+        </div>
+
+
+
     </div>
-
-
-
-  </div>
 </div>

@@ -30,7 +30,7 @@ function EODetailCtrl($scope, $modalInstance, common, eoDetailService, eoService
             if (result.data.errorMessage) {
                 $scope.data = {};
             } else {
-                $scope.data = result.data[0];
+               $scope.data = result.data[0];
             }
         });
     }

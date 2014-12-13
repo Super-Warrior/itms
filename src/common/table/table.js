@@ -30,8 +30,8 @@ angular.module('common.directives.table', [])
              console.log('click all');
           };
           settings = {
-             //sScrollX: '100%',
-             //bScrollCollapse: true,
+             sScrollX: '100%',
+             bScrollCollapse: true,
              aoColumns: scope.headerTitles,
              aaData: scope.dataSource,
              sDom: "R<'dt-top-row'Clf>r<'dt-wrapper't><'dt-row dt-bottom-row'<'row'<'col-sm-6'i><'col-sm-6 text-right'p>>",
