@@ -82,7 +82,7 @@ angular.module('common.directives.table', [])
        function bindEventHandler(scope, t) {
           // check if has select all set
           // t.delegate('#selectAll', "click", function () {
-          t.delegate('#selectAll', "click", function () {
+          $(".dataTables_wrapper").delegate('#selectAll', "click", function () {
              var that = this;
              t.find('tbody input[type="checkbox"]').each(function (index, element) {
                 if ($(that).is(":checked")) {
