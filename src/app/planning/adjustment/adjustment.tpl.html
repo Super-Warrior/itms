@@ -1,250 +1,274 @@
 ﻿<section>
-  <div class="row">
-    <div ng-include src='"app/common/pageTitle.html"'></div>
-  </div>
-  <div class="row">
-    <article data-it-Jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="jarviswidget  jarviswidget-color-pink" id="wid-id-1" data-widget-editbutton="false"
-           data-widget-deletebutton="false">
-        <header>
-          <span class="widget-icon"> <i class="fa fa-search"></i> </span>
+    <div class="row">
+        <div ng-include src='"app/common/pageTitle.html"'></div>
+    </div>
+    <div class="row">
+        <article data-it-jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="jarviswidget  jarviswidget-color-pink" id="wid-id-1" data-widget-editbutton="false"
+                data-widget-deletebutton="false">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-search"></i></span>
 
-          <h2>查询可调整需求</h2>
-        </header>
-        <div>
-          <div class="widget-body no-padding">
-            <form action="" class="smart-form" novalidate="novalidate">
-              <fieldset>
-                <div class="row">
-                  <section class="col col-4">
-                    <label class="input"> <i class="icon-prepend fa fa-sitemap"></i>
-                      <input type="text" name="CRP2" ng-model="selectedSite" placeholder="站点代码">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <button class="btn btn-warning btn-sm" ng-click="searchSite()"><i
-                        class="fa fa-search "></i> 站点搜索
-                    </button>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-4">
-                    <label class="input"> <i class="icon-prepend fa fa-arrow-circle-up"></i>
-                      <input type="text" name="CRP2" ng-model="selectedCustomer.dep"
-                             placeholder="发货方代码">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <button class="btn btn-success btn-sm" ng-click="searchCustomer('dep')"><i
-                        class="fa fa-search "></i>
-                      发货方搜索
-                    </button>
-                  </section>
-                  <section class="col col-4">
-                    <label class="input"> <i class="icon-prepend fa fa-map-marker"></i>
-                      <input type="text" name="CRP2" ng-model="selectedPosition.dep"
-                             placeholder="发货方位置">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <button class="btn btn-info btn-sm" ng-click="searchDepCustomer()"><i
-                        class="fa fa-search "></i> 位置搜索
-                    </button>
-                  </section>
-                </div>
-                <div class="row">
-                  <section class="col col-4">
-                    <label class="input"> <i class="icon-prepend fa fa-arrow-circle-down"></i>
-                      <input type="text" name="CRP2" ng-model="selectedCustomer.rec"
-                             placeholder="收货方代码">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <button class="btn btn-success btn-sm" ng-click="searchCustomer('rec')"><i
-                        class="fa fa-search "></i>
-                      收货方搜索
-                    </button>
-                  </section>
-                  <section class="col col-4">
-                    <label class="input"> <i class="icon-prepend fa fa-map-marker"></i>
-                      <input type="text" name="CRP2" placeholder="收货方位置">
-                    </label>
-                  </section>
-                  <section class="col col-2">
-                    <button class="btn btn-info btn-sm" ng-click="searchRecCustomer()"><i
-                        class="fa fa-search "></i>
-                      位置搜索
-                    </button>
-                  </section>
-                </div>
-              </fieldset>
-              <fieldset>
-                <div class="row">
-                  <section class="col col-3">
-                    <label class="input"> <i class="icon-prepend fa fa-user"></i>
-                      <input type="text" name="CRP2" placeholder="创建用户">
-                    </label>
-                  </section>
+                    <h2>查询可调整需求</h2>
+                </header>
+                <div>
+                    <div class="widget-body no-padding">
+                        <form action="" class="smart-form" novalidate="novalidate">
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-sitemap"></i>
+                                            <input type="text" name="CRP2" ng-model="selectedSite" placeholder="站点代码">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <button class="btn btn-warning btn-sm" ng-click="searchSite()">
+                                            <i
+                                                class="fa fa-search "></i>站点搜索
+                                        </button>
+                                    </section>
+                                </div>
+                                <div class="row">
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-arrow-circle-up"></i>
+                                            <input type="text" name="CRP2" ng-model="selectedCustomer.dep"
+                                                placeholder="发货方代码">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <button class="btn btn-success btn-sm" ng-click="searchCustomer('dep')">
+                                            <i
+                                                class="fa fa-search "></i>
+                                            发货方搜索
+                                        </button>
+                                    </section>
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-map-marker"></i>
+                                            <input type="text" name="CRP2" ng-model="selectedPosition.dep"
+                                                placeholder="发货方位置">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <button class="btn btn-info btn-sm" ng-click="searchDepCustomer()">
+                                            <i
+                                                class="fa fa-search "></i>位置搜索
+                                        </button>
+                                    </section>
+                                </div>
+                                <div class="row">
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-arrow-circle-down"></i>
+                                            <input type="text" name="CRP2" ng-model="selectedCustomer.rec"
+                                                placeholder="收货方代码">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <button class="btn btn-success btn-sm" ng-click="searchCustomer('rec')">
+                                            <i
+                                                class="fa fa-search "></i>
+                                            收货方搜索
+                                        </button>
+                                    </section>
+                                    <section class="col col-4">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-map-marker"></i>
+                                            <input type="text" name="CRP2" placeholder="收货方位置">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <button class="btn btn-info btn-sm" ng-click="searchRecCustomer()">
+                                            <i
+                                                class="fa fa-search "></i>
+                                            位置搜索
+                                        </button>
+                                    </section>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col col-3">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-user"></i>
+                                            <input type="text" name="CRP2" placeholder="创建用户">
+                                        </label>
+                                    </section>
 
-                  <section class="col col-2">
-                    <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
-                      <input type="text" data-im-datepicker placeholder="创建日期">
-                    </label>
-                  </section>
+                                    <section class="col col-2">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-calendar"></i>
+                                            <input type="text" data-im-datepicker placeholder="创建日期">
+                                        </label>
+                                    </section>
 
-                </div>
-              </fieldset>
+                                </div>
+                            </fieldset>
 
-                <fieldset>
-                    <div class="row">
-                        <section class="col col-4">
-                            <label class="label"><i class="fa fa-list"></i> 运单类型</label>
-                            <label class="select select-multiple">
-                                <select multiple="multiple" class="custom-scroll" data-ng-model="ERType">
-                                    <option value="1">SGM-紧急</option>
-                                    <option value="2">SAIC-常规</option>
-                                </select>
-                            </label>
-                            <div class="note"> <strong>提示:</strong> 按ctrl键进行多选操作 </div>
-                        </section>
-                        <section class="col col-2">
-                            <label class="label"><i class="fa fa-truck "></i> 运输方式</label>
-                            <label class="select select-multiple">
-                                <select multiple="multiple" class="custom-scroll" data-ng-model="ERTRType">
-                                    <option value="1">公路</option>
-                                    <option value="2">航空</option>
-                                    <option value="3">自有</option>
-                                </select>
-                            </label>
-                        </section>
-                        <section class="col col-2">
-                            <label class="label"><i class="fa fa-ambulance "></i> 运输特殊标识</label>
-                            <label class="select select-multiple">
-                                <select multiple="multiple" class="custom-scroll" data-ng-model="ERTag">
-                                    <option value="1">冷藏</option>
-                                    <option value="2">危险品</option>
-                                    <option value="3">自有</option>
-                                </select>
-                            </label>
-                        </section>
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col col-4">
+                                        <label class="label"><i class="fa fa-list"></i>运单类型</label>
+                                        <label class="select select-multiple">
+                                            <select multiple="multiple" class="custom-scroll" data-ng-model="ERType">
+                                                <option value="1">SGM-紧急</option>
+                                                <option value="2">SAIC-常规</option>
+                                            </select>
+                                        </label>
+                                        <div class="note"><strong>提示:</strong> 按ctrl键进行多选操作 </div>
+                                    </section>
+                                    <section class="col col-2">
+                                        <label class="label"><i class="fa fa-truck "></i>运输方式</label>
+                                        <label class="select select-multiple">
+                                            <select multiple="multiple" class="custom-scroll" data-ng-model="ERTRType">
+                                                <option value="1">公路</option>
+                                                <option value="2">航空</option>
+                                                <option value="3">自有</option>
+                                            </select>
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <label class="label"><i class="fa fa-ambulance "></i>运输特殊标识</label>
+                                        <label class="select select-multiple">
+                                            <select multiple="multiple" class="custom-scroll" data-ng-model="ERTag">
+                                                <option value="1">冷藏</option>
+                                                <option value="2">危险品</option>
+                                                <option value="3">自有</option>
+                                            </select>
+                                        </label>
+                                    </section>
+                                </div>
+                                <div class="row">
+                                    <section class="col col-3">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-search"></i>
+                                            <input type="text" placeholder="客户订单号" data-ng-model="customerOrder1">
+                                        </label>
+                                    </section>
+                                    <section class="col col-3">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-search"></i>
+                                            <input type="text" placeholder="海通运单号" data-ng-model="customerOrder2">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-search"></i>
+                                            <input type="text" placeholder="海通委托单号" data-ng-model="customerOrder3">
+                                        </label>
+                                    </section>
+                                </div>
+                                <div class="row">
+                                    <section class="col col-2">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-sitemap "></i>
+                                            <input type="text" placeholder="运输区域组别" data-ng-model="dep_Group1">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-map-marker  "></i>
+                                            <input type="text" placeholder="出发地省" data-ng-model="dep_State">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-map-marker "></i>
+                                            <input type="text" placeholder="出发地城市" data-ng-model="dep_City">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-location-arrow "></i>
+                                            <input type="text" placeholder="目的地省" data-ng-model="rec_State">
+                                        </label>
+                                    </section>
+                                    <section class="col col-2">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-location-arrow"></i>
+                                            <input type="text" placeholder="目的地城市" data-ng-model="rec_City">
+                                        </label>
+                                    </section>
+                                </div>
+                            </fieldset>
+                            <footer>
+                                <button type="button" class="btn  btn-default" ng-click="searchAssignableRequest()">
+                                    <i
+                                        class="fa fa-search"></i>
+                                    查询
+                                </button>
+                                <button type="button" class="btn btn-default" ng-click="reset()" data-dismiss="modal">
+                                    <i
+                                        class="fa fa-reply-all "></i>
+                                    重置
+                                </button>
+                            </footer>
+                        </form>
                     </div>
-                    <div class="row">
-                        <section class="col col-3">
-                            <label class="input"> <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" placeholder="客户订单号" data-ng-model="customerOrder1">
-                            </label>
-                        </section>
-                        <section class="col col-3">
-                            <label class="input"> <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" placeholder="海通运单号" data-ng-model="customerOrder2">
-                            </label>
-                        </section>
-                        <section class="col col-2">
-                            <label class="input"> <i class="icon-prepend fa fa-search"></i>
-                                <input type="text"  placeholder="海通委托单号" data-ng-model="customerOrder3">
-                            </label>
-                        </section>
-                    </div>
-                    <div class="row">
-                        <section class="col col-2">
-                            <label class="input"> <i class="icon-prepend fa fa-sitemap "></i>
-                                <input type="text"  placeholder="运输区域组别" data-ng-model="dep_Group1">
-                            </label>
-                        </section>
-                        <section class="col col-2">
-                            <label class="input"> <i class="icon-prepend fa fa-map-marker  "></i>
-                                <input type="text"  placeholder="出发地省" data-ng-model="dep_State">
-                            </label>
-                        </section>
-                        <section class="col col-2">
-                            <label class="input"> <i class="icon-prepend fa fa-map-marker "></i>
-                                <input type="text"  placeholder="出发地城市" data-ng-model="dep_City">
-                            </label>
-                        </section>
-                        <section class="col col-2">
-                            <label class="input"> <i class="icon-prepend fa fa-location-arrow "></i>
-                                <input type="text"  placeholder="目的地省" data-ng-model="rec_State">
-                            </label>
-                        </section>
-                        <section class="col col-2">
-                            <label class="input"> <i class="icon-prepend fa fa-location-arrow"></i>
-                                <input type="text"  placeholder="目的地城市" data-ng-model="rec_City">
-                            </label>
-                        </section>
-                    </div>
-                </fieldset>
-              <footer>
-                <button type="button" class="btn  btn-default" ng-click="searchAssignableRequest()"><i
-                    class="fa fa-search"></i>
-                  查询
-                </button>
-                <button type="button" class="btn btn-default" ng-click="reset()" data-dismiss="modal"><i
-                    class="fa fa-reply-all "></i>
-                  重置
-                </button>
-              </footer>
-            </form>
-          </div>
-          <!-- end widget content -->
+                    <!-- end widget content -->
 
-        </div>
-        <!-- end widget div -->
-      </div>
-      <!-- end widget -->
-    </article>
-  </div>
-  <div class="row"></div>
-  <div class="row">
-    <article data-it-Jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="jarviswidget jarviswidget-color-pink" id="wid-result" data-widget-editbutton="false"
-           data-widget-deletebutton="false" data-widget-collapsed="true">
-        <header>
-          <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-
-          <h2>可调整需求 </h2>
-
-          <div class="widget-toolbar">
-            <div class="btn-group">
-              <button class="btn dropdown-toggle btn-xs btn-default " data-toggle="dropdown">
-                操作 <i class="fa fa-caret-down"></i>
-              </button>
-              <ul class="dropdown-menu pull-right">
-                <li>
-                      <a href="" ng-click="export()"> <i class="fa fa-cloud-download "></i> 导出</a>
-                </li>
-                <li ng-class="{disabled:disableAction()}">
-                  <a ng-click="reallocate()"><i class="fa fa-wrench"></i> 分配至其它运单</a>
-                </li>
-                <li ng-class="{disabled:disableAction()}">
-                  <a ng-click="cancelAssignment()"><i class="fa fa-mail-reply-all"></i>
-                    取消分配</a>
-                </li>
-                <li ng-class="{disabled:disableAction()}">
-                  <a href="javascript:void(0)" ng-click="deleteEr()"><i class="fa fa-minus-circle "></i> 删除项目</a>
-                </li>
-                <li ng-class="{disabled:disableAction()}">
-                  <a href="javascript:void(0)"><i class="fa fa-times-circle "></i> 删除运单</a>
-                </li>
-                <li ng-class="{disabled:disableAction()}">
-                  <a href="" ng-click="handleEvent()" id="smart-mod-createEvent"><i
-                      class="fa fa-edit"></i>&nbsp;事件处理</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)" ng-click="searchAssignableRequest()"><i class="fa fa-refresh"></i> 刷新</a>
-                </li>
-              </ul>
+                </div>
+                <!-- end widget div -->
             </div>
-          </div>
-        </header>
-        <div>
-          <div class="widget-body no-padding">
-            <div class="widget-body-toolbar"></div>
-            <div data-im-table header-titles="columns" can-select my-source="orders"
-                 detail-config="detailConfig" selected-items="selectedItems"></div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
+            <!-- end widget -->
+        </article>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+        <article data-it-jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="jarviswidget jarviswidget-color-pink" id="wid-result" data-widget-editbutton="false"
+                data-widget-deletebutton="false" data-widget-collapsed="true">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+                    <h2>可调整需求 </h2>
+
+                    <div class="widget-toolbar">
+                        <div class="btn-group">
+                            <button class="btn dropdown-toggle btn-xs btn-default " data-toggle="dropdown">
+                                操作 <i class="fa fa-caret-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="" ng-click="export()"><i class="fa fa-cloud-download "></i>&nbsp;导出</a>
+                                </li>
+                                <li ng-class="{disabled:disableAction()}">
+                                    <a ng-click="reallocate()"><i class="fa fa-wrench"></i>&nbsp;分配至其它运单</a>
+                                </li>
+                                <li ng-class="{disabled:disableAction()}">
+                                    <a ng-click="cancelAssignment()"><i class="fa fa-mail-reply-all"></i>&nbsp;取消分配</a>
+                                </li>
+                                <li ng-class="{disabled:disableAction()}">
+                                    <a href="" ng-click="batchUpdate()"><i class="fa fa-copy "></i>&nbsp;批量更新－H</a>
+                                </li>
+                                <li ng-class="{disabled:disableAction()}">
+                                    <a href="javascript:void(0)" ng-click="deleteEr()"><i class="fa fa-minus-circle "></i>&nbsp;删除项目</a>
+                                </li>
+                                <li ng-class="{disabled:disableAction()}">
+                                    <a href="javascript:void(0)"><i class="fa fa-times-circle "></i>&nbsp;删除运单</a>
+                                </li>
+                                <li ng-class="{disabled:disableAction()}">
+                                    <a href="" ng-click="handleEvent()" id="smart-mod-createEvent"><i class="fa fa-edit"></i>&nbsp;事件处理</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" ng-click="searchAssignableRequest()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                <div>
+                    <div class="widget-body no-padding">
+                        <div class="widget-body-toolbar"></div>
+                        <div data-im-table header-titles="columns" can-select my-source="orders"
+                            detail-config="detailConfig" selected-items="selectedItems">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
 
 </section>

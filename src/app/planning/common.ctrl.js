@@ -1,4 +1,4 @@
-angular
+﻿angular
    .module('itms.planning.common')
    .controller('searchSiteCtrl', ['$scope', '$http', 'config', '$modalInstance', searchSiteCtrl])
    .controller('searchCustomerCtrl', ['$scope', '$http', 'config', '$modalInstance', 'customerService', 'type', searchCustomerCtrl])
@@ -112,4 +112,96 @@ function searchLocationCtrl($scope, $modalInstance, items) {
    $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
    };
+}
+
+
+function batchUpdateCtrl($scope, $http, config, common, $modalInstance, transportTypes, carriers, erID) {
+   $scope.data = {
+      "ERTRType": "",
+      "ERTRVendor": "",
+      "BP1": "",
+      "BP2": "",
+      "BP3": "",
+      "customerOrder1": "",
+      "recERDate": "",
+      "reqDelDate": "",
+      "ERID": [],
+      "ERStatus": "",
+      "lastChangeUser": "",
+      "lastChangeDate": "",
+      "lastChangeTime": "",
+      "ERTRTypeSM": "",
+      "ERTag": "",
+      "ERTRVendorSM": "",
+      "preERID": "",
+      "preEOID": "",
+      "customerOrder2": "",
+      "customerOrder3": "",
+      "preCustomerOrder1": "",
+      "preCustomerOrder2": "",
+      "preCustomerOrder3": "",
+      "totalAmt": "",
+      "totalWgt": "",
+      "totalVol": "",
+      "totalVolWgt": "",
+      "resType1": "",
+      "ResAmt1": "",
+      "resType2": "",
+      "ResAmt2": "",
+      "resType3": "",
+      "ResAmt3": "",
+      "ResMemo": "",
+      "memo": "",
+      "reqDelTimeE": "",
+      "reqDelTimeL": "",
+      "recERTime": "",
+      "pickERDate": "",
+      "pickERTimeS": "",
+      "pickERTimeF": "",
+      "LoadERTimeS": "",
+      "LoadERTimeF": "",
+      "oprERDate": "",
+      "oprERTimeULS": "",
+      "oprERTimeULF": "",
+      "oprERTimeS": "",
+      "oprERTimeF": "",
+      "depAreaCode": "",
+      "depCustomer": "",
+      "depCustomerContact": "",
+      "depCustomerEmail": "",
+      "depCustomerPhone": "",
+      "depLocCode": "",
+      "depMemo": "",
+      "recCustomer": "",
+      "recCustomerContact": "",
+      "recCustomerEmail": "",
+      "recCustomerPhone": "",
+      "recLocCode": "",
+      "recMemo": "",
+      "project": "",
+      "plannedID": "",
+      "ERType": ""
+   };
+   var distinct = function (arr) {
+      var result = [];
+      arr.forEach(function (i) {
+         if (result.indexOf(i) < 0)
+            result.push(i);
+      });
+      return result;
+   };
+   $scope.data.ERID = distinct(erID);
+   $scope.transportTypes = transportTypes;
+   $scope.carriers = carriers;
+   $scope.save = function () {
+
+      $http.postXSRF(config.baseUrl + "ER/ERMChange", $scope.data).then(
+         function (result) {
+            if (!result.data.errorMessage || result.data.errorMessage === "OK") {
+               common.notifier.success("更新成功...");
+               $modalInstance.close();
+            };
+         });
+   };
+
 }

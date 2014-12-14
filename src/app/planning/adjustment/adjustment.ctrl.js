@@ -1,7 +1,7 @@
 angular.module('itms.planning.adjustment')
-    .controller('EOAssignAdjustCtrl', ['$scope', '$modal', '$log', 'orderService', 'common', '$http', 'exportService', 'config', EOAssignAdjustCtrl]);
+    .controller('EOAssignAdjustCtrl', ['$scope', '$modal', '$log', 'orderService', 'common', '$http', 'configService', 'customerService', 'exportService', 'config', '$q', EOAssignAdjustCtrl]);
 
-function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, exportService, config) {
+function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, configService, customerService, exportService, config, $q) {
    var notifier = common.notifier;
 
    $scope.module = '计划';
@@ -129,14 +129,14 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, e
    $scope.cancelAssignment = function () {
       var doCancelAssignment = function () {
          orderService
-             .erDeleteAssignment({
-                selectedItems: $scope.selectedItems
-             })
-             .success(function () {
-                notifier.success("已成功取消运单分配...");
-                $scope.searchAssignableRequest();
-             });
-      }
+            .erDeleteAssignment({
+               selectedItems: $scope.selectedItems
+            })
+            .success(function () {
+               notifier.success("已成功取消运单分配...");
+               $scope.searchAssignableRequest();
+            });
+      };
       if ($scope.selectedItems.length > 0) {
          common.messageBox({
             title: "提示信息!",
@@ -267,6 +267,45 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, e
       }, function () {
          $log.info('Modal dismissed at: ' + new Date());
       });
+   };
+
+
+   $scope.batchUpdate = function () {
+
+      if ($scope.disableAction()) return;
+
+      var modalInstance = $modal.open({
+         templateUrl: "app/planning/batchUpdate.tpl.html",
+         controller: batchUpdateCtrl,
+         resolve: {
+            transportTypes: function () {
+               var deferred = $q.defer();
+               configService.getConfig("TRPY").then(function (result) {
+                  deferred.resolve(result.data);
+               });
+               return deferred.promise;
+            },
+            carriers: function () {
+
+               var deferred = $q.defer();
+               customerService.searchCustomer("car").then(function (result) {
+                  deferred.resolve(result.data);
+               });
+               return deferred.promise;
+            },
+            erID: function () {
+               return $scope.selectedItems.map(function (i) {
+                  return i.erID;
+               });
+            }
+         }
+      });
+      modalInstance.result.then(function () {
+         $scope.searchAssignableRequest();
+      }, function () {
+         $log.info('Modal dismissed at: ' + new Date());
+      });
+
    };
 
    $scope.detailConfig = { erDetail: true, timeLine: true, eoDetail: true };

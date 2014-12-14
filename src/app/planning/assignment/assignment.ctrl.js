@@ -450,6 +450,36 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       });
    };
 
+
+   $scope.batchUpdate = function () {
+
+      if (!$scope.isAnythingSelected())
+         return;
+
+      var modalInstance = $modal.open({
+         templateUrl: "app/planning/batchUpdate.tpl.html",
+         controller: batchUpdateCtrl,
+         resolve: {
+            transportTypes: function () {
+               return $scope.transportTypes;
+            },
+            carriers: function () {
+               return $scope.carriers;
+            },
+            erID: function () {
+               return $scope.selectedItems.map(function (i) {
+                  return i.erID;
+               });
+            }
+         }
+      });
+      modalInstance.result.then(function () {
+         $scope.quickSearch();
+      }, function () {
+         $log.info('Modal dismissed at: ' + new Date());
+      });
+
+   };
    $scope.assignRoute = function () {
 
       if (!$scope.isAnythingSelected())

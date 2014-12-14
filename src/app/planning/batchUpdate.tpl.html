@@ -1,0 +1,106 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="100" alt="iTMS">
+    </h4>
+</div>
+<div class="modal-body no-padding">
+    <h3 class="row-seperator-header"><i class="fa fa-magic "></i>字段批量更新 </h3>
+    <div class="row">
+    </div>
+    <div id="route-form" class="smart-form">
+        <fieldset>
+            <div class="row">
+                <section class="col col-4">
+                    <label class="select">
+                        <!--  <select name="prov">
+                            <option value="0" selected="selected" disabled="disabled">运输类型</option>
+                            <option value="1">类型1</option>
+                            <option value="2">类型2</option>
+                        </select>-->
+
+                        <select ng-model="data.ERTRType">
+                            <option value="" selected disabled>运输方式</option>
+                            <option ng-repeat="value in transportTypes" value="{{value.code}}">{{value.description}}</option>
+                        </select>
+                    </label>
+                </section>
+                <section class="col col-3">
+                    <label class="select">
+                        <!--    <i class="icon-prepend fa fa-truck"></i>
+                            <input type="text" name="Cr" placeholder="承运商代码">-->
+                        <select ng-model="data.ERTRVendor">
+                            <option value="" selected disabled>承运商</option>
+                            <option ng-repeat="value in carriers" value="{{value.customer}}">{{value.name}}</option>
+                        </select>
+                    </label>
+                </section>
+                <section class="col col-1">
+                    <button class="btn btn-default btn-sm"><i class="fa fa-search "></i></button>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-3">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-truck"></i>
+                        <input type="text" name="Cr" placeholder="合同方代码" ng-model="data.BP1">
+                    </label>
+                </section>
+                <section class="col col-1">
+                    <button class="btn btn-default btn-sm"><i class="fa fa-search "></i></button>
+                </section>
+                <section class="col col-3">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-truck"></i>
+                        <input type="text" name="Cr" placeholder="结算方代码" ng-model="data.BP2" list="list1">
+                        <datalist id="list1">
+                            <option value="Alexandra"></option>
+                            <option value="blice"></option>
+                            <option value="cnastasia"></option>
+                        </datalist>
+                    </label>
+                </section>
+                <section class="col col-1">
+                    <button class="btn btn-default btn-sm"><i class="fa fa-search "></i></button>
+                </section>
+                <section class="col col-3">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-truck"></i>
+                        <input type="text" name="Cr" placeholder="货主方代码" ng-model="data.BP3">
+                    </label>
+                </section>
+                <section class="col col-1">
+                    <button class="btn btn-default btn-sm"><i class="fa fa-search "></i></button>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-3">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-qrcode "></i>
+                        <input type="text" name="code" ng-model="data.customerOrder1" placeholder="B/L提单">
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-calendar"></i>
+                        <input type="text" placeholder="预计出发日期" ng-model="data.recERDate" data-im-datepicker>
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-calendar"></i>
+                        <input type="text" placeholder="预计到达日期" ng-model="data.reqDelDate" data-im-datepicker>
+                    </label>
+                </section>
+            </div>
+        </fieldset>
+        <footer>
+            <button id="smart-mod-erpatch" type="button" class="btn btn-success"  ng-click="save()">保存 </button>
+            <button type="button" class="btn btn-default" ng-click="$dismiss()">返回 </button>
+        </footer>
+    </div>
+</div>
+
+
