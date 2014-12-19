@@ -47,9 +47,9 @@ function eoService($http, config, configService) {
    };
 
    if (config.mode === 'development') {
-      service.queryAll = queryAllLocal
+      service.queryAll = queryAllLocal;
    } else {
-      service.queryAll = queryAllRemote
+      service.queryAll = queryAllRemote;
    }
 
    return service;
@@ -68,13 +68,13 @@ function eoService($http, config, configService) {
 
    function queryByEventType(type) {
       var data = defaultQueryOption;
-       defaultQueryOption.eventstatus = [type || ''];
+      defaultQueryOption.eventstatus = [type || ''];
       return $http.postXSRF(searchUrl, data);
    }
 
    function createEvent(data) {
       var event = {
-         createUser: '10000',
+         createUser: config.userID,
          eventListener1: '',
          eventListener2: '',
          eventListener3: '',

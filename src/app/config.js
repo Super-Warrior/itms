@@ -2,7 +2,7 @@ var config = {
    version: '0.0.1',
    mode: 'production', //development or production
    baseUrl: 'http://211.144.85.15:8080/itms/rest/',
-   userID: 10000
+   userID: ""
 };
 
 angular
@@ -51,7 +51,7 @@ function configProvider($provide) {
          if (data) {
             for (var i in data) {
                var val = data[i];
-               if ($.isArray(val)&&val.length==0) {
+               if ($.isArray(val) && val.length == 0) {
                   data[i] = [""];
                }
             }

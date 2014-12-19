@@ -58,7 +58,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
     $scope.searchAssignableRequest = function () {
         var param = {
             SerType: 'AND',
-            userID: config.userID,
+            userID: "",//config.userID
             depAreaCode: $scope.selectedSite.toString(),
             depCustomer: $scope.selectedCustomer.dep.toString(),
             depLocCode: $scope.selectedPosition.dep.toString(),

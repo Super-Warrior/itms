@@ -1,7 +1,7 @@
 angular.module('itms.transport.event')
     .controller('EventMaintenanceCtrl', ['$scope', 'eolist', EventMaintenanceCtrl])
     .controller('EventMaintenance.MyWorkSpace', ['$scope', '$modal', 'eoService', 'common', MyWorkSpace])
-    .controller('HandleEventCtrl', ['$scope', '$modalInstance', 'eoService', 'items', HandleEventCtrl]);
+    .controller('HandleEventCtrl', ['$scope', '$modalInstance', 'eoService', 'dateTimeHelper', 'items', HandleEventCtrl]);
 
 function EventMaintenanceCtrl($scope, eolist) {
 
@@ -134,13 +134,13 @@ function MyWorkSpace($scope, $modal, eoService, common) {
    }
 }
 
-function HandleEventCtrl($scope, $modalInstance, eoService, items) {
+function HandleEventCtrl($scope, $modalInstance, eoService, dateTimeHelper, items) {
    $scope.items = items;
    $scope.event = {
       eventType: '',
       eventCode: '',
-      eventDate: moment().format("YYYY-MM-DD"),
-      eventTime: moment().format("HH:mm:ss"),
+      eventDate: dateTimeHelper.formatDate(new Date()),
+      eventTime: dateTimeHelper.formatTime(new Date()),
       memo: ''
    };
 
@@ -176,24 +176,8 @@ function HandleEventCtrl($scope, $modalInstance, eoService, items) {
    };
 
    $scope.ok = function () {
-      var dt = null;
-      var inputDate = $scope.event.eventDate;
-      var inputTime = $scope.event.eventTime;
-      if (inputDate && inputTime) {
-         var section = inputTime.substring(inputTime.length - 3, inputTime.length);
-         section = $.trim(section);
+      var dt = dateTimeHelper.mergeDateTime($scope.event.eventDate, $scope.event.eventTime);
 
-         inputTime = inputTime.substring(0, inputTime.length - 3);
-         var index = inputTime.indexOf(":");
-
-         var hour = parseInt(inputTime.substring(0, index));
-         if (section.toUpperCase() == "PM" && hour != 12)
-            hour += 12;
-         inputTime = hour + inputTime.substring(index);
-         dt = inputDate + " " + inputTime;
-         dt = moment(dt).format("YYYY-MM-DD hh:mm:ss");
-
-      }
       var tempData = {
          eventType: $scope.event.eventType,
          eventCode: $scope.event.eventCode,

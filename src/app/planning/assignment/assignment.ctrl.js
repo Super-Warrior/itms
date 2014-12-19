@@ -1,8 +1,8 @@
 angular.module("itms.planning.assignment")
     .controller("EOAssignCtrl", ["$scope", "$modal", "$log",
-        "$http", "config", "common", "configService", "customerService", "exportService", "orderService", EOAssignCtrl]);
+        "$http", "config", "common", "configService", "customerService", "exportService", "orderService",'dateTimeHelper', EOAssignCtrl]);
 
-function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService, exportService, orderService) {
+function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService, exportService, orderService, dateTimeHelper) {
     $scope.module = "计划";
     $scope.title = "需求分配";
     $scope.result = [];
@@ -84,7 +84,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
             SerType: "AND",
             ERID: $scope.ERID,
             ERITN: $scope.ERITN,
-            userID: config.userID,
+            userID: "",//config.userID
             depAreaCode: $scope.selectedSite.toString(),
             depCustomer: $scope.selectedCustomer.dep.toString(),
             depLocCode: $scope.selectedPosition.dep.toString(),
@@ -508,7 +508,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
         $scope.routeData.routeClassID = "";
         $scope.routeData.routeClassTimeS = "";
         $scope.routeData.routeClassTimeE = "";
-        var initDate = moment().format("YYYY-MM-DD");
+       var initDate = dateTimeHelper.formatDate(new Date());
         $scope.routeData.dateS = initDate;
         $scope.routeData.timeS = "";
         $scope.routeData.dateE = initDate;
@@ -544,16 +544,11 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
             RouteClassTimeE: ""
         };
 
-        var formatDateTime = function (date, time) {
-            if (!date) return "";
-            if (!time) time = "12:00 AM";
-            var dt = date + " " + time;
-            return moment(dt, "YYYY-MM-DD HH:mm A").format("YYYY-MM-DD HH:mm:ss");
-        };
+    
 
 
-        data.RouteClassTimeS = formatDateTime($scope.routeData.dateS, $scope.routeData.timeS);
-        data.RouteClassTimeE = formatDateTime($scope.routeData.dateE, $scope.routeData.timeE);
+        data.RouteClassTimeS = dateTimeHelper.mergeDateTime($scope.routeData.dateS, $scope.routeData.timeS);
+        data.RouteClassTimeE = dateTimeHelper.mergeDateTime($scope.routeData.dateE, $scope.routeData.timeE);
         var method = isDraft ? "ERItemRouteAssignDraft" : "ERItemRouteAssignConfirm";
         var message = isDraft ? "已成功分配并保存为草稿" : "已成功分配并确认";
         $http.postXSRF(config.baseUrl + "ER/" + method, data).then(function (result) {

@@ -1,9 +1,9 @@
 ﻿angular.module("itms.common")
     .controller("erDetailCtrl", ["$scope",
-        "$http", "$q", "$modalInstance", "config", "common", "configService", "eoService", erDetailCtrl]);
+        "$http", "$q", "$modalInstance", "config", "common", "configService", "eoService", "dateTimeHelper", erDetailCtrl]);
 
-function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configService, eoService, data) {
-   var queryOption = {};
+function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configService, eoService, dateTimeHelper, data) {
+   var queryOption;
    //  ERID: tempData.pk.erID,
    // ERITN: tempData.pk.erITN,
    if (data && data.requirementDetail) {
@@ -24,7 +24,7 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
 
    var param = {
       SerType: "AND",
-      userID: config.userID,
+      userID: "",//config.userID
       depAreaCode: '',
       depCustomer: '',
       depLocCode: '',
@@ -92,46 +92,30 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
    );
 
 
-   function formatData(data) {
-      data.requirement.resMemo = "";
-      var formatDate = function (dt) {
-         if (!dt) return dt;
-         return moment(dt).format("YYYY-MM-DD");
-      };
-      var formatTime = function (dt) {
-         if (!dt) return dt;
-         return moment(dt).format("HH:mm:ss");
-      };
-      data.requirement.recERDate = formatDate(data.requirement.recERDate);
-      data.requirement.pickERDate = formatDate(data.requirement.pickERDate);
-      data.requirement.oprERDate = formatDate(data.requirement.oprERDate);
-      data.requirement.reqDelDate = formatDate(data.requirement.reqDelDate);
-      data.requirement.createDate = formatDate(data.requirement.createDate);
-      data.requirement.recERTime = formatTime(data.requirement.recERTime);
-      data.requirement.pickERStartTime = formatTime(data.requirement.pickERStartTime);
-      data.requirement.oprERFinishTime = formatTime(data.requirement.oprERFinishTime);
-      data.requirement.reqDelTimeE = formatTime(data.requirement.reqDelTimeE);
-      data.requirement.LoadERTimeF = formatTime(data.requirement.LoadERTimeF);
-      data.requirement.LoadERTimeS = formatTime(data.requirement.LoadERTimeS);
-      data.requirement.createTime = formatTime(data.requirement.createTime);
-      data.requirement.loadERStartTime = formatTime(data.requirement.loadERStartTime);
-      data.requirement.oprERFinishUnloadTime = formatTime(data.requirement.oprERFinishUnloadTime);
-      data.requirement.oprERTimeULF = formatTime(data.requirement.oprERTimeULF);
-      data.requirement.oprERTimeULS = formatTime(data.requirement.oprERTimeULS);
-      data.requirement.oprERStartTime = formatTime(data.requirement.oprERStartTime);
-      data.requirement.oprERStartUnloadTime = formatTime(data.requirement.oprERStartUnloadTime);
-      data.requirement.oprERTimeS = formatTime(data.requirement.oprERTimeS);
-      data.requirement.pickERFinishTime = formatTime(data.requirement.pickERFinishTime);
-      data.requirement.pickERTimeF = formatTime(data.requirement.pickERTimeF);
-      data.requirement.loadERFinishTime = formatTime(data.requirement.loadERFinishTime);
-   }
+   function formatData(result) {
+      result.requirement.resMemo = "";
+      var dateToFormat = ["recERDate", "pickERDate", "oprERDate", "reqDelDate", "createDate"];
+      dateToFormat.forEach(
+         function (key) {
+            result.requirement[key] = dateTimeHelper.formatDate(result.requirement[key]);
+         }
+      );
+
+      var timeToFormat = ["recERTime", "pickERStartTime", "oprERFinishTime", "reqDelTimeE",
+         "LoadERTimeF", "LoadERTimeS", "createTime", "loadERStartTime", "oprERFinishUnloadTime", "oprERTimeULF",
+      "oprERTimeULS", "oprERStartTime", "oprERStartUnloadTime", "oprERTimeS", "pickERFinishTime", "pickERTimeF", "loadERFinishTime"];
+      timeToFormat.forEach(
+         function (key) {
+            result.requirement[key] = dateTimeHelper.formatTime(result.requirement[key]);
+         });
+   };
 
 
    $scope.save = function () {
       var saveHead = function () {
          var tempData = $scope.basicData.requirement;
 
-         var param = {
+         var tempParam = {
             ERID: tempData.erID,
             ERStatus: tempData.erStatus,
             lastChangeUser: tempData.lastChangeUser,
@@ -192,12 +176,28 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
             recMemo: tempData.recMemo,
             ResMemo: tempData.resMemo
          };
-
-         return $http.postXSRF(config.baseUrl + "ER/ERChange" ,param);
+         var timeToFormat = [
+               "reqDelTimeE",
+               "reqDelTimeL",
+               "recERTime",
+               "pickERTimeS",
+               "pickERTimeF",
+               "LoadERTimeS",
+               "LoadERTimeF",
+               "oprERTimeULS",
+               "oprERTimeULF",
+               "oprERTimeS",
+               "oprERTimeF"
+         ];
+         timeToFormat.forEach(
+            function (key) {
+               tempParam[key] = dateTimeHelper.format(tempParam[key], 'HH:mm A', 'HH:mm:ss');
+            });
+         return $http.postXSRF(config.baseUrl + "ER/ERChange", tempParam);
       };
       var saveItem = function () {
          var tempData = $scope.basicData.requirementDetail;
-         var param = {
+         var tempParam = {
 
 
             ERID: tempData.pk.erID,
@@ -225,7 +225,7 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
          };
 
 
-         return $http.postXSRF(config.baseUrl + "ER/ERItemChange",param);
+         return $http.postXSRF(config.baseUrl + "ER/ERItemChange", tempParam);
       };
       $q.all([saveHead(), saveItem()]).then(
           function (res) {
@@ -237,20 +237,20 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
       );
    };
 
-   function isSuccess(data) {
-      return data && (!data.errorMessage || data.errorMessage == "OK");
+   function isSuccess(result) {
+      return result && (!result.errorMessage || result.errorMessage == "OK");
    }
 
 
    $scope.event = {
       eventType: '',
-      eventDate: moment().format("YYYY-MM-DD"),
-      eventTime: moment().format("HH:mm:ss"),
+      eventDate: dateTimeHelper.formatDate(new Date()),
+      eventTime: dateTimeHelper.formatTime(new Date()),
       eventCode: "",
       memo: '',
       reset: function () {
-         var date = moment().format("YYYY-MM-DD");
-         var time = moment().format("HH:mm:ss");
+         var date = dateTimeHelper.formatDate(new Date());
+         var time = dateTimeHelper.formatTime(new Date());
          this.eventDate = date;
          this.eventTime = time;
          this.eventCode = '';
@@ -281,8 +281,8 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
 
    $scope.getEventCode = function (eventType) {
       eoService.getEventCode(eventType)
-          .success(function (data) {
-             $scope.codes = _.map(data, function (item) {
+          .success(function (result) {
+             $scope.codes = _.map(result, function (item) {
                 return {
                    value: item.group2,
                    text: item.description
@@ -292,25 +292,7 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
    };
 
    $scope.ok = function () {
-      var dt = null;
-      var inputDate = $scope.event.eventDate;
-      var inputTime = $scope.event.eventTime;
-      if (inputDate && inputTime) {
-         var section = inputTime.substring(inputTime.length - 3, inputTime.length);
-         section = $.trim(section);
-
-         inputTime = inputTime.substring(0, inputTime.length - 3);
-         var index = inputTime.indexOf(":");
-
-         var hour = parseInt(inputTime.substring(0, index));
-         if (section.toUpperCase() == "PM" && hour != 12)
-            hour += 12;
-         inputTime = hour + inputTime.substring(index);
-         dt = inputDate + " " + inputTime;
-         dt = moment(dt).format("YYYY-MM-DD hh:mm:ss");
-
-      }
-
+      var dt = dateTimeHelper.mergeDateTime($scope.event.eventDate, $scope.event.eventTime);
       eoService
           .createEvent({
              eventType: $scope.event.eventType,

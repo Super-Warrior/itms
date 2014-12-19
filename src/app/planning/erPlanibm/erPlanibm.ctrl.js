@@ -63,7 +63,7 @@ function erPlanibmCtrl($scope, $modal, $log, $http, config, common, configServic
          SerType: "AND",
          ERID: $scope.ERID,
          ERITN: $scope.ERITN,
-         userID: config.userID,
+         userID: "",//config.userID
          depAreaCode: $scope.selectedSite.toString(),
          depCustomer: $scope.selectedCustomer.dep.toString(),
          depLocCode: $scope.selectedPosition.dep.toString(),
