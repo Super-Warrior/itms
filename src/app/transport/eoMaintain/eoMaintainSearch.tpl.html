@@ -17,7 +17,7 @@
                         <div class="btn-group">
                             <button class="btn dropdown-toggle btn-xs btn-success" data-toggle="dropdown">操作 <i class="fa fa-caret-down"></i></button>
                             <ul class="dropdown-menu pull-right">
-                                <li><a href="javascript:void(0)"><i class="fa fa-refresh"></i>重置搜索条件</a></li>
+                                <li><a href="javascript:void(0)" ng-click="resetEoMaintain()"><i class=" fa fa-refresh"></i>重置搜索条件</a></li>
                                 <li><a href="javascript:void(0)" ng-click="eoMaintainSearch()"><i class="fa fa-search"></i>查询</a></li>
                             </ul>
                         </div>
@@ -280,7 +280,7 @@
                                             <section class="col col-4">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-map-marker"></i>
-                                                    <input type="text" name="CRP2" placeholder="收货方位置">
+                                                    <input type="text" name="CRP2" ng-model="selectedPosition.rec" placeholder="收货方位置">
                                                 </label>
                                             </section>
                                             <section class="col col-2">
@@ -297,14 +297,14 @@
                                             <section class="col col-3">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-user"></i>
-                                                    <input type="text" name="CRP2" placeholder="创建用户">
+                                                    <input type="text" name="CRP2" ng-model="user" placeholder="创建用户">
                                                 </label>
                                             </section>
 
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-calendar"></i>
-                                                    <input type="text" data-im-datepicker placeholder="创建日期">
+                                                    <input type="text" data-im-datepicker ng-model="createDate" placeholder="创建日期">
                                                 </label>
                                             </section>
 
