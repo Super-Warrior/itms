@@ -135,6 +135,7 @@ function MyWorkSpace($scope, $modal, eoService, common) {
 }
 
 function HandleEventCtrl($scope, $modalInstance, eoService, dateTimeHelper, items) {
+   $scope.loading = false;
    $scope.items = items;
    $scope.event = {
       eventType: '',
@@ -176,6 +177,8 @@ function HandleEventCtrl($scope, $modalInstance, eoService, dateTimeHelper, item
    };
 
    $scope.ok = function () {
+      if ($scope.loading)
+         return;
       var dt = dateTimeHelper.mergeDateTime($scope.event.eventDate, $scope.event.eventTime);
 
       var tempData = {
@@ -209,8 +212,13 @@ function HandleEventCtrl($scope, $modalInstance, eoService, dateTimeHelper, item
 
       if (tempData.EO.length == 1 && !tempData.EO[0])
          tempData.EO = ['-1'];
-      eoService.createEvent(tempData);
-      $modalInstance.close($scope.items);
+      $scope.loading = true;
+      eoService.createEvent(tempData).then(
+         function () {
+            $scope.loading = false;
+            $modalInstance.close($scope.items);
+         }
+      );
    };
 
    $scope.cancel = function () {

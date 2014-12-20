@@ -7,28 +7,35 @@
     </h4>
 </div>
 <div class="modal-body no-padding">
+    <div style="position: fixed; top: 52%; left: 40%; z-index: 2000" ng-show="loading">
+        <img src="img/loading2.gif">
+    </div>
     <div action="" id="login-form" class="smart-form">
         <fieldset>
-             <div class="alert alert-danger fade in">
-                                <button class="close" data-dismiss="alert">
-                                    ×
-                                </button>
-                                <i class="fa-fw fa fa-warning"></i>
-                                <strong>{{items.length}}&nbsp;</strong>条记录被选择操作
-                            </div>
+            <div class="alert alert-danger fade in">
+                <button class="close" data-dismiss="alert">
+                    ×
+                </button>
+                <i class="fa-fw fa fa-warning"></i>
+                <strong>{{items.length}}&nbsp;</strong>条记录被选择操作
+            </div>
             <div class="row">
                 <section class="col col-4">
                     <label class="select">
                         <select ng-model="event.eventType" ng-change="getEventCode(event.eventType)"
-                                ng-options="type.value as type.text for type in types">
+                            ng-options="type.value as type.text for type in types">
                             <option value="" ng-hide="eventType">事件类型</option>
-                        </select> <i></i></label>
+                        </select>
+                        <i></i>
+                    </label>
                 </section>
                 <section class="col col-4">
                     <label class="select">
                         <select ng-model="event.eventCode" ng-options="code.value as code.text for code in codes">
                             <option value="" ng-hide="eventCode">事件代码</option>
-                        </select> <i></i></label>
+                        </select>
+                        <i></i>
+                    </label>
                 </section>
             </div>
 
@@ -39,7 +46,7 @@
                         <label class="input">
                             <i class="icon-prepend fa fa-calendar"></i>
                             <input type="text" name="startdate" im-datepicker
-                                   placeholder="事件日期" ng-model="event.eventDate">
+                                placeholder="事件日期" ng-model="event.eventDate">
                         </label>
                     </div>
                 </section>
@@ -49,7 +56,7 @@
 
                         <div class="input-group">
                             <input class="form-control" data-im-timepicker type="text" value=""
-                                   placeholder="事件时间" ng-model="event.eventTime">
+                                placeholder="事件时间" ng-model="event.eventTime">
                             <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                         </div>
 
