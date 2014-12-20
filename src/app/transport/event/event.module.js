@@ -36,8 +36,8 @@ angular
                 }
             })
             .state('app.user.transport.eventSearch.search', {
-                abstract: true,
-                url:''
+               "abstract": true,
+               "url": ''
             })
             .state('app.user.transport.eventSearch.search.searchByEvent', {
                 url:'',

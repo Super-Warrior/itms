@@ -11,12 +11,11 @@
 
 
 11.处理'EO/EOMChange'，'ER/ERChange'，'ER/ERItemChange'，接口变动引起的错误。
-12.
-todo：
+12.画面中的一些增强
 
-  
-画面中的一些增强
-417message需要陈俊提供返回的格式
+
+
+todo：
 事件处理太慢，需要加loading效果
 table columns 全选，全不选
 	table任何列都不折行

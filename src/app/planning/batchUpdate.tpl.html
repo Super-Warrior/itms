@@ -12,14 +12,21 @@
     </div>
     <div id="route-form" class="smart-form">
         <fieldset>
+              <div class="alert alert-danger fade in">
+                                <button class="close" data-dismiss="alert">
+                                    ×
+                                </button>
+                                <i class="fa-fw fa fa-warning"></i>
+                                <strong>{{data.ERID.length}}&nbsp;</strong>条记录被选择操作
+                            </div>
             <div class="row">
                 <section class="col col-4">
                     <label class="select">
                         <!--  <select name="prov">
-                            <option value="0" selected="selected" disabled="disabled">运输类型</option>
-                            <option value="1">类型1</option>
-                            <option value="2">类型2</option>
-                        </select>-->
+                                  <option value="0" selected="selected" disabled="disabled">运输类型</option>
+                                  <option value="1">类型1</option>
+                                  <option value="2">类型2</option>
+                              </select>-->
 
                         <select ng-model="data.ERTRType">
                             <option value="" selected disabled>运输方式</option>

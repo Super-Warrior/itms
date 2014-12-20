@@ -337,7 +337,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
         if (!$scope.isAnythingSelected()) return;
         common.messageBox({
             title: "提示信息:",
-            content: "是否删除所选择ER需求?"
+            content: "是否删除所选择的" + $scope.selectedItems.length + "条ER需求?"
         }).success($scope.doDeleteEr)
             .error(function () {
                 common.notifier.cancel("已取消...");
@@ -365,7 +365,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
             return;
         common.messageBox({
             title: "提示信息:",
-            content: "是否根据所选择ER需求创建EO运单?"
+            content: "是否根据所选择的" + $scope.selectedItems.length + "条ER需求创建EO运单?"
         }).success($scope.doCreateEOByER)
              .error(function () {
                  common.notifier.cancel("已取消...");
@@ -395,7 +395,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
             return;
         common.messageBox({
             title: "提示信息:",
-            content: "是否根据所选择ER需求项目创建EO运单?"
+            content: "是否根据所选择的" + $scope.selectedItems.length + "条ER需求项目创建EO运单?"
         }).success($scope.doCreateEOByERITN)
             .error(function () {
                 common.notifier.cancel("已取消...");
@@ -583,7 +583,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
             return;
         common.messageBox({
             title: "提示信息:",
-            content: "是否删除所选择ER需求明细项?"
+            content: "是否删除所选择的" + $scope.selectedItems.length + "条ER需求明细项?"
         }).success($scope.doDeleteEritm)
             .error(function () {
                 common.notifier.cancel("已取消...");

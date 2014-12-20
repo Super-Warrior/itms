@@ -13,6 +13,13 @@
     <!-- NEW WIDGET START -->
     <div id="route-form" class="smart-form">
         <fieldset>
+            <div class="alert alert-danger fade in">
+                <button class="close" data-dismiss="alert">
+                    ×
+                </button>
+                <i class="fa-fw fa fa-warning"></i>
+                <strong>{{selectedItems.length}}&nbsp;</strong>条记录被选择操作
+            </div>
             <div class="row">
                 <section class="col col-4">
                     <label class="select">
@@ -26,7 +33,7 @@
                 <section class="col col-3">
                     <label class="select">
                         <!--  <i class="icon-prepend fa fa-truck"></i>
-                      <input type="text" name="Cr" placeholder="承运商代码">-->
+                            <input type="text" name="Cr" placeholder="承运商代码">-->
                         <select ng-model="batchUpdateData.EOTRVendor1">
                             <option value="" selected disabled>承运商</option>
                             <option ng-repeat="value in carriers" value="{{value.customer}}">{{value.name}}</option>

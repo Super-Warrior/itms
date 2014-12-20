@@ -24,9 +24,15 @@
     </div>
   </fieldset>
   <footer>
-    <a class="btn btn-primary" data-ng-click="erSearch(eventSearchCriteria.erSearch)">
-      <i class="fa fa-search"></i>
-      查询
-    </a>
+   
+      
+        <button type="button" ng-click="erSearch(eventSearchCriteria.erSearch)" class="btn btn-primary">
+            <i class="fa fa-search"></i>&nbsp;查询
+        </button>
+        <button type="button" class="btn btn-default" ng-click="resetEr()">
+            <i class="fa fa-reply-all "></i>&nbsp;重置
+        </button>
+
+
   </footer>
 </form>
