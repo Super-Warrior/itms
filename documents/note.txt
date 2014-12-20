@@ -9,6 +9,9 @@
 9.调用更新，删除等接口时，userID应该传当前登录用户的id，不应该写死。
 10.调用接口前，应将十二小时制的时间（AM/PM）转换成24小时制
 
+
+11.处理'EO/EOMChange'，'ER/ERChange'，'ER/ERItemChange'，接口变动引起的错误。
+12.
 todo：
 
   

@@ -114,13 +114,14 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
    $scope.save = function () {
       var saveHead = function () {
          var tempData = $scope.basicData.requirement;
+         var time = dateTimeHelper.format(tempData.lastChangeTime, "YYYY-MM-DD HH:mm:ss", "HH:mm:ss");
 
          var tempParam = {
             ERID: tempData.erID,
             ERStatus: tempData.erStatus,
             lastChangeUser: tempData.lastChangeUser,
             lastChangeDate: tempData.lastChangeDate,
-            lastChangeTime: tempData.lastChangeTime,
+            lastChangeTime: time,
             ERType: tempData.erType,
             ERTRType: tempData.erTRType,
             ERTRTypeSM: tempData.ertrtypeSM,
@@ -202,7 +203,8 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
       };
       var saveItem = function () {
          var tempData = $scope.basicData.requirementDetail;
-         
+         var time = dateTimeHelper.format(tempData.lastChangeTime, "YYYY-MM-DD HH:mm:ss", "HH:mm:ss");
+
          var tempParam = {
 
 
@@ -212,7 +214,7 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
             EOID: tempData.eoid,
             lastChangeUser: tempData.lastChangeUser,
             lastChangeDate: tempData.lastChangeDate,
-            lastChangeTime: tempData.lastChangeTime,
+            lastChangeTime: time,
             ERITNType: tempData.erITNType,
             ERITNTag: tempData.erITNTag,
             Status: tempData.status,
@@ -246,7 +248,7 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
             StorageLocation: "",
             DockLoaction: "",
             PortLocation: "",
-            TrVendor:""
+            TrVendor: ""
          };
 
 
