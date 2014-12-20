@@ -63,11 +63,13 @@ function dateTimeHelper() {
       return moment(value, currentFormat).format(newFormat);
    };
 
-   var mergeDateTime = function (date, time) {
+   var mergeDateTime = function (date, time, sourceFormat, targetFormat) {
       if (!date) return "";
       if (!time) time = "12:00 AM";
       var dt = date + " " + time;
-      return moment(dt, "YYYY-MM-DD HH:mm A").format("YYYY-MM-DD HH:mm:ss");
+      sourceFormat = sourceFormat || "YYYY-MM-DD HH:mm A";
+      targetFormat = targetFormat || "YYYY-MM-DD HH:mm:ss";
+      return moment(dt, sourceFormat).format(targetFormat);
    };
    return {
       formatDate: formatDate,
@@ -325,6 +327,7 @@ function eoDetailService($http, $q, config, dateTimeHelper, configService) {
 
    function save(data) {
       var eodetail = eoDataMapping(data);
+      
       return $http.postXSRF(emoChangeUrl, eodetail);
    }
 
@@ -370,7 +373,12 @@ function eoDetailService($http, $q, config, dateTimeHelper, configService) {
          Arrtime1: dateTimeHelper.format(data.dn.arrTime1, 'HH:mm A', 'HH:mm:ss'),
          Arrtime2: dateTimeHelper.format(data.dn.arrTime2, 'HH:mm A', 'HH:mm:ss'),
          Arrtime3: dateTimeHelper.format(data.dn.arrTime3, 'HH:mm A', 'HH:mm:ss'),
-         memo: data.dn.memo
+         memo: data.dn.memo,
+         "BP1": "",
+         "BP2": "",
+         "BP3": "",
+         "project": "",
+         "plannedID": ""
       };
    }
 }

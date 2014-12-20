@@ -174,7 +174,12 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
             recCustomerPhone: tempData.recCustomerPhone,
             recLocCode: tempData.recLocCode,
             recMemo: tempData.recMemo,
-            ResMemo: tempData.resMemo
+            ResMemo: tempData.resMemo,
+            "BP1": "",
+            "BP2": "",
+            "BP3": "",
+            "project": "",
+            "plannedID": ""
          };
          var timeToFormat = [
                "reqDelTimeE",
@@ -197,6 +202,7 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
       };
       var saveItem = function () {
          var tempData = $scope.basicData.requirementDetail;
+         
          var tempParam = {
 
 
@@ -221,7 +227,26 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
             width: tempData.width,
             height: tempData.height,
             PackNum: tempData.packNum,
-            Memo: tempData.memo
+            Memo: tempData.memo,
+            RouteID: "",
+            RouteClassName: "",
+            RouteClassID: "",
+            TranResType: "",
+            TranResID: "",
+            TranResLicense: "",
+            TransDriverID: "",
+            ResAmt1: "",
+            resType2: "",
+            ResAmt2: "",
+            resType3: "",
+            ResAmt3: "",
+            ResAmtCS1: "",
+            ResAmtCS2: "",
+            ResAmtCS3: "",
+            StorageLocation: "",
+            DockLoaction: "",
+            PortLocation: "",
+            TrVendor:""
          };
 
 
