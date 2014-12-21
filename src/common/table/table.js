@@ -61,6 +61,7 @@ angular.module('common.directives.table', [])
              }
              settings.aoColumns.push({
                 sTitle: '&nbsp;明细&nbsp;',
+                sClass: "adjustWidth50",
                 mData: null,
                 sDefaultContent: content.join('&nbsp;'),
                 bSortable: false
@@ -70,11 +71,19 @@ angular.module('common.directives.table', [])
           if (canSelect) {
              settings.aoColumns.unshift({
                 sTitle: "<input type='checkbox' class='allResult'>",
+                sClass: "adjustWidth50",
                 mData: null,
                 sDefaultContent: "<input type='checkbox'>",
                 bSortable: false
              });
           }
+
+          settings.aoColumns.forEach(
+             function (col) {
+                if (!col.sClass)
+                   col.sClass = "adjustWidth";
+             }
+          );
           table = element.dataTable(settings);
           bindEventHandler(scope, table);
        }
