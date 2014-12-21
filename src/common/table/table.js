@@ -69,7 +69,7 @@ angular.module('common.directives.table', [])
 
           if (canSelect) {
              settings.aoColumns.unshift({
-                sTitle: "<input type='checkbox' id='selectAll'>",
+                sTitle: "<input type='checkbox' class='allResult'>",
                 mData: null,
                 sDefaultContent: "<input type='checkbox'>",
                 bSortable: false
@@ -80,9 +80,7 @@ angular.module('common.directives.table', [])
        }
 
        function bindEventHandler(scope, t) {
-          // check if has select all set
-          // t.delegate('#selectAll', "click", function () {
-          $(".dataTables_wrapper").delegate('#selectAll', "click", function () {
+          $(".dataTables_wrapper").delegate('.allResult', "click", function () {
              var that = this;
              t.find('tbody input[type="checkbox"]').each(function (index, element) {
                 if ($(that).is(":checked")) {
