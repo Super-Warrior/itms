@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+
+    <title>Map</title>
+
+    <script src="vendor/jquery.js"></script>
+    <script type="text/javascript" src="mapfiles/mapapi.js"></script>
+    <script>
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(31.178080, 121.441418);
+            var myOptions = {
+                zoom: 8,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var pin = 'img/endpin.png';
+            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+            var MARKER = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                icon: pin
+            });
+
+
+            var IWI1 = new google.maps.InfoWindow({
+                content: '<img src="img/itmslogo.png"><br/><center>itms map demo</center>'
+            });
+            google.maps.event.addListener(MARKER, "click", function () { IWI1.open(map, MARKER); });
+
+
+        }
+    </script>
+    <style>
+        html
+        {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body
+        {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        #map_canvas
+        {
+            height: 100%;
+        }
+    </style>
+</head>
+<body onload="initialize()">
+    <div id="map_canvas"></div>
+</body>
+</html>

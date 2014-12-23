@@ -1,17 +1,27 @@
 ﻿angular.module('itms')
-    .controller('shellCtrl', ['$rootScope', '$state', 'auth', 'identity', "config",
-        function ($rootScope, $state, auth, identity, config) {
+    .controller('shellCtrl', ['$rootScope', '$state', 'auth', 'identity', "config", 'common',
+        function ($rootScope, $state, auth, identity, config, common) {
            var userTypes = {
               "1": "管理员",
               "2": "海通业务员",
               "3": "合作伙伴"
            };
-           $rootScope.logout = function() {
+           $rootScope.logout = function () {
               $rootScope.currentUser = undefined;
               identity.currentUser = undefined;
               window.location.reload(true);
               //  $state.go('app.login');
            };
+
+           $rootScope.askLogout = function () {
+              common.messageBox({
+                 title: "提示信息:",
+                 content: "是否退出系统?"
+              }).success($rootScope.logout)
+                  .error(function () { });
+           };
+
+
 
            $rootScope.refreshPage = function () {
               window.location.reload(true);
@@ -72,7 +82,7 @@
                  $this.addClass('active');
               } else {
                  $this.next('.ajax-dropdown').fadeOut(150);
-                 $this.removeClass('active')
+                 $this.removeClass('active');
               }
               $this.next('.ajax-dropdown').find('.btn-group > .active > input').attr('id');
               e.preventDefault();

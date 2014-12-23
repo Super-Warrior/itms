@@ -11,7 +11,8 @@ angular
     'itms.requirement',
     'itms.common',
     'itms.dashboard',
-    'itms.login'
+    'itms.login',
+     'itms.map'
   ])
   .run(['$rootScope', '$state', '$stateParams', '$log', '$location', 'auth', bootstrap])
   .config(['$urlRouterProvider', '$stateProvider', '$locationProvider', routerConfig]);

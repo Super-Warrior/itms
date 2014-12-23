@@ -134,8 +134,8 @@ function exportService() {
       });
    };
    return {
-      export: exportToExcel
-   }
+      "export": exportToExcel
+   };
 }
 
 function convertToExportedColumn(columns) {
@@ -150,7 +150,7 @@ function convertToExportedColumn(columns) {
 }
 
 function configService($http, $q, config) {
-   var getEmptyCriteria = function () {
+   var getEmptyCriteria = function() {
 
       return {
          "Code": null,
@@ -160,8 +160,9 @@ function configService($http, $q, config) {
          "Group3": null,
          "Language": ["CN"]
       };
+   };
+   
 
-   }
    var criteria = getEmptyCriteria();
 
    var getConfig = function (type, code) {
