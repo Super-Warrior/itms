@@ -181,6 +181,8 @@ angular.module('common.directives.table', [])
                       $(selectedRow).addClass('highlight');
                       scope.selectedItems.push(rowData);
                    }
+
+                   scope.$emit("selectionChange", scope.selectedItems);
                 });
 
                 function isRowSelected(row) {
