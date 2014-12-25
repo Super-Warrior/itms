@@ -181,21 +181,30 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       if (data.length === 1) {
          var option = { "EO": [data[0].eo], "ER": [data[0].erID], "ERITN": [data[0].erITN] };
          $.when(
-              eoMaintainService.getLocation(option),
-              eoMaintainService.getEventLocation(option),
-                eoMaintainService.getRoutePath(option)
-           ).done(
-           function (location, events, path) {
-              var success = mapFrame.window.drawMap(location[0][0], events[0][0], path[0][0]);
-              if (success) {
-                 if (icon.hasClass("jarviswidget-collapsed"))
-                    icon.find(".jarviswidget-toggle-btn").click();
-              } else
-                 alert("该运单目前没有运输信息。");
-           });
-      } else {
-         if (!icon.hasClass("jarviswidget-collapsed"))
-            icon.find(".jarviswidget-toggle-btn").click();
+            eoMaintainService.getLocation(option),
+            eoMaintainService.getEventLocation(option),
+            eoMaintainService.getRoutePath(option)
+         ).done(
+            function (location, events, path) {
+
+               var success = false;
+               if (location && location.length && location[0].length && location[0][0]
+                  && events && events.length && events[0].length && events[0][0]
+                  && path && path.length && path[0].length && path[0][0]) {
+                  success = mapFrame.window.drawMap(location[0][0], events[0][0], path[0][0]);
+               }
+
+               if (icon.hasClass("jarviswidget-collapsed"))
+                  icon.find(".jarviswidget-toggle-btn").click();
+               if (success) {
+
+
+               } else {
+                  mapFrame.window.clearMap();
+
+               }
+
+            });
       }
    });
 

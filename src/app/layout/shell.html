@@ -4,7 +4,9 @@
         <div id="logo-group">
 
             <!-- PLACE YOUR LOGO HERE -->
-            <span id="logo"> <img src="img/banner.png" alt="iTMS"> </span>
+            <span id="logo">
+                <img src="img/banner.png" alt="iTMS">
+            </span>
             <!-- END LOGO PLACEHOLDER -->
             <!-- Note: The activity badge color changes when clicked and resets the number to 0
                     Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
@@ -42,12 +44,11 @@
                 </div>
                 <!-- end notification content -->
                 <!-- footer: refresh area -->
-                <span>
-                    上次更新: 12/12/2013 9:43AM
+                <span>上次更新: 12/12/2013 9:43AM
                     <button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
-                          class="btn btn-xs btn-default pull-right">
-                    <i class="fa fa-refresh"></i>
-                  </button>
+                        class="btn btn-xs btn-default pull-right">
+                        <i class="fa fa-refresh"></i>
+                    </button>
                 </span>
                 <!-- end footer -->
             </div>
@@ -56,7 +57,8 @@
         <!-- projects dropdown -->
         <div id="project-context">
             <span class="label" ng-bind="currentUser.userType"></span>
-            <span ng-bind="currentUser.displayName" id="project-selector" class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">
+            <span ng-bind="currentUser.displayName" id="project-selector" class="popover-trigger-element">
+                <!--<span ng-bind="currentUser.displayName"  class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">-->
                 <i class="fa fa-angle-down"></i>
             </span>
             <ul class="dropdown-menu">
@@ -71,7 +73,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-power-off"></i> 收起</a>
+                    <a href="javascript:void(0);"><i class="fa fa-power-off"></i>收起</a>
                 </li>
             </ul>
         </div>
@@ -80,17 +82,17 @@
 
             <!-- collapse menu button -->
             <div id="hide-menu" class="btn-header pull-right">
-                <span> <a href="javascript:void(0);" title="Collapse Menu"><i class="fa fa-bars"></i></a> </span>
+                <span><a href="javascript:void(0);" title="Collapse Menu"><i class="fa fa-bars"></i></a></span>
             </div>
             <!-- end collapse menu -->
             <!-- logout button -->
             <div id="logout" class="btn-header transparent pull-right">
-                <span> <a href="javascript:void(0)" ng-click="askLogout()" title="退出"><i class="fa fa-sign-out"></i></a> </span>
+                <span><a href="javascript:void(0)" ng-click="askLogout()" title="退出"><i class="fa fa-sign-out"></i></a></span>
             </div>
             <!-- end logout button -->
             <!-- search mobile button (this is hidden till mobile view port) -->
             <div id="search-mobile" class="btn-header transparent pull-right">
-                <span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
+                <span><a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a></span>
             </div>
             <!-- end search mobile button -->
             <!-- input: search field -->
@@ -100,18 +102,24 @@
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img alt="" src="img/flags/cn.png">
-                        <span> 中文 </span>
+                        <span>中文 </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu pull-right">
                         <li class="active">
-                            <a href="javascript:void(0);"><img alt="" src="img/flags/us.png"> US</a>
+                            <a href="javascript:void(0);">
+                                <img alt="" src="img/flags/us.png">
+                                US</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><img alt="" src="img/flags/cn.png"> 中文</a>
+                            <a href="javascript:void(0);">
+                                <img alt="" src="img/flags/cn.png">
+                                中文</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><img alt="" src="img/flags/de.png"> German</a>
+                            <a href="javascript:void(0);">
+                                <img alt="" src="img/flags/de.png">
+                                German</a>
                         </li>
                     </ul>
                 </li>
@@ -130,10 +138,10 @@
         <div id="ribbon">
             <span class="ribbon-button-alignment">
                 <span id="refresh" ng-click="refreshPage()" class="btn btn-ribbon" data-title="refresh"
-                      rel="tooltip" data-placement="bottom"
-                      data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
-                  data-html="true"><i class="fa fa-refresh"></i>
-            </span>
+                    rel="tooltip" data-placement="bottom"
+                    data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
+                    data-html="true"><i class="fa fa-refresh"></i>
+                </span>
             </span>
 
             <div sw-breadcrumb></div>
