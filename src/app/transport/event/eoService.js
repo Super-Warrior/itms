@@ -4,6 +4,21 @@ angular.module('itms.transport.event')
 function eoService($http, config, configService) {
 
    var defaultQueryOption = {
+      ERTag: "",
+      MesUnit1: '',
+      reqDelDate: '',
+      dep_Country: '',
+      dep_State: $scope.dep_State,
+      dep_City: $scope.dep_City,
+      dep_Disc: '',
+      //dep_Group1: $scope.dep_Group1,
+      //dep_Group2: '',
+      //rec_Country: '',
+      //rec_State: $scope.rec_State,
+      //rec_City: $scope.rec_City,
+      //rec_Disc: '',
+      //rec_Group1: '',
+      //rec_Group2: '',
       SerType: 'OR',
       EOStatus: ['S001'],
       eventstatus: [''],
@@ -46,11 +61,9 @@ function eoService($http, config, configService) {
       getEventCode: getEventCode
    };
 
-   if (config.mode === 'development') {
-      service.queryAll = queryAllLocal;
-   } else {
-      service.queryAll = queryAllRemote;
-   }
+
+   service.queryAll = queryAllRemote;
+
 
    return service;
 
@@ -59,12 +72,7 @@ function eoService($http, config, configService) {
       return $http.postXSRF(searchUrl, data);
    }
 
-   function queryAllLocal() {
-      return $http({
-         method: 'GET',
-         url: '/mock/eoservice.json'
-      });
-   }
+
 
    function queryByEventType(type) {
       var data = defaultQueryOption;

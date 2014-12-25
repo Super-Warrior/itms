@@ -35,6 +35,7 @@ angular.module('common.directives.table', [])
              aoColumns: scope.headerTitles,
              aaData: scope.dataSource,
              sDom: "R<'dt-top-row'Clf>r<'dt-wrapper't><'dt-row dt-bottom-row'<'row'<'col-sm-6'i><'col-sm-6 text-right'p>>",
+             bAutoWidth: false,
              fnInitComplete: function (oSettings, json) {
                 $('.ColVis_Button')
                   .addClass('btn btn-default btn-sm')
@@ -61,7 +62,8 @@ angular.module('common.directives.table', [])
              }
              settings.aoColumns.push({
                 sTitle: '&nbsp;明细&nbsp;',
-                sClass: "adjustWidth50",
+                //sClass: "",
+                sWidth: 70,
                 mData: null,
                 sDefaultContent: content.join('&nbsp;'),
                 bSortable: false
@@ -71,7 +73,8 @@ angular.module('common.directives.table', [])
           if (canSelect) {
              settings.aoColumns.unshift({
                 sTitle: "<input type='checkbox' class='allResult'>",
-                sClass: "adjustWidth50",
+                //sClass: "",
+                sWidth: 50,
                 mData: null,
                 sDefaultContent: "<input type='checkbox'>",
                 bSortable: false
@@ -80,8 +83,10 @@ angular.module('common.directives.table', [])
 
           settings.aoColumns.forEach(
              function (col) {
-                if (!col.sClass)
-                   col.sClass = "adjustWidth";
+                //if (!col.sClass)
+                //col.sClass = "";80
+                if (!col.sWidth)
+                   col.sWidth = 80;
              }
           );
           table = element.dataTable(settings);

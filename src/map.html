@@ -93,14 +93,7 @@
             );
 
             drawPolyline(map, points);
-            document.getElementById("no_map").style.display = "none";
-            document.getElementById("map_canvas").style.display = "block";
             return true;
-        };
-
-        window.clearMap = function () {
-            document.getElementById("map_canvas").style.display = "none";
-            document.getElementById("no_map").style.display = "block";
         };
 
         var polylineTimer = null;
@@ -156,6 +149,5 @@
 </head>
 <body onload="">
     <div id="map_canvas"></div>
-    <div style="margin: 15px; font-family: 'Microsoft Yahei',verdana; font-size: 15px;" id="no_map">当前订单没有位置和线路信息</div>
 </body>
 </html>

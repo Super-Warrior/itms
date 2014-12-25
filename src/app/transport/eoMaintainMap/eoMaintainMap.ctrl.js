@@ -69,6 +69,7 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       timeLine: true,
       eoDetail: true
    };
+  
    $scope.columns = [{
       "mData": "eo",
       "sTitle": "EO"
@@ -80,7 +81,8 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       "sTitle": "ERITN"
    }, {
       "mData": "eoStatus",
-      "sTitle": "运单状态"
+      "sTitle": "运单状态",
+      "sWidth": 150
    }, {
       "mData": "project",
       "sTitle": "项目简称"
@@ -89,10 +91,12 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       "sTitle": "周计划"
    }, {
       "mData": "customerOrder",
-      "sTitle": "客户订单号"
+      "sTitle": "客户订单号",
+      "sWidth": 150
    }, {
       "mData": "eoType",
-      "sTitle": "类型"
+      "sTitle": "类型",
+      "sWidth": 150
    }, {
       "mData": "eventstatus",
       "sTitle": "事件状态"
@@ -122,35 +126,44 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       "sTitle": "包装数量"
    }, {
       "mData": "matIIDDesc",
-      "sTitle": "物料名称"
+      "sTitle": "物料名称",
+      "sWidth": 120
    }, {
       "mData": "eoTag",
       "sTitle": "特殊"
    }, {
       "mData": "depCustomer",
-      "sTitle": "发货方"
+      "sTitle": "发货方",
+      "sWidth": 150
    }, {
       "mData": "recCustomer",
-      "sTitle": "收货方"
+      "sTitle": "收货方",
+      "sWidth": 150
    }, {
       "mData": "pickERDate",
-      "sTitle": "预计装箱日期"
+      "sTitle": "预计装箱日期",
+      "sWidth": 150
    }, {
       "mData": "reDelDate",
-      "sTitle": "送达日期"
+      "sTitle": "送达日期",
+      "sWidth": 150
    }, {
       "mData": "eoTrtype",
-      "sTitle": "方式"
+      "sTitle": "方式",
+      "sWidth": 150
    }, {
       "mData": "eoTrvendor",
       "sTitle": "承运方"
    }, {
       "mData": "vendorOrder",
-      "sTitle": "承运方路单"
+      "sTitle": "承运方路单",
+      "sWidth": 120
    }, {
       "mData": "deliverBP1",
-      "sTitle": "司机ID"
+      "sTitle": "司机ID",
+      "sWidth": 120
    }];
+
    $scope.selectedItems = [];
 
    //$scope.$watchCollection('selectedItems', function (data) {
@@ -175,7 +188,7 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
    //         icon.find(".jarviswidget-toggle-btn").click();
    //   }
    //}/*, true*/);
-
+   $scope.showMap = false;
    $scope.$on("selectionChange", function (ev, data) {
       var icon = $("#wid-map");
       if (data.length === 1) {
@@ -196,13 +209,7 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
 
                if (icon.hasClass("jarviswidget-collapsed"))
                   icon.find(".jarviswidget-toggle-btn").click();
-               if (success) {
-
-
-               } else {
-                  mapFrame.window.clearMap();
-
-               }
+               $scope.showMap = success;
 
             });
       }

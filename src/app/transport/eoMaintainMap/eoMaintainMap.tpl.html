@@ -485,7 +485,8 @@
                 </header>
                 <div>
                     <div class="widget-body no-padding" style="margin: -13px -13px;">
-                        <iframe id="mapFrame" name="mapFrame" src="map.html" frameborder="0" scrolling="auto" style="height: 500px;" width="100%" height="500" seamless></iframe>
+                        <iframe ng-show="hasMap" id="mapFrame" name="mapFrame" src="map.html" frameborder="0" scrolling="auto" style="height: 500px;" width="100%" height="500" seamless></iframe>
+                        <div ng-show="!hasMap" style="margin: 8px; font-family: 'Microsoft Yahei',verdana; font-size: 15px;">当前订单没有位置和线路信息</div>
                     </div>
                 </div>
                 <!-- end widget div -->

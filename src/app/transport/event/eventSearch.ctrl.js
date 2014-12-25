@@ -89,18 +89,22 @@ function EventWorkSpaceCtrl($scope, $modal, common, exportService) {
        {
           "mData": "eventType",
           "sTitle": "事件类型"
+          
        },
        {
           "mData": "eventCode",
-          "sTitle": "事件代码"
+          "sTitle": "事件代码",
+          "sWidth": 120
        },
        {
           "mData": "eventDesc",
-          "sTitle": "事件代码描述"
+          "sTitle": "事件代码描述",
+          "sWidth": 180
        },
        {
           "mData": "eventDateTime",
-          "sTitle": "发生时间"
+          "sTitle": "发生时间",
+          "sWidth": 150
        },
        {
           "mData": "createUser",
