@@ -1,8 +1,9 @@
 ﻿angular.module('itms.transport.eoMaintainMap')
    .controller('eoMaintainMapCtrl', ['$scope', "$http", "config", "common", '$modal', '$log',
-      'eoMaintainService', 'configService', 'customerService', 'exportService', mapCtrl]);
+      'eoMaintainService', 'configService', 'customerService', 'exportService', '$q', mapCtrl]);
 
-function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService, configService, customerService, exportService) {
+function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
+   configService, customerService, exportService, $q) {
    $scope.module = "运输执行";
    $scope.title = "运单维护/查询";
    $scope.queryOption = {
@@ -69,7 +70,7 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       timeLine: true,
       eoDetail: true
    };
-  
+
    $scope.columns = [{
       "mData": "eo",
       "sTitle": "EO"
@@ -193,18 +194,18 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       var icon = $("#wid-map");
       if (data.length === 1) {
          var option = { "EO": [data[0].eo], "ER": [data[0].erID], "ERITN": [data[0].erITN] };
-         $.when(
-            eoMaintainService.getLocation(option),
+         $q.all(
+         [eoMaintainService.getLocation(option),
             eoMaintainService.getEventLocation(option),
-            eoMaintainService.getRoutePath(option)
-         ).done(
-            function (location, events, path) {
+            eoMaintainService.getRoutePath(option)]
+         ).then(
+            function (results) {
 
                var success = false;
-               if (location && location.length && location[0].length && location[0][0]
-                  && events && events.length && events[0].length && events[0][0]
-                  && path && path.length && path[0].length && path[0][0]) {
-                  success = mapFrame.window.drawMap(location[0][0], events[0][0], path[0][0]);
+               if (results && results[0] && results[0].data && results[0].data[0]
+               && results[1] && results[1].data && results[1].data[0]
+               && results[2] && results[2].data && results[2].data[0]) {
+                  success = mapFrame.window.drawMap(results[0].data[0], results[1].data[0], results[2].data[0]);
                }
 
                if (icon.hasClass("jarviswidget-collapsed"))
