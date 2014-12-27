@@ -37,7 +37,11 @@ function MyElectricOrderCtrl($scope, $modal, $log, myElectricOrderService) {
       depCustomer: ($scope.currentUser.userType == '1') ? $scope.currentUser.auth.salesArea : '',
       depLocCode: '',
       recCustomer: ($scope.currentUser.userType == '2') ? $scope.currentUser.auth.salesArea : '',
-      recLocCode: ''
+      recLocCode: '',
+      BP1: "",
+      BP2: "",
+      BP3: ""
+
    };
 
    $scope.reset = function () {

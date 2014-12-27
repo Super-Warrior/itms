@@ -150,7 +150,7 @@ function convertToExportedColumn(columns) {
 }
 
 function configService($http, $q, config) {
-   var getEmptyCriteria = function() {
+   var getEmptyCriteria = function () {
 
       return {
          "Code": null,
@@ -161,7 +161,7 @@ function configService($http, $q, config) {
          "Language": ["CN"]
       };
    };
-   
+
 
    var criteria = getEmptyCriteria();
 
@@ -321,14 +321,17 @@ function eoDetailService($http, $q, config, dateTimeHelper, configService) {
          DeliverBP1: '',
          DeliverBP2: '',
          depCustomer: '',
-         depLocCode: ''
+         depLocCode: '',
+         BP1: "",
+         BP2: "",
+         BP3: ""
       };
       return $http.postXSRF(searchUrl, data);
    }
 
    function save(data) {
       var eodetail = eoDataMapping(data);
-      
+
       return $http.postXSRF(emoChangeUrl, eodetail);
    }
 

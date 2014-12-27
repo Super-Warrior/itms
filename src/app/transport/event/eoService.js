@@ -48,7 +48,11 @@ function eoService($http, config, configService) {
       DeliverBP1: '',
       DeliverBP2: '',
       depCustomer: '',
-      depLocCode: ''
+      depLocCode: '',
+      BP1: "",
+      BP2: "",
+      BP3: ""
+
    };
 
    var searchUrl = config.baseUrl + 'EO/EOQuickSearch';

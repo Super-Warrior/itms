@@ -49,7 +49,11 @@ function eoMaintainibmCtrl($scope, $http, config, common, $modal, $log, eoMainta
         rec_City: '',
         rec_Disc: '',
         rec_Group1: '',
-        rec_Group2: ''
+        rec_Group2: '',
+        BP1: "",
+        BP2: "",
+        BP3: ""
+
     };
     $scope.results = [];
     $scope.detailConfig = {

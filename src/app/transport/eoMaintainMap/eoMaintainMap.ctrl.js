@@ -52,9 +52,11 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       rec_Disc: '',
       rec_Group1: '',
       rec_Group2: '',
-
       recCustomer: '',
-      recLocCode: ''
+      recLocCode: '',
+      BP1: "",
+      BP2: "",
+      BP3: ""
    };
 
    configService.getConfig("TRPY").then(function (result) {
@@ -307,6 +309,12 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       $scope.queryOption.rec_Group2 = '';
       $scope.queryOption.recCustomer = '';
       $scope.queryOption.recLocCode = '';
+      $scope.queryOption.BP1 = "";
+      $scope.queryOption.BP2 = "";
+      $scope.queryOption.BP3 = "";
+
+
+
    };
    $scope.handleEvent = function () {
       var modalInstance = $modal.open({
