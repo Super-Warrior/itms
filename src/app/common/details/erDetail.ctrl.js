@@ -215,11 +215,12 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
             recLocCode: tempData.recLocCode,
             recMemo: tempData.recMemo,
             ResMemo: tempData.resMemo,
+            //todo:add auto complete
             "BP1": "",
             "BP2": "",
             "BP3": "",
-            "project": "",
-            "plannedID": ""
+            "project": tempData.project,
+            "plannedID": tempData.plannedID
          };
          var timeToFormat = [
                "reqDelTimeE",
@@ -269,27 +270,24 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
             height: tempData.height,
             PackNum: tempData.packNum,
             Memo: tempData.memo,
-            RouteID: "",
-            RouteClassName: "",
-            RouteClassID: "",
-            TranResType: "",
-            TranResID: "",
-            TranResLicense: "",
-            TransDriverID: "",
-            ResAmt1: "",
-            resType2: "",
-            ResAmt2: "",
-            resType3: "",
-            ResAmt3: "",
-            ResAmtCS1: "",
-            ResAmtCS2: "",
-            ResAmtCS3: "",
-            StorageLocation: "",
-            DockLoaction: "",
-            PortLocation: "",
-            TrVendor: ""
+            RouteID: tempData.routeID,
+            RouteClassName: tempData.routeClassName,
+            RouteClassID: tempData.routeClassID,
+            TranResType: tempData.tranResType,
+            TranResID: tempData.tranResID,
+            TranResLicense: tempData.tranResLicense,
+            TransDriverID: tempData.transDriverID,
+            ResAmt1: tempData.resAmt1,
+            ResAmt2: tempData.resAmt2,
+            ResAmt3: tempData.resAmt3,
+            ResAmtCS1: tempData.resAmtCS1,
+            ResAmtCS2: tempData.resAmtCS2,
+            ResAmtCS3: tempData.resAmtCS3,
+            StorageLocation: tempData.storageLocation,
+            DockLoaction: tempData.dockLoaction,
+            PortLocation: tempData.portLocation,
+            TrVendor: tempData.trVendor
          };
-
 
          return $http.postXSRF(config.baseUrl + "ER/ERItemChange", tempParam);
       };

@@ -203,5 +203,62 @@ function batchUpdateCtrl($scope, $http, config, common, $modalInstance, transpor
             };
          });
    };
+}
+
+function packUpdateCtrl($scope, $http, config, common, $modalInstance, erID) {
+   $scope.data = {
+      "ERID": [],
+   };
+
+   var distinct = function (arr) {
+      var result = [];
+      arr.forEach(function (i) {
+         if (result.indexOf(i) < 0)
+            result.push(i);
+      });
+      return result;
+   };
+
+   $scope.data.ERID = distinct(erID);
+
+   $scope.save = function () {
+
+      $http.postXSRF(config.baseUrl + "ER/ERMChange", $scope.data).then(
+         function (result) {
+            if (!result.data.errorMessage || result.data.errorMessage === "OK") {
+               common.notifier.success("更新成功...");
+               $modalInstance.close();
+            };
+         });
+   };
+
+}
+
+
+function rowItemSplit($scope, $http, config, common, $modalInstance, erID) {
+   $scope.data = {
+      "ERID": [],
+   };
+
+   var distinct = function (arr) {
+      var result = [];
+      arr.forEach(function (i) {
+         if (result.indexOf(i) < 0)
+            result.push(i);
+      });
+      return result;
+   };
+
+   $scope.data.ERID = distinct(erID);
+
+   $scope.save = function () {
+      $http.postXSRF(config.baseUrl + "ER/ERMChange", $scope.data).then(
+         function (result) {
+            if (!result.data.errorMessage || result.data.errorMessage === "OK") {
+               common.notifier.success("更新成功...");
+               $modalInstance.close();
+            };
+         });
+   };
 
 }

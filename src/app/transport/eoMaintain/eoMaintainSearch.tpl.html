@@ -17,16 +17,22 @@
                         <div class="btn-group">
                             <button class="btn dropdown-toggle btn-xs btn-success" data-toggle="dropdown">操作 <i class="fa fa-caret-down"></i></button>
                             <ul class="dropdown-menu pull-right">
-                                <li><a href="javascript:void(0)" ng-click="resetEoMaintain()"><i class=" fa fa-refresh"></i>重置搜索条件</a></li>
-                                <li><a href="javascript:void(0)" ng-click="eoMaintainSearch()"><i class="fa fa-search"></i>查询</a></li>
+                                <li><a href="javascript:void(0)" ng-click=""><i class=" fa fa-refresh"></i>&nbsp;重置搜索条件</a></li>
+                                <li><a href="javascript:void(0)" ng-click=""><i class="fa fa-search"></i>&nbsp;查询</a></li>
                             </ul>
                         </div>
                     </div>
                     <ul class="nav nav-tabs pull-right in">
                         <li class="active"><a data-toggle="tab" data-target="#hr0" href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-bolt"></i><span
-                            class="hidden-mobile hidden-tablet">EO快速查询 </span></a></li>
-                        <li><a data-toggle="tab" data-target="#hr1" href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-bolt"></i><span
-                            class="hidden-mobile hidden-tablet">ER快速查询 </span></a></li>
+                            class="hidden-mobile hidden-tablet">&nbsp;EO快速查询 </span></a></li>
+
+                        <!--                        <li><a data-toggle="tab" data-target="#hr1" href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-bolt"></i><span
+                            class="hidden-mobile hidden-tablet">ER快速查询 </span></a></li>-->
+
+                        <li><a data-toggle="tab" href="javascript:void(0)" data-target="#erhead"><i class="fa fa-lg fa-info-circle "></i><span class="hidden-mobile hidden-tablet">&nbsp;需求头信息 </span></a></li>
+                        <li><a data-toggle="tab" href="javascript:void(0)" data-target="#erlocation"><i class="fa fa-lg fa-map-marker "></i><span class="hidden-mobile hidden-tablet">&nbsp;需求位置信息 </span></a></li>
+                        <li><a data-toggle="tab" href="javascript:void(0)" data-target="#eritem"><i class="fa fa-lg fa-tags "></i><span class="hidden-mobile hidden-tablet">&nbsp;需求行项目 </span></a></li>
+
                     </ul>
                 </header>
 
@@ -38,7 +44,7 @@
                     <div class="widget-body">
                         <div class="tab-content">
                             <div class="tab-pane active" id="hr0">
-                                <form action="" id="checkout-formM" class="smart-form" novalidate>
+                                <div id="checkout-formM" class="smart-form">
                                     <fieldset>
                                         <div class="row">
                                             <section class="col col-4">
@@ -102,15 +108,17 @@
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-search "></i>
-                                                    <input type="text" name="Cr" placeholder="海通运单号" ng-model="queryOption.customerOrder2">
+                                                    <input type="text" name="Cr" placeholder="客户其它订单号1" ng-model="queryOption.customerOrder2">
                                                 </label>
                                             </section>
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-search "></i>
-                                                    <input type="text" name="Cr" placeholder="海通委托单号" ng-model="queryOption.customerOrder3">
+                                                    <input type="text" name="Cr" placeholder="客户其它订单号2" ng-model="queryOption.customerOrder3">
                                                 </label>
                                             </section>
+                                        </div>
+                                        <div class="row">
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-search "></i>
@@ -120,28 +128,63 @@
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-search "></i>
-                                                    <input type="text" name="Cr" placeholder="订舱编号" ng-model="queryOption.ScheduleClass1">
+                                                    <input type="text" name="Cr" placeholder="运单号提单号" ng-model="queryOption.VendorOrder2">
                                                 </label>
                                             </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search "></i>
+                                                    <input type="text" name="Cr" placeholder="其它物流单号" ng-model="queryOption.VendorOrder3">
+                                                </label>
+                                            </section>
+
+
                                         </div>
                                         <div class="row">
-                                            <section class="col col-4">
+                                            <section class="col col-2">
                                                 <label class="input">
-                                                    <i class="icon-prepend fa fa-search "></i>
-                                                    <input type="text" name="Cr" placeholder="第三方物流供应商" ng-model="queryOption.EOTRVendor1">
+                                                    <i class="icon-prepend fa fa-filter "></i>
+                                                    <input type="text" name="Cr" placeholder="第三方物流编码" ng-model="queryOption.EOTRVendor1">
                                                 </label>
                                             </section>
-                                            <section class="col col-4">
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-target="#myDepcustomer" data-toggle="modal"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-2">
                                                 <label class="input">
-                                                    <i class="icon-prepend fa fa-search "></i>
-                                                    <input type="text" name="Cr" placeholder="网络公司" ng-model="queryOption.DeliverBP1">
+                                                    <i class="icon-prepend fa fa-filter"></i>
+                                                    <input type="text" name="code" placeholder="承运商编码"  ng-model="queryOption.EOTRVendor2">
                                                 </label>
                                             </section>
-                                            <section class="col col-4">
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-target="#myDepcustomer" data-toggle="modal"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-2">
                                                 <label class="input">
-                                                    <i class="icon-prepend fa fa-search "></i>
-                                                    <input type="text" name="Cr" placeholder="订舱/定班供应商" ng-model="queryOption.ScheduleVendor1">
+                                                    <i class="icon-prepend fa fa-filter"></i>
+                                                    <input type="text" name="code" placeholder="客户编码"  ng-model="queryOption.BP1">
                                                 </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-target="#myDepcustomer" data-toggle="modal"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-filter"></i>
+                                                    <input type="text" name="code" placeholder="其它业务方1"  ng-model="queryOption.BP2">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-target="#myDepcustomer" data-toggle="modal"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-filter"></i>
+                                                    <input type="text" name="code" placeholder="其它业务方2"  ng-model="queryOption.BP3">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-target="#myDepcustomer" data-toggle="modal"><i class="fa fa-search "></i></button>
                                             </section>
                                         </div>
                                     </fieldset>
@@ -150,73 +193,47 @@
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-calendar"></i>
-                                                    <input type="text" placeholder="要求日期1" im-datepicker ng-model="queryOption.reqDelDate1">
+                                                    <input type="text" placeholder="要求开始日期" im-datepicker ng-model="queryOption.reqDelDate1">
                                                 </label>
                                             </section>
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-calendar"></i>
-                                                    <input type="text" placeholder="要求日期2" im-datepicker ng-model="queryOption.reqDelDate2">
+                                                    <input type="text" placeholder="要求到达日期" im-datepicker ng-model="queryOption.reqDelDate2">
                                                 </label>
                                             </section>
-                                            <section class="col col-2">
-                                                <label class="input">
-                                                    <i class="icon-prepend fa fa-calendar"></i>
-                                                    <input type="text" placeholder="要求日期3" im-datepicker ng-model="queryOption.reqDelDate3">
-                                                </label>
-                                            </section>
-                                            <section class="col col-2">
-                                                <label class="input">
-                                                    <i class="icon-prepend fa fa-calendar"></i>
-                                                    <input type="text" placeholder="要求日期4" im-datepicker ng-model="queryOption.reqDelDate4">
-                                                </label>
-                                            </section>
-                                            <section class="col col-2">
-                                                <label class="input">
-                                                    <i class="icon-prepend fa fa-calendar"></i>
-                                                    <input type="text" placeholder="订舱启程日期" im-datepicker ng-model="queryOption.DepDate1">
-                                                </label>
-                                            </section>
-                                            <section class="col col-2">
-                                                <label class="input">
-                                                    <i class="icon-prepend fa fa-calendar"></i>
-                                                    <input type="text" placeholder="订舱到达日期" im-datepicker ng-model="queryOption.ArrDate1">
-                                                </label>
-                                            </section>
+
+                                            <!--
+                                                <section class="col col-2">
+                                                    <label class="input">
+                                                        <i class="icon-prepend fa fa-calendar"></i>
+                                                        <input type="text" placeholder="订舱启程日期" im-datepicker ng-model="queryOption.DepDate1">
+                                                    </label>
+                                                </section>
+                                                <section class="col col-2">
+                                                    <label class="input">
+                                                        <i class="icon-prepend fa fa-calendar"></i>
+                                                        <input type="text" placeholder="订舱到达日期" im-datepicker ng-model="queryOption.ArrDate1">
+                                                    </label>
+                                                </section>
+                                                -->
                                         </div>
                                     </fieldset>
-                                    <fieldset>
-                                        <div class="row">
-                                            <section class="col col-3">
-                                                <label class="input">
-                                                    <i class="icon-prepend fa fa-user"></i>
-                                                    <input type="text" placeholder="发货客户代码" ng-model="queryOption.depCustomer">
-                                                </label>
-                                            </section>
-                                            <section class="col col-3">
-                                                <label class="input">
-                                                    <i class="icon-prepend fa fa-map-marker"></i>
-                                                    <input type="text" placeholder="发货位置代码" ng-model="queryOption.depLocCode">
-                                                </label>
-                                            </section>
-                                            <section class="col col-3">
-                                                <label class="input">
-                                                    <i class="icon-prepend fa fa-user"></i>
-                                                    <input type="text" placeholder="目的地客户代码" ng-model="queryOption.recCustomer">
-                                                </label>
-                                            </section>
-                                            <section class="col col-3">
-                                                <label class="input">
-                                                    <i class="icon-prepend fa fa-map-marker"></i>
-                                                    <input type="text" placeholder="目的地位置代码" ng-model="queryOption.recLocCode">
-                                                </label>
-                                            </section>
-                                        </div>
-                                    </fieldset>
-                                </form>
+                                       <footer>
+                                        <button type="button" class="btn  btn-default" ng-click="eoMaintainSearch()">
+                                            <i
+                                                class="fa fa-search"></i>
+                                            查询
+                                        </button>
+                                        <button type="button" class="btn btn-default" ng-click="resetEoMaintain()" data-dismiss="modal">
+                                            <i class="fa fa-reply-all "></i>
+                                            重置
+                                        </button>
+                                    </footer>
+                                </div>
                             </div>
                             <!-- Tag content for ER快速查询 -->
-                            <div class="tab-pane fade in " id="hr1">
+                            <div class="tab-pane fade in " style="display: none" id="hr1">
                                 <form action="" class="smart-form" novalidate="novalidate">
                                     <fieldset>
                                         <div class="row">
@@ -411,6 +428,424 @@
                                     </footer>
                                 </form>
                             </div>
+
+                            <div class="tab-pane fade in" id="erhead">
+                                <div class="smart-form">
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search "></i>
+                                                    <input type="text" name="Cr" placeholder="ER需求号">
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search "></i>
+                                                    <input type="text" name="Cr" placeholder="EO运单号">
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-calendar"></i>
+                                                    <input type="text" name="startdate1" id="startdate1" placeholder="预计出发日期">
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-calendar"></i>
+                                                    <input type="text" name="startdate2" id="startdate2" placeholder="预计到达日期">
+                                                </label>
+                                            </section>
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>需求类型</option>
+                                                        <option value="1">需求类型1</option>
+                                                        <option value="2">需求类型2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>需求状态</option>
+                                                        <option value="1">需求状态1</option>
+                                                        <option value="2">需求状态2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>运输模式</option>
+                                                        <option value="1">运输模式1</option>
+                                                        <option value="2">运输模式2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>运输方式</option>
+                                                        <option value="1">运输方式1</option>
+                                                        <option value="2">运输方式2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-heart"></i>
+                                                    <input type="text" name="customer" id="customer" placeholder="合同方代码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-heart"></i>
+                                                    <input type="text" name="customer" id="Text1" placeholder="付款方代码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-heart"></i>
+                                                    <input type="text" name="customer" id="Text2" placeholder="货主方代码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search"></i>
+                                                    <input type="text" name="customer" id="Text3" placeholder="项目代码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-4">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search"></i>
+                                                    <input type="text" name="customer" id="Text4" placeholder="发运周代码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-4">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search"></i>
+                                                    <input type="text" name="customer" id="Text5" placeholder="合同号">
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-4">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search"></i>
+                                                    <input type="text" name="dest" id="dest" placeholder="客户订单号">
+                                                </label>
+                                            </section>
+                                            <section class="col col-4">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search"></i>
+                                                    <input type="text" name="dest" id="Text6" placeholder="供应商订单号">
+                                                </label>
+                                            </section>
+                                            <section class="col col-4">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search"></i>
+                                                    <input type="text" name="dest" id="Text7" placeholder="B/L提单号">
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade in" id="erlocation">
+                                <form action="" id="Form2" class="smart-form" novalidate>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                                                    <input type="text" name="Cr" placeholder="出发地代码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                                                    <input type="text" name="Cr" placeholder="国家">
+                                                </label>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                                                    <input type="text" name="Cr" placeholder="省市">
+                                                </label>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                                                    <input type="text" name="Cr" placeholder="区县">
+                                                </label>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                                                    <input type="text" name="Cr" placeholder="区域组">
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-arrow-circle-down "></i>
+                                                    <input type="text" name="Cr" placeholder="目的地代码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                                                    <input type="text" name="Cr" placeholder="国家">
+                                                </label>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                                                    <input type="text" name="Cr" placeholder="省市">
+                                                </label>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                                                    <input type="text" name="Cr" placeholder="区县">
+                                                </label>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                                                    <input type="text" name="Cr" placeholder="区域组">
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade in" id="eritem">
+                                <form action="" id="Form3" class="smart-form" novalidate>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>行项目状态</option>
+                                                        <option value="1">状态1</option>
+                                                        <option value="2">状态2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>包装分拆状态</option>
+                                                        <option value="1">状态1</option>
+                                                        <option value="2">状态2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>路线分配状态</option>
+                                                        <option value="1">状态1</option>
+                                                        <option value="2">状态2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>资源状态</option>
+                                                        <option value="1">状态1</option>
+                                                        <option value="2">状态2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-truck"></i>
+                                                    <input type="text" name="Cr" placeholder="承运商代码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-road"></i>
+                                                    <input type="text" name="Cr" placeholder="路线代码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-4">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-file"></i>
+                                                    <input type="text" name="Cr" placeholder="路单号">
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>资源类型</option>
+                                                        <option value="1">状态1</option>
+                                                        <option value="2">状态2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-folder-open"></i>
+                                                    <input type="text" name="Cr" placeholder="资源编号">
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-barcode"></i>
+                                                    <input type="text" name="Cr" placeholder="资源条码1">
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-barcode"></i>
+                                                    <input type="text" name="Cr" placeholder="资源条码2">
+                                                </label>
+                                            </section>
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>资源类型</option>
+                                                        <option value="1">状态1</option>
+                                                        <option value="2">状态2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-folder-open"></i>
+                                                    <input type="text" name="Cr" placeholder="资源编号">
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-barcode"></i>
+                                                    <input type="text" name="Cr" placeholder="资源条码1">
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-barcode"></i>
+                                                    <input type="text" name="Cr" placeholder="资源条码2">
+                                                </label>
+                                            </section>
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="select">
+                                                    <select name="prov">
+                                                        <option value="" selected disabled>资源类型</option>
+                                                        <option value="1">状态1</option>
+                                                        <option value="2">状态2</option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-folder-open"></i>
+                                                    <input type="text" name="Cr" placeholder="资源编号">
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-barcode"></i>
+                                                    <input type="text" name="Cr" placeholder="资源条码1">
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-barcode"></i>
+                                                    <input type="text" name="Cr" placeholder="资源条码2">
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search"></i>
+                                                    <input type="text" name="Cr" placeholder="物料编码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                                            </section>
+                                            <section class="col col-4">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search"></i>
+                                                    <input type="text" name="Cr" placeholder="客户物料编码">
+                                                </label>
+                                            </section>
+                                            <section class="col col-3">
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-search"></i>
+                                                    <input type="text" name="Cr" placeholder="制造商">
+                                                </label>
+                                            </section>
+                                            <section class="col col-1">
+                                                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+
+
                         </div>
                     </div>
 
@@ -438,7 +873,7 @@
               <i class="fa fa-caret-down"></i>
                             </button>
                             <ul class="dropdown-menu pull-right">
-                             <!--   <li ng-class="{disabled:!isAnythingSelected()}">
+                                <!--   <li ng-class="{disabled:!isAnythingSelected()}">
                                     <a href="javascript:void(0)" data-target="#myEOModify" data-toggle="modal"><i class="fa fa-edit"></i>
                                         批量修改</a>
                                 </li>-->

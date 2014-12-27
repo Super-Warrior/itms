@@ -200,7 +200,26 @@ function configService($http, $q, config) {
          "cusmatnr": [""],
          "tag": [""],
          "customer": [""],
-         "description": [""]
+         "description": [""],
+         "Owner": "",
+         "LoadWgt": "",
+         "LoadWgtWarning": "",
+         "Speed": "",
+         "Vol": "",
+         "VolWarning": "",
+         "SpecialTag1": "",
+         "SpecialTag2": "",
+         "SpecialTag3": "",
+         "PckType": "",
+         "Length": "",
+         "Width": "",
+         "High": "",
+         "NetWeight": "",
+         "GrossWeight": "",
+         "StaQty": "",
+         "DefaultPack": "",
+         "vendor": "",
+         "vendorlocation": "",
       };
       if (type)
          param.type.push(type);

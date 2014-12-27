@@ -294,7 +294,7 @@
             </form>
         </div>
         <div class="tab-pane fade" id="s3">
-            <div id="Form1" class="smart-form" novalidate>
+            <div class="smart-form" novalidate>
                 <fieldset>
                     <div class="row">
                         <section class="col col-4">
@@ -637,28 +637,28 @@
                             <label>物料供应商</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="pc" ng-model="basicData.vendorDesc" placeholder="供应商">
+                                <input type="text" name="pc" readonly="readonly" ng-model="basicData.vendorDesc" placeholder="供应商">
                             </label>
                         </section>
                         <section class="col col-2">
                             <label>包装拆分</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="pc" ng-model="basicData.requirementDetail.itemSplitPlan" placeholder="拆分标志">
+                                <input type="text" name="pc" readonly="readonly" ng-model="basicData.requirementDetail.itemSplitPlan" placeholder="拆分标志">
                             </label>
                         </section>
                         <section class="col col-2">
                             <label>资源分配</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="pc" ng-model="basicData.requirementDetail.transResPlanTag" placeholder="资源分配">
+                                <input type="text" name="pc" readonly="readonly" ng-model="basicData.requirementDetail.transResPlanTag" placeholder="资源分配">
                             </label>
                         </section>
                         <section class="col col-2">
                             <label>路线分配</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="pc" ng-model="basicData.requirementDetail.routePlanTag" placeholder="路线分配">
+                                <input type="text" name="pc" readonly="readonly" ng-model="basicData.requirementDetail.routePlanTag" placeholder="路线分配">
                             </label>
                         </section>
                     </div>
@@ -735,14 +735,14 @@
                             <label>路线</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.routeID" placeholder="路线">
+                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.routeID" readonly="readonly" placeholder="路线">
                             </label>
                         </section>
                         <section class="col col-4">
                             <label>路单</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.routeClassID" placeholder="路单">
+                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.routeClassID"  readonly="readonly" placeholder="路单">
                             </label>
                         </section>
                     </div>
@@ -751,21 +751,21 @@
                             <label>运输资源类型</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.tranResType" placeholder="类型">
+                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.tranResType"  readonly="readonly" placeholder="类型">
                             </label>
                         </section>
                         <section class="col col-4">
                             <label>资源编号</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.tranResLicense" placeholder="编号">
+                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.tranResLicense"  readonly="readonly" placeholder="编号">
                             </label>
                         </section>
                         <section class="col col-4">
                             <label>司机编号</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.transDriverID" placeholder="司机编号">
+                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.transDriverID"  readonly="readonly" placeholder="司机编号">
                             </label>
                         </section>
                     </div>

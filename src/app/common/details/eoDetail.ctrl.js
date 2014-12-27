@@ -65,7 +65,11 @@ function EODetailCtrl($scope, $modalInstance, common, eoDetailService, eoService
       }
    };
    $scope.save = function (tempData) {
-      
+      // $scope.data
+      //todo:add auto complete
+      tempData.BP1 = "";
+      tempData.BP2 = "";
+      tempData.BP3 = "";
 
       eoDetailService.save(tempData).success(function (result) {
          $modalInstance.close(result);

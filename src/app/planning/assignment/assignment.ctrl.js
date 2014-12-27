@@ -284,7 +284,9 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.isAnythingSelected = function () {
       return ($scope.selectedItems.length > 0);
    };
-
+   $scope.isOnlyOneSelected = function () {
+      return ($scope.selectedItems.length == 1);
+   };
    $scope.modalInstance = null;
    $scope.create = function () {
       if (!$scope.isAnythingSelected())
@@ -503,6 +505,51 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       });
    };
 
+
+   $scope.packUpdate = function() {
+
+      if (!$scope.isAnythingSelected())
+         return;
+      var modalInstance = $modal.open({
+         templateUrl: "app/planning/packUpdate.tpl.html",
+         controller: packUpdateCtrl,
+         resolve: {
+            erID: function() {
+               return $scope.selectedItems.map(function(i) {
+                  return i.erID;
+               });
+            }
+         }
+      });
+      modalInstance.result.then(function() {
+         $scope.quickSearch();
+      }, function() {
+         $log.info('Modal dismissed at: ' + new Date());
+      });
+   };
+
+   $scope.rowItemSplit = function () {
+
+      if (!$scope.isOnlyOneSelected())
+         return;
+      var modalInstance = $modal.open({
+         templateUrl: "app/planning/rowItemSplit.tpl.html",
+         controller: rowItemSplit,
+         resolve: {
+            erID: function () {
+               return $scope.selectedItems.map(function (i) {
+                  return i.erID;
+               });
+            }
+         }
+      });
+      modalInstance.result.then(function () {
+         $scope.quickSearch();
+      }, function () {
+         $log.info('Modal dismissed at: ' + new Date());
+      });
+   };
+   
 
    $scope.batchUpdate = function () {
 
