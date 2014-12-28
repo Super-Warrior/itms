@@ -124,7 +124,7 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
           }
        });
 
-   configService.getMaterial("TRES").then(
+   configService.getMaterial({ "type": "TRES" }).then(
        function (result) {
           $scope.configs.material = result.data;
        }

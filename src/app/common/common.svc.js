@@ -192,9 +192,9 @@ function configService($http, $q, config) {
           });
    };
 
-   var getMaterial = function (type) {
+   var getMaterial = function (option) {
       var param = {
-         "SerType": "OR",
+         "SerType": "AND",
          "matnr": [""],
          "type": [],
          "cusmatnr": [""],
@@ -221,8 +221,29 @@ function configService($http, $q, config) {
          "vendor": "",
          "vendorlocation": "",
       };
-      if (type)
-         param.type.push(type);
+      if (option.type)
+         param.type.push(option.type);
+
+      if (option.owner)
+         param.Owner = option.owner;
+
+      if (option.Owner)
+         param.Owner = option.Owner;
+
+      if (option.matnr)
+         param.matnr[0] = option.matnr;
+      if (option.description)
+         param.description[0] = option.description;
+
+      if (option.LoadWgt)
+         param.LoadWgt = option.LoadWgt;
+
+      if (option.Speed)
+         param.Speed = option.Speed;
+      if (option.Vol)
+         param.Vol = option.Vol;
+      if (option.SpecialTag1)
+         param.SpecialTag1 = option.SpecialTag1;
 
       return $http({
          method: "GET",

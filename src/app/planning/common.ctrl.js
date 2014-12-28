@@ -2,7 +2,12 @@
    .module('itms.planning.common')
    .controller('searchSiteCtrl', ['$scope', '$http', 'config', '$modalInstance', searchSiteCtrl])
    .controller('searchCustomerCtrl', ['$scope', '$http', 'config', '$modalInstance', 'customerService', 'type', searchCustomerCtrl])
-   .controller('searchLocationCtrl', ['$scope', '$modalInstance', 'items', searchLocationCtrl]);
+   .controller('searchLocationCtrl', ['$scope', '$modalInstance', 'items', searchLocationCtrl])
+   .controller('batchUpdateCtrl', ['$scope', '$http', 'config', 'common', '$modalInstance', 'transportTypes', 'carriers', 'erID', batchUpdateCtrl])
+   .controller('packUpdateCtrl', ['$scope', '$http', 'config', 'common', '$modalInstance', 'items', packUpdateCtrl])
+   .controller('rowItemSplitCtrl', ['$scope', '$http', 'config', 'common', '$modalInstance', 'item', rowItemSplitCtrl]);
+
+
 
 function searchSiteCtrl($scope, $http, config, $modalInstance) {
    $scope.items = [];
@@ -205,25 +210,63 @@ function batchUpdateCtrl($scope, $http, config, common, $modalInstance, transpor
    };
 }
 
-function packUpdateCtrl($scope, $http, config, common, $modalInstance, erID) {
+function packUpdateCtrl($scope, $http, config, common, $modalInstance, items) {
    $scope.data = {
-      "ERID": [],
-   };
+      ERID: items.map(function (i) {
+         return i.erID;
+      }),
+      ERITN: items.map(function (i) {
+         return i.erITN;
+      }),
+      userID: config.userID,
+      ERITNStatus: "",
+      EOID: "",
+      lastChangeUser: "",
+      lastChangeDate: "",
+      lastChangeTime: "",
+      ERITNType: "",
+      ERITNTag: "",
+      Status: "",
+      MatIID: "",
+      customerMatID: "",
+      customerOrder2: "",
+      Amt: "",
+      Wgt: "",
+      Vol: "",
+      VolWgt: "",
+      "long": "",
+      width: "",
+      height: "",
+      Memo: "",
+      RouteID: "",
+      RouteClassName: "",
+      RouteClassID: "",
+      TranResType: "",
+      TranResID: "",
+      TranResLicense: "",
+      TransDriverID: "",
+      ResAmt1: "",
+      ResAmtCS1: "",
+      ResAmt2: "",
+      ResAmtCS2: "",
+      ResAmt3: "",
+      ResAmtCS3: "",
+      StorageLocation: "",
+      DockLoaction: "",
+      PortLocation: "",
+      PackNum: "",
+      PackNum2: "",
+      PackNum3: "",
+      SubPackNum: "",
+      SubPackNum2: "",
+      SubPackNum3: "",
+      TrVendor: ""
 
-   var distinct = function (arr) {
-      var result = [];
-      arr.forEach(function (i) {
-         if (result.indexOf(i) < 0)
-            result.push(i);
-      });
-      return result;
    };
-
-   $scope.data.ERID = distinct(erID);
 
    $scope.save = function () {
 
-      $http.postXSRF(config.baseUrl + "ER/ERMChange", $scope.data).then(
+      $http.postXSRF(config.baseUrl + "ER/ERItemMChange", $scope.data).then(
          function (result) {
             if (!result.data.errorMessage || result.data.errorMessage === "OK") {
                common.notifier.success("更新成功...");
@@ -234,31 +277,107 @@ function packUpdateCtrl($scope, $http, config, common, $modalInstance, erID) {
 
 }
 
-
-function rowItemSplit($scope, $http, config, common, $modalInstance, erID) {
+function rowItemSplitCtrl($scope, $http, config, common, $modalInstance, item) {
+   $scope.isError = false;
+   $scope.clearError = function () {
+      $scope.isError = false;
+   };
    $scope.data = {
-      "ERID": [],
+      "ERID": item.erID,
+      "ERITN": item.erITN,
+      Amt: "",
+      PackNum: "",
+      PackNum2: "",
+      PackNum3: "",
+      ResAmt1: "",
+      ResAmtCS1: "",
+      ResAmt2: "",
+      ResAmtCS2: "",
+      ResAmt3: "",
+      ResAmtCS3: "",
+      SubPackNum: "",
+      SubPackNum2: "",
+      SubPackNum3: "",
+      userID: config.userID,
+
+
+
+      customerOrder1: item.customerOrder1,
+      "matIID": item.matIID,
+      availableAmt: item.amt,
+      bp1Desc: item.bp1Desc,
+      vendorDesc: item.vendorDesc
+
+
    };
 
-   var distinct = function (arr) {
-      var result = [];
-      arr.forEach(function (i) {
-         if (result.indexOf(i) < 0)
-            result.push(i);
-      });
-      return result;
+
+   $scope.saveDraft = function () {
+      var amt = parseInt($scope.data.Amt);
+      var availableAmt = parseInt($scope.data.availableAmt);
+      if (amt > availableAmt) {
+         $scope.isError = true;
+         return;
+      }
+
+      var tempData = {
+         "ERID": $scope.data.ERID,
+         "ERITN": $scope.data.ERITN,
+         Amt: $scope.data.Amt,
+         PackNum: $scope.data.PackNum,
+         PackNum2: $scope.data.PackNum2,
+         PackNum3: $scope.data.PackNum3,
+         ResAmt1: $scope.data.ResAmt1,
+         ResAmtCS1: $scope.data.ResAmtCS1,
+         ResAmt2: $scope.data.ResAmt2,
+         ResAmtCS2: $scope.data.ResAmtCS2,
+         ResAmt3: $scope.data.ResAmt3,
+         ResAmtCS3: $scope.data.ResAmtCS3,
+         SubPackNum: $scope.data.SubPackNum,
+         SubPackNum2: $scope.data.SubPackNum2,
+         SubPackNum3: $scope.data.SubPackNum3,
+         userID: $scope.data.userID
+      };
+
+      $http.postXSRF(config.baseUrl + "ER/ERItnSplitDraft", tempData).then(
+            function (result) {
+               if (!result.data.errorMessage || result.data.errorMessage === "OK") {
+                  common.notifier.success("已成功保存为草稿...");
+                  $modalInstance.close();
+               };
+            });
    };
-
-   $scope.data.ERID = distinct(erID);
-
-   $scope.save = function () {
-      $http.postXSRF(config.baseUrl + "ER/ERMChange", $scope.data).then(
+   $scope.saveConfirm = function () {
+      var amt = parseInt($scope.data.Amt);
+      var availableAmt = parseInt($scope.data.availableAmt);
+      if (amt > availableAmt) {
+         $scope.isError = true;
+         return;
+      }
+      var tempData = {
+         "ERID": $scope.data.ERID,
+         "ERITN": $scope.data.ERITN,
+         Amt: $scope.data.Amt,
+         PackNum: $scope.data.PackNum,
+         PackNum2: $scope.data.PackNum2,
+         PackNum3: $scope.data.PackNum3,
+         ResAmt1: $scope.data.ResAmt1,
+         ResAmtCS1: $scope.data.ResAmtCS1,
+         ResAmt2: $scope.data.ResAmt2,
+         ResAmtCS2: $scope.data.ResAmtCS2,
+         ResAmt3: $scope.data.ResAmt3,
+         ResAmtCS3: $scope.data.ResAmtCS3,
+         SubPackNum: $scope.data.SubPackNum,
+         SubPackNum2: $scope.data.SubPackNum2,
+         SubPackNum3: $scope.data.SubPackNum3,
+         userID: $scope.data.userID
+      };
+      $http.postXSRF(config.baseUrl + "ER/ERItnSplitConfirm", tempData).then(
          function (result) {
             if (!result.data.errorMessage || result.data.errorMessage === "OK") {
-               common.notifier.success("更新成功...");
+               common.notifier.success("已成功保存并确认...");
                $modalInstance.close();
             };
          });
    };
-
 }

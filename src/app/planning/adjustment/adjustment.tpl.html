@@ -243,6 +243,9 @@
                                 <li ng-class="{disabled:disableAction()}">
                                     <a href="" ng-click="batchUpdate()"><i class="fa fa-copy "></i>&nbsp;批量更新－H</a>
                                 </li>
+                                <li ng-class="{disabled:disableAction()}"><a href="javascript:void(0)" ng-click="packUpdate()"><i class="fa fa-unlink"></i>&nbsp;P-批量包装数据更新</a> </li>
+                                <li ng-class="{disabled:!isOnlyOneSelected()}"><a href="javascript:void(0)" ng-click="rowItemSplit()"><i class="fa fa-unlink"></i>&nbsp;M-手工行项目拆分</a> </li>
+
                                 <li ng-class="{disabled:disableAction()}">
                                     <a href="javascript:void(0)" ng-click="deleteEr()"><i class="fa fa-minus-circle "></i>&nbsp;删除项目</a>
                                 </li>

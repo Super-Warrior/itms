@@ -55,6 +55,50 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
       });
    };
 
+
+   $scope.rowItemSplit = function () {
+
+      if (!$scope.isOnlyOneSelected())
+         return;
+      var modalInstance = $modal.open({
+         templateUrl: "app/planning/rowItemSplit.tpl.html",
+         controller: "rowItemSplitCtrl",
+         resolve: {
+            item: function () {
+               console.log(JSON.stringify($scope.selectedItems[0]));
+               return $scope.selectedItems[0];
+            }
+         }
+      });
+      modalInstance.result.then(function () {
+         $scope.searchAssignableRequest();
+      }, function () {
+         $log.info('Modal dismissed at: ' + new Date());
+      });
+   };
+
+
+   $scope.packUpdate = function () {
+      if ($scope.disableAction()) return;
+
+      var modalInstance = $modal.open({
+         templateUrl: "app/planning/packUpdate.tpl.html",
+         controller: "packUpdateCtrl",
+         resolve: {
+            items: function () {
+               return $scope.selectedItems.map(function (i) {
+                  return { "erID": i.erID, "erITN": i.erITN };
+               });
+            }
+         }
+      });
+      modalInstance.result.then(function () {
+         $scope.searchAssignableRequest();
+      }, function () {
+         $log.info('Modal dismissed at: ' + new Date());
+      });
+   };
+
    $scope.searchAssignableRequest = function () {
       var param = {
          SerType: 'AND',
@@ -130,6 +174,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
          EOID: ""
       };
       orderService.query(param).success(function (data) {
+         $scope.selectedItems = [];
          var icon = $("#wid-result");
          $scope.orders = orderService.getRequirementPartial(data);
          if (icon.hasClass("jarviswidget-collapsed"))
@@ -223,6 +268,11 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
    $scope.disableAction = function () {
       return $scope.selectedItems.length === 0;
    };
+   $scope.isOnlyOneSelected = function () {
+      return $scope.selectedItems.length === 1;
+   };
+
+
 
    $scope.columns = [
        { "mData": "eoID", "sTitle": "EO" },
@@ -270,7 +320,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
    $scope.searchSite = function () {
       var modalInstance = $modal.open({
          templateUrl: "app/planning/searchSite.tpl.html",
-         controller: searchSiteCtrl
+         controller: "searchSiteCtrl"
       });
       modalInstance.result.then(function (keys) {
          $scope.selectedSite = keys;
@@ -282,7 +332,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
    $scope.searchCustomer = function (type) {
       var modalInstance = $modal.open({
          templateUrl: "app/planning/searchCustomer.tpl.html",
-         controller: searchCustomerCtrl,
+         controller: "searchCustomerCtrl",
          resolve: {
             type: function () {
                return type;
@@ -299,7 +349,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
    $scope.searchLocation = function () {
       var modalInstance = $modal.open({
          templateUrl: "",
-         controller: searchLocationCtrl,
+         controller: "searchLocationCtrl",
          resolve: {
             items: function () {
                return $scope.selectedItems();
@@ -320,7 +370,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
 
       var modalInstance = $modal.open({
          templateUrl: "app/planning/batchUpdate.tpl.html",
-         controller: batchUpdateCtrl,
+         controller: "batchUpdateCtrl",
          resolve: {
             transportTypes: function () {
                var deferred = $q.defer();

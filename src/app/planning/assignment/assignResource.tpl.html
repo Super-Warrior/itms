@@ -24,28 +24,25 @@
                                     ×
                                 </button>
                                 <i class="fa-fw fa fa-warning"></i>
-                                <strong>{{selectedItems.length}}&nbsp;</strong>条ER需求项目被选择操作
+                                <strong>{{resourceData.ERID.length}}&nbsp;</strong>条ER需求项目被选择操作
                             </div>
                             <div class="row">
                                 <section class="col col-4">
-                                    <label class="label"><i class="fa fa-folder-open "></i>资源类型</label>
-                                    <label class="select select-multiple">
-                                        <select multiple="multiple" class="custom-scroll">
-                                            <option value="1">VEHI-车头</option>
-                                            <option value="2">FOLK-叉车</option>
-                                            <option value="3">PLAT-托盘</option>
+                                    <label class="select">
+                                        <select ng-model="resourceSearchOption.type">
+                                            <option value="" selected disabled>资源类型</option>
+                                            <option ng-repeat="value in types" value="{{value.code}}">{{value.description}}</option>
                                         </select>
+                                        <i></i>
                                     </label>
-                                    <div class="note"><strong>提示:</strong> 按ctrl键进行多选操作 </div>
                                 </section>
                                 <section class="col col-4">
-                                    <label class="label"><i class="fa fa-unlock-o "></i>资源归属</label>
-                                    <label class="select select-multiple">
-                                        <select multiple="multiple" class="custom-scroll">
-                                            <option value="1">OWNS-自有资源</option>
-                                            <option value="2">OUTS-外包资源</option>
-                                            <option value="3">RENT-租赁</option>
+                                    <label class="select">
+                                        <select ng-model="resourceSearchOption.owner">
+                                            <option value="" selected disabled>资源归属</option>
+                                            <option ng-repeat="value in owners" value="{{value.code}}">{{value.description}}</option>
                                         </select>
+                                        <i></i>
                                     </label>
                                 </section>
                             </div>
@@ -55,47 +52,47 @@
                                 <section class="col col-6">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
-                                        <input type="text" name="code" placeholder="资源代码">
+                                        <input type="text" name="code" ng-model="resourceSearchOption.matnr" placeholder="资源代码">
                                     </label>
                                 </section>
                                 <section class="col col-6">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
-                                        <input type="text" name="code" placeholder="资源描述">
+                                        <input type="text" name="code" ng-model="resourceSearchOption.description" placeholder="资源描述">
                                     </label>
                                 </section>
                                 <section class="col col-3">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-tachometer "></i>
-                                        <input type="text" name="code" placeholder="规格参数1">
+                                        <input type="text" name="code" ng-model="resourceSearchOption.LoadWgt" placeholder="规格参数1">
                                     </label>
                                 </section>
                                 <section class="col col-3">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-tachometer"></i>
-                                        <input type="text" name="code" placeholder="规格参数2">
+                                        <input type="text" name="code" ng-model="resourceSearchOption.Speed" placeholder="规格参数2">
                                     </label>
                                 </section>
                                 <section class="col col-3">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-tachometer "></i>
-                                        <input type="text" name="code" placeholder="规格参数3">
+                                        <input type="text" name="code" ng-model="resourceSearchOption.Vol" placeholder="规格参数3">
                                     </label>
                                 </section>
                                 <section class="col col-3">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-tachometer "></i>
-                                        <input type="text" name="code" placeholder="规格参数4">
+                                        <input type="text" name="code" ng-model="resourceSearchOption.SpecialTag1" placeholder="规格参数4">
                                     </label>
                                 </section>
                             </div>
                             <div class="row">
                                 <section class="col col-12">
-                                    <button type="button" class="btn btn-sm btn-success"><i class="fa fa-search"></i>资源搜索</button>
+                                    <button type="button" ng-click="resourceSearch()" class="btn btn-sm btn-success"><i class="fa fa-search"></i>&nbsp;资源搜索</button>
                                 </section>
                             </div>
                         </fieldset>
-                        <fieldset>
+                        <fieldset ng-show="showResult">
                             <table class="table table-bordered table-condensed">
                                 <thead>
                                     <tr>
@@ -112,41 +109,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+
+                                    <tr ng-repeat="item in resources">
                                         <td>
                                             <label class="radio">
-                                                <input type="radio" name="radio">
-                                                </input>
+                                                <input type="radio" ng-model="item.selected" ng-click="select($index)" name="radio" />
                                                 <i></i>
                                             </label>
                                         </td>
-                                        <td>19111</td>
-                                        <td>40</td>
-                                        <td>B123131</td>
-                                        <td>3</td>
-                                        <td>B123131</td>
-                                        <td>3</td>
-                                        <td>111</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="radio">
-                                                <input type="radio" name="radio">
-                                                </input>
-                                                <i></i>
-                                            </label>
-                                        </td>
-                                        <td>19111</td>
-                                        <td>40</td>
-                                        <td>B123131</td>
-                                        <td>3</td>
-                                        <td>B123131</td>
-                                        <td>3</td>
-                                        <td>111</td>
-                                        <td>11</td>
-                                        <td>11</td>
+                                        <td>{{item.matnr}}</td>
+                                        <td>{{item.description}}</td>
+                                        <td>{{item.type}}</td>
+                                        <td>{{item.owner}}</td>
+                                        <td>{{item.vendorLocation}}</td>
+                                        <td>{{item.load}}</td>
+                                        <td>{{item.speed}}</td>
+                                        <td>{{item.vol}}</td>
+                                        <td>{{item.specialTag1}}</td>
                                     </tr>
                                 </tbody>
                             </table>

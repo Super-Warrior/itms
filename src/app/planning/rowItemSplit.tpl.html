@@ -6,33 +6,39 @@
         <img src="img/banner.png" width="100" alt="iTMS">
     </h4>
 </div>
-
 <div class="modal-body no-padding">
     <h3 class="row-seperator-header"><i class="fa fa-random "></i>手工行项目拆分</h3>
     <div class="alert alert-default fade in">
-        <i class="fa-fw fa fa-check-square-o  "></i><strong>ER/ERITN </strong>10002/001<br>
-        <i class="fa-fw fa fa-check-square-o  "></i><strong>客户订单号 </strong>6000121<br>
-        <i class="fa-fw fa fa-check-square-o  "></i><strong>客户 </strong>上海通用<br>
-        <i class="fa-fw fa fa-check-square-o  "></i><strong>供应商 </strong>XXXX<br>
-        <i class="fa-fw fa fa-check-square-o  "></i><strong>物料 </strong>1988121发动机<br>
-        <i class="fa-fw fa fa-check-square-o  "></i><strong>总数量 </strong>30
+        <i class="fa-fw fa fa-check-square-o"></i><strong>ER/ERITN </strong>{{data.ERID}}/{{data.ERITN}}<br>
+        <i class="fa-fw fa fa-check-square-o"></i><strong>客户订单号 </strong>{{data.customerOrder1}}<br>
+        <i class="fa-fw fa fa-check-square-o"></i><strong>客户 </strong>{{data.bp1Desc}}<br>
+        <i class="fa-fw fa fa-check-square-o"></i><strong>供应商 </strong>{{data.vendorDesc}}<br>
+        <i class="fa-fw fa fa-check-square-o"></i><strong>物料 </strong>{{data.matIID}}<br>
+        <i class="fa-fw fa fa-check-square-o"></i><strong>总数量 </strong>{{data.availableAmt}}
     </div>
 </div>
 <div class="modal-body no-padding">
     <h3 class="row-seperator-header"><i class="fa fa-wrench"></i>拆分作业 </h3>
     <div  class="smart-form">
         <fieldset>
+              <div class="alert alert-danger fade in" ng-show="isError">
+                                <button class="close" ng-click="clearError()">
+                                    ×
+                                </button>
+                                <i class="fa-fw fa fa-warning"></i>
+                                拆分数量不应超过可拆分数量
+                            </div>
             <div class="row">
                 <section class="col col-5">
                     <label class="input">
                         <i class="icon-prepend fa fa-warning"></i>
-                        <input type="text" name="code" disabled="disabled" placeholder="可拆分数量: 30">
+                        <input type="text" name="code" disabled="disabled" placeholder="可拆分数量: {{data.availableAmt}}">
                     </label>
                 </section>
                 <section class="col col-4">
                     <label class="input">
                         <i class="icon-prepend fa fa-edit"></i>
-                        <input type="text" name="code" placeholder="拆分数量">
+                        <input type="text" name="code" ng-model="data.Amt" placeholder="拆分数量">
                     </label>
                 </section>
             </div>
@@ -51,20 +57,20 @@
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-info-circle"></i>
-                        <input type="text" name="code" placeholder="包装代码" list="packlist">
+                        <input type="text" name="code" ng-model="data.ResAmtCS1" placeholder="包装代码" list="packlist">
                     </label>
 
                 </section>
                 <section class="col col-4">
                     <label class="input">
                         <i class="icon-prepend fa fa-qrcode"></i>
-                        <input type="text" name="code" placeholder="包装条码">
+                        <input type="text" name="code" ng-model="data.PackNum" placeholder="包装条码">
                     </label>
                 </section>
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-pencil"></i>
-                        <input type="text" name="code" placeholder="包装数量">
+                        <input type="text" name="code" ng-model="data.ResAmt1"  placeholder="包装数量">
                     </label>
                 </section>
             </div>
@@ -81,20 +87,20 @@
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-info-circle"></i>
-                        <input type="text" name="code" placeholder="包装代码" list="packlist">
+                        <input type="text" name="code" ng-model="data.ResAmtCS2" placeholder="包装代码" list="packlist">
                     </label>
 
                 </section>
                 <section class="col col-4">
                     <label class="input">
                         <i class="icon-prepend fa fa-qrcode"></i>
-                        <input type="text" name="code" placeholder="包装条码">
+                        <input type="text" ng-model="data.PackNum2" name="code" placeholder="包装条码">
                     </label>
                 </section>
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-pencil"></i>
-                        <input type="text" name="code" placeholder="包装数量">
+                        <input type="text" name="code"  ng-model="data.ResAmt2"   placeholder="包装数量">
                     </label>
                 </section>
             </div>
@@ -111,27 +117,27 @@
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-info-circle"></i>
-                        <input type="text" name="code" placeholder="包装代码" list="packlist">
+                        <input type="text" name="code" ng-model="data.ResAmtCS3" placeholder="包装代码" list="packlist">
                     </label>
 
                 </section>
                 <section class="col col-4">
                     <label class="input">
                         <i class="icon-prepend fa fa-qrcode"></i>
-                        <input type="text" name="code" placeholder="包装条码">
+                        <input type="text" name="code"  ng-model="data.PackNum3" placeholder="包装条码">
                     </label>
                 </section>
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-pencil"></i>
-                        <input type="text" name="code" placeholder="包装数量">
+                        <input type="text" name="code"  ng-model="data.ResAmt3"   placeholder="包装数量">
                     </label>
                 </section>
             </div>
         </fieldset>
         <footer>
-            <button type="button" class="btn btn-success" ng-click="$dismiss()">保存并确认</button>
-            <button type="button" class="btn btn-warning" ng-click="$dismiss()">保存为草稿</button>
+            <button type="button" class="btn btn-success" ng-click="saveConfirm()">保存并确认</button>
+            <button type="button" class="btn btn-warning" ng-click="saveDraft()">保存为草稿</button>
             <button type="button" class="btn btn-default" ng-click="$dismiss()">返回</button>
         </footer>
     </div>
