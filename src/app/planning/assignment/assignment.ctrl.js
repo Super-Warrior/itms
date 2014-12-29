@@ -2,7 +2,10 @@ angular.module("itms.planning.assignment")
    .controller("EOAssignCtrl", ["$scope", "$modal", "$log", "$http", "config", "common", "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', EOAssignCtrl])
    .controller("resourceCtrl", ["$scope", "$modal", "$log", "$http", "config", "common",
       "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', '$modalInstance',
-      'owners', 'types', 'erID', 'erITN', resourceCtrl]);
+      'owners', 'types', 'erID', 'erITN', resourceCtrl])
+.controller("routeCtrl", ["$scope", "$modal", "$log", "$http", "config", "common",
+   "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', '$modalInstance',
+   'erID', 'erITN', routeCtrl]);
 
 
 function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService, exportService, orderService, dateTimeHelper) {
@@ -63,19 +66,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.ERTRType = [""];
    $scope.ERType = [""];
 
-   $scope.routeData = {
-      ERID: [],
-      ERITN: [],
-      routeID: "",
-      routeClassID: "",
-      dateS: "",
-      timeS: "",
-      dateE: "",
-      timeE: "",
-      routeClassTimeS: "",
-      routeClassTimeE: "",
-      TRVendor: ""
-   };
+
    $scope.quickSearch = function () {
       var data = {
          SerType: "AND",
@@ -280,7 +271,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       this.customerOrder1 = "";
       this.customerOrder2 = "";
       this.customerOrder3 = "";
-      
+
       this.ERID = [];
       this.ERITN = [];
       this.memo = "";
@@ -321,11 +312,11 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.doCreate = function () {
       if (!$scope.isAnythingSelected()) return;
 
-     // $scope.createData.reqDelDate1 = dateTimeHelper.formatDate($scope.createData.reqDelDate1);
+      // $scope.createData.reqDelDate1 = dateTimeHelper.formatDate($scope.createData.reqDelDate1);
       $scope.createData.relDelTime1 = dateTimeHelper.format($scope.createData.relDelTime1, 'HH:mm A', 'HH:mm:ss');
-     // $scope.createData.reqDelDate2 = dateTimeHelper.formatDate($scope.createData.reqDelDate2);
+      // $scope.createData.reqDelDate2 = dateTimeHelper.formatDate($scope.createData.reqDelDate2);
       $scope.createData.relDelTime2 = dateTimeHelper.format($scope.createData.relDelTime2, 'HH:mm A', 'HH:mm:ss');
-    
+
 
       $scope.createData.ERID = $scope.selectedItems.map(function (i) {
          return i.erID;
@@ -333,7 +324,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       $scope.createData.ERITN = $scope.selectedItems.map(function (i) {
          return i.erITN;
       });
-      
+
       $http
       .post(config.baseUrl + "EO/EOQuickCreate" + "?" + $.param($scope.createData))
       .then(function (result) {
@@ -574,69 +565,31 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       if (!$scope.isAnythingSelected())
          return;
 
-      $scope.routeData.ERID = $scope.selectedItems.map(function (i) {
-         return i.erID;
-      });
-      $scope.routeData.ERITN = $scope.selectedItems.map(function (i) {
-         return i.erITN;
-      });
-      $scope.routeData.routeID = "";
-      $scope.routeData.routeClassID = "";
-      $scope.routeData.routeClassTimeS = "";
-      $scope.routeData.routeClassTimeE = "";
-      var initDate = dateTimeHelper.formatDate(new Date());
-      $scope.routeData.dateS = initDate;
-      $scope.routeData.timeS = "";
-      $scope.routeData.dateE = initDate;
-      $scope.routeData.timeE = "";
-      $scope.routeData.TRVendor = "";
-      $scope.modalInstance = $modal.open({
+      var modalInstance = $modal.open({
          templateUrl: "app/planning/assignment/assignRoute.tpl.html",
-         scope: $scope
-      });
-   };
+         controller: "routeCtrl",
+         resolve: {
+            erID: function () {
+               return $scope.selectedItems.map(function (i) {
+                  return i.erID;
+               });
+            },
+            erITN: function () {
+               return $scope.selectedItems.map(function (i) {
+                  return i.erITN;
+               });
+            }
 
 
-   $scope.routeData.checked = false;
-   $scope.routeData.resetRouteClassID = function () {
-      if ($scope.routeData.checked)
-         $scope.routeData.routeClassID = "";
-   };
-
-   $scope.routeData.resetChecked = function () {
-      if ($scope.routeData.routeClassID.length > 0) {
-         $scope.routeData.checked = false;
-      }
-   };
-
-   $scope.doAssignRoute = function (isDraft) {
-      var data = {
-         ERID: $scope.routeData.ERID,
-         ERITN: $scope.routeData.ERITN,
-         RouteID: $scope.routeData.routeID,
-         RouteClassID: $scope.routeData.routeClassID,
-         TRVendor: $scope.routeData.TRVendor,
-         RouteClassTimeS: "",
-         RouteClassTimeE: ""
-      };
-
-
-
-
-      data.RouteClassTimeS = dateTimeHelper.mergeDateTime($scope.routeData.dateS, $scope.routeData.timeS);
-      data.RouteClassTimeE = dateTimeHelper.mergeDateTime($scope.routeData.dateE, $scope.routeData.timeE);
-      var method = isDraft ? "ERItemRouteAssignDraft" : "ERItemRouteAssignConfirm";
-      var message = isDraft ? "已成功分配并保存为草稿" : "已成功分配并确认";
-      $http.postXSRF(config.baseUrl + "ER/" + method, data).then(function (result) {
-         if (result.data &&
-            (!result.data.errorMessage || result.data.errorMessage == "OK")) {
-            $scope.modalInstance.close();
-            common.notifier.success(message + "...");
-            $scope.quickSearch();
          }
       });
+      modalInstance.result.then(function () {
+         $scope.quickSearch();
+      });
 
    };
+
+
 
    $scope.deleteEritm = function () {
       if (!$scope.isAnythingSelected())
@@ -768,8 +721,15 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
    $scope.select = function (i) {
-      var selectItem = $scope.resources[i];
-      $scope.resourceData.TranResLicense = selectItem.matnr;
+      $scope.resources.forEach(
+        function (temp) {
+           temp.selected = false;
+        });
+
+      var item = $scope.resources[i];
+      item.selected = true;
+      $scope.resourceData.TranResID = item.matnr;
+      console.log($scope.resourceData.TranResID);
    };
 
    $scope.doAssignResource = function (isDraft) {
@@ -789,3 +749,114 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
 }
+
+
+
+
+function routeCtrl($scope, $modal, $log, $http, config, common, configService, customerService,
+   exportService, orderService, dateTimeHelper, $modalInstance, erID, erITN) {
+   $scope.searchData = {
+      RouteID: "",
+      RouteDesc: "",
+      TRType: "",
+      RouteOrigin: "",
+      RouteOriginDesc: "",
+      RouteDest: "",
+      RouteDesiDesc: "",
+   };
+   $scope.routes = [];
+   $scope.select = function (i) {
+      $scope.routes.forEach(
+         function (temp) {
+            temp.selected = false;
+         });
+
+      var item = $scope.routes[i];
+      item.selected = true;
+      $scope.routeData.routeID = item.routeID;
+      console.log($scope.routeData.routeID);
+   };
+   $scope.search = function () {
+      configService.getRoute($scope.searchData).then(
+      function (result) {
+         $scope.showResult = true;
+         if (result.data &&
+            (!result.data.errorMessage || result.data.errorMessage == "OK")) {
+            result.data.forEach(
+            function (item) {
+               item.selected = false;
+            }
+         );
+
+            $scope.routes = result.data;
+
+
+         } else {
+            $scope.routes = [];
+         }
+      }
+    );
+   };
+   $scope.routeData = {
+      ERID: erID,
+      ERITN: erITN,
+      routeID: "",
+      routeClassID: "",
+      dateS: "",
+      timeS: "",
+      dateE: "",
+      timeE: "",
+      routeClassTimeS: "",
+      routeClassTimeE: "",
+      TRVendor: ""
+   };
+   $scope.routeData.routeID = "";
+   $scope.routeData.routeClassID = "";
+   $scope.routeData.routeClassTimeS = "";
+   $scope.routeData.routeClassTimeE = "";
+   var initDate = dateTimeHelper.formatDate(new Date());
+   $scope.routeData.dateS = initDate;
+   $scope.routeData.timeS = "";
+   $scope.routeData.dateE = initDate;
+   $scope.routeData.timeE = "";
+   $scope.routeData.TRVendor = "";
+
+   $scope.routeData.checked = false;
+   $scope.routeData.resetRouteClassID = function () {
+      if ($scope.routeData.checked)
+         $scope.routeData.routeClassID = "";
+   };
+
+   $scope.routeData.resetChecked = function () {
+      if ($scope.routeData.routeClassID.length > 0) {
+         $scope.routeData.checked = false;
+      }
+   };
+
+   $scope.doAssignRoute = function (isDraft) {
+      var data = {
+         ERID: $scope.routeData.ERID,
+         ERITN: $scope.routeData.ERITN,
+         RouteID: $scope.routeData.routeID,
+         RouteClassID: $scope.routeData.routeClassID,
+         TRVendor: $scope.routeData.TRVendor,
+         RouteClassTimeS: "",
+         RouteClassTimeE: ""
+      };
+
+      data.RouteClassTimeS = dateTimeHelper.mergeDateTime($scope.routeData.dateS, $scope.routeData.timeS);
+      data.RouteClassTimeE = dateTimeHelper.mergeDateTime($scope.routeData.dateE, $scope.routeData.timeE);
+      var method = isDraft ? "ERItemRouteAssignDraft" : "ERItemRouteAssignConfirm";
+      var message = isDraft ? "已成功分配并保存为草稿" : "已成功分配并确认";
+      $http.postXSRF(config.baseUrl + "ER/" + method, data).then(function (result) {
+         if (result.data &&
+            (!result.data.errorMessage || result.data.errorMessage == "OK")) {
+            $modalInstance.close();
+            common.notifier.success(message + "...");
+         }
+      });
+
+   };
+}
+
+

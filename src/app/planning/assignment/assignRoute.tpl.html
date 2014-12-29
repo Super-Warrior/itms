@@ -17,30 +17,30 @@
                 <div class="panel-body no-padding">
                     <div class="smart-form">
                         <fieldset>
-                             <div class="alert alert-danger fade in">
+                            <div class="alert alert-danger fade in">
                                 <button class="close" data-dismiss="alert">
                                     ×
                                 </button>
                                 <i class="fa-fw fa fa-warning"></i>
-                                <strong>{{selectedItems.length}}&nbsp;</strong>条ER需求项目被选择操作
+                                <strong>{{routeData.ERID.length}}&nbsp;</strong>条ER需求项目被选择操作
                             </div>
                             <div class="row">
                                 <section class="col col-4">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
-                                        <input type="text" name="code" placeholder="路线代码">
+                                        <input type="text" ng-model="searchData.RouteID" name="code" placeholder="路线代码">
                                     </label>
                                 </section>
                                 <section class="col col-4">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
-                                        <input type="text" name="code" placeholder="路线名称">
+                                        <input type="text" name="code" ng-model="searchData.RouteDesc" placeholder="路线名称">
                                     </label>
                                 </section>
                                 <section class="col col-4">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
-                                        <input type="text" name="code" placeholder="运输方式">
+                                        <input type="text" name="code" ng-model="searchData.TRType" placeholder="运输方式">
                                     </label>
                                 </section>
                             </div>
@@ -50,16 +50,16 @@
                                 <section class="col col-6">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
-                                        <input type="text" name="code" placeholder="起点代码">
+                                        <input type="text" name="code" ng-model="searchData.RouteOrigin" placeholder="起点代码">
                                     </label>
                                 </section>
                                 <section class="col col-6">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
-                                        <input type="text" name="code" placeholder="起点名称">
+                                        <input type="text" name="code" ng-model="searchData.RouteOriginDesc" placeholder="起点名称">
                                     </label>
                                 </section>
-                                <section class="col col-3">
+                                <!-- <section class="col col-3">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
                                         <input type="text" name="code" placeholder="国家">
@@ -82,7 +82,8 @@
                                         <i class="icon-prepend fa fa-filter"></i>
                                         <input type="text" name="code" placeholder="区县">
                                     </label>
-                                </section>
+                                </section>-->
+
                             </div>
                         </fieldset>
                         <fieldset>
@@ -90,16 +91,17 @@
                                 <section class="col col-6">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
-                                        <input type="text" name="code" placeholder="终点代码">
+                                        <input type="text" name="code" ng-model="searchData.RouteDest" placeholder="终点代码">
                                     </label>
                                 </section>
                                 <section class="col col-6">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
-                                        <input type="text" name="code" placeholder="终点名称">
+                                        <input type="text" name="code" ng-model="searchData.RouteDesiDesc" placeholder="终点名称">
                                     </label>
                                 </section>
-                                <section class="col col-3">
+
+                                <!--                                <section class="col col-3">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-filter"></i>
                                         <input type="text" name="code" placeholder="国家">
@@ -122,11 +124,11 @@
                                         <i class="icon-prepend fa fa-filter"></i>
                                         <input type="text" name="code" placeholder="区县">
                                     </label>
-                                </section>
+                                </section>-->
                             </div>
                             <div class="row">
                                 <section class="col col-12">
-                                    <button type="button" class="btn btn-sm btn-info"><i class="fa fa-search"></i>路线搜索</button>
+                                    <button type="button" ng-click="search()" class="btn btn-sm btn-info"><i class="fa fa-search"></i>路线搜索</button>
                                 </section>
                             </div>
                             <table class="table table-bordered table-condensed">
@@ -145,42 +147,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr ng-repeat="item in routes" ng-click="select($index)">
                                         <td>
                                             <label class="radio">
-                                                <input type="radio" name="radio">
-                                                </input>
+                                                <input type="radio" ng-checked="item.selected" name="radio" />
                                                 <i></i>
                                             </label>
                                         </td>
-                                        <td>19111</td>
-                                        <td>40</td>
-                                        <td>B123131</td>
-                                        <td>3</td>
-                                        <td>B123131</td>
-                                        <td>3</td>
-                                        <td>111</td>
-                                        <td>11</td>
-                                        <td>11</td>
+                                        <td>{{item.routeID}}</td>
+                                        <td>{{item.routeDesc}}</td>
+                                        <td>{{item.routeOrigin}}</td>
+                                        <td>{{item.routeOriginDesc}}</td>
+                                        <td>{{item.routeDest}}</td>
+                                        <td>{{item.routeDesiDesc}}</td>
+                                        <td>{{item.distance1}}</td>
+                                        <td>{{item.trType}}</td>
+                                        <td>{{item.specTag}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="radio">
-                                                <input type="radio" name="radio">
-                                                </input>
-                                                <i></i>
-                                            </label>
-                                        </td>
-                                        <td>19111</td>
-                                        <td>40</td>
-                                        <td>B123131</td>
-                                        <td>3</td>
-                                        <td>B123131</td>
-                                        <td>3</td>
-                                        <td>111</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                    </tr>
+
+
                                 </tbody>
                             </table>
                         </fieldset>
@@ -201,7 +186,7 @@
                 </section>
                 <section class="col col-1">
                     <label class="checkbox">
-                        <input type="checkbox" ng-model="routeData.checked"  ng-change="routeData.resetRouteClassID()" name="checkbox-inline">
+                        <input type="checkbox" ng-model="routeData.checked" ng-change="routeData.resetRouteClassID()" name="checkbox-inline">
                         </input>
                         <i></i>
                     </label>
@@ -243,7 +228,7 @@
                 <section class="col col-3">
                     <div class="input-group">
 
-                        <input type="text" data-im-timepicker  class="form-control"
+                        <input type="text" data-im-timepicker class="form-control"
                             placeholder="到达时间" ng-model="routeData.timeE">
                         
                         </input>

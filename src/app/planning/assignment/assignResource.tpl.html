@@ -110,10 +110,10 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr ng-repeat="item in resources">
+                                    <tr ng-repeat="item in resources" ng-click="select($index)">
                                         <td>
                                             <label class="radio">
-                                                <input type="radio" ng-model="item.selected" ng-click="select($index)" name="radio" />
+                                                <input type="radio"  ng-checked="item.selected"  name="radio" />
                                                 <i></i>
                                             </label>
                                         </td>

@@ -251,7 +251,48 @@ function configService($http, $q, config) {
          dataType: "json"
       });
    };
-   return { "getConfig": getConfig, "getConfigs": getConfigs, "getMaterial": getMaterial };
+   
+
+
+   var getRoute = function (option) {
+      var param = {
+         "SerType": "AND",
+         RouteID: "",
+         RouteDesc: "",
+         TRType: "",
+         RouteOrigin: "",
+         RouteOriginDesc: "",
+         RouteDest: "",
+         RouteDesiDesc: "",
+         Distance1:"",
+         Distance2:"",
+         Distance3:"",
+         AvgDuration1:"",
+         AvgDuration2:"",
+         AvgDuration3:"",
+         avgCost1:"",
+         avgCost2:"",
+         avgCost3:"",
+         trVendor:"",
+         TRmode:"",
+         SpecTag:"",
+         Route:[],
+      };
+      if (option)
+         $.extend(param, option);
+     
+      return $http({
+         method: "GET",
+         url: config.baseUrl + "search/Route" + "?" + $.param(param),
+         dataType: "json"
+      });
+   };
+   
+   return {
+      "getConfig": getConfig, "getConfigs": getConfigs,
+      "getMaterial": getMaterial,
+      "getRoute": getRoute,
+   };
 }
 
 function timelineService($http, config) {
