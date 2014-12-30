@@ -1,9 +1,9 @@
 ﻿angular.module('itms.transport.eoMaintainMap')
    .controller('eoMaintainMapCtrl', ['$scope', "$http", "config", "common", '$modal', '$log',
-      'eoMaintainService', 'configService', 'customerService', 'exportService', '$q', mapCtrl]);
+      'eoMaintainService', 'configService', 'customerService', 'exportService','orderService', '$q', mapCtrl]);
 
 function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
-   configService, customerService, exportService, $q) {
+   configService, customerService, exportService, orderService,$q) {
    $scope.module = "运输执行";
    $scope.title = "运单查询/维护";
    $scope.queryOption = {
@@ -65,7 +65,19 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
    customerService.searchCustomer("car").then(function (result) {
       $scope.carriers = result.data;
    });
+   configService.getConfig("ERST").then(function (result) {
+      $scope.erst = result.data;
+   });
+   configService.getConfig("ERTP").then(function (result) {
+      $scope.eoTypes = result.data;
+   });
+   configService.getConfig("ERNT").then(function (result) {
+      $scope.ernt = result.data;
+   });
 
+   configService.getConfig("MDAT", null, "MATERIAL", "TRES").then(function (result) {
+      $scope.resourceTypes = result.data;
+   });
    $scope.results = [];
    $scope.detailConfig = {
       erDetail: true,
@@ -239,26 +251,53 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
           $.extend($scope.mutiOptionDataSource, configData);
        }
    );
-   $scope.eoMaintainSearch = function () {
-      var data = $scope.queryOption;
-      $scope.selectedItems = [];
-      eoMaintainService.quickSearch(data)
-          .success(function (res) {
-             if (!res || res.errorMessage)
-                $scope.results = [];
-             else
-                $scope.results = eoMaintainService.getResultPartial(res);
 
-             if ($scope.results.length) {
-                var icon = $("#wid-result");
-                if (icon.hasClass("jarviswidget-collapsed"))
-                   icon.find(".jarviswidget-toggle-btn").click();
-             }
-          })
+   $scope.unionParam = orderService.buildUnionParam();
+
+   var refresh = function () {
+      if ($scope.isInUnionSearch)
+         $scope.unionSearch();
+      else
+         $scope.eoMaintainSearch();
+   };
+
+   var callback = function (res) {
+      $scope.selectedItems = [];
+
+      if (!res || res.errorMessage)
+         $scope.results = [];
+      else
+         $scope.results = eoMaintainService.getResultPartial(res);
+
+      if ($scope.results.length) {
+         var icon = $("#wid-result");
+         if (icon.hasClass("jarviswidget-collapsed"))
+            icon.find(".jarviswidget-toggle-btn").click();
+      }
+   };
+
+
+   $scope.isInUnionSearch = false;
+   $scope.unionReset = function () {
+      $scope.unionParam = orderService.buildUnionParam();
+   };
+   $scope.unionSearch = function () {
+      $scope.isInUnionSearch = true;
+      orderService.unionSearch(3, $scope.unionParam).then(function (result) {
+         callback(result.data);
+      });
+   };
+
+   $scope.eoMaintainSearch = function () {
+
+      $scope.isInUnionSearch = false;
+      var data = $scope.queryOption;
+
+      eoMaintainService.quickSearch(data)
+          .success(callback)
           .error(function () {
              $log.error('EOMaintainSearchCtrl: quickSearch');
           });
-
    };
 
    $scope.resetEoMaintain = function () {
@@ -327,6 +366,7 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
          }
       });
       modalInstance.result.then(function () {
+ refresh();
          common.notifier.success("操作成功");
       });
    };
@@ -460,7 +500,7 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
                  common.notifier.success("操作成功...");
               }
            }).then(function () {
-              $scope.eoMaintainSearch();
+                refresh();
            });
    };
 

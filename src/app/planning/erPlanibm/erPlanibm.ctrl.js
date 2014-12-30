@@ -90,7 +90,7 @@ function erPlanibmCtrl($scope, $modal, $log, $http, config, common, configServic
          rec_Disc: '',
          rec_Group1: '',
          rec_Group2: '',
-         ERITNStatus: ["UNAS"],
+         ERITNStatus: [""],
          ERStatus: [""],
          project: "",
          plannedID: "",

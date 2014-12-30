@@ -1,12 +1,6 @@
 angular.module("itms.planning.assignment")
    .controller("EOAssignCtrl", ["$scope", "$modal", "$log", "$http", "config", "common",
-      "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', EOAssignCtrl])
-   .controller("resourceCtrl", ["$scope", "$modal", "$log", "$http", "config", "common",
-      "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', '$modalInstance',
-      'owners', 'types', 'erID', 'erITN', resourceCtrl])
-.controller("routeCtrl", ["$scope", "$modal", "$log", "$http", "config", "common",
-   "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', '$modalInstance','types',
-   'erID', 'erITN', routeCtrl]);
+      "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', EOAssignCtrl]);
 
 
 function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService, customerService, exportService, orderService, dateTimeHelper) {
@@ -16,6 +10,20 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    configService.getConfig("TRPY").then(function (result) {
       $scope.transportTypes = result.data;
    });
+
+   configService.getConfig("ERST").then(function (result) {
+      $scope.erst = result.data;
+   });
+
+   configService.getConfig("ERNT").then(function (result) {
+      $scope.ernt = result.data;
+   });
+
+
+   configService.getConfig("MDAT", null, "MATERIAL", "TRES").then(function (result) {
+      $scope.resourceTypes = result.data;
+   });
+
    customerService.searchCustomer("car").then(function (result) {
       $scope.carriers = result.data;
    });
@@ -106,7 +114,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          rec_Disc: '',
          rec_Group1: '',
          rec_Group2: '',
-         ERITNStatus: ["UNAS"],
+         ERITNStatus: [""],
          ERStatus: [""],
          project: "",
          plannedID: "",
@@ -148,21 +156,24 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          ResAmtCS3: "",
          EOID: ""
       };
+      $scope.isInUnionSearch = false;
+      $http.postXSRF(config.baseUrl + "ER/ERQuickSearch", data).then($scope.callback);
+   };
 
-      $http.postXSRF(config.baseUrl + "ER/ERQuickSearch", data).then(function (result) {
-         $scope.adjustData = new AdjustData();
-         $scope.createData = new CreateData();
-         if (result.data.errorMessage)
-            $scope.quickResult = [];
-         else
-            $scope.quickResult = orderService.getRequirementPartialForAssigment(result.data);
-         $scope.selectedItems = [];
-         if ($scope.quickResult.length) {
-            var icon = $("#wid-result");
-            if (icon.hasClass("jarviswidget-collapsed"))
-               icon.find(".jarviswidget-toggle-btn").click();
-         }
-      });
+
+   $scope.callback = function (result) {
+      $scope.adjustData = new AdjustData();
+      $scope.createData = new CreateData();
+      if (result.data.errorMessage)
+         $scope.quickResult = [];
+      else
+         $scope.quickResult = orderService.getRequirementPartialForAssigment(result.data);
+      $scope.selectedItems = [];
+      if ($scope.quickResult.length) {
+         var icon = $("#wid-result");
+         if (icon.hasClass("jarviswidget-collapsed"))
+            icon.find(".jarviswidget-toggle-btn").click();
+      }
    };
 
    $scope.reset = function () {
@@ -188,13 +199,21 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
 
    $scope.unionParam = orderService.buildUnionParam();
 
+   var refresh = function() {
+
+      if ($scope.isInUnionSearch)
+         $scope.unionSearch();
+      else 
+         $scope.quickSearch();
+   };
+
    $scope.isInUnionSearch = false;
    $scope.unionReset = function () {
       $scope.unionParam = orderService.buildUnionParam();
    };
    $scope.unionSearch = function () {
-
-
+      $scope.isInUnionSearch = true;
+      orderService.unionSearch(1, $scope.unionParam).then($scope.callback);
    };
    $scope.handleEvent = function () {
       var modalInstance = $modal.open({
@@ -350,7 +369,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
             common.notifier.success("运单已成功创建...");
          }
       }).then(function () {
-         $scope.quickSearch();
+         refresh();
       });
    };
 
@@ -389,7 +408,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
                 common.notifier.success("数据更新成功...");
              }
           }).then(function () {
-             $scope.quickSearch();
+             refresh();
           });
    };
 
@@ -416,7 +435,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
                 common.notifier.success("删除操作成功...");
              }
           }).then(function () {
-             $scope.quickSearch();
+             refresh();
           });
    };
 
@@ -446,7 +465,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
                common.notifier.success("创建EO运单操作成功...");
             }
          }).then(function () {
-            $scope.quickSearch();
+            refresh();
          });
    };
 
@@ -479,7 +498,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
                common.notifier.success("创建EO运单操作成功...");
             }
          }).then(function () {
-            $scope.quickSearch();
+            refresh();
          });
    };
 
@@ -499,7 +518,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
                common.notifier.success("包装数量调整完毕...");
             }
          }).then(function () {
-            $scope.quickSearch();
+            refresh();
          });
    };
 
@@ -521,7 +540,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          }
       });
       modalInstance.result.then(function () {
-         $scope.quickSearch();
+         refresh();
       }, function () {
          $log.info('Modal dismissed at: ' + new Date());
       });
@@ -542,7 +561,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          }
       });
       modalInstance.result.then(function () {
-         $scope.quickSearch();
+         refresh();
       }, function () {
          $log.info('Modal dismissed at: ' + new Date());
       });
@@ -572,7 +591,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          }
       });
       modalInstance.result.then(function () {
-         $scope.quickSearch();
+         refresh();
       }, function () {
          $log.info('Modal dismissed at: ' + new Date());
       });
@@ -587,8 +606,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          templateUrl: "app/planning/assignment/assignRoute.tpl.html",
          controller: "routeCtrl",
          resolve: {
-            
-            types: function() {
+
+            types: function () {
                return configService.getConfig("TRPY", null, "TRTYPE");
             },
             erID: function () {
@@ -606,7 +625,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          }
       });
       modalInstance.result.then(function () {
-         $scope.quickSearch();
+         refresh();
       });
 
    };
@@ -640,7 +659,7 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
                 common.notifier.success("删除操作成功...");
              }
           }).then(function () {
-             $scope.quickSearch();
+             refresh();
           });
    };
 
@@ -679,223 +698,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          }
       });
       modalInstance.result.then(function () {
-         $scope.quickSearch();
+         refresh();
       });
 
    };
 
 
 }
-
-
-function resourceCtrl($scope, $modal, $log, $http, config, common, configService, customerService,
-   exportService, orderService, dateTimeHelper, $modalInstance, owners, types, erID, erITN) {
-   $scope.resourceData = {
-      ERID: erID,
-      ERITN: erITN,
-      TranResType: "",
-      TranResID: "",
-      TranResLicense: "",
-      TransDriverID: ""
-   };
-
-   $scope.owners = owners.data;
-   $scope.types = types.data;
-
-   $scope.resourceSearchOption = {
-      type: "",
-      owner: "",
-      matnr: "",
-      description: "",
-      LoadWgt: "",
-      Speed: "",
-      Vol: "",
-      SpecialTag1: ""
-   };
-
-   $scope.showResult = false;
-   $scope.resources = [];
-   $scope.resourceSearch = function () {
-      $scope.resourceData.TranResID = "";
-      //if (!$scope.resourceSearchOption.type)
-        // $scope.resourceSearchOption.type = "TRES";
-      configService.getMaterial($scope.resourceSearchOption).then(
-
-        function (result) {
-           $scope.showResult = true;
-           if (result.data &&
-              (!result.data.errorMessage || result.data.errorMessage == "OK")) {
-              result.data.forEach(
-              function (item) {
-                 item.selected = false;
-
-              }
-           );
-
-              $scope.resources = result.data;
-
-
-           } else {
-              $scope.resources = [];
-           }
-        }
-      );
-   };
-
-   $scope.select = function (i) {
-      $scope.resources.forEach(
-        function (temp) {
-           temp.selected = false;
-        });
-
-      var item = $scope.resources[i];
-      item.selected = true;
-      $scope.resourceData.TranResID = item.matnr;
-      console.log($scope.resourceData.TranResID);
-   };
-
-   $scope.doAssignResource = function (isDraft) {
-
-      var data = $scope.resourceData;
-
-      if (!data.TranResID || !data.TranResLicense || !data.TransDriverID) {
-         alert("请输入完整信息");
-         return;
-      }
-      var message = isDraft ? "已成功分配并保存为草稿" : "已成功分配并确认";
-
-      var method = isDraft ? "ERItemResAssignDraft" : "ERItemResAssignConfirm";
-      $http.postXSRF(config.baseUrl + "ER/" + method, data).then(function (result) {
-         if (result.data &&
-            (!result.data.errorMessage || result.data.errorMessage == "OK")) {
-            $modalInstance.close();
-            common.notifier.success(message + "...");
-
-         }
-      });
-
-   };
-
-}
-
-
-
-
-function routeCtrl($scope, $modal, $log, $http, config, common, configService, customerService,
-   exportService, orderService, dateTimeHelper, $modalInstance, types, erID, erITN) {
-   $scope.types = types.data;
-   $scope.searchData = {
-      RouteID: "",
-      RouteDesc: "",
-      TRType: "",
-      RouteOrigin: "",
-      RouteOriginDesc: "",
-      RouteDest: "",
-      RouteDesiDesc: "",
-   };
-
-   $scope.routes = [];
-   $scope.select = function (i) {
-      $scope.routes.forEach(
-         function (temp) {
-            temp.selected = false;
-         });
-
-      var item = $scope.routes[i];
-      item.selected = true;
-      $scope.routeData.routeID = item.routeID;
-      console.log($scope.routeData.routeID);
-   };
-   $scope.search = function () {
-      $scope.routeData.routeID = "";
-      configService.getRoute($scope.searchData).then(
-      function (result) {
-         $scope.showResult = true;
-         if (result.data &&
-            (!result.data.errorMessage || result.data.errorMessage == "OK")) {
-            result.data.forEach(
-            function (item) {
-               item.selected = false;
-            }
-         );
-
-            $scope.routes = result.data;
-         } else {
-            $scope.routes = [];
-         }
-      }
-    );
-   };
-   $scope.routeData = {
-      ERID: erID,
-      ERITN: erITN,
-      routeID: "",
-      routeClassID: "",
-      dateS: "",
-      timeS: "",
-      dateE: "",
-      timeE: "",
-      routeClassTimeS: "",
-      routeClassTimeE: "",
-      TRVendor: ""
-   };
-   $scope.routeData.routeID = "";
-   $scope.routeData.routeClassID = "";
-   $scope.routeData.routeClassTimeS = "";
-   $scope.routeData.routeClassTimeE = "";
-   var initDate = dateTimeHelper.formatDate(new Date());
-   $scope.routeData.dateS = initDate;
-   $scope.routeData.timeS = "";
-   $scope.routeData.dateE = initDate;
-   $scope.routeData.timeE = "";
-   $scope.routeData.TRVendor = "";
-
-   $scope.routeData.checked = false;
-   $scope.routeData.resetRouteClassID = function () {
-      if ($scope.routeData.checked)
-         $scope.routeData.routeClassID = "";
-   };
-
-   $scope.routeData.resetChecked = function () {
-      if ($scope.routeData.routeClassID.length > 0) {
-         $scope.routeData.checked = false;
-      }
-   };
-
-   $scope.doAssignRoute = function (isDraft) {
-      var data = {
-         ERID: $scope.routeData.ERID,
-         ERITN: $scope.routeData.ERITN,
-         RouteID: $scope.routeData.routeID,
-         RouteClassID: $scope.routeData.routeClassID,
-         TRVendor: $scope.routeData.TRVendor,
-         RouteClassTimeS: "",
-         RouteClassTimeE: ""
-      };
-
-
-      data.RouteClassTimeS = dateTimeHelper.mergeDateTime($scope.routeData.dateS, $scope.routeData.timeS);
-      data.RouteClassTimeE = dateTimeHelper.mergeDateTime($scope.routeData.dateE, $scope.routeData.timeE);
-
-      if (!data.RouteID
-         || !data.RouteClassID
-         || !data.TRVendor
-         || !data.RouteClassTimeS
-         || !data.RouteClassTimeE) {
-         alert("请输入完整信息");
-         return;
-      }
-      var method = isDraft ? "ERItemRouteAssignDraft" : "ERItemRouteAssignConfirm";
-      var message = isDraft ? "已成功分配并保存为草稿" : "已成功分配并确认";
-      $http.postXSRF(config.baseUrl + "ER/" + method, data).then(function (result) {
-         if (result.data &&
-            (!result.data.errorMessage || result.data.errorMessage == "OK")) {
-            $modalInstance.close();
-            common.notifier.success(message + "...");
-         }
-      });
-
-   };
-}
-
-

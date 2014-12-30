@@ -39,6 +39,17 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
       $scope.rec_City = "";
 
    };
+   configService.getConfig("ERST").then(function (result) {
+      $scope.erst = result.data;
+   });
+
+   configService.getConfig("ERNT").then(function (result) {
+      $scope.ernt = result.data;
+   });
+
+   configService.getConfig("MDAT", null, "MATERIAL", "TRES").then(function (result) {
+      $scope.resourceTypes = result.data;
+   });
    configService.getConfig("TRPY").then(function (result) {
       $scope.transportTypes = result.data;
    });
@@ -91,7 +102,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
          }
       });
       modalInstance.result.then(function () {
-         $scope.searchAssignableRequest();
+         refresh();
       }, function () {
          $log.info('Modal dismissed at: ' + new Date());
       });
@@ -113,7 +124,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
          }
       });
       modalInstance.result.then(function () {
-         $scope.searchAssignableRequest();
+         refresh();
       }, function () {
          $log.info('Modal dismissed at: ' + new Date());
       });
@@ -193,15 +204,38 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
          ResAmtCS3: "",
          EOID: ""
       };
-      orderService.query(param).success(function (data) {
-         $scope.selectedItems = [];
-         var icon = $("#wid-result");
-         $scope.orders = orderService.getRequirementPartial(data);
-         if (icon.hasClass("jarviswidget-collapsed"))
-            icon.find(".jarviswidget-toggle-btn").click();
-      });
+      $scope.isInUnionSearch = false;
+      orderService.query(param).success(callback);
    };
 
+   $scope.unionParam = orderService.buildUnionParam();
+
+   var refresh = function () {
+      if ($scope.isInUnionSearch)
+         $scope.unionSearch();
+      else
+         $scope.searchAssignableRequest();
+   };
+
+   var callback = function (data) {
+      $scope.selectedItems = [];
+      var icon = $("#wid-result");
+      $scope.orders = orderService.getRequirementPartial(data);
+      if (icon.hasClass("jarviswidget-collapsed"))
+         icon.find(".jarviswidget-toggle-btn").click();
+   };
+
+
+   $scope.isInUnionSearch = false;
+   $scope.unionReset = function () {
+      $scope.unionParam = orderService.buildUnionParam();
+   };
+   $scope.unionSearch = function () {
+      $scope.isInUnionSearch = true;
+      orderService.unionSearch(2, $scope.unionParam).then(function (result) {
+         callback(result.data);
+      });
+   };
 
    $scope.reallocate = function () {
       var reallocate = function (value) {
@@ -212,7 +246,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
              })
              .success(function () {
                 notifier.success("已成功分配至订单" + value);
-                $scope.searchAssignableRequest();
+                refresh();
              });
       };
 
@@ -243,7 +277,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
             })
             .success(function () {
                notifier.success("已成功取消运单分配...");
-               $scope.searchAssignableRequest();
+               refresh();
             });
       };
       if ($scope.selectedItems.length > 0) {
@@ -284,7 +318,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
                  common.notifier.success("删除操作成功...");
               }
            }).then(function () {
-              $scope.searchAssignableRequest();
+              refresh();
            });
    };
 
@@ -420,7 +454,7 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
          }
       });
       modalInstance.result.then(function () {
-         $scope.searchAssignableRequest();
+         refresh();
       }, function () {
          $log.info('Modal dismissed at: ' + new Date());
       });

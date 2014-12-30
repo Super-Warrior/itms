@@ -165,7 +165,7 @@ function configService($http, $q, config) {
 
    var criteria = getEmptyCriteria();
 
-   var getConfig = function (type, code,group1,group2) {
+   var getConfig = function (type, code, group1, group2) {
       criteria = getEmptyCriteria();
       criteria.ConType = [type];
       if (code) criteria.Code = code;
@@ -225,6 +225,9 @@ function configService($http, $q, config) {
       };
       if (option.type)
          param.type.push(option.type);
+      else {
+         param.type = [""];
+      }
 
       if (option.owner)
          param.Owner = option.owner;
@@ -253,7 +256,7 @@ function configService($http, $q, config) {
          dataType: "json"
       });
    };
-   
+
 
 
    var getRoute = function (option) {
@@ -266,30 +269,30 @@ function configService($http, $q, config) {
          RouteOriginDesc: "",
          RouteDest: "",
          RouteDesiDesc: "",
-         Distance1:"",
-         Distance2:"",
-         Distance3:"",
-         AvgDuration1:"",
-         AvgDuration2:"",
-         AvgDuration3:"",
-         avgCost1:"",
-         avgCost2:"",
-         avgCost3:"",
-         trVendor:"",
-         TRmode:"",
-         SpecTag:"",
-         Route:[],
+         Distance1: "",
+         Distance2: "",
+         Distance3: "",
+         AvgDuration1: "",
+         AvgDuration2: "",
+         AvgDuration3: "",
+         avgCost1: "",
+         avgCost2: "",
+         avgCost3: "",
+         trVendor: "",
+         TRmode: "",
+         SpecTag: "",
+         Route: [],
       };
       if (option)
          $.extend(param, option);
-     
+
       return $http({
          method: "GET",
          url: config.baseUrl + "search/Route" + "?" + $.param(param),
          dataType: "json"
       });
    };
-   
+
    return {
       "getConfig": getConfig, "getConfigs": getConfigs,
       "getMaterial": getMaterial,

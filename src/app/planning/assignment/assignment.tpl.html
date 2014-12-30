@@ -125,12 +125,14 @@
                                         </div>
                                     </fieldset>
                                     <fieldset>
+                   
+
                                         <div class="row">
                                             <section class="col col-4">
                                                 <label class="label"><i class="fa fa-list"></i>运单类型</label>
                                                 <label class="select select-multiple">
-                                                <select multiple="multiple" ng-multiple="true" class="custom-scroll"  data-ng-model="ERType"
-                                                        data-ng-options="config.code as config.description for config in eoTypes">
+                                                    <select multiple="multiple" ng-multiple="true" class="custom-scroll" data-ng-model="ERType[0]"
+                                                            data-ng-options="config.code as config.description for config in eoTypes">
                                                     </select>
                                                 </label>
                                                 <div class="note"><strong>提示:</strong> 按ctrl键进行多选操作 </div>
@@ -138,18 +140,18 @@
                                             <section class="col col-2">
                                                 <label class="label"><i class="fa fa-truck "></i>运输方式</label>
                                                 <label class="select select-multiple">
-                                                      <label class="select select-multiple">
-                                                    <select class="custom-scroll" multiple ng-model="ERTRType"
-                                                        data-ng-options="config.code as config.description for config in transportTypes">
-                                                    </select>
-                                                </label>
+                                                    <label class="select select-multiple">
+                                                        <select class="custom-scroll" multiple ng-model="ERTRType[0]"
+                                                                data-ng-options="config.code as config.description for config in transportTypes">
+                                                        </select>
+                                                    </label>
                                                 </label>
                                             </section>
                                             <section class="col col-2">
                                                 <label class="label"><i class="fa fa-ambulance "></i>运输特殊标识</label>
-                                                 <label class="select select-multiple">
-                                                    <select class="custom-scroll" multiple data-ng-model="ERTag"
-                                                        data-ng-options="config.code as config.description for config in tags">
+                                                <label class="select select-multiple">
+                                                    <select class="custom-scroll" multiple data-ng-model="ERTag[0]"
+                                                            data-ng-options="config.code as config.description for config in tags">
                                                     </select>
                                                 </label>
                                             </section>
@@ -233,7 +235,7 @@
                                             <section class="col col-3">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-search "></i>
-                                                    <input type="text" ng-model="unionParam.ERID" name="Cr" placeholder="ER需求号">
+                                                    <input type="text" ng-model="unionParam.ERID[0]" name="Cr" placeholder="ER需求号">
                                                 </label>
                                             </section>
                                             <section class="col col-3">
@@ -260,33 +262,29 @@
                                                 <label class="select">
                                                     <select ng-model="unionParam.ERType" name="prov">
                                                         <option value="" selected="selected" disabled="disabled">需求类型</option>
-                                                        <option ng-repeat="value in transportTypes  track by $index" value="{{value.code}}">{{value.description}}</option>
+                                                        <option ng-repeat="value in eoTypes  track by $index" value="{{value.code}}">{{value.description}}</option>
 
                                                     </select>
+
                                                 </label>
+
+
                                             </section>
                                             <section class="col col-3">
                                                 <label class="select">
                                                     <select ng-model="unionParam.ERStatus" name="prov">
                                                         <option value="" selected="selected" disabled="disabled">需求状态</option>
-                                                        <option ng-repeat="value in transportTypes  track by $index" value="{{value.code}}">{{value.description}}</option>
-                                                    </select>
-                                                </label>
-                                            </section>
-                                            <section class="col col-3">
-                                                <label class="select">
-                                                    <select ng-model="unionParam.ERTRType" name="prov">
-                                                        <option value="" selected="selected" disabled="disabled">运输模式</option>
-                                                        <option ng-repeat="value in transportTypes  track by $index" value="{{value.code}}">{{value.description}}</option>
+                                                        <option ng-repeat="value in erst  track by $index" value="{{value.code}}">{{value.description}}</option>
 
                                                     </select>
                                                 </label>
                                             </section>
+
                                             <section class="col col-3">
                                                 <label class="select">
-                                                    <select  name="prov">
+                                                    <select name="prov">
                                                         <option value="" selected="selected" disabled="disabled">运输方式</option>
-                                                        <option ng-repeat="value in transportTypes  track by $index" value="{{value.code}}">{{value.description}}</option>
+                                                        <option ng-repeat="value in transportTypes track by $index" value="{{value.code}}">{{value.description}}</option>
 
                                                     </select>
                                                 </label>
@@ -459,7 +457,7 @@
                                                 <label class="select">
                                                     <select ng-model="unionParam.ERITNStatus" name="prov">
                                                         <option value="" selected="selected" disabled="disabled">行项目状态</option>
-                                                        <option ng-repeat="value in transportTypes  track by $index" value="{{value.code}}">{{value.description}}</option>
+                                                        <option ng-repeat="value in ernt  track by $index" value="{{value.code}}">{{value.description}}</option>
 
                                                     </select>
                                                 </label>
@@ -468,8 +466,8 @@
                                                 <label class="select">
                                                     <select ng-model="unionParam.ItemSplitPlan" name="prov">
                                                         <option value="" selected="selected" disabled="disabled">包装分拆状态</option>
-                                                        <option ng-repeat="value in transportTypes track by $index" value="{{value.code}}">{{value.description}}</option>
-
+                                                        <option value="1">草稿</option>
+                                                        <option value="2">完成</option>
                                                     </select>
                                                 </label>
                                             </section>
@@ -477,8 +475,8 @@
                                                 <label class="select">
                                                     <select ng-model="unionParam.RoutePlanTag" name="prov">
                                                         <option value="" selected="selected" disabled="disabled">路线分配状态</option>
-                                                        <option ng-repeat="value in transportTypes track by $index" value="{{value.code}}">{{value.description}}</option>
-
+                                                        <option value="1">草稿</option>
+                                                        <option value="2">完成</option>
                                                     </select>
                                                 </label>
                                             </section>
@@ -486,8 +484,8 @@
                                                 <label class="select">
                                                     <select ng-model="unionParam.TransResPlanTag" name="prov">
                                                         <option value="" selected="selected" disabled="disabled">资源状态</option>
-                                                        <option ng-repeat="value in transportTypes track by $index" value="{{value.code}}">{{value.description}}</option>
-
+                                                        <option value="1">草稿</option>
+                                                        <option value="2">完成</option>
                                                     </select>
                                                 </label>
                                             </section>
@@ -527,7 +525,7 @@
                                                 <label class="select">
                                                     <select ng-model="unionParam.resType1" name="prov">
                                                         <option value="" selected="selected" disabled="disabled">资源类型</option>
-                                                        <option ng-repeat="value in transportTypes track by $index" value="{{value.code}}">{{value.description}}</option>
+                                                        <option ng-repeat="value in resourceTypes track by $index" value="{{value.code}}">{{value.description}}</option>
 
                                                     </select>
                                                 </label>
@@ -547,7 +545,7 @@
                                             <section class="col col-3">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-barcode"></i>
-                                                    <input  type="text" name="Cr" placeholder="资源条码2">
+                                                    <input type="text" name="Cr" placeholder="资源条码2">
                                                 </label>
                                             </section>
                                         </div>
@@ -556,7 +554,7 @@
                                                 <label class="select">
                                                     <select ng-model="unionParam.resType2" name="prov">
                                                         <option value="" selected="selected" disabled="disabled">资源类型</option>
-                                                        <option ng-repeat="value in transportTypes track by $index" value="{{value.code}}">{{value.description}}</option>
+                                                        <option ng-repeat="value in resourceTypes track by $index" value="{{value.code}}">{{value.description}}</option>
 
                                                     </select>
                                                 </label>
@@ -576,7 +574,7 @@
                                             <section class="col col-3">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-barcode"></i>
-                                                    <input  type="text" name="Cr" placeholder="资源条码2">
+                                                    <input type="text" name="Cr" placeholder="资源条码2">
                                                 </label>
                                             </section>
                                         </div>
@@ -585,7 +583,7 @@
                                                 <label class="select">
                                                     <select ng-model="unionParam.resType3" name="prov">
                                                         <option value="" selected="selected" disabled="disabled">资源类型</option>
-                                                        <option ng-repeat="value in transportTypes track by $index" value="{{value.code}}">{{value.description}}</option>
+                                                        <option ng-repeat="value in resourceTypes track by $index" value="{{value.code}}">{{value.description}}</option>
 
                                                     </select>
                                                 </label>
@@ -605,7 +603,7 @@
                                             <section class="col col-3">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-barcode"></i>
-                                                    <input  type="text" name="Cr" placeholder="资源条码2">
+                                                    <input type="text" name="Cr" placeholder="资源条码2">
                                                 </label>
                                             </section>
                                         </div>

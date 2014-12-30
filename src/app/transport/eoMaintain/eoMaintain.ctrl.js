@@ -1,7 +1,8 @@
 angular.module('itms.transport.eoMaintain')
-   .controller('EOMaintainCtrl', ['$scope', "$http", "config", "common", '$modal', '$log', 'eoMaintainService', 'configService', 'customerService', 'exportService', EOMaintainSearchCtrl]);
+   .controller('EOMaintainCtrl', ['$scope', "$http", "config", "common", '$modal',
+      '$log', 'eoMaintainService', 'configService', 'customerService', 'exportService', 'orderService', EOMaintainSearchCtrl]);
 
-function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMaintainService, configService, customerService, exportService) {
+function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMaintainService, configService, customerService, exportService, orderService) {
    $scope.module = "运输执行";
    $scope.title = "运单查询/维护";
    $scope.queryOption = {
@@ -65,7 +66,19 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
    customerService.searchCustomer("car").then(function (result) {
       $scope.carriers = result.data;
    });
+   configService.getConfig("ERST").then(function (result) {
+      $scope.erst = result.data;
+   });
+   configService.getConfig("ERTP").then(function (result) {
+      $scope.eoTypes = result.data;
+   });
+   configService.getConfig("ERNT").then(function (result) {
+      $scope.ernt = result.data;
+   });
 
+   configService.getConfig("MDAT", null, "MATERIAL", "TRES").then(function (result) {
+      $scope.resourceTypes = result.data;
+   });
    $scope.results = [];
    $scope.detailConfig = {
       erDetail: true,
@@ -188,26 +201,54 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
           $.extend($scope.mutiOptionDataSource, configData);
        }
    );
-   $scope.eoMaintainSearch = function () {
-      var data = $scope.queryOption;
-      $scope.selectedItems = [];
-      eoMaintainService.quickSearch(data)
-          .success(function (res) {
-             if (!res || res.errorMessage)
-                $scope.results = [];
-             else
-                $scope.results = eoMaintainService.getResultPartial(res);
 
-             if ($scope.results.length) {
-                var icon = $("#wid-result");
-                if (icon.hasClass("jarviswidget-collapsed"))
-                   icon.find(".jarviswidget-toggle-btn").click();
-             }
-          })
+
+   $scope.unionParam = orderService.buildUnionParam();
+
+   var refresh = function () {
+      if ($scope.isInUnionSearch)
+         $scope.unionSearch();
+      else
+         $scope.eoMaintainSearch();
+   };
+
+   var callback = function (res) {
+      $scope.selectedItems = [];
+
+      if (!res || res.errorMessage)
+         $scope.results = [];
+      else
+         $scope.results = eoMaintainService.getResultPartial(res);
+
+      if ($scope.results.length) {
+         var icon = $("#wid-result");
+         if (icon.hasClass("jarviswidget-collapsed"))
+            icon.find(".jarviswidget-toggle-btn").click();
+      }
+   };
+
+
+   $scope.isInUnionSearch = false;
+   $scope.unionReset = function () {
+      $scope.unionParam = orderService.buildUnionParam();
+   };
+   $scope.unionSearch = function () {
+      $scope.isInUnionSearch = true;
+      orderService.unionSearch(3, $scope.unionParam).then(function (result) {
+         callback(result.data);
+      });
+   };
+
+   $scope.eoMaintainSearch = function () {
+
+      $scope.isInUnionSearch = false;
+      var data = $scope.queryOption;
+
+      eoMaintainService.quickSearch(data)
+          .success(callback)
           .error(function () {
              $log.error('EOMaintainSearchCtrl: quickSearch');
           });
-
    };
 
    $scope.resetEoMaintain = function () {
@@ -261,8 +302,6 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
       $scope.queryOption.BP1 = "";
       $scope.queryOption.BP2 = "";
       $scope.queryOption.BP3 = "";
-
-
    };
    $scope.handleEvent = function () {
       var modalInstance = $modal.open({
@@ -275,6 +314,7 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
          }
       });
       modalInstance.result.then(function () {
+         refresh();
          common.notifier.success("操作成功");
       });
    };
@@ -361,7 +401,7 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
          function (result) {
             if (!result.data.errorMessage || result.data.errorMessage === "OK") {
                common.notifier.success("更新成功");
-               $scope.eoMaintainSearch();
+               refresh();
                $scope.modalInstance.close();
             }
             ;
@@ -419,31 +459,31 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
                  common.notifier.success("操作成功...");
               }
            }).then(function () {
-              $scope.eoMaintainSearch();
+              refresh();
            });
    };
 
 
    $scope.searchAssignableRequest = function () {
       var options =
-          {
-             selectedCustomer: $scope.selectedCustomer,
-             selectedSite: $scope.selectedSite,
-             selectedPosition: $scope.selectedPosition,
-             createDate: $scope.createDate,
-             // user: $scope.user,
-             dep_State: $scope.dep_State,
-             dep_City: $scope.dep_City,
-             dep_Group1: $scope.dep_Group1,
-             rec_State: $scope.rec_State,
-             rec_City: $scope.rec_City,
-             ERTag: $scope.ERTag,
-             ERTRType: $scope.ERTRType,
-             ERType: $scope.ERType,
-             customerOrder1: $scope.customerOrder1,
-             customerOrder2: $scope.customerOrder2,
-             customerOrder3: $scope.customerOrder3
-          }
+      {
+         selectedCustomer: $scope.selectedCustomer,
+         selectedSite: $scope.selectedSite,
+         selectedPosition: $scope.selectedPosition,
+         createDate: $scope.createDate,
+         // user: $scope.user,
+         dep_State: $scope.dep_State,
+         dep_City: $scope.dep_City,
+         dep_Group1: $scope.dep_Group1,
+         rec_State: $scope.rec_State,
+         rec_City: $scope.rec_City,
+         ERTag: $scope.ERTag,
+         ERTRType: $scope.ERTRType,
+         ERType: $scope.ERType,
+         customerOrder1: $scope.customerOrder1,
+         customerOrder2: $scope.customerOrder2,
+         customerOrder3: $scope.customerOrder3
+      };
       eoMaintainService.queryER(options).success(function (data) {
          var icon = $("#wid-result");
          $scope.orders = orderService.getRequirementPartial(data);
@@ -471,7 +511,7 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
       $scope.customerOrder2 = "";
       $scope.customerOrder3 = "";
 
-   }
+   };
 
    $scope.export = function () {
       exportService.export($scope.columns, $scope.results);
