@@ -4,5 +4,6 @@ angular.module('common', [
     'common.directives.widget',
     'common.directives.breadcrumb',
     'common.directives.menu',
-    'common.directives.timepicker'
+    'common.directives.timepicker',
+   'common.directives.replacement'
 ]);
