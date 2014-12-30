@@ -1,10 +1,11 @@
 angular.module("itms.planning.assignment")
-   .controller("EOAssignCtrl", ["$scope", "$modal", "$log", "$http", "config", "common", "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', EOAssignCtrl])
+   .controller("EOAssignCtrl", ["$scope", "$modal", "$log", "$http", "config", "common",
+      "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', EOAssignCtrl])
    .controller("resourceCtrl", ["$scope", "$modal", "$log", "$http", "config", "common",
       "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', '$modalInstance',
       'owners', 'types', 'erID', 'erITN', resourceCtrl])
 .controller("routeCtrl", ["$scope", "$modal", "$log", "$http", "config", "common",
-   "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', '$modalInstance',
+   "configService", "customerService", "exportService", "orderService", 'dateTimeHelper', '$modalInstance','types',
    'erID', 'erITN', routeCtrl]);
 
 
@@ -26,6 +27,12 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    });
    customerService.searchCustomer("net").then(function (result) {
       $scope.nets = result.data;
+   });
+   customerService.searchCustomer("all").then(function (result) {
+      $scope.alls = result.data;
+   });
+   customerService.searchCustomer("dep").then(function (result) {
+      $scope.deps = result.data;
    });
 
    $scope.detailConfig = { erDetail: true, timeLine: true/*, data: $scope.quickResult */ };
@@ -179,6 +186,16 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       $scope.customerOrder3 = "";
    };
 
+   $scope.unionParam = orderService.buildUnionParam();
+
+   $scope.isInUnionSearch = false;
+   $scope.unionReset = function () {
+      $scope.unionParam = orderService.buildUnionParam();
+   };
+   $scope.unionSearch = function () {
+
+
+   };
    $scope.handleEvent = function () {
       var modalInstance = $modal.open({
          templateUrl: 'app/transport/event/handleEvent.tpl.html',
@@ -391,7 +408,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       $http.postXSRF(config.baseUrl + "ER/ERDel", {
          "ERID": $scope.selectedItems.map(function (i) {
             return i.erID;
-         })
+         }),
+         "userID": config.userID
       }).then(
           function (result) {
              if (!result.errorMessage || result.errorMessage === "OK") {
@@ -569,6 +587,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          templateUrl: "app/planning/assignment/assignRoute.tpl.html",
          controller: "routeCtrl",
          resolve: {
+            
+            types: function() {
+               return configService.getConfig("TRPY", null, "TRTYPE");
+            },
             erID: function () {
                return $scope.selectedItems.map(function (i) {
                   return i.erID;
@@ -588,8 +610,6 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
       });
 
    };
-
-
 
    $scope.deleteEritm = function () {
       if (!$scope.isAnythingSelected())
@@ -612,7 +632,8 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
                  }),
                  "ERITN": $scope.selectedItems.map(function (i) {
                     return i.erITN;
-                 })
+                 }),
+                 "userID": config.userID
               }
           ).then(function (result) {
              if (!result.errorMessage || result.errorMessage === "OK") {
@@ -638,10 +659,10 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          controller: "resourceCtrl",
          resolve: {
             owners: function () {
-               return $scope.tags;
+               return configService.getConfig("MDAT", null, "MATERIAL", "OWNER");
             },
             types: function () {
-               return $scope.transportTypes;
+               return configService.getConfig("MDAT", null, "MATERIAL", "TRES");
             },
             erID: function () {
                return $scope.selectedItems.map(function (i) {
@@ -678,8 +699,8 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
       TransDriverID: ""
    };
 
-   $scope.owners = owners;
-   $scope.types = types;
+   $scope.owners = owners.data;
+   $scope.types = types.data;
 
    $scope.resourceSearchOption = {
       type: "",
@@ -695,8 +716,9 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.showResult = false;
    $scope.resources = [];
    $scope.resourceSearch = function () {
-      if (!$scope.resourceSearchOption.type)
-         $scope.resourceSearchOption.type = "TRES";
+      $scope.resourceData.TranResID = "";
+      //if (!$scope.resourceSearchOption.type)
+        // $scope.resourceSearchOption.type = "TRES";
       configService.getMaterial($scope.resourceSearchOption).then(
 
         function (result) {
@@ -733,7 +755,13 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
    $scope.doAssignResource = function (isDraft) {
+
       var data = $scope.resourceData;
+
+      if (!data.TranResID || !data.TranResLicense || !data.TransDriverID) {
+         alert("请输入完整信息");
+         return;
+      }
       var message = isDraft ? "已成功分配并保存为草稿" : "已成功分配并确认";
 
       var method = isDraft ? "ERItemResAssignDraft" : "ERItemResAssignConfirm";
@@ -754,7 +782,8 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
 
 
 function routeCtrl($scope, $modal, $log, $http, config, common, configService, customerService,
-   exportService, orderService, dateTimeHelper, $modalInstance, erID, erITN) {
+   exportService, orderService, dateTimeHelper, $modalInstance, types, erID, erITN) {
+   $scope.types = types.data;
    $scope.searchData = {
       RouteID: "",
       RouteDesc: "",
@@ -764,6 +793,7 @@ function routeCtrl($scope, $modal, $log, $http, config, common, configService, c
       RouteDest: "",
       RouteDesiDesc: "",
    };
+
    $scope.routes = [];
    $scope.select = function (i) {
       $scope.routes.forEach(
@@ -777,6 +807,7 @@ function routeCtrl($scope, $modal, $log, $http, config, common, configService, c
       console.log($scope.routeData.routeID);
    };
    $scope.search = function () {
+      $scope.routeData.routeID = "";
       configService.getRoute($scope.searchData).then(
       function (result) {
          $scope.showResult = true;
@@ -789,8 +820,6 @@ function routeCtrl($scope, $modal, $log, $http, config, common, configService, c
          );
 
             $scope.routes = result.data;
-
-
          } else {
             $scope.routes = [];
          }
@@ -844,8 +873,18 @@ function routeCtrl($scope, $modal, $log, $http, config, common, configService, c
          RouteClassTimeE: ""
       };
 
+
       data.RouteClassTimeS = dateTimeHelper.mergeDateTime($scope.routeData.dateS, $scope.routeData.timeS);
       data.RouteClassTimeE = dateTimeHelper.mergeDateTime($scope.routeData.dateE, $scope.routeData.timeE);
+
+      if (!data.RouteID
+         || !data.RouteClassID
+         || !data.TRVendor
+         || !data.RouteClassTimeS
+         || !data.RouteClassTimeE) {
+         alert("请输入完整信息");
+         return;
+      }
       var method = isDraft ? "ERItemRouteAssignDraft" : "ERItemRouteAssignConfirm";
       var message = isDraft ? "已成功分配并保存为草稿" : "已成功分配并确认";
       $http.postXSRF(config.baseUrl + "ER/" + method, data).then(function (result) {

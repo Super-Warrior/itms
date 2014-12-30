@@ -5,7 +5,7 @@ angular.module("itms.planning.erPlanibm")
 function erPlanibmCtrl($scope, $modal, $log, $http, config, common, configService, customerService, exportService, orderService) {
    $scope.module = "计划";
    $scope.title = "资源计划";
-   $scope.result=[];
+   $scope.result = [];
    configService.getConfig("TRPY").then(function (result) {
       $scope.transportTypes = result.data;
    });
@@ -288,7 +288,7 @@ function erPlanibmCtrl($scope, $modal, $log, $http, config, common, configServic
          return i.erITN;
       });
       $http
-          .postXSRF(config.baseUrl + "EO/EOQuickCreate" , $scope.createData)
+          .postXSRF(config.baseUrl + "EO/EOQuickCreate", $scope.createData)
           .then(function (result) {
              $scope.modalInstance.dismiss();
              if (!result.errorMessage || result.errorMessage === "OK") {
@@ -327,7 +327,7 @@ function erPlanibmCtrl($scope, $modal, $log, $http, config, common, configServic
       });
 
       $http
-          .postXSRF(config.baseUrl + "ER/ERTRChange",$scope.adjustData)
+          .postXSRF(config.baseUrl + "ER/ERTRChange", $scope.adjustData)
           .then(function (result) {
              $scope.modalInstance.dismiss();
              if (!result.errorMessage || result.errorMessage === "OK") {
@@ -350,10 +350,11 @@ function erPlanibmCtrl($scope, $modal, $log, $http, config, common, configServic
    };
 
    $scope.doDeleteEr = function () {
-      $http.postXSRF(config.baseUrl + "ER/ERDel" ,{
+      $http.postXSRF(config.baseUrl + "ER/ERDel", {
          "ERID": $scope.selectedItems.map(function (i) {
             return i.erID;
-         })
+         }),
+         "userID": config.userID
       }).then(
           function (result) {
              if (!result.errorMessage || result.errorMessage === "OK") {
@@ -378,18 +379,18 @@ function erPlanibmCtrl($scope, $modal, $log, $http, config, common, configServic
    };
 
    /* Added by T.C. 2014.11.05*/
-   $scope.doCreateEOByER = function() {
+   $scope.doCreateEOByER = function () {
       $http.postXSRF(config.baseUrl + "ER/EOERQuickCreateWOValidation", {
-         "ERID": $scope.selectedItems.map(function(i) {
+         "ERID": $scope.selectedItems.map(function (i) {
             return i.erID;
          }),
          user: config.userID
       }).then(
-         function(result) {
+         function (result) {
             if (!result.errorMessage || result.errorMessage === "OK") {
                common.notifier.success("创建EO运单操作成功...");
             }
-         }).then(function() {
+         }).then(function () {
             $scope.quickSearch();
          });
    };
@@ -408,41 +409,41 @@ function erPlanibmCtrl($scope, $modal, $log, $http, config, common, configServic
    };
 
    /* Added by T.C. 2014.11.05*/
-   $scope.doCreateEOByERITN = function() {
+   $scope.doCreateEOByERITN = function () {
       $http.postXSRF(config.baseUrl + "ER/EOERItnQuickCreateWOValidation", {
-         "ERID": $scope.selectedItems.map(function(i) {
+         "ERID": $scope.selectedItems.map(function (i) {
             return i.erID;
          }),
-         "ERITN": $scope.selectedItems.map(function(i) {
+         "ERITN": $scope.selectedItems.map(function (i) {
             return i.erITN;
          }),
          user: config.userID
       }).then(
-         function(result) {
+         function (result) {
             if (!result.errorMessage || result.errorMessage === "OK") {
                common.notifier.success("创建EO运单操作成功...");
             }
-         }).then(function() {
+         }).then(function () {
             $scope.quickSearch();
          });
    };
 
    /* Added by T.C. 2014.11.26*/
-   $scope.autoSplitERITN = function() {
+   $scope.autoSplitERITN = function () {
       $http.postXSRF(config.baseUrl + "ER/ERItnAutoSplit", {
-         "ERID": $scope.selectedItems.map(function(i) {
+         "ERID": $scope.selectedItems.map(function (i) {
             return i.erID;
          }),
-         "ERITN": $scope.selectedItems.map(function(i) {
+         "ERITN": $scope.selectedItems.map(function (i) {
             return i.erITN;
          }),
          user: config.userID
       }).then(
-         function(result) {
+         function (result) {
             if (!result.errorMessage || result.errorMessage === "OK") {
                common.notifier.success("包装数量调整完毕...");
             }
-         }).then(function() {
+         }).then(function () {
             $scope.quickSearch();
          });
    };
@@ -462,13 +463,14 @@ function erPlanibmCtrl($scope, $modal, $log, $http, config, common, configServic
    $scope.doDeleteEritm = function () {
       $http
           .postXSRF(
-              config.baseUrl + "ER/ERDelItem" ,{
+              config.baseUrl + "ER/ERDelItem", {
                  "ERID": $scope.selectedItems.map(function (i) {
                     return i.erID;
                  }),
                  "ERITN": $scope.selectedItems.map(function (i) {
                     return i.erITN;
-                 })
+                 }),
+                 "userID": config.userID
               }
           ).then(function (result) {
              if (!result.errorMessage || result.errorMessage === "OK") {

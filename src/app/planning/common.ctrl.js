@@ -312,43 +312,13 @@ function rowItemSplitCtrl($scope, $http, config, common, $modalInstance, item) {
    };
 
 
-   $scope.saveDraft = function () {
+   $scope.save = function (isDraft) {
+
       var amt = parseInt($scope.data.Amt);
-      var availableAmt = parseInt($scope.data.availableAmt);
-      if (amt > availableAmt) {
-         $scope.isError = true;
+      if (isNaN(amt) || amt <= 0) {
+         alert("请输入拆分数量");
          return;
       }
-
-      var tempData = {
-         "ERID": $scope.data.ERID,
-         "ERITN": $scope.data.ERITN,
-         Amt: $scope.data.Amt,
-         PackNum: $scope.data.PackNum,
-         PackNum2: $scope.data.PackNum2,
-         PackNum3: $scope.data.PackNum3,
-         ResAmt1: $scope.data.ResAmt1,
-         ResAmtCS1: $scope.data.ResAmtCS1,
-         ResAmt2: $scope.data.ResAmt2,
-         ResAmtCS2: $scope.data.ResAmtCS2,
-         ResAmt3: $scope.data.ResAmt3,
-         ResAmtCS3: $scope.data.ResAmtCS3,
-         SubPackNum: $scope.data.SubPackNum,
-         SubPackNum2: $scope.data.SubPackNum2,
-         SubPackNum3: $scope.data.SubPackNum3,
-         userID: $scope.data.userID
-      };
-
-      $http.postXSRF(config.baseUrl + "ER/ERItnSplitDraft", tempData).then(
-            function (result) {
-               if (!result.data.errorMessage || result.data.errorMessage === "OK") {
-                  common.notifier.success("已成功保存为草稿...");
-                  $modalInstance.close();
-               };
-            });
-   };
-   $scope.saveConfirm = function () {
-      var amt = parseInt($scope.data.Amt);
       var availableAmt = parseInt($scope.data.availableAmt);
       if (amt > availableAmt) {
          $scope.isError = true;
@@ -372,10 +342,13 @@ function rowItemSplitCtrl($scope, $http, config, common, $modalInstance, item) {
          SubPackNum3: $scope.data.SubPackNum3,
          userID: $scope.data.userID
       };
-      $http.postXSRF(config.baseUrl + "ER/ERItnSplitConfirm", tempData).then(
+
+      var name = isDraft ? "ER/ERItnSplitDraft" : "ER/ERItnSplitConfirm";
+      var message = isDraft ? "已成功保存为草稿" : "已成功保存并确认";
+      $http.postXSRF(config.baseUrl + name, tempData).then(
          function (result) {
             if (!result.data.errorMessage || result.data.errorMessage === "OK") {
-               common.notifier.success("已成功保存并确认...");
+               common.notifier.success(message + "...");
                $modalInstance.close();
             };
          });

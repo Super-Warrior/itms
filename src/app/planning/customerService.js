@@ -37,6 +37,9 @@ function customerService($http, config) {
                 this.type = [3];
                 this.Group1 = ["TTP2"];
                 break;
+            case "all":
+                this.type = [""];
+                break;
         }
     }
 

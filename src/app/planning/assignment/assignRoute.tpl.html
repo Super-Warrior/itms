@@ -37,10 +37,15 @@
                                         <input type="text" name="code" ng-model="searchData.RouteDesc" placeholder="路线名称">
                                     </label>
                                 </section>
-                                <section class="col col-4">
-                                    <label class="input">
-                                        <i class="icon-prepend fa fa-filter"></i>
-                                        <input type="text" name="code" ng-model="searchData.TRType" placeholder="运输方式">
+                            
+                                
+                                  <section class="col col-4">
+                                    <label class="select">
+                                        <select ng-model="searchData.TRType">
+                                            <option value="" selected disabled>运输方式</option>
+                                            <option ng-repeat="value in types" value="{{value.code}}">{{value.description}}</option>
+                                        </select>
+                                        <i></i>
                                     </label>
                                 </section>
                             </div>

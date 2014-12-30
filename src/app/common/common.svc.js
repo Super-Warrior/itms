@@ -158,17 +158,19 @@ function configService($http, $q, config) {
          "Group1": null,
          "Group2": null,
          "Group3": null,
-         "Language": ["CN"]
+         "Language": ["ZHCN"]
       };
    };
 
 
    var criteria = getEmptyCriteria();
 
-   var getConfig = function (type, code) {
+   var getConfig = function (type, code,group1,group2) {
       criteria = getEmptyCriteria();
       criteria.ConType = [type];
       if (code) criteria.Code = code;
+      if (group1) criteria.Group1 = group1;
+      if (group2) criteria.Group2 = group2;
       return $http({
          method: "GET",
          url: config.baseUrl + "Config/ConSearch" + "?" + $.param(criteria),

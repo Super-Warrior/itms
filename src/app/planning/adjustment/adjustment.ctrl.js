@@ -39,7 +39,27 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
       $scope.rec_City = "";
 
    };
-
+   configService.getConfig("TRPY").then(function (result) {
+      $scope.transportTypes = result.data;
+   });
+   customerService.searchCustomer("car").then(function (result) {
+      $scope.carriers = result.data;
+   });
+   configService.getConfig("ERTP").then(function (result) {
+      $scope.eoTypes = result.data;
+   });
+   configService.getConfig("ERTG").then(function (result) {
+      $scope.tags = result.data;
+   });
+   customerService.searchCustomer("net").then(function (result) {
+      $scope.nets = result.data;
+   });
+   customerService.searchCustomer("all").then(function (result) {
+      $scope.alls = result.data;
+   });
+   customerService.searchCustomer("dep").then(function (result) {
+      $scope.deps = result.data;
+   });
    $scope.handleEvent = function () {
       var modalInstance = $modal.open({
          templateUrl: 'app/transport/event/handleEvent.tpl.html',
@@ -238,23 +258,26 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
       }
    };
 
-
-   $scope.deleteEr = function () {
+   $scope.deleteErItem = function () {
       if ($scope.disableAction()) return;
       common.messageBox({
          title: "提示信息:",
          content: "是否删除所选择的" + $scope.selectedItems.length + "条记录?"
-      }).success($scope.doDeleteEr)
+      }).success($scope.doDeleteErItem)
           .error(function () {
              common.notifier.cancel("已取消...");
           });
    };
 
-   $scope.doDeleteEr = function () {
-      $http.postXSRF(config.baseUrl + "ER/ERDel", {
+   $scope.doDeleteErItem = function () {
+      $http.postXSRF(config.baseUrl + "ER/ERDelItem", {
          "ERID": $scope.selectedItems.map(function (i) {
             return i.erID;
-         })
+         }),
+         "ERITN": $scope.selectedItems.map(function (i) {
+            return i.erITN;
+         }),
+         "userID": config.userID
       }).then(
            function (result) {
               if (!result.errorMessage || result.errorMessage === "OK") {
@@ -264,6 +287,8 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
               $scope.searchAssignableRequest();
            });
    };
+
+
 
    $scope.disableAction = function () {
       return $scope.selectedItems.length === 0;

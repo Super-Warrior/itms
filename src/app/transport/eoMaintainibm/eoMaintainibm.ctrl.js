@@ -3,7 +3,7 @@ angular.module('itms.transport.eoMaintainibm')
 
 function eoMaintainibmCtrl($scope, $http, config, common, $modal, $log, eoMaintainService, configService, exportService) {
     $scope.module = "运输执行";
-    $scope.title = "运单维护/查询";
+    $scope.title = "运单查询/维护";
     $scope.queryOption = {
         SerType: 'AND',
         EO: [''],

@@ -448,8 +448,7 @@
                             <label class="select">
                                 <select ng-model="basicData.requirement.resType1">
                                     <option value="" selected disabled></option>
-                                    <option ng-repeat="value in configs.material" value="{{value.matnr}}">{{value.description}}
-                                    </option>
+                                    <option ng-repeat="value in configs.TRPY track by $index" value="{{value.code}}">{{value.description}}</option>
 
                                 </select>
                                 <i></i>
@@ -469,9 +468,7 @@
                             <label class="select">
                                 <select ng-model="basicData.requirement.resType2">
                                     <option value="" selected disabled></option>
-                                    <option ng-repeat="value in configs.material" value="{{value.matnr}}">{{value.description}}
-                                    </option>
-
+                                    <option ng-repeat="value in configs.TRPY track by $index" value="{{value.code}}">{{value.description}}</option>
                                 </select>
                                 <i></i>
                             </label>
@@ -490,8 +487,8 @@
                             <label class="select">
                                 <select ng-model="basicData.requirement.resType3">
                                     <option value="" selected disabled></option>
-                                    <option ng-repeat="value in configs.material" value="{{value.matnr}}">{{value.description}}
-                                    </option>
+                                    <option ng-repeat="value in configs.TRPY track by $index" value="{{value.code}}">{{value.description}}</option>
+
 
                                 </select>
                                 <i></i>
@@ -742,7 +739,7 @@
                             <label>路单</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.routeClassID"  readonly="readonly" placeholder="路单">
+                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.routeClassID" readonly="readonly" placeholder="路单">
                             </label>
                         </section>
                     </div>
@@ -751,21 +748,21 @@
                             <label>运输资源类型</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.tranResType"  readonly="readonly" placeholder="类型">
+                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.tranResType" readonly="readonly" placeholder="类型">
                             </label>
                         </section>
                         <section class="col col-4">
                             <label>资源编号</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.tranResLicense"  readonly="readonly" placeholder="编号">
+                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.tranResLicense" readonly="readonly" placeholder="编号">
                             </label>
                         </section>
                         <section class="col col-4">
                             <label>司机编号</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.transDriverID"  readonly="readonly" placeholder="司机编号">
+                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.transDriverID" readonly="readonly" placeholder="司机编号">
                             </label>
                         </section>
                     </div>

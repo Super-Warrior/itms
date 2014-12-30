@@ -5,7 +5,7 @@
 function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
    configService, customerService, exportService, $q) {
    $scope.module = "运输执行";
-   $scope.title = "运单维护/查询";
+   $scope.title = "运单查询/维护";
    $scope.queryOption = {
       SerType: 'AND',
       EO: [''],
@@ -201,13 +201,13 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
             eoMaintainService.getEventLocation(option),
             eoMaintainService.getRoutePath(option)]
          ).then(
-            function (results) {
+            function (datas) {
 
                var success = false;
-               if (results && results[0] && results[0].data && results[0].data[0]
-               && results[1] && results[1].data && results[1].data[0]
-               && results[2] && results[2].data && results[2].data[0]) {
-                  success = mapFrame.window.drawMap(results[0].data[0], results[1].data[0], results[2].data[0]);
+               if (datas && datas[0] && datas[0].data && datas[0].data[0]
+               && datas[1] && datas[1].data && datas[1].data[0]
+               && datas[2] && datas[2].data && datas[2].data[0]) {
+                  success = mapFrame.window.drawMap(datas[0].data[0], datas[1].data[0], datas[2].data[0]);
                }
 
                if (icon.hasClass("jarviswidget-collapsed"))

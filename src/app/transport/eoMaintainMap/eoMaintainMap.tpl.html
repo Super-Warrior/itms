@@ -1,10 +1,30 @@
-﻿<section id="widget-grid">
+﻿<section  data-it-jarvis id="widget-grid">
     <div class="row">
         <div ng-include src='"app/common/pageTitle.html"'></div>
     </div>
 
     <div class="row">
-        <article data-it-jarvis class="col-sm-12 col-md-12 col-lg-12">
+        <article  class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="jarviswidget  jarviswidget-color-blue" id="wid-map" data-widget-editbutton="false" data-widget-collapsed="true"
+                data-widget-deletebutton="false">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-search"></i></span>
+                    <h2>当前位置和运输线路</h2>
+                </header>
+                <div>
+                    <div class="widget-body no-padding" style="margin: -13px -13px;">
+                        <iframe ng-show="showMap" id="mapFrame" name="mapFrame" src="map.html" frameborder="0" scrolling="auto" style="height: 500px;" width="100%" height="500" seamless></iframe>
+                        <div ng-show="!showMap" style="margin: 8px; font-family: 'Microsoft Yahei',verdana; font-size: 15px;">当前订单没有位置和线路信息</div>
+                    </div>
+                </div>
+                <!-- end widget div -->
+            </div>
+            <!-- end widget -->
+        </article>
+    </div>
+
+    <div class="row">
+        <article  class="col-sm-12 col-md-12 col-lg-12">
             <div class="jarviswidget jarviswidget-color-blue jarviswidget-sortable" id="wid-eosearch"
                 data-widget-editbutton="false" data-widget-custombutton="false" data-widget-sortable="false"
                 data-widget-deletebutton="false">
@@ -419,8 +439,10 @@
             </div>
         </article>
     </div>
+
+
     <div class="row">
-        <article data-it-jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <article  class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="jarviswidget jarviswidget-color-blue" id="wid-result"
                 data-widget-editbutton="false"
                 data-widget-deletebutton="false" data-widget-collapsed="true">
@@ -475,25 +497,7 @@
         </article>
     </div>
 
-    <div class="row">
-        <article data-it-jarvis class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="jarviswidget  jarviswidget-color-blue" id="wid-map" data-widget-editbutton="false" data-widget-collapsed="true"
-                data-widget-deletebutton="false">
-                <header>
-                    <span class="widget-icon"><i class="fa fa-search"></i></span>
-                    <h2>当前位置和运输线路</h2>
-                </header>
-                <div>
-                    <div class="widget-body no-padding" style="margin: -13px -13px;">
-                        <iframe ng-show="showMap" id="mapFrame" name="mapFrame" src="map.html" frameborder="0" scrolling="auto" style="height: 500px;" width="100%" height="500" seamless></iframe>
-                        <div ng-show="!showMap" style="margin: 8px; font-family: 'Microsoft Yahei',verdana; font-size: 15px;">当前订单没有位置和线路信息</div>
-                    </div>
-                </div>
-                <!-- end widget div -->
-            </div>
-            <!-- end widget -->
-        </article>
-    </div>
+
 </section>
 
 

@@ -111,33 +111,33 @@
                                 <div class="row">
                                     <section class="col col-4">
                                         <label class="label"><i class="fa fa-list"></i>运单类型</label>
-                                        <label class="select select-multiple">
-                                            <select multiple="multiple" class="custom-scroll" data-ng-model="ERType">
-                                                <option value="1">SGM-紧急</option>
-                                                <option value="2">SAIC-常规</option>
-                                            </select>
-                                        </label>
+                                      
+                                          <label class="select select-multiple">
+                                                    <select multiple="multiple" ng-multiple="true" class="custom-scroll"  data-ng-model="ERType"
+                                                        data-ng-options="config.code as config.description for config in eoTypes">
+                                                    </select>
+                                                </label>
+
                                         <div class="note"><strong>提示:</strong> 按ctrl键进行多选操作 </div>
                                     </section>
                                     <section class="col col-2">
                                         <label class="label"><i class="fa fa-truck "></i>运输方式</label>
-                                        <label class="select select-multiple">
-                                            <select multiple="multiple" class="custom-scroll" data-ng-model="ERTRType">
-                                                <option value="1">公路</option>
-                                                <option value="2">航空</option>
-                                                <option value="3">自有</option>
-                                            </select>
-                                        </label>
+                                         <label class="select select-multiple">
+                                                    <select class="custom-scroll" multiple ng-model="ERTRType"
+                                                        data-ng-options="config.code as config.description for config in transportTypes">
+                                                    </select>
+                                                </label>
+
                                     </section>
                                     <section class="col col-2">
                                         <label class="label"><i class="fa fa-ambulance "></i>运输特殊标识</label>
-                                        <label class="select select-multiple">
-                                            <select multiple="multiple" class="custom-scroll" data-ng-model="ERTag">
-                                                <option value="1">冷藏</option>
-                                                <option value="2">危险品</option>
-                                                <option value="3">自有</option>
-                                            </select>
-                                        </label>
+                                    
+                                        
+                                           <label class="select select-multiple">
+                                                    <select class="custom-scroll" multiple data-ng-model="ERTag"
+                                                        data-ng-options="config.code as config.description for config in tags">
+                                                    </select>
+                                                </label>
                                     </section>
                                 </div>
                                 <div class="row">
@@ -247,7 +247,7 @@
                                 <li ng-class="{disabled:!isOnlyOneSelected()}"><a href="javascript:void(0)" ng-click="rowItemSplit()"><i class="fa fa-unlink"></i>&nbsp;M-手工行项目拆分</a> </li>
 
                                 <li ng-class="{disabled:disableAction()}">
-                                    <a href="javascript:void(0)" ng-click="deleteEr()"><i class="fa fa-minus-circle "></i>&nbsp;删除项目</a>
+                                    <a href="javascript:void(0)" ng-click="deleteErItem()"><i class="fa fa-minus-circle "></i>&nbsp;删除项目</a>
                                 </li>
                                 <li ng-class="{disabled:disableAction()}">
                                     <a href="javascript:void(0)"><i class="fa fa-times-circle "></i>&nbsp;删除运单</a>

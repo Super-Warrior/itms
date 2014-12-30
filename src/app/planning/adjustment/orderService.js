@@ -5,9 +5,6 @@ function orderService($http, config) {
 
    var searchUrl = config.baseUrl + 'ER/ERQuickSearch';
 
-   function queryAllLocal() {
-      return $http({ method: 'GET', url: '/mock/order.json' });
-   }
 
    function queryAllRemote() {
       var data = {
@@ -153,7 +150,6 @@ function orderService($http, config) {
       }
    }
 
-
    function getRequirementPartialForAssigment(items) {
       if (!items.map) return [];
       return items.map(mapRequirement);
@@ -188,18 +184,100 @@ function orderService($http, config) {
          };
       }
    }
+
+   function buildUnionParam() {
+      return {
+            SerType: "AND",
+            ERID: [],
+            ERITN: [],
+            userID: "",//config.userID
+            depAreaCode: "",
+            depCustomer: "",
+            depLocCode: "",
+            recCustomer: "",
+            recLocCode: "",
+            createDate: "",
+            ERType: "",
+            customerOrder1: "",
+            customerOrder2: "",
+            customerOrder3: "",
+            ERTag: "",
+            ERTRType: "",
+            MesUnit1: '',
+            reqDelDate: '',
+            dep_Country: '',
+            dep_State: "",
+            dep_City: "",
+            dep_Disc: '',
+            dep_Group1: "",
+            dep_Group2: '',
+            rec_Country: '',
+            rec_State: "",
+            rec_City: "",
+            rec_Disc: '',
+            rec_Group1: '',
+            rec_Group2: '',
+            ERITNStatus: [""],
+            ERStatus: [""],
+            project: "",
+            plannedID: "",
+            OMSOrderID: "",
+            contractID: "",
+            pickERDate: "",
+            ERTRVendor: "",
+            BP1: "",
+            BP2: "",
+            BP3: "",
+            TransResPlanTag: "",
+            ItemSplitPlan: "",
+            RoutePlanTag: "",
+            PackNum: "",
+            PackNum2: "",
+            PackNum3: "",
+            SubPackNum: "",
+            SubPackNum2: "",
+            SubPackNum3: "",
+            vendor: "",
+            MatIID: "",
+            customerMatID: "",
+            RouteID: "",
+            RouteClassName: "",
+            RouteClassID: "",
+            TranResType: "",
+            TranResID: "",
+            TranResLicense: "",
+            TransDriverID: "",
+            TrVendor: "",
+            resType1: "",
+            resID1: "",
+            resType2: "",
+            resID2: "",
+            resType3: "",
+            resID3: "",
+            ResAmtCS1: "",
+            ResAmtCS2: "",
+            ResAmtCS3: "",
+            EOID: ""
+      };
+   }
+
+   function unionQuery() {
+
+
+   }
+
    var orderService = {
       getRequirementPartial: getRequirementPartial,
       erAssignChange: erAssignChange,
       erDeleteAssignment: erDeleteAssignment,
-      getRequirementPartialForAssigment: getRequirementPartialForAssigment
+      getRequirementPartialForAssigment: getRequirementPartialForAssigment,
+      queryAll:queryAllRemote,
+      query: query,
+      buildUnionParam: buildUnionParam,
+      unionQuery: unionQuery
+      
+
    };
 
-   if (config.mode === 'development') {
-      orderService.queryAll = queryAllLocal;
-   } else {
-      orderService.queryAll = queryAllRemote;
-   }
-   orderService.query = query;
    return orderService;
 }
