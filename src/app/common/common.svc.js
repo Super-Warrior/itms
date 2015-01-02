@@ -189,9 +189,49 @@ function configService($http, $q, config) {
              for (name in configs) {
                 configs[name] = result[name].data;
              }
-          }).then(function () {
-
           });
+   };
+
+
+   //var searchMaterial = function (keyword, type) {
+   //   var mapFun = function (tempItem) {
+   //      return {
+   //         "key": tempItem.matnr,
+   //         "description": tempItem.description,
+   //         "fullDescription": $.trim(tempItem.description) + "(" + tempItem.matnr + ")"
+   //      };
+   //   };
+   //   var dfd = $q.defer();
+   //   if (!type) type = "TRES";
+   //   var param = {
+   //      "input": keyword,
+   //      "type": type
+   //   };
+
+   //    $http({
+   //      method: "GET",
+   //      url: config.baseUrl + "search/MaterialAuto" + "?" + $.param(param),
+   //      dataType: "json"
+   //   }).then(
+   //    function (result) {
+   //       var items = angular.isArray(result.data) ? result.data : [];
+   //       items = items.map(mapFun);
+   //       dfd.resolve(items);
+   //    }
+   //   );
+
+   //   return dfd.promise;
+   //};
+
+   var searchMaterial = function (keyword, type) {
+      if (typeof (type) == "undefined" || type == null)
+         type = "";
+      var param = { "input": keyword, "type": type };
+      return $http({
+         method: "GET",
+         url: config.baseUrl + "search/MaterialAuto" + "?" + $.param(param),
+         dataType: "json"
+      });
    };
 
    var getMaterial = function (option) {
@@ -297,6 +337,7 @@ function configService($http, $q, config) {
       "getConfig": getConfig, "getConfigs": getConfigs,
       "getMaterial": getMaterial,
       "getRoute": getRoute,
+      "searchMaterial": searchMaterial
    };
 }
 

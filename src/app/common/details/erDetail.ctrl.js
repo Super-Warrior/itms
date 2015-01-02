@@ -111,7 +111,19 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
        }
    );
 
+   $scope.updateAuto = function (value) {
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      if ($scope.testAuto == value)
+         return;
+      $scope.testAuto = value;
+   };
 
+   $scope.testAuto = "10002";
+   $scope.getValue = function () {
+
+      alert($scope.testAuto);
+   };
    $scope.basicData = {};
    $http.postXSRF(config.baseUrl + "ER/ERQuickSearch", param)
        .then(function (result) {
