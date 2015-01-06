@@ -15,6 +15,7 @@
 
 function searchSiteCtrl($scope, $http, config, $modalInstance) {
    $scope.items = [];
+   $scope.afterSearch = false;
    $scope.adjust = {
       deliveryMethod: '',
       vendor: ''
@@ -48,18 +49,35 @@ function searchSiteCtrl($scope, $http, config, $modalInstance) {
       "Group2": [""]
    };
    $scope.search = function () {
+      $scope.afterSearch = true;
       $http({
          method: "GET",
          url: config.baseUrl + "search/Location" + "?" + $.param($scope.criteria),
          dataType: "json"
       }).then(function (result) {
-         $scope.items = result.data;
+
+         if (result.data && result.data.errorMessage && result.data.errorMessage == 'NO_RESULT')
+            $scope.items = [];
+         else
+            $scope.items = result.data;
       });
    };
 }
 
 function searchCustomerCtrl($scope, $http, config, $modalInstance, customerService, type) {
+   $scope.test = function() {
 
+      alert(JSON.stringify($scope.items));
+   };
+   $scope.columns = [
+         { title: "客户代码", field: "customer" },
+         { title: "客户名称", field: "name" },
+         { title: "国家", field: "country" },
+         { title: "省", field: "state" },
+         { title: "市", field: "city" },
+         { title: "区", field: "disc" },
+         { title: "地址", field: "address1" }
+   ];
 
    var Criteria = function () {
       this.SerType = "OR";
@@ -80,7 +98,7 @@ function searchCustomerCtrl($scope, $http, config, $modalInstance, customerServi
    };
 
    $scope.criteria = new Criteria();
-
+   $scope.afterSearch = false;
    $scope.type = type;
    $scope.items = [];
    $scope.ok = function () {
@@ -94,8 +112,12 @@ function searchCustomerCtrl($scope, $http, config, $modalInstance, customerServi
       $modalInstance.close(keys);
    };
    $scope.search = function () {
+      $scope.afterSearch = true;
       customerService.searchCustomer(type, $scope.criteria).then(function (result) {
-         $scope.items = result.data;
+         if (result.data && result.data.errorMessage && result.data.errorMessage == 'NO_RESULT')
+            $scope.items = [];
+         else
+            $scope.items = result.data;
       });
    };
    $scope.cancel = function () {

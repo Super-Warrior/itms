@@ -19,7 +19,7 @@
                 <div class="panel-body no-padding">
                     <div class="smart-form">
                         <fieldset>
-                            <div class="alert alert-danger fade in">
+                            <div class="alert alert-warning fade in">
                                 <button class="close" data-dismiss="alert">
                                     ×
                                 </button>
@@ -93,43 +93,62 @@
                             </div>
                         </fieldset>
                         <fieldset ng-show="showResult">
-                            <table class="table table-bordered table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>资源代码</th>
-                                        <th>资源名称</th>
-                                        <th>资源类型</th>
-                                        <th>资源归属</th>
-                                        <th>资源位置</th>
-                                        <th>资源规格1</th>
-                                        <th>资源规格2</th>
-                                        <th>资源规格3</th>
-                                        <th>资源规格4</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <section>
 
-                                    <tr ng-repeat="item in resources" ng-click="select($index)">
-                                        <td>
-                                            <label class="radio">
-                                                <input type="radio"  ng-checked="item.selected"  name="radio" />
-                                                <i></i>
-                                            </label>
-                                        </td>
-                                        <td>{{item.matnr}}</td>
-                                        <td>{{item.description}}</td>
-                                        <td>{{item.type}}</td>
-                                        <td>{{item.owner}}</td>
-                                        <td>{{item.vendorLocation}}</td>
-                                        <td>{{item.load}}</td>
-                                        <td>{{item.speed}}</td>
-                                        <td>{{item.vol}}</td>
-                                        <td>{{item.specialTag1}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <table class="table table-bordered table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>资源代码</th>
+                                            <th>资源名称</th>
+                                            <th>资源类型</th>
+                                            <th>资源归属</th>
+                                            <th>资源位置</th>
+                                            <th>资源规格1</th>
+                                            <th>资源规格2</th>
+                                            <th>资源规格3</th>
+                                            <th>资源规格4</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr ng-repeat="item in resources" ng-click="select($index)">
+                                            <td>
+                                                <label class="radio">
+                                                    <input type="radio" ng-checked="item.selected" name="radio" />
+                                                    <i></i>
+                                                </label>
+                                            </td>
+                                            <td>{{item.matnr}}</td>
+                                            <td>{{item.description}}</td>
+                                            <td>{{item.type}}</td>
+                                            <td>{{item.owner}}</td>
+                                            <td>{{item.vendorLocation}}</td>
+                                            <td>{{item.load}}</td>
+                                            <td>{{item.speed}}</td>
+                                            <td>{{item.vol}}</td>
+                                            <td>{{item.specialTag1}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+
+
+                            <section class="pull-right auto-margin">
+                                <ul class="sync-pagination pagination-sm pagination">
+                                    <li class="first disabled"><a href="#">First</a></li>
+                                    <li class="prev disabled"><a href="#">Previous</a></li>
+                                    <li class="page active"><a href="#">1</a></li>
+                                    <li class="page"><a href="#">2</a></li>
+                                    <li class="page"><a href="#">3</a></li>
+                                    <li class="page"><a href="#">4</a></li>
+                                    <li class="page"><a href="#">5</a></li>
+                                    <li class="next"><a href="#">Next</a></li>
+                                    <li class="last"><a href="#">Last</a></li>
+                                </ul>
+                            </section>
                         </fieldset>
+
                     </div>
                 </div>
             </div>

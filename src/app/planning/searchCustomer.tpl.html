@@ -1,103 +1,72 @@
 <div class="modal-header">
-  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
-    &times;
-  </button>
-  <h4 class="modal-title">
-    <img src="img/banner.png" width="100" alt="iTMS">
-  </h4>
+    <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="100" alt="iTMS">
+    </h4>
 </div>
 <div class="modal-body no-padding">
-  <div id="" class="smart-form">
-    <fieldset>
-      <div class="row">
-        <section class="col col-3">
-          <label class="input">
-            <i class="icon-prepend fa fa-filter"></i>
-            <input type="text" ng-model="criteria.Country[0]" placeholder="国家">
-          </label>
-        </section>
+    <div id="" class="smart-form">
+        <fieldset>
+            <div class="row">
+                <section class="col col-3">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" ng-model="criteria.Country[0]" placeholder="国家">
+                    </label>
+                </section>
 
-        <section class="col col-3">
-          <label class="input">
-            <i class="icon-prepend fa fa-filter"></i>
-            <input type="text" ng-model="criteria.State[0]" placeholder="省">
-          </label>
-        </section>
-        <section class="col col-3">
-          <label class="input">
-            <i class="icon-prepend fa fa-filter"></i>
-            <input type="text" ng-model="criteria.City[0]" placeholder="市">
-          </label>
-        </section>
-        <section class="col col-3">
-          <label class="input">
-            <i class="icon-prepend fa fa-filter"></i>
-            <input type="text" ng-model="criteria.Disc[0]" placeholder="区县">
-          </label>
-        </section>
-      </div>
-      <div class="row">
-        <section class="col col-6">
-          <label class="input">
-            <i class="icon-prepend fa fa-filter"></i>
-            <input type="text" ng-model="criteria.customer[0]" placeholder="客户代码">
-          </label>
-        </section>
-        <section class="col col-6">
-          <label class="input">
-            <i class="icon-prepend fa fa-filter"></i>
-            <input type="text" ng-model="criteria.name[0]" placeholder="客户名称">
-          </label>
-        </section>
-        <section class="col col-12">
-          <button type="button" class="btn btn-sm btn-info" ng-click="search()"><i class="fa fa-search"></i>&nbsp;搜索客户
-          </button>
-        </section>
-      </div>
-      <div class="row">
-        <article class="col col-12">
-          <div>
-            <table ng-show="items&&items.length"
-                   class="table table-bordered table-striped table-condensed table-hover smart-form has-tickbox">
-              <thead>
-              <tr>
-                <th>&nbsp;</th>
-                <th>客户代码</th>
-                <th>客户名称</th>
-                <th>国家</th>
-                <th>省</th>
-                <th>市</th>
-                <th>区</th>
-                <th>地址</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr ng-repeat="item in items">
-                <td>
-                  <label class="checkbox">
-                    <input type="checkbox" ng-model="item.checked" name="checkbox-inline">
-                    <i></i>
-                  </label>
-                </td>
-                <td>{{item.customer}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.country}}</td>
-                <td>{{item.state}}</td>
-                <td>{{item.city}}</td>
-                <td>{{item.disc}}</td>
-                <td>{{item.address1}}</td>
-              </tr>
-              </tbody>
-            </table>
+                <section class="col col-3">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" ng-model="criteria.State[0]" placeholder="省">
+                    </label>
+                </section>
+                <section class="col col-3">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" ng-model="criteria.City[0]" placeholder="市">
+                    </label>
+                </section>
+                <section class="col col-3">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" ng-model="criteria.Disc[0]" placeholder="区县">
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" ng-model="criteria.customer[0]" placeholder="客户代码">
+                    </label>
+                </section>
+                <section class="col col-6">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" ng-model="criteria.name[0]" placeholder="客户名称">
+                    </label>
+                </section>
+                <section class="col col-12">
+                    <button type="button" class="btn btn-sm btn-info" ng-click="search()">
+                        <i class="fa fa-search"></i>&nbsp;搜索客户
+                    </button>
+                </section>
+            </div>
+            <div class="row" ng-show="afterSearch">
+                <button ng-click="test()">verify</button>
+                <fieldset tiny-table my-source="items" columns="columns" select-mode="single">
+                </fieldset>
+                
 
-          </div>
-
-        </article>
-      </div>
-    </fieldset>
-    <footer>
-      <button type="button" class="btn btn-success" ng-click="ok()">插入</button>
-      <button type="button" class="btn btn-default" ng-click="$dismiss()">返回</button>
-    </footer>
-  </div>
+             
+            </div>
+        </fieldset>
+        <footer>
+            <button type="button" class="btn btn-success" ng-click="ok()">插入</button>
+            <button type="button" class="btn btn-default" ng-click="$dismiss()">返回</button>
+        </footer>
+    </div>
 </div>

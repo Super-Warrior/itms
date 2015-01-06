@@ -6,5 +6,6 @@ angular.module('common', [
             'common.directives.menu',
             'common.directives.timepicker',
             'common.directives.replacement',
-            'common.directives.autoComplete'
+            'common.directives.autoComplete',
+            'common.directives.tinyTable'
 ]);
