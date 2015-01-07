@@ -198,12 +198,32 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
    $scope.unionParam = orderService.buildUnionParam();
-
-   var refresh = function() {
+   $scope.updateAutoBP1 = function (value) {
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      if ($scope.unionParam.BP1 == value)
+         return;
+      $scope.unionParam.BP1 = value;
+   };
+   $scope.updateAutoBP2 = function (value) {
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      if ($scope.unionParam.BP2 == value)
+         return;
+      $scope.unionParam.BP2 = value;
+   };
+   $scope.updateAutoBP3 = function (value) {
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      if ($scope.unionParam.BP3 == value)
+         return;
+      $scope.unionParam.BP3 = value;
+   };
+   var refresh = function () {
 
       if ($scope.isInUnionSearch)
          $scope.unionSearch();
-      else 
+      else
          $scope.quickSearch();
    };
 

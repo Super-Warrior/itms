@@ -186,8 +186,8 @@ function orderService($http, config) {
    }
 
    function buildUnionParam() {
-      
-    
+
+
       return {
          SerType: "AND",
          ERID: [],
@@ -281,8 +281,7 @@ function orderService($http, config) {
       query: query,
       buildUnionParam: buildUnionParam,
       unionSearch: unionSearch
-
-
+      
    };
 
    return orderService;

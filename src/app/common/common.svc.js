@@ -192,47 +192,75 @@ function configService($http, $q, config) {
           });
    };
 
+   var customerAuto = function (keyword, type) {
+      var mapFun = function (tempItem) {
+         var fields = ["customer", "name", "address1", "group1", "group2"];
+         var text = "";
+         for (var k = 0; k < fields.length; k++) {
+            text += tempItem[fields[k]] + " ";
+         }
+         text = $.trim(text);
+         var key = $.trim(tempItem.customer);
+         return { "key": key, "fullDescription": text };
+      };
 
-   //var searchMaterial = function (keyword, type) {
-   //   var mapFun = function (tempItem) {
-   //      return {
-   //         "key": tempItem.matnr,
-   //         "description": tempItem.description,
-   //         "fullDescription": $.trim(tempItem.description) + "(" + tempItem.matnr + ")"
-   //      };
-   //   };
-   //   var dfd = $q.defer();
-   //   if (!type) type = "TRES";
-   //   var param = {
-   //      "input": keyword,
-   //      "type": type
-   //   };
-
-   //    $http({
-   //      method: "GET",
-   //      url: config.baseUrl + "search/MaterialAuto" + "?" + $.param(param),
-   //      dataType: "json"
-   //   }).then(
-   //    function (result) {
-   //       var items = angular.isArray(result.data) ? result.data : [];
-   //       items = items.map(mapFun);
-   //       dfd.resolve(items);
-   //    }
-   //   );
-
-   //   return dfd.promise;
-   //};
-
-   var searchMaterial = function (keyword, type) {
       if (typeof (type) == "undefined" || type == null)
-         type = "";
+         type = "1";
       var param = { "input": keyword, "type": type };
-      return $http({
+
+      var dfd = $q.defer();
+      $http({
+         method: "GET",
+         url: config.baseUrl + "search/CustomerAuto" + "?" + $.param(param),
+         dataType: "json"
+      }).then(
+         function (result) {
+            var items = angular.isArray(result.data) ? result.data : [];
+            items = items.map(mapFun);
+            dfd.resolve(items);
+         }
+      );
+
+      return dfd.promise;
+   };
+
+   var materialAuto = function (keyword, type) {
+
+      var mapFun = function (tempItem) {
+         var fields = ["customer", "name", "address1", "group1", "group2"];
+         var text = "";
+         for (var k = 0; k < fields.length; k++) {
+            text += tempItem[fields[k]] + " ";
+         }
+         text = $.trim(text);
+         var key = $.trim(tempItem.customer);
+         return { "key": key, "fullDescription": text };
+      };
+
+      if (typeof (type) == "undefined" || type == null)
+         type = "TRES";
+      var param = { "input": keyword, "type": type };
+
+
+      var dfd = $q.defer();
+      $http({
          method: "GET",
          url: config.baseUrl + "search/MaterialAuto" + "?" + $.param(param),
          dataType: "json"
-      });
+      }).then(
+         function (result) {
+            var items = angular.isArray(result.data) ? result.data : [];
+            items = items.map(mapFun);
+            dfd.resolve(items);
+         }
+      );
+
+      return dfd.promise;
    };
+
+
+
+
 
    var getMaterial = function (option) {
       var param = {
@@ -337,7 +365,8 @@ function configService($http, $q, config) {
       "getConfig": getConfig, "getConfigs": getConfigs,
       "getMaterial": getMaterial,
       "getRoute": getRoute,
-      "searchMaterial": searchMaterial
+      "materialAuto": materialAuto,
+      "customerAuto": customerAuto
    };
 }
 

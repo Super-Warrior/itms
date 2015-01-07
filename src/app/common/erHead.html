@@ -66,7 +66,8 @@
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-heart"></i>
-                        <input ng-model="unionParam.BP1" type="text" name="customer" placeholder="合同方代码">
+                        <!--  <input ng-model="unionParam.BP1" type="text" name="customer" placeholder="合同方代码">-->
+                        <input im-auto-complete update-callback="updateAutoBP1(value)" method="customerAuto" name="customer" placeholder="合同方代码" source="unionParam.BP1">
                     </label>
                 </section>
                 <section class="col col-1">
@@ -75,7 +76,7 @@
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-heart"></i>
-                        <input ng-model="unionParam.BP2" type="text" name="customer" placeholder="付款方代码">
+                        <input im-auto-complete update-callback="updateAutoBP2(value)" method="customerAuto" name="customer" placeholder="付款方代码" source="unionParam.BP2">
                     </label>
                 </section>
                 <section class="col col-1">
@@ -84,7 +85,7 @@
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-heart"></i>
-                        <input ng-model="unionParam.BP3" type="text" name="customer" placeholder="货主方代码">
+                        <input im-auto-complete update-callback="updateAutoBP3(value)" method="customerAuto" name="customer" placeholder="货主方代码" source="unionParam.BP3">
                     </label>
                 </section>
                 <section class="col col-1">
