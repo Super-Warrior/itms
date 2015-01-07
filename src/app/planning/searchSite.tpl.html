@@ -56,55 +56,8 @@
                     </button>
                 </section>
             </div>
-            <div class="row" ng-show="afterSearch">
-               
-                <fieldset class="col col-12">
-                    <section>
-                        <table class="table table-bordered table-striped table-condensed table-hover smart-form has-tickbox">
-                            <thead>
-                                <tr>
-                                    <th>&nbsp;</th>
-                                    <th>站点代码</th>
-                                    <th>名称</th>
-                                    <th>国家</th>
-                                    <th>省</th>
-                                    <th>市</th>
-                                    <th>区</th>
-                                    <th>地址</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in items">
-                                    <td>
-                                        <label class="checkbox">
-                                            <input type="checkbox" ng-model="item.checked" name="checkbox-inline">
-                                            <i></i>
-                                        </label>
-                                    </td>
-                                    <td>{{item.locID}}</td>
-                                    <td>{{item.description}}</td>
-                                    <td>{{item.country}}</td>
-                                    <td>{{item.state}}</td>
-                                    <td>{{item.city}}</td>
-                                    <td>{{item.disc}}</td>
-                                    <td>{{item.address1}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-                    <section class="pull-right auto-margin">
-                        <ul class="pagination-sm pagination">
-                            <li class="first disabled"><a href="javascript:void(0);"><<</a></li>
-                            <li class="prev disabled"><a href="javascript:void(0);"><</a></li>
-                            <li class="page active"><a href="javascript:void(0);">1</a></li>
-                            <li class="page"><a href="javascript:void(0);">2</a></li>
-                            <li class="page"><a href="javascript:void(0);">3</a></li>
-                            <li class="page"><a href="javascript:void(0);">4</a></li>
-                            <li class="page"><a href="javascript:void(0);">5</a></li>
-                            <li class="next"><a href="javascript:void(0);">></a></li>
-                            <li class="last"><a href="javascript:void(0);">>></a></li>
-                        </ul>
-                    </section>
+             <div class="row col" ng-show="afterSearch">
+                <fieldset tiny-table my-source="items" columns="columns" select-mode="multiple">
                 </fieldset>
             </div>
         </fieldset>

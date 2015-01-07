@@ -139,7 +139,11 @@
 
 
                         </fieldset>
-                        <fieldset>
+
+                        <fieldset  ng-show="showResult"  tiny-table my-source="routes" columns="columns" select-mode="single">
+                        </fieldset>
+
+                        <!--  <fieldset>
 
                             <section>
                                 <table class="table table-bordered table-condensed">
@@ -181,7 +185,7 @@
                                 </table>
                             </section>
 
-                        </fieldset>
+                        </fieldset>-->
                     </div>
                 </div>
             </div>

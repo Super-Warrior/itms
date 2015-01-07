@@ -20,6 +20,16 @@ function searchSiteCtrl($scope, $http, config, $modalInstance) {
       deliveryMethod: '',
       vendor: ''
    };
+   $scope.columns = [
+
+      { title: "站点代码", field: "locID" },
+      { title: "名称", field: "description" },
+      { title: "国家", field: "country" },
+      { title: "省", field: "state" },
+      { title: "市", field: "city" },
+      { title: "区", field: "disc" },
+      { title: "地址", field: "address1" }
+   ];
    $scope.ok = function () {
       var keys = $scope.items.filter(
           function (item) {
@@ -49,12 +59,12 @@ function searchSiteCtrl($scope, $http, config, $modalInstance) {
       "Group2": [""]
    };
    $scope.search = function () {
-      $scope.afterSearch = true;
       $http({
          method: "GET",
          url: config.baseUrl + "search/Location" + "?" + $.param($scope.criteria),
          dataType: "json"
       }).then(function (result) {
+         $scope.afterSearch = true;
 
          if (result.data && result.data.errorMessage && result.data.errorMessage == 'NO_RESULT')
             $scope.items = [];
@@ -65,10 +75,10 @@ function searchSiteCtrl($scope, $http, config, $modalInstance) {
 }
 
 function searchCustomerCtrl($scope, $http, config, $modalInstance, customerService, type) {
-   $scope.test = function() {
+   //$scope.test = function() {
 
-      alert(JSON.stringify($scope.items));
-   };
+   //   alert(JSON.stringify($scope.items));
+   //};
    $scope.columns = [
          { title: "客户代码", field: "customer" },
          { title: "客户名称", field: "name" },
@@ -112,12 +122,20 @@ function searchCustomerCtrl($scope, $http, config, $modalInstance, customerServi
       $modalInstance.close(keys);
    };
    $scope.search = function () {
-      $scope.afterSearch = true;
       customerService.searchCustomer(type, $scope.criteria).then(function (result) {
+         $scope.afterSearch = true;
+
          if (result.data && result.data.errorMessage && result.data.errorMessage == 'NO_RESULT')
             $scope.items = [];
-         else
+         else {
+
             $scope.items = result.data;
+            //$scope.items.forEach(function (item) {
+            //   if (typeof (item.checked) == "undefined")
+            //      item.checked = false;
+            //});
+
+         }
       });
    };
    $scope.cancel = function () {
@@ -382,6 +400,8 @@ function rowItemSplitCtrl($scope, $http, config, common, $modalInstance, item) {
 
 function resourceCtrl($scope, $modal, $log, $http, config, common, configService, customerService,
    exportService, orderService, dateTimeHelper, $modalInstance, owners, types, erID, erITN) {
+   $scope.resources = [];
+
    $scope.resourceData = {
       ERID: erID,
       ERITN: erITN,
@@ -406,7 +426,19 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
    };
 
    $scope.showResult = false;
-   $scope.resources = [];
+
+   $scope.columns = [
+         { title: "资源代码", field: "matnr" },
+         { title: "资源名称", field: "description" },
+         { title: "资源类型", field: "type" },
+         { title: "资源归属", field: "owner" },
+         { title: "资源位置", field: "vendorLocation" },
+         { title: "资源规格1", field: "load" },
+         { title: "资源规格2", field: "speed" },
+         { title: "资源规格3", field: "vol" },
+         { title: "资源规格4", field: "specialTag1" }
+   ];
+
    $scope.resourceSearch = function () {
       $scope.resourceData.TranResID = "";
       //if (!$scope.resourceSearchOption.type)
@@ -417,12 +449,7 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
            $scope.showResult = true;
            if (result.data &&
               (!result.data.errorMessage || result.data.errorMessage == "OK")) {
-              result.data.forEach(
-              function (item) {
-                 item.selected = false;
 
-              }
-           );
 
               $scope.resources = result.data;
 
@@ -434,17 +461,22 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
       );
    };
 
-   $scope.select = function (i) {
-      $scope.resources.forEach(
-        function (temp) {
-           temp.selected = false;
-        });
+   //$scope.select = function (i) {
+   //   $scope.resources.forEach(
+   //     function (temp) {
+   //        temp.selected = false;
+   //     });
 
-      var item = $scope.resources[i];
-      item.selected = true;
+   //   var item = $scope.resources[i];
+   //   item.selected = true;
+   //   $scope.resourceData.TranResID = item.matnr;
+   //   console.log($scope.resourceData.TranResID);
+   //};
+
+
+   $scope.$on("selectionChange", function (ev, item) {
       $scope.resourceData.TranResID = item.matnr;
-      console.log($scope.resourceData.TranResID);
-   };
+   });
 
    $scope.doAssignResource = function (isDraft) {
 
@@ -470,9 +502,6 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
 
 }
 
-
-
-
 function routeCtrl($scope, $modal, $log, $http, config, common, configService, customerService,
    exportService, orderService, dateTimeHelper, $modalInstance, types, erID, erITN) {
    $scope.types = types.data;
@@ -485,19 +514,37 @@ function routeCtrl($scope, $modal, $log, $http, config, common, configService, c
       RouteDest: "",
       RouteDesiDesc: "",
    };
+   $scope.showResult = false;
+   $scope.columns = [
+         { title: "路线代码", field: "routeID" },
+         { title: "路线名称", field: "routeDesc" },
+         { title: "起点代码", field: "routeOrigin" },
+         { title: "起点名称", field: "routeOriginDesc" },
+         { title: "终点代码", field: "routeDest" },
+         { title: "终点名称", field: "routeDesiDesc" },
+         { title: "距离", field: "distance1" },
+         { title: "运输方式", field: "trType" },
+         { title: "特殊要求", field: "specTag" }
+   ];
 
    $scope.routes = [];
-   $scope.select = function (i) {
-      $scope.routes.forEach(
-         function (temp) {
-            temp.selected = false;
-         });
+   //$scope.select = function (i) {
+   //   $scope.routes.forEach(
+   //      function (temp) {
+   //         temp.selected = false;
+   //      });
 
-      var item = $scope.routes[i];
-      item.selected = true;
+   //   var item = $scope.routes[i];
+   //   item.selected = true;
+   //   $scope.routeData.routeID = item.routeID;
+   //   console.log($scope.routeData.routeID);
+   //};
+   
+
+   $scope.$on("selectionChange", function (ev, item) {
       $scope.routeData.routeID = item.routeID;
-      console.log($scope.routeData.routeID);
-   };
+   });
+
    $scope.search = function () {
       $scope.routeData.routeID = "";
       configService.getRoute($scope.searchData).then(

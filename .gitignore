@@ -14,3 +14,5 @@ compile
 /src/Web.config
 *.swp
 .DS_Store
+/src/less/module.css
+/src/less/module.min.css
