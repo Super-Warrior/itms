@@ -88,7 +88,6 @@ function controller($scope, $http, config, common, cfpLoadingBar, uploadSvc, Bas
                data.setRequestHeader("Authorization", auth);
             },
             success: function (data) {
-               alert(JSON.stringify(data));
                cfpLoadingBar.complete();
                $scope.updateTable(data);
                if (data && data.key) {
