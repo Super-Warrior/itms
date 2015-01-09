@@ -66,7 +66,10 @@ function controller($scope, $http, config, common, cfpLoadingBar, uploadSvc, Bas
                   $scope.hasUploaded = true;
                   $scope.expandTable();
                } else {
-                  common.notifier.cancel(data);
+                  var message = "上传失败";
+                  if (data && data.errorMessage)
+                     message = data.errorMessage;
+                  common.notifier.cancel(message);
                   $scope.hasUploaded = false;
                }
 
@@ -74,7 +77,7 @@ function controller($scope, $http, config, common, cfpLoadingBar, uploadSvc, Bas
             },
             error: function (data) {
                cfpLoadingBar.complete();
-               common.notifier.cancel(data);
+               common.notifier.cancel("上传失败");
             }
          };
          cfpLoadingBar.start();

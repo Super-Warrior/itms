@@ -34,23 +34,6 @@
         <div class="tab-pane fade in active" id="s1">
             <div class="smart-form">
                 <fieldset>
-               <!--     <div class="row">
-                        <section class="col col-6">
-                            <label>物料</label>
-                            <label class="input">
-                                <i class="icon-prepend fa fa-font"></i>
-                                <input im-auto-complete update-callback="updateAuto(value)" placeholder="输入关键字进行查询..." source="testAuto">
-                            </label>
-                        </section>
-
-                        <section class="col col-6">
-                            <label>验证</label>
-                            <label class="input">
-                                <button ng-click="getValue()">检测选中的值</button>
-                            </label>
-                        </section>
-                    </div>-->
-
                     <div class="row">
                         <section class="col col-6">
                             <label>需求状态</label>
@@ -318,7 +301,7 @@
                             <label>发货方客户代码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" name="Cr" placeholder="客户代码" ng-model="basicData.requirement.depCustomer">
+                                <input im-auto-complete source="basicData.requirement.depCustomer" method="customerAuto1" update-callback="updateDepCustomer(item)" name="Cr" placeholder="客户代码">
                             </label>
                         </section>
                         <section class="col col-8">
@@ -361,7 +344,7 @@
                             <label>位置代码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-map-marker"></i>
-                                <input type="text" name="Cr" placeholder="位置代码" ng-model="basicData.requirement.depLocCode">
+                                <input im-auto-complete method="locationAuto1" update-callback="updateDepLocCode(item)" name="Cr" placeholder="位置代码" source="basicData.requirement.depLocCode">
                             </label>
                         </section>
                         <section class="col col-8">
@@ -391,7 +374,7 @@
                             <label>收货方客户代码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" name="Cr" placeholder="客户代码" ng-model="basicData.requirement.recCustomer">
+                                <input im-auto-complete method="customerAuto2" update-callback="updateRecCustomer(item)" name="Cr" placeholder="客户代码" source="basicData.requirement.recCustomer">
                             </label>
                         </section>
                         <section class="col col-8">
@@ -434,7 +417,7 @@
                             <label>位置代码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-map-marker"></i>
-                                <input type="text" name="Cr" placeholder="位置代码" ng-model="basicData.requirement.recLocCode">
+                                <input name="Cr" im-auto-complete placeholder="位置代码" method="locationAuto2" update-callback="updateRecLocCode(item)" source="basicData.requirement.recLocCode">
                             </label>
                         </section>
                         <section class="col col-8">
@@ -538,7 +521,7 @@
                             <label>包装类型1</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.resAmtCS1" placeholder="类型">
+                                <input im-auto-complete name="Cr"  method="materialAutoPack"  update-callback="updateResAmtCS1(item)"  source="basicData.requirementDetail.resAmtCS1" placeholder="类型">
                             </label>
                         </section>
                         <section class="col col-4">
@@ -554,7 +537,8 @@
                             <label>包装类型2</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.resAmtCS2" placeholder="类型">
+                                 <input im-auto-complete name="Cr"  method="materialAutoPack"  update-callback="updateResAmtCS2(item)"  source="basicData.requirementDetail.resAmtCS2" placeholder="类型">
+                         
                             </label>
                         </section>
                         <section class="col col-4">
@@ -570,7 +554,7 @@
                             <label>包装类型3</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search"></i>
-                                <input type="text" name="Cr" ng-model="basicData.requirementDetail.resAmtCS3" placeholder="类型">
+                                  <input im-auto-complete name="Cr"  method="materialAutoPack"  update-callback="updateResAmtCS3(item)"  source="basicData.requirementDetail.resAmtCS3" placeholder="类型">
                             </label>
                         </section>
                         <section class="col col-4">

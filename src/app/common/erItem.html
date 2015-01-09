@@ -1,6 +1,4 @@
-﻿
-
-<div class="tab-pane fade in" id="eritem">
+﻿<div class="tab-pane fade in" id="eritem">
     <div class="smart-form">
         <fieldset>
             <div class="row">
@@ -47,7 +45,7 @@
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-truck"></i>
-                        <input ng-model="unionParam.TrVendor" type="text" name="Cr" placeholder="承运商代码">
+                        <input source="unionParam.TrVendor" update-callback="updateTrVendor(item)" im-auto-complete method="customerAuto3" name="Cr" placeholder="承运商代码">
                     </label>
                 </section>
                 <section class="col col-1">
@@ -179,7 +177,7 @@
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-search"></i>
-                        <input ng-model="unionParam.vendor" type="text" name="Cr" placeholder="制造商">
+                        <input im-auto-complete source="unionParam.vendor" method="customerAuto6" update-callback="updateVendor(item)" name="Cr" placeholder="制造商">
                     </label>
                 </section>
                 <section class="col col-1">

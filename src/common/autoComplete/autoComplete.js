@@ -2,18 +2,25 @@ angular.module('common.directives.autoComplete', [])
    .directive('imAutoComplete', ['configService', '$q', function (configService, $q) {
 
       function postLink($scope, element, attrs, ngModel) {
-         $scope.onSelect = function(item) {
+         $scope.onSelect = function (item) {
+            $scope.item = item;
             $scope.selected = item.key;
             //  $scope.myCall({ item: item });
          };
 
-         $scope.$watch('selected', function() {
-
-            $scope.myCall({ "value": $scope.selected });
+         $scope.$watch('selected', function (value) {
+            var data = { "key": value };
+            if (typeof (value) != "undefined"
+               && value != null
+               && value != "" &&
+               $scope.item && $scope.item.key
+               && $scope.item.key == value)
+               data = $scope.item;
+            $scope.myCall({ "item": data });
          });
          $scope.items = [];
 
-         $scope.getItems = function(keyword) {
+         $scope.getItems = function (keyword) {
             var method = attrs.method;
             return configService[method](keyword);
 

@@ -125,6 +125,51 @@ function erDetailCtrl($scope, $http, $q, $modalInstance, config, common, configS
    //   alert($scope.testAuto);
    //};
    $scope.basicData = {};
+   $scope.updateDepCustomer = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.basicData.requirement.depCustomer = value;
+   };
+   $scope.updateDepLocCode = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.basicData.requirement.depLocCode = value;
+   };
+
+   $scope.updateRecCustomer = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.basicData.requirement.recCustomer = value;
+   };
+   $scope.updateRecLocCode = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.basicData.requirement.recLocCode = value;
+   };
+   
+   $scope.updateResAmtCS1 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.basicData.requirementDetail.resAmtCS1 = value;
+   };
+   $scope.updateResAmtCS2 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.basicData.requirementDetail.resAmtCS2 = value;
+   };
+   $scope.updateResAmtCS3 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.basicData.requirementDetail.resAmtCS3 = value;
+   };
+
    $http.postXSRF(config.baseUrl + "ER/ERQuickSearch", param)
        .then(function (result) {
           data = result.data[0];

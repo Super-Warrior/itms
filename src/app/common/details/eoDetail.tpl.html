@@ -77,7 +77,7 @@
                             <label>第三方物流1</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" data-ng-model="data.dn.eotrvendor1" placeholder="第三方物流">
+                                <input im-auto-complete source="data.dn.eotrvendor1" method="customerAuto3" update-callback="updateEotrvendor1(item)" placeholder="第三方物流">
                             </label>
                         </section>
                         <section class="col col-6">
@@ -93,7 +93,8 @@
                             <label>第三方物流2</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" data-ng-model="data.dn.eotrvendor2" placeholder="第三方物流">
+
+                                <input im-auto-complete source="data.dn.eotrvendor2" method="customerAuto3" update-callback="updateEotrvendor2(item)" placeholder="第三方物流">
                             </label>
                         </section>
                         <section class="col col-6">
@@ -109,7 +110,7 @@
                             <label>第三方物流3</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" data-ng-model="data.dn.eotrvendor3" placeholder="第三方物流">
+                                <input im-auto-complete source="data.dn.eotrvendor3" method="customerAuto3" update-callback="updateEotrvendor3(item)" placeholder="第三方物流">
                             </label>
                         </section>
                         <section class="col col-6">
@@ -132,14 +133,14 @@
                             <label>客户2</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search "></i>
-                                <input type="text" name="Cr"  data-ng-model="data.eobp2Desc" placeholder="客户2">
+                                <input type="text" name="Cr" data-ng-model="data.eobp2Desc" placeholder="客户2">
                             </label>
                         </section>
                         <section class="col col-4">
                             <label>客户3</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-search "></i>
-                                <input type="text" name="Cr"  data-ng-model="data.eobp3Desc" placeholder="客户3">
+                                <input type="text" name="Cr" data-ng-model="data.eobp3Desc" placeholder="客户3">
                             </label>
                         </section>
                     </div>
@@ -250,7 +251,7 @@
                             <label>1级网络公司代码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" data-ng-model="data.dn.deliverBP1" placeholder="客户代码">
+                                <input im-auto-complete source="data.dn.deliverBP1" method="customerAuto4" update-callback="updateDeliverBP1(item)" placeholder="客户代码">
                             </label>
                         </section>
                         <section class="col col-8">
@@ -266,7 +267,7 @@
                             <label>2级网络公司代码</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" data-ng-model="data.dn.deliverBP2" placeholder="客户代码">
+                                <input im-auto-complete source="data.dn.deliverBP2" method="customerAuto4" update-callback="updateDeliverBP2(item)" placeholder="客户代码">
                             </label>
                         </section>
                         <section class="col col-8">
@@ -288,7 +289,7 @@
                             <label>订班供应商1</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" data-ng-model="data.dn.scheduleVendor1" placeholder="客户代码">
+                                <input im-auto-complete source="data.dn.scheduleVendor1" method="customerAuto5" update-callback="updateScheduleVendor1(item)" placeholder="客户代码">
                             </label>
                         </section>
                         <section class="col col-8">

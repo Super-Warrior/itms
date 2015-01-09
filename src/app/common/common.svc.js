@@ -192,7 +192,41 @@ function configService($http, $q, config) {
           });
    };
 
-   var customerAuto = function (keyword, type) {
+   var locationAuto = function (type, keyword) {
+      var mapFun = function (tempItem) {
+         var fields = ["locID", "description", "address1", "address2", "group1", "group2"];
+         var text = "";
+         for (var k = 0; k < fields.length; k++)
+            text += tempItem[fields[k]] + " ";
+         return {
+            "key": $.trim(tempItem.locID),
+            "country": $.trim(tempItem.country),
+            "state": $.trim(tempItem.state),
+            "city": $.trim(tempItem.city),
+            "group1": $.trim(tempItem.group1),
+            "fullDescription": $.trim(text)
+         };
+      };
+
+      var param = { "input": keyword, "type": type };
+
+      var dfd = $q.defer();
+      $http({
+         method: "GET",
+         url: config.baseUrl + "search/LocationAuto" + "?" + $.param(param),
+         dataType: "json"
+      }).then(
+         function (result) {
+            var items = angular.isArray(result.data) ? result.data : [];
+            items = items.map(mapFun);
+            dfd.resolve(items);
+         }
+      );
+
+      return dfd.promise;
+   };
+
+   var customerAuto = function (type, keyword) {
       var mapFun = function (tempItem) {
          var fields = ["customer", "name", "address1", "group1", "group2"];
          var text = "";
@@ -204,8 +238,6 @@ function configService($http, $q, config) {
          return { "key": key, "fullDescription": text };
       };
 
-      if (typeof (type) == "undefined" || type == null)
-         type = "1";
       var param = { "input": keyword, "type": type };
 
       var dfd = $q.defer();
@@ -224,21 +256,20 @@ function configService($http, $q, config) {
       return dfd.promise;
    };
 
-   var materialAuto = function (keyword, type) {
-
+   var materialAuto = function (type, keyword) {
       var mapFun = function (tempItem) {
-         var fields = ["customer", "name", "address1", "group1", "group2"];
+         var fields = ["matnr", "cusMatnr", "description"];
          var text = "";
          for (var k = 0; k < fields.length; k++) {
             text += tempItem[fields[k]] + " ";
          }
          text = $.trim(text);
-         var key = $.trim(tempItem.customer);
+         var key = $.trim(tempItem.matnr);
          return { "key": key, "fullDescription": text };
       };
 
-      if (typeof (type) == "undefined" || type == null)
-         type = "TRES";
+      //if (typeof (type) == "undefined" || type == null)
+      //    type = "TRES";
       var param = { "input": keyword, "type": type };
 
 
@@ -259,7 +290,30 @@ function configService($http, $q, config) {
    };
 
 
+   function curry(fn) {
 
+      var args = [];
+      for (var i = 1, len = arguments.length; i < len; i++) {
+         args.push(arguments[i]);
+      }
+
+      return function () {
+         var args2 = [];
+         for (var j = 0; j < arguments.length; j++) {
+            args2.push(arguments[j]);
+         }
+
+         var allArgs = [];
+         args.forEach(function (item) {
+            allArgs.push(item);
+
+         });
+         args2.forEach(function (item) {
+            allArgs.push(item);
+         });
+         return fn.apply(window, allArgs);
+      };
+   }
 
 
    var getMaterial = function (option) {
@@ -365,8 +419,16 @@ function configService($http, $q, config) {
       "getConfig": getConfig, "getConfigs": getConfigs,
       "getMaterial": getMaterial,
       "getRoute": getRoute,
-      "materialAuto": materialAuto,
-      "customerAuto": customerAuto
+      "materialAutoPack": curry(materialAuto, ["PACK"]),
+      "customerAuto12": curry(customerAuto, [1, 2]),
+      "customerAuto1": curry(customerAuto, [1]),
+      "customerAuto2": curry(customerAuto, [2]),
+      "customerAuto3": curry(customerAuto, [3]),
+      "customerAuto4": curry(customerAuto, [4]),
+      "customerAuto5": curry(customerAuto, [5]),
+      "customerAuto6": curry(customerAuto, [6]),
+      "locationAuto1": curry(locationAuto, [1]),
+      "locationAuto2": curry(locationAuto, [2])
    };
 }
 

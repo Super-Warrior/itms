@@ -144,7 +144,7 @@
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-filter "></i>
-                                                    <input type="text" name="Cr" placeholder="第三方物流编码" ng-model="queryOption.EOTRVendor1">
+                                                    <input im-auto-complete name="Cr" placeholder="第三方物流编码" source="queryOption.EOTRVendor1" method="customerAuto3" update-callback="updateEOTRVendor1(item)" >
                                                 </label>
                                             </section>
                                             <section class="col col-1">
@@ -153,7 +153,7 @@
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-filter"></i>
-                                                    <input type="text" name="code" placeholder="承运商编码" ng-model="queryOption.EOTRVendor2">
+                                                    <input im-auto-complete name="code" placeholder="承运商编码" source="queryOption.EOTRVendor2" method="customerAuto4" update-callback="updateEOTRVendor2(item)" >
                                                 </label>
                                             </section>
                                             <section class="col col-1">
@@ -162,7 +162,7 @@
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-filter"></i>
-                                                    <input type="text" name="code" placeholder="客户编码" ng-model="queryOption.BP1">
+                                                    <input im-auto-complete name="code" placeholder="客户编码" method="customerAuto12" update-callback="updateBP1(item)"  source="queryOption.BP1">
                                                 </label>
                                             </section>
                                             <section class="col col-1">
@@ -171,7 +171,7 @@
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-filter"></i>
-                                                    <input type="text" name="code" placeholder="其它业务方1" ng-model="queryOption.BP2">
+                                                    <input  im-auto-complete name="code" method="customerAuto12" placeholder="其它业务方1"  update-callback="updateBP2(item)"  source="queryOption.BP2">
                                                 </label>
                                             </section>
                                             <section class="col col-1">
@@ -180,7 +180,7 @@
                                             <section class="col col-2">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-filter"></i>
-                                                    <input type="text" name="code" placeholder="其它业务方2" ng-model="queryOption.BP3">
+                                                    <input  im-auto-complete name="code" method="customerAuto12" placeholder="其它业务方2"  update-callback="updateBP3(item)"  source="queryOption.BP3">
                                                 </label>
                                             </section>
                                             <section class="col col-1">

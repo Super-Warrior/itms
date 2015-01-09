@@ -85,6 +85,39 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
       timeLine: true,
       eoDetail: true
    };
+
+   $scope.updateEOTRVendor1 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.queryOption.EOTRVendor1 = value;
+   };
+   $scope.updateEOTRVendor2 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.queryOption.EOTRVendor2 = value;
+   };
+
+   $scope.updateBP1 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.queryOption.BP1 = value;
+   };
+   $scope.updateBP2 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.queryOption.BP2 = value;
+   };
+   $scope.updateBP3 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.queryOption.BP3 = value;
+   };
+
    $scope.columns = [{
       "mData": "eo",
       "sTitle": "EO"
@@ -204,6 +237,71 @@ function EOMaintainSearchCtrl($scope, $http, config, common, $modal, $log, eoMai
 
 
    $scope.unionParam = orderService.buildUnionParam();
+   $scope.updateAutoBP1 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.unionParam.BP1 = value;
+   };
+   $scope.updateAutoBP2 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.unionParam.BP2 = value;
+   };
+   $scope.updateAutoBP3 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.unionParam.BP3 = value;
+   };
+
+   $scope.updateRecLocCode = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.unionParam.recLocCode = value;
+      if (typeof (item.country) != "undefined"
+         || typeof (item.state) != "undefined"
+         || typeof (item.city) != "undefined"
+         || typeof (item.group1) != "undefined") {
+         $scope.unionParam.rec_Country = item.country;
+         $scope.unionParam.rec_State = item.state;
+         $scope.unionParam.rec_City = item.city;
+         $scope.unionParam.rec_Group1 = item.group1;
+      }
+   };
+
+   $scope.updateDepLocCode = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.unionParam.depLocCode = value;
+
+      if (typeof (item.country) != "undefined"
+     || typeof (item.state) != "undefined"
+     || typeof (item.city) != "undefined"
+     || typeof (item.group1) != "undefined") {
+         $scope.unionParam.dep_Country = item.country;
+         $scope.unionParam.dep_State = item.state;
+         $scope.unionParam.dep_City = item.city;
+         $scope.unionParam.dep_Group1 = item.group1;
+      }
+   };
+
+   $scope.updateTrVendor = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.unionParam.TrVendor = value;
+   };
+
+   $scope.updateVendor = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.unionParam.vendor = value;
+   };
 
    var refresh = function () {
       if ($scope.isInUnionSearch)
