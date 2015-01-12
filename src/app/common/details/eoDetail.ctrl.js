@@ -47,7 +47,7 @@ function EODetailCtrl($scope, $modalInstance, common, eoDetailService, eoService
          }
       });
    }
-   
+
    $scope.updateEotrvendor1 = function (item) {
       var value = item.key;
       if (typeof (value) == "undefined" || value == null)
@@ -67,7 +67,7 @@ function EODetailCtrl($scope, $modalInstance, common, eoDetailService, eoService
          return;
       $scope.data.dn.eotrvendor3 = value;
    };
-   
+
    $scope.updateDeliverBP1 = function (item) {
       var value = item.key;
       if (typeof (value) == "undefined" || value == null)
@@ -80,14 +80,22 @@ function EODetailCtrl($scope, $modalInstance, common, eoDetailService, eoService
          return;
       $scope.data.dn.deliverBP2 = value;
    };
-   
+
    $scope.updateScheduleVendor1 = function (item) {
       var value = item.key;
       if (typeof (value) == "undefined" || value == null)
          return;
       $scope.data.dn.scheduleVendor1 = value;
    };
-   
+   $scope.updateScheduleVendor2 = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.data.dn.scheduleVendor2 = value;
+   };
+
+
+
    $scope.event = {
       eventType: '',
       eventDate: dateTimeHelper.formatDate(new Date()),

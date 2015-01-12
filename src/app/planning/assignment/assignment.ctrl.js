@@ -81,6 +81,19 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
    $scope.ERTRType = [""];
    $scope.ERType = [""];
 
+   $scope.updateDepPosition = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.selectedPosition.dep = value;
+   };
+
+   $scope.updateRecPosition = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.selectedPosition.rec = value;
+   };
 
    $scope.quickSearch = function () {
       var data = {
@@ -256,15 +269,15 @@ function EOAssignCtrl($scope, $modal, $log, $http, config, common, configService
          return;
       $scope.unionParam.TrVendor = value;
    };
-   
+
    $scope.updateVendor = function (item) {
       var value = item.key;
       if (typeof (value) == "undefined" || value == null)
          return;
       $scope.unionParam.vendor = value;
    };
-   
-   
+
+
    var refresh = function () {
 
       if ($scope.isInUnionSearch)

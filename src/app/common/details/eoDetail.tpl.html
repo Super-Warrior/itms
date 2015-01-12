@@ -396,7 +396,7 @@
                 </fieldset>
             </form>
         </div>
-        <div class="tab-pane fade" id="o5">
+         <div class="tab-pane fade" id="o5">
             <form action="" id="Form4" class="smart-form" novalidate>
                 <fieldset>
                     <div class="row">
@@ -404,7 +404,8 @@
                             <label>订班供应商2</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" name="Cr" placeholder="客户代码">
+                                  <input im-auto-complete source="data.dn.scheduleVendor2" method="customerAuto5" update-callback="updateScheduleVendor2(item)" placeholder="客户代码">
+                          
                             </label>
                         </section>
                         <section class="col col-8">
@@ -420,7 +421,8 @@
                             <label>班次</label>
                             <label class="input">
                                 <i class="icon-prepend fa fa-user"></i>
-                                <input type="text" name="Cr" placeholder="班次">
+                               <input type="text" data-ng-model="data.dn.scheduleClass2" placeholder="班次">
+                        
                             </label>
                         </section>
                     </div>
@@ -430,7 +432,7 @@
                                 <label>出发日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="Text15" data-im-datepicker placeholder="出发日期">
+                                     <input type="text" data-ng-model="data.dn.depDate2" data-im-datepicker placeholder="出发日期">
                                 </label>
                             </div>
                         </section>
@@ -439,8 +441,8 @@
                                 <label>出发时间</label>
 
                                 <div class="input-group">
-                                    <input class="form-control" id="Text16" type="text" value="" placeholder="出发时间">
-                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                     <input class="form-control" type="text" data-ng-model="data.dn.depTime2" data-im-timepicker placeholder="出发时间">
+                                      <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
                             </div>
                         </section>
@@ -451,7 +453,7 @@
                                 <label>实际出发日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="Text17" data-im-datepicker placeholder="实际出发日期">
+                                      <input type="text" data-ng-model="data.dn.depDate2act" data-im-datepicker placeholder="实际出发日期">
                                 </label>
                             </div>
                         </section>
@@ -460,8 +462,8 @@
                                 <label>实际出发时间</label>
 
                                 <div class="input-group">
-                                    <input class="form-control" id="Text18" type="text" value="" placeholder="实际出发时间">
-                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                     <input class="form-control" type="text" data-ng-model="data.dn.detTime2act" data-im-timepicker placeholder="实际出发时间">
+                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
                             </div>
                         </section>
@@ -472,8 +474,8 @@
                                 <label>到达日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="Text19" data-im-datepicker placeholder="到达日期">
-                                </label>
+                                       <input type="text" data-ng-model="data.dn.arrDate2" data-im-datepicker placeholder="到达日期">
+                               </label>
                             </div>
                         </section>
                         <section class="col col-4">
@@ -481,8 +483,8 @@
                                 <label>到达时间</label>
 
                                 <div class="input-group">
-                                    <input class="form-control" id="Text20" type="text" value="" placeholder="到达时间">
-                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                      <input class="form-control" type="text" data-ng-model="data.dn.arrtime2" data-im-timepicker placeholder="到达时间">
+                                 <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
                             </div>
                         </section>
@@ -493,7 +495,7 @@
                                 <label>实际到达日期</label>
                                 <label class="input">
                                     <i class="icon-prepend fa fa-calendar"></i>
-                                    <input type="text" name="startdate" id="Text21" data-im-datepicker placeholder="实际到达日期">
+                                     <input type="text" data-ng-model="data.dn.arrDate2act" data-im-datepicker placeholder="实际到达日期">
                                 </label>
                             </div>
                         </section>
@@ -501,7 +503,7 @@
                             <div class="form-group">
                                 <label>实际到达时间</label>
                                 <div class="input-group">
-                                    <input class="form-control" id="Text22" type="text" value="" placeholder="实际到达时间">
+                                     <input class="form-control" type="text" data-ng-model="data.dn.arrtime2act" data-im-timepicker placeholder="实际到达时间">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                 </div>
                             </div>

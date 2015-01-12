@@ -68,16 +68,16 @@
                                             <section class="col col-4">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-map-marker"></i>
-                                                    <input type="text" name="CRP2" ng-model="selectedPosition.dep"
-                                                        placeholder="发货方位置">
+
+                                                    <input im-auto-complete method="locationAuto1" update-callback="updateDepPosition(item)" name="CRP2" source="selectedPosition.dep" placeholder="发货方位置">
                                                 </label>
                                             </section>
-                                            <section class="col col-2">
+                                            <!--  <section class="col col-2">
                                                 <button class="btn btn-info btn-sm" ng-click="searchDepCustomer()">
                                                     <i
                                                         class="fa fa-search "></i>&nbsp;位置搜索
                                                 </button>
-                                            </section>
+                                            </section>-->
                                         </div>
                                         <div class="row">
                                             <section class="col col-4">
@@ -97,16 +97,16 @@
                                             <section class="col col-4">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-map-marker"></i>
-                                                    <input type="text" name="CRP2" placeholder="收货方位置" ng-model="selectedPosition.rec">
+                                                    <input im-auto-complete method="locationAuto2" name="CRP2" update-callback="updateRecPosition(item)" source="selectedPosition.rec" placeholder="收货方位置">
                                                 </label>
                                             </section>
-                                            <section class="col col-2">
+                                            <!--    <section class="col col-2">
                                                 <button class="btn btn-info btn-sm" ng-click="searchRecCustomer()">
                                                     <i
                                                         class="fa fa-search "></i>
                                                     &nbsp;位置搜索
                                                 </button>
-                                            </section>
+                                            </section>-->
                                         </div>
                                     </fieldset>
                                     <fieldset>

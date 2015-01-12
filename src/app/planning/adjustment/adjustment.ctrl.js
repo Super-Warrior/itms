@@ -207,7 +207,19 @@ function EOAssignAdjustCtrl($scope, $modal, $log, orderService, common, $http, c
       $scope.isInUnionSearch = false;
       orderService.query(param).success(callback);
    };
+   $scope.updateDepPosition = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.selectedPosition.dep = value;
+   };
 
+   $scope.updateRecPosition = function (item) {
+      var value = item.key;
+      if (typeof (value) == "undefined" || value == null)
+         return;
+      $scope.selectedPosition.rec = value;
+   };
    $scope.unionParam = orderService.buildUnionParam();
    $scope.updateAutoBP1 = function (item) {
       var value = item.key;
