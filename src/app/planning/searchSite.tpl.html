@@ -8,7 +8,7 @@
 </div>
 <div class="modal-body no-padding">
 
-    <div class="smart-form">
+    <form class="smart-form" novalidate>
         <fieldset>
             <div class="row">
                 <section class="col col-3">
@@ -56,7 +56,7 @@
                     </button>
                 </section>
             </div>
-             <div class="row col" ng-show="afterSearch">
+            <div class="row col" ng-show="afterSearch">
                 <fieldset tiny-table my-source="items" columns="columns" select-mode="multiple">
                 </fieldset>
             </div>
@@ -65,5 +65,5 @@
             <button type="button" class="btn btn-success" ng-click="ok()">插入</button>
             <button type="button" class="btn btn-default" ng-click="$dismiss()">返回</button>
         </footer>
-    </div>
+    </form>
 </div>

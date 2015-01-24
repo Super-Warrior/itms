@@ -19,15 +19,15 @@
 </div>
 <div class="modal-body no-padding">
     <h3 class="row-seperator-header"><i class="fa fa-wrench"></i>拆分作业 </h3>
-    <div  class="smart-form">
+    <form class="smart-form" novalidate>
         <fieldset>
-              <div class="alert alert-warning fade in" ng-show="isError">
-                                <button class="close" ng-click="clearError()">
-                                    ×
-                                </button>
-                                <i class="fa-fw fa fa-warning"></i>
-                                拆分数量不应超过可拆分数量
-                            </div>
+            <div class="alert alert-warning fade in" ng-show="isError">
+                <button class="close" ng-click="clearError()">
+                    ×
+                </button>
+                <i class="fa-fw fa fa-warning"></i>
+                拆分数量不应超过可拆分数量
+            </div>
             <div class="row">
                 <section class="col col-5">
                     <label class="input">
@@ -70,7 +70,7 @@
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-pencil"></i>
-                        <input type="text" name="code" ng-model="data.ResAmt1"  placeholder="包装数量">
+                        <input type="text" name="code" ng-model="data.ResAmt1" placeholder="包装数量">
                     </label>
                 </section>
             </div>
@@ -100,7 +100,7 @@
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-pencil"></i>
-                        <input type="text" name="code"  ng-model="data.ResAmt2"   placeholder="包装数量">
+                        <input type="text" name="code" ng-model="data.ResAmt2" placeholder="包装数量">
                     </label>
                 </section>
             </div>
@@ -124,13 +124,13 @@
                 <section class="col col-4">
                     <label class="input">
                         <i class="icon-prepend fa fa-qrcode"></i>
-                        <input type="text" name="code"  ng-model="data.PackNum3" placeholder="包装条码">
+                        <input type="text" name="code" ng-model="data.PackNum3" placeholder="包装条码">
                     </label>
                 </section>
                 <section class="col col-3">
                     <label class="input">
                         <i class="icon-prepend fa fa-pencil"></i>
-                        <input type="text" name="code"  ng-model="data.ResAmt3"   placeholder="包装数量">
+                        <input type="text" name="code" ng-model="data.ResAmt3" placeholder="包装数量">
                     </label>
                 </section>
             </div>
@@ -140,7 +140,7 @@
             <button type="button" class="btn btn-warning" ng-click="save(true)">保存为草稿</button>
             <button type="button" class="btn btn-default" ng-click="$dismiss()">返回</button>
         </footer>
-    </div>
+    </form>
 </div>
 <!--
     <div class="panel-group smart-accordion-default" id="Div1">

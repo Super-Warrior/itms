@@ -17,7 +17,7 @@
             </div>
             <div id="collapseresOne" class="panel-collapse collapse in">
                 <div class="panel-body no-padding">
-                    <div class="smart-form">
+                    <form class="smart-form" novalidate>
                         <fieldset>
                             <div class="alert alert-warning fade in">
                                 <button class="close" data-dismiss="alert">
@@ -92,8 +92,8 @@
                                 </section>
                             </div>
                         </fieldset>
-                        
-                        <fieldset  ng-show="showResult"  tiny-table my-source="resources" columns="columns" select-mode="single">
+
+                        <fieldset ng-show="showResult" tiny-table my-source="resources" columns="columns" select-mode="single">
                         </fieldset>
 
 
@@ -157,25 +157,28 @@
                             </section>
                         </fieldset>
                         -->
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="smart-form">
+    <form name="currentForm" class="smart-form" novalidate>
         <fieldset>
+            <div ng-show="!resourceData.TranResID&&currentForm.varidating" class="alert alert-danger fade in">
+                <i class="fa-fw fa fa-warning"></i>请选择资源。
+            </div>
             <div class="row">
-                <section class="col col-6">
+                <section class="col col-6" ng-class="{'state-error':currentForm.TranResLicense.$invalid && (currentForm.varidating||!currentForm.TranResLicense.$pristine)}">
                     <label class="input">
                         <i class="icon-prepend fa fa-filter"></i>
-                        <input type="text" name="code" ng-model="resourceData.TranResLicense" maxlength="20" placeholder="资源编号">
+                        <input type="text" name="TranResLicense" name="code" ng-model="resourceData.TranResLicense" maxlength="20" placeholder="资源编号" required>
                         <b class="tooltip tooltip-right"><i class="fa fa-warning txt-color-teal"></i>例如车牌号等 </b>
                     </label>
                 </section>
-                <section class="col col-6">
+                <section class="col col-6" ng-class="{'state-error':currentForm.TransDriverID.$invalid && (currentForm.varidating||!currentForm.TransDriverID.$pristine)}">
                     <label class="input">
                         <i class="icon-prepend fa fa-filter"></i>
-                        <input type="text" name="code" ng-model="resourceData.TransDriverID" maxlength="20" placeholder="司机手机号">
+                        <input type="text" name="TransDriverID" ng-model="resourceData.TransDriverID" ng-maxlength="20" placeholder="司机手机号" required>
                     </label>
                 </section>
             </div>
@@ -185,5 +188,5 @@
             <button class="btn btn-warning" ng-click="doAssignResource(true)">分配并保存为草稿</button>
             <button class="btn btn-default" ng-click="$dismiss()">返回</button>
         </footer>
-    </div>
+    </form>
 </div>

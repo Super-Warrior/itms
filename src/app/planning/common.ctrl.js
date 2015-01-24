@@ -479,11 +479,11 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
    });
 
    $scope.doAssignResource = function (isDraft) {
-
+      $scope.currentForm.varidating = true;
+      if (!$scope.currentForm.$valid) return;
       var data = $scope.resourceData;
 
-      if (!data.TranResID || !data.TranResLicense || !data.TransDriverID) {
-         alert("请输入完整信息");
+      if (!data.TranResID) {
          return;
       }
       var message = isDraft ? "已成功分配并保存为草稿" : "已成功分配并确认";
@@ -539,7 +539,7 @@ function routeCtrl($scope, $modal, $log, $http, config, common, configService, c
    //   $scope.routeData.routeID = item.routeID;
    //   console.log($scope.routeData.routeID);
    //};
-   
+
 
    $scope.$on("selectionChange", function (ev, item) {
       $scope.routeData.routeID = item.routeID;
