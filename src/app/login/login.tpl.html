@@ -1,49 +1,50 @@
 <header id="header">
-  <div id="logo-group">
-    <span id="logo"> <img src="img/banner.png"  alt="iTMS Platform"> </span>
-  </div>
+    <div id="logo-group">
+        <span id="logo">
+            <img src="img/banner.png" alt="iTMS Platform">
+        </span>
+    </div>
 </header>
 
 <div id="content" class="container login">
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-4 col-centered">
-      <div class="well no-padding">
-        <form id="login-form" class="smart-form client-form">
-          <header>
-            登录
-          </header>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-centered">
+            <div class="well no-padding">
+                <form name="currentForm" class="smart-form client-form" novalidate>
+                    <header>登录</header>
+                    <fieldset>
+                        <section ng-class="{'state-error':currentForm.username.$invalid && (currentForm.validating||!currentForm.username.$pristine)}">
+                            <label class="label">电子邮件</label>
+                            <label class="input">
+                                <i class="icon-append fa fa-user"></i>
+                                <input type="email" name="username" data-ng-model="username" required>
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>&nbsp;输入注册邮箱/用户名</b></label>
+                        </section>
+                        <section ng-class="{'state-error':currentForm.password.$invalid && (currentForm.validating||!currentForm.password.$pristine)}">
+                            <label class="label">密码</label>
+                            <label class="input">
+                                <i class="icon-append fa fa-lock"></i>
+                                <input type="password" name="password" data-ng-model="password" required>
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>&nbsp;输入密码</b>
+                            </label>
 
-          <fieldset>
-            <section>
-              <label class="label">电子邮件</label>
-              <label class="input"> <i class="icon-append fa fa-user"></i>
-                <input type="text" name="username" data-ng-model="username">
-                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>输入注册邮箱/用户名</b></label>
-            </section>
-            <section>
-              <label class="label">密码</label>
-              <label class="input"> <i class="icon-append fa fa-lock"></i>
-                <input type="password" name="password" data-ng-model="password">
-                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>  输入密码</b>
-              </label>
-
-<!--              <div class="note">
+                            <!--              <div class="note">
                 <a href="javascript:void(0)">Forgot password?</a>
               </div>-->
-            </section>
-         <!--   <section>
+                        </section>
+                        <!--   <section>
               <label class="checkbox">
                 <input type="checkbox" name="remember" checked="">
                 <i></i>Stay signed in</label>
             </section>-->
-          </fieldset>
-          <footer>
-            <button ng-click="logon(username,password)" class="btn btn-primary">
-              登录
-            </button>
-          </footer>
-        </form>
-      </div>
+                    </fieldset>
+                    <footer>
+                        <button ng-click="logon(username,password)" class="btn btn-primary">
+                            登录
+                        </button>
+                    </footer>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

@@ -479,7 +479,7 @@ function resourceCtrl($scope, $modal, $log, $http, config, common, configService
    });
 
    $scope.doAssignResource = function (isDraft) {
-      $scope.currentForm.varidating = true;
+      $scope.currentForm.validating = true;
       if (!$scope.currentForm.$valid) return;
       var data = $scope.resourceData;
 

@@ -164,18 +164,18 @@
     </div>
     <form name="currentForm" class="smart-form" novalidate>
         <fieldset>
-            <div ng-show="!resourceData.TranResID&&currentForm.varidating" class="alert alert-danger fade in">
+            <div ng-show="!resourceData.TranResID&&currentForm.validating" class="alert alert-danger fade in">
                 <i class="fa-fw fa fa-warning"></i>请选择资源。
             </div>
             <div class="row">
-                <section class="col col-6" ng-class="{'state-error':currentForm.TranResLicense.$invalid && (currentForm.varidating||!currentForm.TranResLicense.$pristine)}">
+                <section class="col col-6" ng-class="{'state-error':currentForm.TranResLicense.$invalid && (currentForm.validating||!currentForm.TranResLicense.$pristine)}">
                     <label class="input">
                         <i class="icon-prepend fa fa-filter"></i>
                         <input type="text" name="TranResLicense" name="code" ng-model="resourceData.TranResLicense" maxlength="20" placeholder="资源编号" required>
                         <b class="tooltip tooltip-right"><i class="fa fa-warning txt-color-teal"></i>例如车牌号等 </b>
                     </label>
                 </section>
-                <section class="col col-6" ng-class="{'state-error':currentForm.TransDriverID.$invalid && (currentForm.varidating||!currentForm.TransDriverID.$pristine)}">
+                <section class="col col-6" ng-class="{'state-error':currentForm.TransDriverID.$invalid && (currentForm.validating||!currentForm.TransDriverID.$pristine)}">
                     <label class="input">
                         <i class="icon-prepend fa fa-filter"></i>
                         <input type="text" name="TransDriverID" ng-model="resourceData.TransDriverID" ng-maxlength="20" placeholder="司机手机号" required>
