@@ -4,7 +4,6 @@ var express = require("express"),
 
 var server = require('http').createServer(app).listen(5000);
 
-
 // Configuration
 app.configure(function () {
     app.set('views', path.join(__dirname, '/app'));
