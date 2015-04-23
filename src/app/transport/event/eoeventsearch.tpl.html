@@ -4,15 +4,13 @@
       <div class="col col-3">
         <label class="label"><i class="fa fa-question-circle "></i> EO运单状态</label>
         <label class="select select-multiple">
-          <select class="custom-scroll" data-ng-model="eventSearchCriteria.eoSearch.eoStatus"
-                  data-ng-options="config.description for config in configData.EOST" multiple></select>
+          <select class="custom-scroll" data-ng-model="eventSearchCriteria.eoSearch.eoStatus" data-ng-options="config.description for config in configData.EOST" multiple></select>
         </label>
       </div>
       <div class="col col-3">
         <label class="label"><i class="fa fa-exclamation-triangle "></i> EO事件状态</label>
         <label class="select select-multiple">
-          <select class="custom-scroll" data-ng-model="eventSearchCriteria.eoSearch.eoEventStatus"
-                  data-ng-options="config.description for config in configData.EVST" multiple></select>
+          <select class="custom-scroll" data-ng-model="eventSearchCriteria.eoSearch.eoEventStatus" data-ng-options="config.description for config in configData.EVST" multiple></select>
         </label>
       </div>
     </div>
@@ -27,9 +25,15 @@
     </div>
   </fieldset>
   <footer>
-    <a class="btn btn-primary" data-ng-click="eoSearch(eventSearchCriteria.eoSearch)">
-      <i class="fa fa-search"></i>
-      查询
-    </a>
+    
+      
+        <button type="button" ng-click="eoSearch(eventSearchCriteria.eoSearch)" class="btn btn-primary">
+            <i class="fa fa-search"></i>&nbsp;查询
+        </button>
+        <button type="button" class="btn btn-default" ng-click="resetEo()">
+            <i class="fa fa-reply-all "></i>&nbsp;重置
+        </button>
+
+
   </footer>
 </form>

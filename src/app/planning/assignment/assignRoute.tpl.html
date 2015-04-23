@@ -1,0 +1,263 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()">
+        &times;
+    </button>
+    <h4 class="modal-title">
+        <img src="img/banner.png" width="100" alt="iTMS">
+    </h4>
+</div>
+
+<div class="modal-body no-padding">
+    <div class="panel-group smart-accordion-default" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-lg fa-angle-down pull-left"></i><i class="fa fa-lg fa-angle-up pull-left"></i>路线搜索 </a></h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body no-padding">
+                    <div class="smart-form">
+                        <fieldset>
+                            <div class="alert alert-warning fade in">
+                                <button class="close" data-dismiss="alert">
+                                    ×
+                                </button>
+                                <i class="fa-fw fa fa-warning"></i>
+                                <strong>{{routeData.ERID.length}}&nbsp;</strong>条ER需求项目被选择操作
+                            </div>
+                            <div class="row">
+                                <section class="col col-4">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" ng-model="searchData.RouteID" name="code" placeholder="路线代码">
+                                    </label>
+                                </section>
+                                <section class="col col-4">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" ng-model="searchData.RouteDesc" placeholder="路线名称">
+                                    </label>
+                                </section>
+
+
+                                <section class="col col-4">
+                                    <label class="select">
+                                        <select ng-model="searchData.TRType">
+                                            <option value="" selected disabled>运输方式</option>
+                                            <option ng-repeat="value in types" value="{{value.code}}">{{value.description}}</option>
+                                        </select>
+                                        <i></i>
+                                    </label>
+                                </section>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="row">
+                                <section class="col col-6">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" ng-model="searchData.RouteOrigin" placeholder="起点代码">
+                                    </label>
+                                </section>
+                                <section class="col col-6">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" ng-model="searchData.RouteOriginDesc" placeholder="起点名称">
+                                    </label>
+                                </section>
+                                <!-- <section class="col col-3">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" placeholder="国家">
+                                    </label>
+                                </section>
+                                <section class="col col-3">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" placeholder="省">
+                                    </label>
+                                </section>
+                                <section class="col col-3">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" placeholder="市">
+                                    </label>
+                                </section>
+                                <section class="col col-3">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" placeholder="区县">
+                                    </label>
+                                </section>-->
+
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="row">
+                                <section class="col col-6">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" ng-model="searchData.RouteDest" placeholder="终点代码">
+                                    </label>
+                                </section>
+                                <section class="col col-6">
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-filter"></i>
+                                        <input type="text" name="code" ng-model="searchData.RouteDesiDesc" placeholder="终点名称">
+                                    </label>
+                                </section>
+
+                                <!--                                <section class="col col-3">
+                                                                        <label class="input">
+                                                                            <i class="icon-prepend fa fa-filter"></i>
+                                                                            <input type="text" name="code" placeholder="国家">
+                                                                        </label>
+                                                                    </section>
+                                    <section class="col col-3">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-filter"></i>
+                                            <input type="text" name="code" placeholder="省">
+                                        </label>
+                                    </section>
+                                    <section class="col col-3">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-filter"></i>
+                                            <input type="text" name="code" placeholder="市">
+                                        </label>
+                                    </section>
+                                    <section class="col col-3">
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-filter"></i>
+                                            <input type="text" name="code" placeholder="区县">
+                                        </label>
+                                    </section>-->
+                            </div>
+                            <div class="row">
+                                <section class="col col-12">
+                                    <button type="button" ng-click="search()" class="btn btn-sm btn-info"><i class="fa fa-search"></i>路线搜索</button>
+                                </section>
+                            </div>
+
+
+                        </fieldset>
+
+                        <fieldset  ng-show="showResult"  tiny-table my-source="routes" columns="columns" select-mode="single">
+                        </fieldset>
+
+                        <!--  <fieldset>
+
+                            <section>
+                                <table class="table table-bordered table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>路线代码</th>
+                                            <th>路线名称</th>
+                                            <th>起点代码</th>
+                                            <th>起点名称</th>
+                                            <th>终点代码</th>
+                                            <th>终点名称</th>
+                                            <th>距离</th>
+                                            <th>运输方式</th>
+                                            <th>特殊要求</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in routes" ng-click="select($index)">
+                                            <td>
+                                                <label class="radio">
+                                                    <input type="radio" ng-checked="item.selected" name="radio" />
+                                                    <i></i>
+                                                </label>
+                                            </td>
+                                            <td>{{item.routeID}}</td>
+                                            <td>{{item.routeDesc}}</td>
+                                            <td>{{item.routeOrigin}}</td>
+                                            <td>{{item.routeOriginDesc}}</td>
+                                            <td>{{item.routeDest}}</td>
+                                            <td>{{item.routeDesiDesc}}</td>
+                                            <td>{{item.distance1}}</td>
+                                            <td>{{item.trType}}</td>
+                                            <td>{{item.specTag}}</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </section>
+
+                        </fieldset>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="smart-form">
+        <fieldset>
+            <div class="row">
+                <section class="col col-5">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" ng-model="routeData.routeClassID" maxlength="20" ng-change="routeData.resetChecked()" placeholder="路单号">
+                        <b class="tooltip tooltip-right"><i class="fa fa-warning txt-color-teal"></i>如需置空路单, 请勾选右边checkbox </b>
+                    </label>
+                </section>
+                <section class="col col-1">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="routeData.checked" ng-change="routeData.resetRouteClassID()" name="checkbox-inline">
+                        </input>
+                        <i></i>
+                    </label>
+                </section>
+                <section class="col col-5">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-filter"></i>
+                        <input type="text" name="code" ng-model="routeData.TRVendor" placeholder="承运商编码">
+                    </label>
+                </section>
+                <section class="col col-1">
+                    <button class="btn btn-default btn-sm" data-target="#myDepcustomer" data-toggle="modal"><i class="fa fa-search "></i></button>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-3">
+                    <div class="input-group">
+                        <input type="text" name="startdate" im-datepicker class="form-control"
+                            placeholder="出发日期" ng-model="routeData.dateS">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </section>
+                <section class="col col-3">
+                    <div class="input-group">
+                        <input class="form-control" type="text" data-im-timepicker
+                            placeholder="出发时间" ng-model="routeData.timeS">
+                        <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                    </div>
+                </section>
+                <section class="col col-3">
+                    <div class="input-group">
+                        <input type="text" name="enddate" im-datepicker class="form-control"
+                            placeholder="到达日期" ng-model="routeData.dateE">
+                        
+                        </input>
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </section>
+                <section class="col col-3">
+                    <div class="input-group">
+
+                        <input type="text" data-im-timepicker class="form-control"
+                            placeholder="到达时间" ng-model="routeData.timeE">
+                        
+                        </input>
+                        <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                    </div>
+                </section>
+            </div>
+        </fieldset>
+        <footer>
+            <button class="btn btn-success" ng-click="doAssignRoute()">分配并确认</button>
+            <button class="btn btn-warning" ng-click="doAssignRoute(true)">分配并保存为草稿</button>
+            <button class="btn btn-default" ng-click="$dismiss()">返回</button>
+        </footer>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+﻿
+<div class="tab-pane fade in" id="erlocation">
+    <div class="smart-form">
+        <fieldset>
+            <div class="row">
+                <section class="col col-3">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                        <input im-auto-complete update-callback="updateDepLocCode(item)" source="unionParam.depLocCode" method="locationAuto1" name="Cr" placeholder="出发地代码">
+                    </label>
+                </section>
+                <section class="col col-1">
+                    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                </section>
+                <section class="col col-2">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                        <input type="text" ng-model="unionParam.dep_Country" name="Cr" placeholder="国家">
+                    </label>
+                </section>
+                <section class="col col-2">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                        <input type="text" ng-model="unionParam.dep_State" name="Cr" placeholder="省市">
+                    </label>
+                </section>
+                <section class="col col-2">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                        <input type="text" ng-model="unionParam.dep_City" name="Cr" placeholder="区县">
+                    </label>
+                </section>
+                <section class="col col-2">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                        <input type="text" ng-model="unionParam.dep_Group1" name="Cr" placeholder="区域组">
+                    </label>
+                </section>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="row">
+                <section class="col col-3">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-arrow-circle-down "></i>
+                        <input  im-auto-complete update-callback="updateRecLocCode(item)"  source="unionParam.recLocCode" method="locationAuto2" name="Cr" placeholder="目的地代码">
+                    </label>
+                </section>
+                <section class="col col-1">
+                    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myDepcustomer"><i class="fa fa-search "></i></button>
+                </section>
+                <section class="col col-2">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                        <input type="text" ng-model="unionParam.rec_Country" name="Cr" placeholder="国家">
+                    </label>
+                </section>
+                <section class="col col-2">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                        <input type="text" ng-model="unionParam.rec_State" name="Cr" placeholder="省市">
+                    </label>
+                </section>
+                <section class="col col-2">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                        <input type="text" ng-model="unionParam.rec_City" name="Cr" placeholder="区县">
+                    </label>
+                </section>
+                <section class="col col-2">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-arrow-circle-up "></i>
+                        <input type="text" ng-model="unionParam.rec_Group1" name="Cr" placeholder="区域组">
+                    </label>
+                </section>
+            </div>
+        </fieldset>
+    </div>
+</div>

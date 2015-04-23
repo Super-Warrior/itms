@@ -9,7 +9,7 @@
 <div class="modal-body no-padding">
   <div class="smart-form">
     <fieldset>
-      <div class="alert alert-danger fade in">
+      <div class="alert alert-warning fade in">
         <button class="close" data-dismiss="alert">
           ×
         </button>
@@ -18,89 +18,151 @@
       </div>
       <div class="row">
         <section class="col col-6">
-          <label class="select">
-            <select ng-model="createData.EOType">
-              <option value="" selected disabled>运单EO类型</option>
-              <option ng-repeat="value in eoTypes" value="{{value.code}}">{{value.description}}</option>
-            </select>
+            <label class="select">
+                <select ng-model="createData.EOType">
+                    <option value="" selected disabled>运单EO类型</option>
+                    <option ng-repeat="value in eoTypes" value="{{value.code}}">{{value.description}}</option>
+                </select>
             <i></i>
           </label>
         </section>
         <section class="col col-6">
-          <label class="select">
-            <select ng-model="createData.EOTRType">
-              <option value="" selected disabled>运输方式</option>
-              <option ng-repeat="value in transportTypes" value="{{value.code}}">{{value.description}}</option>
+            <label class="select">
+                <select ng-model="createData.EOTRType">
+                    <option value="" selected disabled>运输方式</option>
+                    <option ng-repeat="value in transportTypes" value="{{value.code}}">{{value.description}}</option>
 
-            </select>
+                </select>
             <i></i>
           </label>
         </section>
+            <section class="col col-6">
+                <label class="select">
+                    <select ng-model="createData.EOTag">
+                        <option value="" selected disabled>运单特殊标识</option>
+                        <option ng-repeat="value in tags" value="{{value.code}}">{{value.description}}</option>
 
+                    </select>
+                    <i></i>
+                </label>
+            </section>
       </div>
-      <div class="row">
+        <div class="row">
+            <section class="col col-6">
+                <label class="input">
+                    <input type="text" name="EOTRVendor1" ng-model="createData.EOTRVendor1" placeholder="第三方物流供应商">
+                    <i></i>
+                </label>
+            </section>
+ 
+          <section class="col col-6">
+              <label class="select">
+                  <select ng-model="createData.DeliverBP1">
+                      <option value="" selected disabled>承运商</option>
+                      <option ng-repeat="value in carriers" value="{{value.customer}}">{{value.name}}</option>
+                  </select>
+                  <i></i>
+              </label>
+          </section>
+      </div>
+        <div class="row">
         <section class="col col-6">
           <label class="input">
             <i class="icon-prepend fa fa-list"></i>
-            <input type="text" name="Cr" ng-model="createData.customerOrder1" placeholder="预付/合同编号">
+            <input type="text" name="customerOrder1" ng-model="createData.customerOrder1" placeholder="客户订单号">
           </label>
         </section>
-        <section class="col col-6">
-          <label class="select">
-            <select ng-model="createData.EOTag">
-              <option value="" selected disabled>特殊标识</option>
-              <option ng-repeat="value in tags" value="{{value.code}}">{{value.description}}</option>
+            <section class="col col-6">
+                <label class="input">
+                    <input type="text" name="customerOrder2" ng-model="createData.customerOrder2" placeholder="客户其它订单号">
+                    <i></i>
+                </label>
+            </section>
+            <section class="col col-6">
+                <label class="input">
+                    <i class="icon-prepend fa fa-list"></i>
+                    <input type="text" name="customerOrder1" ng-model="createData.customerOrder3" placeholder="客户其它订单号">
+                </label>
+            </section>
+        </div>
+        <div class="row">
+            <section class="col col-6">
+                <label class="input">
+                    <input type="text" name="vendorOrder1" ng-model="createData.VendorOrder1" placeholder="运单号提单号">
+                    <i></i>
+                </label>
+            </section>
+            <section class="col col-6">
+                <label class="input">
+                    <i class="icon-prepend fa fa-list"></i>
+                    <input type="text" name="vendorOrder2" ng-model="createData.VendorOrder2" placeholder="其它物流单号">
+                </label>
+            </section>
+            <section class="col col-6">
+                <label class="input">
+                    <input type="text" name="vendorOrder3" ng-model="createData.VendorOrder3" placeholder="其它物流单号">
+                    <i></i>
+                </label>
+            </section>
+        </div>
+        <div class="row">
+            <section class="col col-6">
+                <label class="select">
+                    <select ng-model="createData.BP1">
+                        <option value="" selected disabled>客户</option>
+                        <option ng-repeat="value in deps" value="{{value.customer}}">{{value.name}}</option>
 
-            </select>
-            <i></i>
-          </label>
-        </section>
-      </div>
-      <div class="row">
-        <section class="col col-6">
-          <label class="select">
-            <select ng-model="createData.EOTRVendor1">
-              <option value="" selected disabled>承运商</option>
-              <option ng-repeat="value in carriers" value="{{value.customer}}">{{value.name}}</option>
-            </select>
-            <i></i>
-          </label>
-        </section>
-        <section class="col col-6">
-          <label class="input">
-            <i class="icon-prepend fa fa-barcode "></i>
-            <input type="text" name="Cr" ng-model="createData.VendorOrder1" placeholder="承运商运单编号">
-          </label>
-        </section>
-        <section class="col col-6">
-          <label class="select">
-            <select ng-model="createData.DeliverBP1">
-              <option value="" selected disabled>配送网络公司</option>
-              <option ng-repeat="value in nets" value="{{value.customer}}">{{value.name}}</option>
+                    </select>
+                    <i></i>
+                </label>
+            </section>
+            <section class="col col-6">
+                <label class="select">
+                    <select ng-model="createData.BP2">
+                        <option value="" selected disabled>其它业务方</option>
+                        <option ng-repeat="value in alls" value="{{value.customer}}">{{value.name}}</option>
 
-            </select>
-            <i></i>
-          </label>
-        </section>
-        <section class="col col-6">
-          <label class="select">
-            <select>
-              <option value="0" selected disabled>网络公司位置代码</option>
-              <option value="1">LOC001-上海徐汇</option>
-              <option value="2">LOC002-苏州昆山</option>
-            </select>
-            <i></i>
-          </label>
-        </section>
-      </div>
+                    </select>
+                    <i></i>
+                </label>
+            </section>
+            <section class="col col-6">
+                <label class="select">
+                    <select ng-model="createData.BP3">
+                        <option value="" selected disabled>其它业务方</option>
+                        <option ng-repeat="value in alls" value="{{value.customer}}">{{value.name}}</option>
+
+                    </select>
+                    <i></i>
+                </label>
+            </section>
+        </div>
     </fieldset>
     <fieldset>
+        <div class="row">
+            <section class="col col-6">
+                <div class="form-group">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-calendar"></i>
+                        <input type="text" id="reqDelDate1" ng-model="createData.reqDelDate1" im-datepicker placeholder="要求开始日期">
+                    </label>
+                </div>
+            </section>
+            <section class="col col-6">
+                <div class="form-group">
+                    <label class="input">
+                        <i class="icon-prepend fa fa-calendar"></i>
+                        <input type="text" id="relDelTime1" ng-model="createData.relDelTime1"   data-im-timepicker placeholder="要求开始时间">
+                    </label>
+                </div>
+            </section>
+        </div>
       <div class="row">
         <section class="col col-6">
           <div class="form-group">
             <label class="input">
               <i class="icon-prepend fa fa-calendar"></i>
-              <input type="text" id="arriveDate" ng-model="createDate.reqDelDate1" im-datepicker placeholder="要求达到日期">
+              <input type="text" id="reqDelDate2" ng-model="createData.reqDelDate2" im-datepicker placeholder="要求达到日期">
             </label>
           </div>
         </section>
@@ -108,12 +170,11 @@
           <div class="form-group">
             <label class="input">
               <i class="icon-prepend fa fa-calendar"></i>
-              <input type="text" id="sendDate" ng-model="createDate.reqDelDate2" im-datepicker placeholder="要求配送日期">
+              <input type="text" id="relDelTime2" ng-model="createData.relDelTime2"  data-im-timepicker  placeholder="要求配送时间">
             </label>
           </div>
         </section>
       </div>
-
     </fieldset>
     <fieldset>
       <div class="row">

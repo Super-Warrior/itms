@@ -1010,7 +1010,7 @@ body.nooverflow {
   height: 31px;
   margin: 10px 0 0 5px;
   padding: 0 22px;
-  font: 300 15px/29px 'Open Sans', Helvetica, Arial, sans-serif;
+  font: 300 15px/29px 'Microsoft Yahei', Helvetica, Arial, sans-serif;
   cursor: pointer;
 }
 .smart-form legend {
@@ -1110,7 +1110,7 @@ body.nooverflow {
   border-style: solid;
   border-radius: 0;
   background: #fff;
-  font: 13px/16px 'Open Sans', Helvetica, Arial, sans-serif;
+  font: 13px/16px 'Microsoft Yahei', Helvetica, Arial, sans-serif;
   color: #404040;
   appearance: normal;
   -moz-appearance: none;
@@ -1386,7 +1386,7 @@ body.nooverflow {
   padding: 0 25px;
   outline: none;
   border: 0;
-  font: 300 15px/31px 'Open Sans', Helvetica, Arial, sans-serif;
+  font: 300 15px/31px 'Microsoft Yahei', Helvetica, Arial, sans-serif;
   text-decoration: none;
   color: #fff;
   cursor: pointer;
@@ -1833,7 +1833,7 @@ body.nooverflow {
   display: block;
   padding: 25px 30px;
   background: rgba(255, 255, 255, 0.9);
-  font: 300 18px/27px 'Open Sans', Helvetica, Arial, sans-serif;
+  font: 300 18px/27px 'Microsoft Yahei', Helvetica, Arial, sans-serif;
   text-align: center;
 }
 /*
@@ -1853,7 +1853,7 @@ body.nooverflow {
 			padding: 10px 12px;
 			background: #fff;
 			box-shadow: 0 0 10px rgba(0,0,0,.3);
-			font: 13px/1.55 'Open Sans', Helvetica, Arial, sans-serif;
+			font: 13px/1.55 'Microsoft Yahei', Helvetica, Arial, sans-serif;
 			text-align: center;
 			color: #666;
 		}
@@ -15184,7 +15184,7 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
+  font-family: "Microsoft Yahei", Arial, Helvetica, Sans-Serif;
   font-weight: 300;
 }
 .page-title {
@@ -18762,7 +18762,7 @@ img.away {
   -webkit-box-sizing: content-box;
 }
 .jqstooltip .jqsfield {
-  font-family: "Segoe UI", "Open Sans", Calibri, Candara, Arial, sans-serif;
+  font-family: "Segoe UI", "Microsoft Yahei", Calibri, Candara, Arial, sans-serif;
   font-size: 11px;
 }
 #sparks {
