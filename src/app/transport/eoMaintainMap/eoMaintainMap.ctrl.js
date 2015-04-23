@@ -1,9 +1,11 @@
 ﻿angular.module('itms.transport.eoMaintainMap')
    .controller('eoMaintainMapCtrl', ['$scope', "$http", "config", "common", '$modal', '$log',
-      'eoMaintainService', 'configService', 'customerService', 'exportService','orderService', '$q', mapCtrl]);
+      'eoMaintainService', 'configService', 'customerService', 'exportService', 'orderService', '$q', mapCtrl]);
 
 function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
-   configService, customerService, exportService, orderService,$q) {
+   configService, customerService, exportService, orderService, $q) {
+   localStorage.setItem("mapData", JSON.stringify([]));
+
    $scope.module = "运输执行";
    $scope.title = "运单查询/维护";
    $scope.queryOption = {
@@ -14,25 +16,71 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       EOType: [''],
       EOTRType: [''],
       EOTag: [''],
-      EOTRVendor1: '',
-      EOTRVendor2: '',
-      EOTRVendor3: '',
-      customerOrder1: '',
-      customerOrder2: '',
-      customerOrder3: '',
-      VendorOrder1: '',
-      VendorOrder2: '',
-      VendorOrder3: '',
+      EOTRVendor1: [''],
+      EOTRVendor2: [''],
+      EOTRVendor3: [''],
+      customerOrder1: [''],
+      customerOrder2: [''],
+      customerOrder3: [''],
+      VendorOrder1: [''],
+      VendorOrder2: [''],
+      VendorOrder3: [''],
       reqDelDate1: '',
+      reqDelDate1S: "",
+      reqDelDate1E: "",
       reqDelDate2: '',
+      reqDelDate2S: "",
+      reqDelDate2E: "",
       reqDelDate3: '',
+      reqDelDate3S: "",
+      reqDelDate3E: "",
       reqDelDate4: '',
+      reqDelDate4S: "",
+      reqDelDate4E: "",
       ScheduleVendor1: '',
       ScheduleClass1: '',
       DepDate1: '',
+      DepDate1S: '',
+      DepDate1E: '',
+      DepDate2: '',
+      DepDate2S: '',
+      DepDate2E: '',
+      DepDate3: '',
+      DepDate3S: '',
+      DepDate3E: '',
+      DepDate1act: "",
+      DepDate1actS: "",
+      DepDate1actE: "",
+      DepDate2act: "",
+      DepDate2actS: "",
+      DepDate2actE: "",
+      DepDate3act: "",
+      DepDate3actS: "",
+      DepDate3actE: "",
       ArrDate1: '',
+      ArrDate1S: '',
+      ArrDate1E: '',
+      ArrDate2: '',
+      ArrDate2S: '',
+      ArrDate2E: '',
+      ArrDate3: '',
+      ArrDate3S: '',
+      ArrDate3E: '',
+      ArrDate1act: '',
+      ArrDate1actS: "",
+      ArrDate1actE: "",
+      ArrDate2act: '',
+      ArrDate2actS: "",
+      ArrDate2actE: "",
+      ArrDate3act: '',
+      ArrDate3actS: "",
+      ArrDate3actE: "",
       DepTime1: '',
+      DepTime2: '',
+      DepTime3: '',
       Arrtime1: '',
+      Arrtime2: '',
+      Arrtime3: '',
       DeliverBP1: '',
       DeliverBP2: '',
       depCustomer: '',
@@ -204,6 +252,7 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
    //   }
    //}/*, true*/);
    $scope.showMap = false;
+
    $scope.$on("selectionChange", function (ev, data) {
       var icon = $("#wid-map");
       if (data.length === 1) {
@@ -221,7 +270,12 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
                && datas[2] && datas[2].data && datas[2].data[0]) {
                   success = mapFrame.window.drawMap(datas[0].data[0], datas[1].data[0], datas[2].data[0]);
                }
+               if (success)
+                  localStorage.setItem("mapData", JSON.stringify([datas[0].data[0], datas[1].data[0], datas[2].data[0]]));
+               else {
+                  localStorage.setItem("mapData", JSON.stringify([]));
 
+               }
                if (icon.hasClass("jarviswidget-collapsed"))
                   icon.find(".jarviswidget-toggle-btn").click();
                $scope.showMap = success;
@@ -373,9 +427,9 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       $scope.queryOption.EOType = [''];
       $scope.queryOption.EOTRType = [''];
       $scope.queryOption.EOTag = [''];
-      $scope.queryOption.EOTRVendor1 = '';
-      $scope.queryOption.EOTRVendor2 = '';
-      $scope.queryOption.EOTRVendor3 = '';
+      $scope.queryOption.EOTRVendor1 = [''];
+      $scope.queryOption.EOTRVendor2 = [''];
+      $scope.queryOption.EOTRVendor3 = [''];
       $scope.queryOption.customerOrder1 = '';
       $scope.queryOption.customerOrder2 = '';
       $scope.queryOption.customerOrder3 = '';
@@ -418,7 +472,6 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
       $scope.queryOption.BP3 = "";
 
 
-
    };
    $scope.handleEvent = function () {
       var modalInstance = $modal.open({
@@ -431,7 +484,7 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
          }
       });
       modalInstance.result.then(function () {
- refresh();
+         refresh();
          common.notifier.success("操作成功");
       });
    };
@@ -458,9 +511,9 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
          "EOType": "",
          "EOTRType": "",
          "EOTag": "",
-         "EOTRVendor1": "",
-         "EOTRVendor2": "",
-         "EOTRVendor3": "",
+         "EOTRVendor1": [""],
+         "EOTRVendor2": [""],
+         "EOTRVendor3": [""],
          "customerOrder1": "",
          "customerOrder2": "",
          "customerOrder3": "",
@@ -565,7 +618,7 @@ function mapCtrl($scope, $http, config, common, $modal, $log, eoMaintainService,
                  common.notifier.success("操作成功...");
               }
            }).then(function () {
-                refresh();
+              refresh();
            });
    };
 

@@ -38,6 +38,17 @@
         };
 
 
+        $(function () {
+            var tempData = localStorage.getItem("mapData");
+            if (tempData)
+                tempData = JSON.parse(tempData);
+            if (tempData && tempData.length) {
+                window.drawMap(tempData[0], tempData[1], tempData[2]);
+
+            }
+
+        });
+
         window.drawMap = function (point, eventLocation, path) {
             if (!point || !eventLocation || !path
                 || !point.location
