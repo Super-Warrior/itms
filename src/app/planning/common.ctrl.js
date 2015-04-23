@@ -602,6 +602,8 @@ function routeCtrl($scope, $modal, $log, $http, config, common, configService, c
    };
 
    $scope.doAssignRoute = function (isDraft) {
+      $scope.currentForm.validating = true;
+      if (!$scope.currentForm.$valid) return;
       var data = {
          ERID: $scope.routeData.ERID,
          ERITN: $scope.routeData.ERITN,

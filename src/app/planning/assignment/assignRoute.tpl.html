@@ -140,7 +140,7 @@
 
                         </fieldset>
 
-                        <fieldset  ng-show="showResult"  tiny-table my-source="routes" columns="columns" select-mode="single">
+                        <fieldset ng-show="showResult" tiny-table my-source="routes" columns="columns" select-mode="single">
                         </fieldset>
 
                         <!--  <fieldset>
@@ -191,27 +191,26 @@
             </div>
         </div>
     </div>
-    <form class="smart-form" novalidate>
+    <form name="currentForm" class="smart-form" novalidate>
         <fieldset>
             <div class="row">
-                <section class="col col-5">
+                <section class="col col-5" ng-class="{'state-error':currentForm.routeClassID.$invalid && (currentForm.validating||!currentForm.routeClassID.$pristine)}">
                     <label class="input">
                         <i class="icon-prepend fa fa-filter"></i>
-                        <input type="text" name="code" ng-model="routeData.routeClassID" maxlength="20" ng-change="routeData.resetChecked()" placeholder="路单号">
+                        <input type="text" name="routeClassID" ng-model="routeData.routeClassID" required maxlength="20" ng-change="routeData.resetChecked()" placeholder="路单号">
                         <b class="tooltip tooltip-right"><i class="fa fa-warning txt-color-teal"></i>如需置空路单, 请勾选右边checkbox </b>
                     </label>
                 </section>
                 <section class="col col-1">
                     <label class="checkbox">
                         <input type="checkbox" ng-model="routeData.checked" ng-change="routeData.resetRouteClassID()" name="checkbox-inline">
-                        </input>
                         <i></i>
                     </label>
                 </section>
-                <section class="col col-5">
+                <section class="col col-5" ng-class="{'state-error':currentForm.TRVendor.$invalid && (currentForm.validating||!currentForm.TRVendor.$pristine)}">
                     <label class="input">
                         <i class="icon-prepend fa fa-filter"></i>
-                        <input type="text" name="code" ng-model="routeData.TRVendor" placeholder="承运商编码">
+                        <input type="text" name="TRVendor" ng-model="routeData.TRVendor" required placeholder="承运商编码">
                     </label>
                 </section>
                 <section class="col col-1">
@@ -219,36 +218,35 @@
                 </section>
             </div>
             <div class="row">
-                <section class="col col-3">
+                <section class="col col-3" ng-class="{'state-error':currentForm.dateS.$invalid && (currentForm.validating||!currentForm.dateS.$pristine)}">
                     <div class="input-group">
-                        <input type="text" name="startdate" im-datepicker class="form-control"
-                            placeholder="出发日期" ng-model="routeData.dateS">
+                        <input type="text" name="dateS" im-datepicker class="form-control"
+                            placeholder="出发日期" required ng-model="routeData.dateS">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     </div>
                 </section>
                 <section class="col col-3">
                     <div class="input-group">
-                        <input class="form-control" type="text" data-im-timepicker
+                        <input class="form-control" type="text" data-im-timepicker name="timeS"
                             placeholder="出发时间" ng-model="routeData.timeS">
                         <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                     </div>
                 </section>
-                <section class="col col-3">
+                <section class="col col-3" ng-class="{'state-error':currentForm.dateE.$invalid && (currentForm.validating||!currentForm.dateE.$pristine)}">
                     <div class="input-group">
-                        <input type="text" name="enddate" im-datepicker class="form-control"
-                            placeholder="到达日期" ng-model="routeData.dateE">
-                        
-                        </input>
+                        <input type="text" name="dateE" im-datepicker class="form-control"
+                            placeholder="到达日期" required ng-model="routeData.dateE">
+
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     </div>
                 </section>
                 <section class="col col-3">
                     <div class="input-group">
 
-                        <input type="text" data-im-timepicker class="form-control"
+                        <input type="text" data-im-timepicker class="form-control" name="timeE"
                             placeholder="到达时间" ng-model="routeData.timeE">
-                        
-                        </input>
+
+
                         <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                     </div>
                 </section>
