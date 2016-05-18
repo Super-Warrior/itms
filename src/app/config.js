@@ -1,7 +1,7 @@
 var config = {
   version: '0.0.1',
   mode: 'production', //development or production
-  baseUrl: 'http://211.144.85.15:8080/ordermanagement/rest/',
+  baseUrl: 'http://211.144.85.15:8080/itms/rest/',
   userID: 10000
 };
 
