@@ -131,7 +131,7 @@
                                             <section class="col col-4">
                                                 <label class="label"><i class="fa fa-list"></i>运单类型</label>
                                                 <label class="select select-multiple">
-                                                    <select multiple="multiple" ng-multiple="true" class="custom-scroll" data-ng-model="ERType[0]"
+                                                    <select multiple="multiple" ng-multiple="true" class="custom-scroll" data-ng-model="ERType"
                                                         data-ng-options="config.code as config.description for config in eoTypes">
                                                     </select>
                                                 </label>
@@ -141,7 +141,7 @@
                                                 <label class="label"><i class="fa fa-truck "></i>运输方式</label>
                                                 <label class="select select-multiple">
                                                     <label class="select select-multiple">
-                                                        <select class="custom-scroll" multiple ng-model="ERTRType[0]"
+                                                        <select class="custom-scroll" multiple ng-model="ERTRType"
                                                             data-ng-options="config.code as config.description for config in transportTypes">
                                                         </select>
                                                     </label>
@@ -150,7 +150,7 @@
                                             <section class="col col-2">
                                                 <label class="label"><i class="fa fa-ambulance "></i>运输特殊标识</label>
                                                 <label class="select select-multiple">
-                                                    <select class="custom-scroll" multiple data-ng-model="ERTag[0]"
+                                                    <select class="custom-scroll" multiple data-ng-model="ERTag"
                                                         data-ng-options="config.code as config.description for config in tags">
                                                     </select>
                                                 </label>
